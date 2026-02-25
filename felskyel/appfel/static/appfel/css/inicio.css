@@ -1,0 +1,637 @@
+body {
+	container: body / inline-size;
+	position: relative;
+	min-height: 100%;
+	color: #000;
+	font-family: 'Inter';
+	line-height: 1.5;
+	background-color: rgba(81, 194, 236, 0.8);
+	overflow: auto;
+	--minContent: 0;
+	--hSizing: FILL;
+	--vSizing: FILL;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: STRETCH;
+}
+
+
+
+/* card */
+
+.card {
+	position: absolute; top: 3219px; 
+	max-width: 406px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: var(--spacing-m);
+	font-size: 24px;
+	font-weight: 500;
+	letter-spacing: 0px;
+	background-color: #fff;
+	padding: var(--spacing-sm);
+	border: 1px solid rgba(255, 56, 60, 0.5);
+	border-radius: 12px;
+	--minContent: 371;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: CENTER;
+	--pConstraintVertical: MIN;
+}
+
+.card-subtitle {
+	align-self: stretch;
+	--minContent: 341;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.card-avatar1 {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	--minContent: 152;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.card-avatar2 {
+	width: 45px;
+	flex-shrink: 0;
+	border-radius: 50%;
+	--minContent: 45;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: CENTER;
+}
+
+.card-col {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 2px;
+	--minContent: 91;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: CENTER;
+}
+/* end card*/
+
+
+.card-text {
+	font-size: 16px;
+	font-style: normal;
+	text-align: left;
+	--minContent: 91;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.btn {
+	position: absolute;
+	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+	display: flex;
+	color: #181717;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 500;
+	letter-spacing: 0px;
+	text-align: left;
+	background: linear-gradient(180deg, #46d674 68%, #25703c 95%) top left / auto auto no-repeat;
+	padding: 12px 25px;
+	border-radius: 8px;
+	--minContent: 143;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MAX;
+	--pConstraintVertical: MIN;
+}
+
+.card-s {
+	left: 50%; 
+	translate: -50% 0;
+	margin-left: -35px;
+	width: calc(100% - 32px);
+}
+
+.card-s .card-text-descripcion {
+	color: #545454;
+}
+
+.card-customer-quote {
+	right: 58px; 
+	width: calc(100% - 116px);
+}
+
+.card-customer-quote .card-text-descripcion {
+	color: #545454;
+}
+
+.header {
+	position: absolute; top: 0; left: 0; right: 0; 
+	display: flex;
+	align-items: flex-start;
+	gap: 101px;
+	font-size: 16px;
+	font-weight: 500;
+	letter-spacing: 0px;
+	background-color: #fff;
+	padding: 59px 70px 59px 80px;
+	--minContent: 562;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.header-graphic1 {
+	position: absolute; top: 62px; left: 250px; 
+	width: 307px; height: 42px;
+	--minContent: 307;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.header-group1 {
+	position: absolute; top: 62px; left: 250px; 
+	padding: 12px 13px 11px 276px;
+	--minContent: 307;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.header-search {
+	position: relative; z-index: 1;
+	margin-left: auto;
+	width: 18px; height: 19px;
+	--minContent: 18;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MAX;
+	--pConstraintVertical: MIN;
+}
+
+.header-graphic2 {
+	position: absolute; top: 0; left: 0; 
+	width: 307px; height: 42px;
+	--minContent: 307;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.header-text-left {
+	margin-top: 8px;
+	text-align: left;
+	--minContent: 78;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.header-text-buscar {
+	min-height: 46px;
+	display: flex;
+	align-items: center;
+	--minContent: 51;
+	--hSizing: HUG;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.header-group2 {
+	position: relative;
+	margin-left: auto;
+	width: 80px;
+	flex-shrink: 0;
+	background-color: rgba(113, 255, 129, 0.74);
+	padding: 12px 0 7px 24px;
+	border-radius: 4px;
+	--minContent: 80;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.header-group3 {
+	position: absolute; top: 9px; left: 7px; 
+	width: 10px; height: 8px;
+	--minContent: 10;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.header-text-perfil {
+	--minContent: 56;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.subtitle-encuentra-lo {
+	position: absolute; top: 2087px; left: 389px; right: 389px; 
+	text-align: right;
+	--minContent: 662;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.subtitle-contacto {
+	position: absolute; top: 3077px; left: 80px; right: 80px; 
+	--minContent: 1280;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.subtitle-en-felskyel {
+	position: absolute; top: 1240px; left: 37px; right: 779px; 
+	--minContent: 624;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.text1 {
+	position: absolute; top: 1326px; left: 75px; 
+	width: calc(100% - 150px);
+	max-width: 516px;
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+	--min-font-size: 17; --max-font-size: 24; font-size: var(--interpolate);
+	letter-spacing: 0px;
+	--minContent: 516;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+
+
+/* text */
+
+.text {
+	height: 152px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 8px;
+	flex-shrink: 0;
+	--minContent: 516;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.text-subtitle1 {
+	font-weight: 500;
+	--minContent: 516;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.text-subtitle2 {
+	margin-right: 1px;
+	color: #545454;
+	font-weight: 400;
+	--minContent: 516;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+/* end text*/
+
+
+.text4 {
+	height: 260px;
+}
+
+.text4 .text-subtitle2 {
+	margin-right: 0;
+}
+
+.btn1 {
+	top: 2584px; right: 189px; 
+}
+
+.btn2 {
+	top: 2590px; left: 50%; 
+	translate: -50% 0;
+	margin-left: 36px;
+	width: max-content;
+}
+
+.btn3 {
+	top: 2602px; left: 229px; 
+}
+
+.copy {
+	position: absolute; top: 212px; left: 79px; 
+	width: calc(100% - 158px);
+	max-width: 844px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	--min-font-size: 35; --max-font-size: 64; font-size: var(--interpolate);
+	font-weight: 700;
+	line-height: normal;
+	letter-spacing: -1.27px;
+	--minContent: 844;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.copy-title {
+	--minContent: 844;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.copy-subtitle {
+	text-align: left;
+	--minContent: 844;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.img1 {
+	position: absolute; top: 397px; left: 50%; 
+	translate: -50% 0;
+	margin-left: -49px;
+	width: 582px;
+	max-width: 915px;
+	--minContent: 545;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: CENTER;
+	--pConstraintVertical: MIN;
+}
+
+.img2 {
+	position: absolute; top: 1656px; right: 135px; 
+	width: 485px;
+	max-width: 585px;
+	border-radius: 95px;
+	--minContent: 380;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MAX;
+	--pConstraintVertical: MIN;
+}
+
+.img3 {
+	position: absolute; top: 1226px; left: 906px; 
+	width: 304px;
+	max-width: 421px;
+	border-radius: 54px;
+	--minContent: 274;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.mask-group1 {
+	position: absolute; top: 2193px; left: 141px; 
+	width: 313px;
+	--minContent: 313;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.mask-group2 {
+	position: absolute; top: 2177px; left: 50%; 
+	translate: -50% 0;
+	margin-left: 27px;
+	width: 319px;
+	--minContent: 346;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: CENTER;
+	--pConstraintVertical: MIN;
+}
+
+.mask-group3 {
+	position: absolute; top: 2189px; right: 87px; 
+	width: calc(100% - 174px);
+	max-width: 341px;
+	--minContent: 222;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MAX;
+	--pConstraintVertical: MIN;
+}
+
+.subtitle-copy {
+	position: absolute; top: 2529px; left: 190px; 
+	width: 247px;
+	--minContent: 247;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.subtitle-cabello {
+	position: absolute; top: 2527px; left: 684px; right: 593px; 
+	--minContent: 163;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.subtitle-cuerpo {
+	position: absolute; top: 2517px; left: 1108px; right: 135px; 
+	aspect-ratio: 85 / 36;
+	--minContent: 197;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.card1 {
+	position: absolute; top: 3235px; left: 116px; 
+	width: 279px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	align-content: flex-start;
+	gap: 10px;
+	row-gap: 13px;
+	font-weight: 500;
+	letter-spacing: 0px;
+	background-color: #fffbfb;
+	padding: 4px 18px 17px 18px;
+	border-radius: 24px;
+	--minContent: 279;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.card-subtitle2 {
+	flex-grow: 1;
+	font-size: 36px;
+	--minContent: 243;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MAX;
+}
+
+.card-group {
+	width: 104px;
+	flex-shrink: 0;
+	--minContent: 104;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MAX;
+}
+
+.card-mask-group {
+	--minContent: 68;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.card-text-right {
+	text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	min-height: 69px;
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+	font-size: 20px;
+	--minContent: 82;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MAX;
+}
+
+.section {
+	position: absolute; top: 2728px; left: 0; right: 0; 
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	letter-spacing: -0.95px;
+	background-color: white;
+	padding: 80px 80px 80px 83px;
+	--minContent: 914;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.section-subtitle {
+	margin-top: 9px;
+	font-size: 48px;
+	font-weight: 600;
+	line-height: normal;
+	--minContent: 592;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.section-btn-s {
+	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+	display: flex;
+	color: #fff;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 500;
+	letter-spacing: 0px;
+	text-align: left;
+	background-color: #000;
+	padding: 20px 33px;
+	border-radius: 8px;
+	--minContent: 159;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MAX;
+	--pConstraintVertical: MIN;
+}
+
+.footer {
+	position: absolute; top: 3778px; left: 0; right: 0; 
+	height: 185px;
+	background-color: white;
+	--minContent: 0;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+
+
+/* container queries (flex rows) */
+
+@container body (width < 560px) {
+	.header {
+		flex-direction: column;
+		align-items: center;
+		gap: 14px;
+	}
+	.header > * {
+		margin-left: unset !important; margin-right: unset !important; margin-top: unset !important;
+		text-align: center;
+	}
+}
+
+@container body (width < 912px) {
+	.section {
+		flex-direction: column;
+		align-items: center;
+		gap: 15px;
+	}
+	.section > * {
+		margin-top: unset !important;
+		text-align: center;
+	}
+}
