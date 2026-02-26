@@ -1,0 +1,334 @@
+
+* {
+	--max-screen-size: 1440;
+}
+
+body {
+	background-color: #6affc3;
+	--minContent: 0;
+}
+
+.text-b {
+	font-size: 16px;
+	font-style: normal;
+	text-align: left;
+	--minContent: 295;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.copy1 {
+	position: absolute; top: 244px; left: 80px; 
+	width: calc(100% - 160px);
+	max-width: 624px;
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-s);
+	--minContent: 624;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.copy-title {
+	text-align: left;
+	--minContent: 624;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.copy-text2 {
+	text-align: left;
+	--minContent: 624;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.img1 {
+	position: absolute; top: 244px; right: 63px; 
+	width: calc(100% - 126px);
+	max-width: 531px;
+	--minContent: 345;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MAX;
+	--pConstraintVertical: MIN;
+}
+
+.header {
+	position: absolute; top: 0; left: 0; right: 0; 
+	padding-top: 67px;
+	padding-bottom: 67px;
+	--minContent: 1440;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.header-arrow-left {
+	position: absolute; top: 25px; right: 27px; 
+	width: 30px;
+	--minContent: 30;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MAX;
+	--pConstraintVertical: MIN;
+}
+
+.header-text {
+	text-align: left;
+	--minContent: 1280;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.footer {
+	container: footer / inline-size;
+	position: fixed; bottom: 0; left: 0; right: 0; 
+	align-items: center;
+	gap: 33px;
+	padding-bottom: 5px;
+	
+}
+
+.footer-line {
+	border-top: 1px solid #e6e6e6;
+}
+
+.footer-row-bottom {
+	display: flex;
+	align-items: flex-start;
+	gap: 44px;
+	align-self: start;
+	--minContent: 398;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+}
+
+.footer-subtitle {
+	text-align: left;
+	--minContent: 170;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.footer-social-icons {
+	min-width: 0;
+	gap: var(--spacing-xs);
+	flex-grow: 1;
+	--minContent: 120;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.form {
+	position: absolute; top: 925px; left: 6%; 
+	width: 43%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	align-content: flex-start;
+	gap: var(--spacing-sm);
+	row-gap: 24px;
+	--minContent: 626;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: SCALE;
+	--pConstraintVertical: MIN;
+}
+
+
+
+/* input-group */
+
+.input-group {
+	height: 80px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	flex-shrink: 0;
+	--minContent: 295;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.input-group-input {
+	flex-grow: 1;
+	color: #828282;
+	font-size: 16px;
+	font-style: normal;
+	letter-spacing: 0px;
+	text-align: left;
+	padding-bottom: 11px;
+	--minContent: 295;
+	--hSizing: FILL;
+	--vSizing: FILL;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: STRETCH;
+}
+/* end input-group*/
+
+
+.input-group1 {
+	width: 295px;
+}
+
+.input-group2 {
+	width: 297px;
+}
+
+.input-group3 {
+	width: 100%;
+	max-width: 626px;
+}
+
+.input-group4 {
+	width: 100%;
+	max-width: 626px;
+}
+
+.input-group5 {
+	width: 100%; height: 194px;
+	max-width: 626px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	flex-shrink: 0;
+	--minContent: 626;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.input-group-input2 {
+	height: 162px;
+	flex-shrink: 0;
+	text-align: left;
+	padding-bottom: 125px;
+	--minContent: 626;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: STRETCH;
+}
+
+.form-btn {
+	justify-content: center;
+	flex-grow: 1;
+	text-align: center;
+	--minContent: 626;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.subtitle-heading {
+	position: absolute; top: 845px; left: 80px; right: 80px; 
+	--minContent: 1280;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.subtitle-agendar-cita {
+	position: absolute; top: 1007px; left: 997px; right: 152px; 
+	--min-font-size: 23; --max-font-size: 40; font-size: var(--interpolate);
+	--minContent: 291;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.btn-dia-y-hora {
+	position: absolute; top: 1097px; right: 215px; 
+	width: 192px;
+	display: flex;
+	text-align: left;
+	background-color: #d9d9d9;
+	padding: 2px 40px 4px 40px;
+	--minContent: 192;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MAX;
+	--pConstraintVertical: MIN;
+}
+
+.btn-generar {
+	position: absolute; top: 1194px; right: 116px; 
+	width: calc(100% - 232px);
+	max-width: 389px;
+	min-height: 63px;
+	color: #fff;
+	text-align: center;
+	background-color: #000;
+	padding: 2px 11px 0 11px;
+	border-radius: 8px;
+	--minContent: 389;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MAX;
+	--pConstraintVertical: MIN;
+}
+
+
+
+/* container queries (flex rows) */
+
+@container footer (width < 397px) {
+	.footer-row-bottom {
+		flex-direction: column;
+		align-items: center;
+		gap: 14px;
+	}
+	.footer-row-bottom > * {
+		text-align: center;
+	}
+	.footer-row-bottom > .footer-social-icons {
+		width: 100%;
+	}
+}
+.appointment {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.appointment form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.appointment label {
+  font-weight: bold;
+}
+
+.appointment input, 
+.appointment button {
+  padding: 8px;
+  font-size: 1rem;
+}

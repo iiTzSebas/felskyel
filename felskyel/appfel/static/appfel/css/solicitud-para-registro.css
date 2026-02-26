@@ -1,0 +1,394 @@
+
+* {
+	--max-screen-size: 718;
+}
+
+body {
+	container: body / inline-size;
+	position: unset;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 21px;
+	font-size: 15px;
+	background-color: #fff;
+	padding: 66px 9px 143px 17px;
+	--minContent: 718;
+}
+
+.text-c {
+	--minContent: 234;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+
+
+/* row-b */
+
+.row-b {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	padding-left: 1px;
+	--minContent: 430;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+}
+
+.row-rect2 {
+	height: 14px;
+	flex-grow: 1;
+	background-color: #d9d9d9;
+	--minContent: 204;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+/* end row-b*/
+
+
+.text-ingrese {
+	--minContent: 210;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.rect-b {
+	margin-top: 5px;
+	width: 100%; height: 14px;
+	max-width: 314px;
+	flex-shrink: 0;
+	background-color: #d9d9d9;
+	--minContent: 134;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+
+
+/* row-c */
+
+.row-c {
+	width: 100%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding-left: 1px;
+	--minContent: 544;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+}
+/* end row-c*/
+
+
+.title-solicitud-de {
+	margin-left: 1px; margin-right: 9px;
+	align-self: stretch;
+	--min-font-size: 27; --max-font-size: 32; font-size: var(--interpolate);
+	text-align: center;
+	--minContent: 692;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.por-favor {
+	margin-left: -8px; margin-top: 4px;
+	width: 100%;
+	max-width: 598px;
+	min-height: 129px;
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+	align-self: center;
+	color: #fff;
+	background-color: #000;
+	padding: 17px 16px 0 13px;
+	--minContent: 590;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: CENTER;
+	--pConstraintVertical: MIN;
+}
+
+.row1 {
+	margin-top: 21px;
+	width: 100%;
+	max-width: 558px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding-left: 1px;
+	--minContent: 549;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+}
+
+.correo-o-numero {
+	margin-top: 6px;
+	width: 100%;
+	max-width: 314px;
+	flex-shrink: 0;
+	font-size: 11px;
+	background-color: #dbdbdb;
+	--minContent: 314;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.row2 {
+	margin-left: 1px; margin-top: 1px;
+	max-width: 539px;
+	gap: 14px;
+}
+
+.row2 .row-rect2 {
+	margin-top: 5px;
+}
+
+.row3 {
+	max-width: 540px;
+	gap: 23px;
+}
+
+.row3 .row-rect2 {
+	margin-top: 3px;
+}
+
+.row4 {
+	max-width: 540px;
+	gap: 35px;
+}
+
+.row4 .row-rect2 {
+	margin-top: 5px;
+}
+
+.row5 {
+	margin-left: 1px;
+	max-width: 539px;
+	gap: 20px;
+}
+
+.row5 .row-rect2 {
+	margin-top: 6px;
+}
+
+.row6 {
+	margin-top: 1px;
+	width: 100%;
+	max-width: 632px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding-left: 1px;
+	--minContent: 617;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+}
+
+.documento {
+	margin-top: 6px;
+	width: 100%;
+	max-width: 314px;
+	flex-shrink: 0;
+	font-size: 10px;
+	background-color: #d9d9d9;
+	--minContent: 314;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.row7 {
+	max-width: 603px;
+	gap: 27px;
+}
+
+.row7 .row-rect2 {
+	margin-top: 4px;
+}
+
+.row8 {
+	margin-left: 1px; margin-top: 1px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 11px;
+	align-self: stretch;
+	--minContent: 692;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+}
+
+.text-registro-de {
+	margin-left: 1px;
+}
+
+.rect-right {
+	width: 134px;
+	max-width: unset;
+}
+
+.row9 {
+	margin-left: 1px;
+	max-width: 461px;
+	gap: 22px;
+}
+
+.row9 .row-rect2 {
+	margin-top: 5px;
+}
+
+.row10 {
+	max-width: 558px;
+}
+
+.row11 {
+	max-width: 509px;
+}
+
+.row12 {
+	margin-top: 37px;
+	width: 271px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	--minContent: 271;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+}
+
+.btn-ver {
+	margin-top: 3px;
+	width: 46px;
+	display: flex;
+	justify-content: center;
+	flex-shrink: 0;
+	font-style: normal;
+	letter-spacing: 0px;
+	text-align: center;
+	background: linear-gradient(180deg, #d9d9d9 79%, #737373 97%) top left / auto auto no-repeat;
+	padding: 0 7px;
+	border-radius: 5px;
+	--minContent: 46;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.btn-bottom {
+	margin-left: 44px; margin-top: 107px;
+	width: 116px;
+	display: flex;
+	justify-content: center;
+	align-self: center;
+	font-size: 32px;
+	font-style: normal;
+	letter-spacing: 0px;
+	text-align: center;
+	background: linear-gradient(180deg, #d9d9d9 79%, #737373 97%) top left / auto auto no-repeat;
+	padding: 0 8px;
+	border-radius: 5px;
+	--minContent: 160;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: CENTER;
+	--pConstraintVertical: MIN;
+}
+
+
+
+/** breakpoints (margin / paddings) **/
+
+@media screen and (max-width: 640px) {
+	.title-solicitud-de {
+		margin-inline: 0;
+	}
+}
+
+
+
+/* container queries (flex rows) */
+
+@container body (width < 429px) {
+	.row-b {
+		flex-direction: column;
+		align-items: center;
+		gap: 13px;
+	}
+	.row-b > * {
+		margin-top: unset !important;
+		text-align: center;
+	}
+	.row-b > .row-rect2 {
+		width: 100%;
+	}
+}
+
+@container body (width < 543px) {
+	.row-c {
+		flex-direction: column;
+		align-items: center;
+		gap: 13px;
+	}
+	.row-c > * {
+		margin-top: unset !important;
+		text-align: center;
+	}
+}
+
+@container body (width < 548px) {
+	.row1 {
+		flex-direction: column;
+		align-items: center;
+		gap: 13px;
+	}
+	.row1 > * {
+		margin-top: unset !important;
+		text-align: center;
+	}
+}
+
+@container body (width < 616px) {
+	.row6 {
+		flex-direction: column;
+		align-items: center;
+		gap: 13px;
+	}
+	.row6 > * {
+		margin-top: unset !important;
+		text-align: center;
+	}
+}
+
+@container body (width < 691px) {
+	.row8 {
+		flex-direction: column;
+		align-items: center;
+		gap: 13px;
+	}
+	.row8 > * {
+		margin-left: unset !important; margin-right: unset !important; margin-top: unset !important;
+		text-align: center;
+	}
+}

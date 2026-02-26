@@ -1,0 +1,526 @@
+
+* {
+	--max-screen-size: 1442;
+}
+
+body {
+	background-color: #fff;
+	--minContent: 0;
+}
+
+.img-b {
+	width: 100%;
+	flex-shrink: 0;
+	--minContent: 281;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+
+
+/* card-b */
+
+.card-b {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 24px;
+	color: #000;
+	--min-font-size: 16; --max-font-size: 20; font-size: var(--interpolate);
+	font-weight: 500;
+	line-height: 1.5;
+	--minContent: 515;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MAX;
+	--pConstraintVertical: MIN;
+}
+
+.card-copy2 {
+	height: 104px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 4px;
+	flex-shrink: 0;
+	align-self: stretch;
+	--minContent: 515;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.card-subtitle2 {
+	--min-font-size: 17; --max-font-size: 24; font-size: var(--interpolate);
+	--minContent: 515;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.card-text2 {
+	color: #828282;
+	font-weight: 400;
+	--minContent: 515;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.card-text-bottom2 {
+	--minContent: 515;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+/* end card-b*/
+
+
+
+
+/* copy-a */
+
+.copy-a {
+	position: absolute;
+	width: 36%; height: 192px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: var(--spacing-s);
+	--minContent: 516;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: SCALE;
+	--pConstraintVertical: MIN;
+}
+
+.copy-buttons {
+	display: flex;
+	align-items: flex-start;
+	align-self: start;
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 1.5;
+	--minContent: 320;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+/* end copy-a*/
+
+
+.copy-btn-b {
+	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+	display: flex;
+	font-style: normal;
+	letter-spacing: 0px;
+	text-align: left;
+	padding: 12px 25px 12px 24px;
+	border-radius: 8px;
+	--minContent: 140;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+
+
+/* copy-b */
+
+.copy-b {
+	height: 136px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: var(--spacing-xs);
+	flex-shrink: 0;
+	--minContent: 515;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.copy-icon {
+	width: 24px;
+	flex-shrink: 0;
+	align-self: start;
+	--minContent: 24;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+/* end copy-b*/
+
+
+.card-list {
+	position: absolute; top: 2400px; left: 790px; 
+	width: calc(100% - 1580px); height: 532px;
+	max-width: 432px;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	color: #000;
+	--min-font-size: 16; --max-font-size: 20; font-size: var(--interpolate);
+	font-weight: 500;
+	line-height: 1.5;
+	--minContent: 432;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.card-list-img {
+	width: unset;
+}
+
+.card-list-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 4px;
+	flex-grow: 1;
+	--minContent: 432;
+	--hSizing: FILL;
+	--vSizing: FILL;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: STRETCH;
+}
+
+.card-list-subtitle {
+	--min-font-size: 17; --max-font-size: 24; font-size: var(--interpolate);
+	--minContent: 432;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.card-list-text-producto-para {
+	color: #828282;
+	font-weight: 400;
+	--minContent: 432;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.card-list-text-bottom {
+	--minContent: 432;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.card1 {
+	top: 1762px; right: 137px; 
+	width: calc(100% - 274px);
+	max-width: 515px;
+}
+
+.card1 .card-img2 {
+	max-width: 481px;
+}
+
+.card-big {
+	top: 1968px; left: 120px; 
+	width: calc(100% - 240px);
+	max-width: 483px;
+}
+
+.card-big .card-img2 {
+	max-width: 456px;
+}
+
+.subtitle-mas-productos {
+	position: absolute; top: 1870px; left: 80px; right: 620px; 
+	--minContent: 742;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.header {
+	position: absolute; top: 0; left: 0; right: 0; 
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	color: #fff;
+	font-weight: 500;
+	line-height: 1.5;
+	background: linear-gradient(#bcbcbc, #bcbcbc) top left / auto auto no-repeat, url(../assets/shop/header.png) center / cover no-repeat;
+	padding-right: 2px;
+	padding-bottom: 180px;
+	--minContent: 1442;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+}
+
+.header-nav {
+	position: relative;
+	height: 171px;
+	flex-shrink: 0;
+	font-size: 16px;
+	text-align: left;
+	--minContent: 0;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.header-shopping-cart-b {
+	position: absolute;
+	--minContent: 30;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.header-text-felskyel {
+	position: absolute; top: 56px; left: 68px; 
+	--minContent: 78;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.btn1 {
+	left: 1334px; 
+}
+
+.header-arrow-left1 {
+	top: 45px; left: 1222px; 
+	width: 30px;
+}
+
+.header-shopping {
+	top: 40px; left: 1269px; 
+	width: 44px;
+}
+
+.header-row {
+	position: absolute; top: 88px; left: 515px; 
+	width: calc(100% - 1030px); height: 47px;
+	max-width: 412px;
+	display: flex;
+	justify-content: space-between;
+	background: url(../assets/shop/header-row.png) center / contain no-repeat;
+	padding-left: 13px;
+	padding-right: 25px;
+	--minContent: 110;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+
+.header-text-buscar {
+	text-shadow: -1px -1px 0px var(--icon-neutral-on-neutral),1px -1px 0px var(--icon-neutral-on-neutral),1px 1px 0px var(--icon-neutral-on-neutral),-1px 1px 0px var(--icon-neutral-on-neutral);
+	min-height: 41px;
+	display: flex;
+	align-items: center;
+	align-self: start;
+	--minContent: 52;
+	--hSizing: HUG;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.header-icon {
+	margin-top: -4px;
+	width: 20px; height: 37%;
+	flex-shrink: 0;
+	align-self: center;
+	--minContent: 20;
+	--hSizing: FIXED;
+	--vSizing: FILL;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: SCALE;
+}
+
+.header-page-title {
+	margin: 73px 297px 0 299px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	line-height: 1.4;
+	text-align: center;
+	--minContent: 1440;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.header-title {
+	--min-font-size: 35; --max-font-size: 64; font-size: var(--interpolate);
+	font-weight: 700;
+	letter-spacing: -1.27px;
+	--minContent: 844;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.header-subtitle {
+	--min-font-size: 17; --max-font-size: 24; font-size: var(--interpolate);
+	--minContent: 844;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.header-btn {
+	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+	margin-left: 2px;
+	display: flex;
+	align-self: center;
+	font-size: 24px;
+	font-style: normal;
+	letter-spacing: 0px;
+	text-align: left;
+	background-color: #000;
+	padding: 20px 33px;
+	border-radius: 8px;
+	--minContent: 189;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: CENTER;
+	--pConstraintVertical: MIN;
+}
+
+.copy1 {
+	top: 927px; left: 7%; 
+}
+
+.copy1 .copy-text {
+	line-height: 1.5;
+}
+
+.copy1 .copy-buttons {
+	gap: 39px;
+}
+
+.copy1 .copy-btn1 {
+	color: #fff;
+	background-color: #000;
+	padding-right: 24px;
+}
+
+.copy1 .copy-btn2 {
+	color: #000;
+	background-color: #e6e6e6;
+}
+
+.copy2 {
+	top: 1415px; right: 14%; 
+}
+
+.copy2 .copy-text {
+	line-height: 1.5;
+}
+
+.copy2 .copy-buttons {
+	gap: 49px;
+}
+
+.copy2 .copy-btn1 {
+	color: #fff;
+	background-color: #000;
+	padding-left: 25px;
+}
+
+.copy2 .copy-btn2 {
+	color: #000;
+	background-color: #e6e6e6;
+}
+
+.list1 {
+	position: absolute; top: 3095px; left: 6%; 
+	width: 36%;
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-m);
+	line-height: 1.5;
+	--minContent: 515;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: SCALE;
+	--pConstraintVertical: MIN;
+}
+
+.list2 {
+	position: absolute; top: 3095px; right: 6%; 
+	width: 36%;
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-m);
+	line-height: 1.5;
+	--minContent: 515;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: SCALE;
+	--pConstraintVertical: MIN;
+}
+
+.copy7 {
+	margin-right: 2px;
+	height: 144px;
+}
+
+.copy7 .copy-icon {
+	width: 32px;
+}
+
+.copy8 {
+	margin-right: 2px;
+}
+
+.subtitle-comentarios {
+	position: absolute; top: 2989px; left: 80px; right: 80px; 
+	--minContent: 1282;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.img1 {
+	top: 843px; left: 687px; 
+	width: calc(100% - 1374px);
+	max-width: 575px;
+}
+
+.img2 {
+	position: absolute; top: 1259px; left: 107px; 
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	width: calc(100% - 214px);
+	max-width: 492px;
+	border-radius: 8px;
+	--minContent: 320;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}

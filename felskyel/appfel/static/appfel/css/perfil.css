@@ -1,0 +1,156 @@
+
+* {
+	--max-screen-size: 100;
+}
+
+body {
+	container: body / inline-size;
+	position: unset;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	font-size: 50px;
+	background-color: #2deb8c;
+	padding: 73px 23px 142px 23px;
+	--minContent: 920;
+}
+
+
+
+/* row-a */
+
+.row-a {
+	margin-right: 10px;
+	display: flex;
+	align-items: flex-start;
+	text-align: center;
+	padding-left: 2px;
+	
+}
+
+.row-subtitle {
+	margin-top: 1px;
+	--minContent: 283;
+	--hSizing: HUG;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.row-rect1 {
+	height: 58px;
+	flex-grow: 1;
+	background-color: #d9d9d9;
+	border-radius: 80px;
+	--minContent: 367;
+	--hSizing: FILL;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: MIN;
+	--pConstraintVertical: MIN;
+}
+/* end row-a*/
+
+
+.img-top {
+	width: 248px;
+	flex-shrink: 0;
+	align-self: center;
+	border-radius: 74px;
+	--minContent: 248;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: CENTER;
+	--pConstraintVertical: MIN;
+}
+
+.title-inicio-sesion {
+	margin-top: 6px;
+	text-align: center;
+	--minContent: 874;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.row1 {
+	margin-left: 1px; margin-top: 52px;
+	gap: 14px;
+}
+
+.row2 {
+	margin-left: 27px; margin-top: 6px;
+	gap: 6px;
+}
+
+.btn-iniciar {
+	margin-left: -17px; margin-top: 179px; 
+	width: 145px;
+	display: flex;
+	justify-content: center;
+	align-self: center;
+	text-align: center;
+	background: linear-gradient(180deg, #d9d9d9 51%, #737373 100%) top left / auto auto no-repeat;
+	padding: 0 8px;
+	
+}
+
+.subtitle-crear-cuenta {
+	margin-top: 194px;
+	text-align: center;
+	--minContent: 874;
+	--hSizing: FILL;
+	--vSizing: HUG;
+	--pConstraintHorizontal: STRETCH;
+	--pConstraintVertical: MIN;
+}
+
+.btn-bottom {
+	width: 276px;
+	display: flex;
+	justify-content: center;
+	align-self: center;
+	text-align: center;
+	background-color: #d9d9d9;
+	padding: 0 10px;
+	--minContent: 276;
+	--hSizing: FIXED;
+	--vSizing: HUG;
+	--pConstraintHorizontal: CENTER;
+	--pConstraintVertical: MIN;
+}
+
+
+
+/** breakpoints (margin / paddings) **/
+
+@media screen and (max-width: 768px) {
+	body {
+		padding-inline: var(--margin-sm);
+	}
+	.row1 {
+		margin-inline: 0;
+	}
+	.row2 {
+		margin-inline: 0;
+	}
+}
+
+
+
+/* container queries (flex rows) */
+
+@container body (width < 675px) {
+	.row-a {
+		flex-direction: column;
+		align-items: center;
+		gap: 14px;
+	}
+	.row-a > * {
+		margin-top: unset !important;
+		text-align: center;
+	}
+	.row-a > .row-rect1 {
+		width: 100%;
+	}
+}
