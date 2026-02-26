@@ -1,3 +1,10 @@
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 160px; /* Space for the absolute header */
+}
+
 body {
 	container: body / inline-size;
 	position: relative;
@@ -16,10 +23,9 @@ body {
 
 
 
-/* card */
-
 .card {
-	position: absolute; top: 3219px; 
+	/* position: absolute; top: 3219px; */
+    position: relative;
 	max-width: 406px;
 	display: flex;
 	flex-direction: column;
@@ -96,8 +102,8 @@ body {
 }
 
 .btn {
-	position: absolute;
-	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+	/* position: absolute; */
+    position: static;	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
 	display: flex;
 	color: #181717;
 	font-size: 24px;
@@ -247,9 +253,10 @@ body {
 	--pConstraintVertical: MIN;
 }
 
-.subtitle-encuentra-lo {
-	position: absolute; top: 2087px; left: 389px; right: 389px; 
-	text-align: right;
+.subtitle-encuentra-lo{
+	/* position: absolute; top: 2087px; left: -17%; right: 7%; */
+    position: static;
+	text-align: center;
 	--minContent: 662;
 	--hSizing: FILL;
 	--vSizing: HUG;
@@ -258,7 +265,8 @@ body {
 }
 
 .subtitle-contacto {
-	position: absolute; top: 3077px; left: 80px; right: 80px; 
+	/* position: absolute; top: 3077px; left: 80px; right: 80px; */
+    position: static;
 	--minContent: 1280;
 	--hSizing: FILL;
 	--vSizing: HUG;
@@ -267,7 +275,8 @@ body {
 }
 
 .subtitle-en-felskyel {
-	position: absolute; top: 1240px; left: 37px; right: 779px; 
+	/* position: absolute; top: 1240px; left: 37px; right: 779px; */
+    position: static;
 	--minContent: 624;
 	--hSizing: FILL;
 	--vSizing: HUG;
@@ -276,8 +285,9 @@ body {
 }
 
 .text1 {
-	position: absolute; top: 1326px; left: 75px; 
-	width: calc(100% - 150px);
+	/* position: absolute; top: 1326px; left: 75px; */
+    position: static;
+	width: 100%;
 	max-width: 516px;
 	display: flex;
 	flex-direction: column;
@@ -285,15 +295,11 @@ body {
 	--min-font-size: 17; --max-font-size: 24; font-size: var(--interpolate);
 	letter-spacing: 0px;
 	--minContent: 516;
-	--hSizing: FIXED;
+	--hSizing: HUG;
 	--vSizing: HUG;
 	--pConstraintHorizontal: MIN;
 	--pConstraintVertical: MIN;
 }
-
-
-
-/* text */
 
 .text {
 	height: 152px;
@@ -328,8 +334,6 @@ body {
 	--pConstraintHorizontal: STRETCH;
 	--pConstraintVertical: MIN;
 }
-/* end text*/
-
 
 .text4 {
 	height: 260px;
@@ -340,23 +344,24 @@ body {
 }
 
 .btn1 {
-	top: 2584px; right: 189px; 
+	/* top: 2584px; right: 189px; */
 }
 
 .btn2 {
-	top: 2590px; left: 50%; 
-	translate: -50% 0;
-	margin-left: 36px;
+	/* top: 2590px; left: 50%; */
+	/* translate: -50% 0; */
+	/* margin-left: 36px; */
 	width: max-content;
 }
 
 .btn3 {
-	top: 2602px; left: 229px; 
+	/* top: 2602px; left: 229px; */
 }
 
 .copy {
-	position: absolute; top: 212px; left: 79px; 
-	width: calc(100% - 158px);
+	/* position: absolute; top: 212px; left: 79px; */
+    position: static;
+	width: 100%;
 	max-width: 844px;
 	display: flex;
 	flex-direction: column;
@@ -366,10 +371,11 @@ body {
 	line-height: normal;
 	letter-spacing: -1.27px;
 	--minContent: 844;
-	--hSizing: FIXED;
+	--hSizing: HUG;
 	--vSizing: HUG;
 	--pConstraintHorizontal: MIN;
 	--pConstraintVertical: MIN;
+    text-align: center;
 }
 
 .copy-title {
@@ -381,7 +387,7 @@ body {
 }
 
 .copy-subtitle {
-	text-align: left;
+	text-align: center;
 	--minContent: 844;
 	--hSizing: FILL;
 	--vSizing: HUG;
@@ -390,9 +396,10 @@ body {
 }
 
 .img1 {
-	position: absolute; top: 397px; left: 50%; 
-	translate: -50% 0;
-	margin-left: -49px;
+	/* position: absolute; top: 397px; left: 50%; */
+    position: static;
+	/* translate: -50% 0; */
+	/* margin-left: -49px; */
 	width: 90%;
 	max-width: 582px;
 	--minContent: 545;
@@ -403,8 +410,9 @@ body {
 }
 
 .img2 {
-	position: absolute; top: 1520px; right: 9.4%; 
-	width: 33.7%;
+	/* position: absolute; top: 1520px; right: 9.4%; */
+    position: static;
+	width: 80%;
 	max-width: 485px;
 	border-radius: 95px;
 	--minContent: 380;
@@ -415,8 +423,9 @@ body {
 }
 
 .img3 {
-	position: absolute; top: 1226px; left: 62.9%; 
-	width: 21.1%;
+	/* position: absolute; top: 1226px; left: 62.9%; */
+    position: static;
+	width: 80%;
 	max-width: 304px;
 	border-radius: 54px;
 	--minContent: 274;
@@ -427,8 +436,9 @@ body {
 }
 
 .mask-group1 {
-	position: absolute; top: 2193px; left: 9.8%; 
-	width: 21.7%;
+	/* position: absolute; top: 2193px; left: 9.8%; */
+    position: static;
+	width: 80%;
 	max-width: 313px;
 	--minContent: 313;
 	--hSizing: FIXED;
@@ -438,10 +448,11 @@ body {
 }
 
 .mask-group2 {
-	position: absolute; top: 2177px; left: 50%; 
-	translate: -50% 0;
-	margin-left: 27px;
-	width: 90%;
+	/* position: absolute; top: 2177px; left: 50%; */
+    position: static;
+	/* translate: -50% 0; */
+	/* margin-left: 27px; */
+	width: 80%;
 	--minContent: 346;
 	max-width: 319px;
 	--hSizing: FIXED;
@@ -451,8 +462,9 @@ body {
 }
 
 .mask-group3 {
-	position: absolute; top: 2189px; right: 87px; 
-	width: calc(100% - 174px);
+	/* position: absolute; top: 2189px; right: 87px; */
+    position: static;
+	width: 80%;
 	max-width: 341px;
 	--minContent: 222;
 	--hSizing: FIXED;
@@ -462,8 +474,9 @@ body {
 }
 
 .subtitle-copy {
-	position: absolute; top: 2529px; left: 190px; 
-	width: 247px;
+	/* position: absolute; top: 2529px; left: 190px; */
+    position: static;
+	width: auto;
 	--minContent: 247;
 	--hSizing: FIXED;
 	--vSizing: HUG;
@@ -472,7 +485,8 @@ body {
 }
 
 .subtitle-cabello {
-	position: absolute; top: 2527px; left: 684px; right: 593px; 
+	/* position: absolute; top: 2527px; left: 684px; right: 593px; */
+    position: static;
 	--minContent: 163;
 	--hSizing: FILL;
 	--vSizing: HUG;
@@ -481,7 +495,8 @@ body {
 }
 
 .subtitle-cuerpo {
-	position: absolute; top: 2517px; left: 1108px; right: 135px; 
+	/* position: absolute; top: 2517px; left: 1108px; right: 135px; */
+    position: static;
 	aspect-ratio: 85 / 36;
 	--minContent: 197;
 	--hSizing: FILL;
@@ -491,8 +506,10 @@ body {
 }
 
 .card1 {
-	position: absolute; top: 3235px; left: 116px; 
-	width: 279px;
+	/* position: absolute; top: 3235px; left: 116px; */
+    position: static;
+	width: 90%;
+    max-width: 279px;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: flex-end;
@@ -504,8 +521,8 @@ body {
 	background-color: #fffbfb;
 	padding: 4px 18px 17px 18px;
 	border-radius: 24px;
-	--minContent: 279;
-	--hSizing: FIXED;
+	--minContent: 279px;
+	--hSizing: HUG;
 	--vSizing: HUG;
 	--pConstraintHorizontal: MIN;
 	--pConstraintVertical: MIN;
@@ -554,7 +571,8 @@ body {
 }
 
 .section {
-	position: absolute; top: 2728px; left: 0; right: 0; 
+	/* position: absolute; top: 2728px; left: 0; right: 0; */
+    position: static;
 	display: flex;
 	align-items: flex-start;
 	justify-content: space-between;
@@ -600,7 +618,8 @@ body {
 }
 
 .footer {
-	position: absolute; top: 3778px; left: 0; right: 0; 
+	/* position: absolute; top: 3778px; left: 0; right: 0; */
+    position: static;
 	height: 185px;
 	background-color: white;
 	--minContent: 0;
@@ -611,9 +630,44 @@ body {
 }
 
 
+.hero-section, .features-section, .categories-section, .contact-section, .section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 40px 20px;
+	gap: 20px;
+	width: 100%;
+}
 
-/* container queries (flex rows) */
+.features-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
 
+.features-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.categories-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
 @container body (width < 560px) {
 	.header {
 		flex-direction: column;
@@ -636,4 +690,24 @@ body {
 		margin-top: unset !important;
 		text-align: center;
 	}
+
+}
+
+@media (min-width: 1024px) {
+    .features-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .text1 {
+        flex-basis: 50%;
+    }
+    .features-images {
+        flex-basis: 45%;
+    }
+
+    .categories-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
 }
