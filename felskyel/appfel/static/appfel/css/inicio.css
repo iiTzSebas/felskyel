@@ -393,8 +393,8 @@ body {
 	position: absolute; top: 397px; left: 50%; 
 	translate: -50% 0;
 	margin-left: -49px;
-	width: 582px;
-	max-width: 915px;
+	width: 90%;
+	max-width: 582px;
 	--minContent: 545;
 	--hSizing: FIXED;
 	--vSizing: FIXED;
@@ -403,9 +403,9 @@ body {
 }
 
 .img2 {
-	position: absolute; top: 1656px; right: 135px; 
-	width: 485px;
-	max-width: 585px;
+	position: absolute; top: 1520px; right: 9.4%; 
+	width: 33.7%;
+	max-width: 485px;
 	border-radius: 95px;
 	--minContent: 380;
 	--hSizing: FIXED;
@@ -415,9 +415,9 @@ body {
 }
 
 .img3 {
-	position: absolute; top: 1226px; left: 906px; 
-	width: 304px;
-	max-width: 421px;
+	position: absolute; top: 1226px; left: 62.9%; 
+	width: 21.1%;
+	max-width: 304px;
 	border-radius: 54px;
 	--minContent: 274;
 	--hSizing: FIXED;
@@ -427,8 +427,9 @@ body {
 }
 
 .mask-group1 {
-	position: absolute; top: 2193px; left: 141px; 
-	width: 313px;
+	position: absolute; top: 2193px; left: 9.8%; 
+	width: 21.7%;
+	max-width: 313px;
 	--minContent: 313;
 	--hSizing: FIXED;
 	--vSizing: FIXED;
@@ -440,8 +441,9 @@ body {
 	position: absolute; top: 2177px; left: 50%; 
 	translate: -50% 0;
 	margin-left: 27px;
-	width: 319px;
+	width: 90%;
 	--minContent: 346;
+	max-width: 319px;
 	--hSizing: FIXED;
 	--vSizing: FIXED;
 	--pConstraintHorizontal: CENTER;
