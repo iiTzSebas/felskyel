@@ -9,11 +9,6 @@
 	<link rel="stylesheet" href="{% static 'appfel/css/global.css' %}" />
 	<link rel="stylesheet" href="{% static 'appfel/css/inicio.css' %}" />
 
-	<!-- Google Fonts para un estilo elegante -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,18 +17,11 @@
 <body>
     <header class="header">
 		
-		<a href="index.html" class="header-text-left body-text">Felskyel</a>
-
-		<!-- Barra de búsqueda centrada con icono de lupa -->
-		<div class="header-search-container">
-			<div class="input-group header-search-input">
-				<input type="text" class="form-control" placeholder="Buscar productos..." aria-label="Buscar productos">
-				<span class="input-group-text">
-					<!-- Asegúrate de que 'header-search.svg' esté en 'appfel/img/' o ajusta la ruta si está en 'assets/' -->
-					<img src="{% static 'appfel/img/lupa.webp' %}" alt="Lupa de búsqueda" class="header-search">
-				</span>
-			</div>
+		<div class="header-group1">
+			<object data="assets/header-search.svg" class="header-search" type="image/svg+xml"></object>
 		</div>
+		<a href="." class="header-text-left body-text">Felskyel</p></a>
+		<p class="header-text-buscar">Buscar</p>
 		
 		<div class="header-group2">
 			<object data="assets/header-group.svg" class="header-group3" type="image/svg+xml"></object>
