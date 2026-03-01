@@ -16,17 +16,25 @@
 </head>
 <body>
     <header class="header">
-		
-		<div class="header-group1">
-			<object data="assets/header-search.svg" class="header-search" type="image/svg+xml"></object>
-		</div>
 		<a href="." class="header-text-left body-text">Felskyel</p></a>
-		<p class="header-text-buscar">Buscar</p>
+
+		<form class="header-text-buscar d-flex" role="search">
+			<div class="input-group">
+				<span class="input-group-text bg-white border-end-0 rounded-start-pill">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+					</svg>
+				</span>
+				<input class="form-control border-start-0 rounded-end-pill" type="search" placeholder="Buscar" aria-label="Buscar">
+			</div>
+		</form>
 		
-		<div class="header-group2">
-			<object data="assets/header-group.svg" class="header-group3" type="image/svg+xml"></object>
-			<a href="perfil.html" class="header-text-perfil">Perfil</button></a>
-		</div>
+	<div class="header-group2">
+		<img src="{% static 'appfel/img/pefil_f.png' %}" alt="Simbolo usuario" class="header-group3" />
+
+		<a href="{% url 'perfil' %}" class="header-text-perfil">Perfil</a>
+	</div>
+
 	</header>
 	
 	<h2 class="subtitle-encuentra-lo subtitle1">Encuentra lo que necesitas</h2>
@@ -47,8 +55,6 @@
 				Asigna citas programadas con el proveedor para una mejor interracción y comunicate con él por medio de nuestro chat.
 			</h2>
 		</div>
-
-		<!--<img src ="{% static 'appfel/img/señor.jpeg' %}" alt="señor" class="principal"/>-->
 
 		<div class="text text4">
 			<h2 class="text-subtitle1">Observar las experiencias de los demás clientes</h2>
@@ -82,7 +88,10 @@
 		<h2 class="card-subtitle2">smiLIFE</h2>
 		
 		<div class="card-group">
+			<a href="{% url 'contacto' %}" class="card-a hover-bright">
 			<img src="{% static 'appfel/img/card-mask-group.png' %}" class="card-mask-group" />
+			</a>
+
 		</div>
 		
 		<p class="card-text-right">

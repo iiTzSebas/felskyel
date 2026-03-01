@@ -3,122 +3,106 @@
 	--max-screen-size: 100;
 }
 
-body {
-	container: body / inline-size;
-	position: unset;
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	font-size: 50px;
-	background-color: #2deb8c;
-	padding: 73px 23px 142px 23px;
-	--minContent: 920;
-}
+/* Ajustes de diseño para corregir tamaños manteniendo colores originales */
+		body {
+			font-size: 16px !important; /* Restablecer tamaño de fuente base */
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			padding: 20px !important;
+			box-sizing: border-box;
+			background-color: #2deb8c;
+			/* El color de fondo se mantiene desde perfil.css */
+		}
 
+		.login-container {
+			width: 100%;
+			max-width: 400px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
 
+		.img-top {
+			width: 150px !important;
+			height: auto;
+			margin-bottom: 20px;
+			border-radius: 20px;
+		}
 
-/* row-a */
+		.title2, .subtitle2 {
+			font-size: 1.5rem !important;
+			text-align: center;
+			margin: 10px 0;
+		}
 
-.row-a {
-	margin-right: 10px;
-	display: flex;
-	align-items: flex-start;
-	text-align: center;
-	padding-left: 2px;
+		.login-form {
+			width: 100%;
+		}
+
+		.row-a {
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 15px;
+			width: 100%;
+		}
+
+		input {
+			width: 100%;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			margin-top: 5px;
+		}
+
+		button {
+			width: 100%;
+			padding: 10px;
+			font-size: 1rem !important;
+			margin-top: 10px !important;
+			margin-left: 0 !important;
+			cursor: pointer;
+			border: none;
+			border-radius: 5px;
+		}
+		
+		.btn-container {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			margin-top: 20px;
+		}
+
+		.btn-iniciar {
+			margin-left: -17px; margin-top: 179px; 
+			width: 145px;
+			display: flex;
+			justify-content: center;
+			align-self: center;
+			text-align: center;
+			background: linear-gradient(180deg, #d9d9d9 51%, #737373 100%) top left / auto auto no-repeat;
+			padding: 0 8px;
 	
-}
-
-.row-subtitle {
-	margin-top: 1px;
-	--minContent: 283;
-	--hSizing: HUG;
-	--vSizing: HUG;
-	--pConstraintHorizontal: STRETCH;
-	--pConstraintVertical: MIN;
-}
-
-.row-rect1 {
-	height: 58px;
-	flex-grow: 1;
-	background-color: #d9d9d9;
-	border-radius: 80px;
-	--minContent: 367;
-	--hSizing: FILL;
-	--vSizing: FIXED;
-	--pConstraintHorizontal: MIN;
-	--pConstraintVertical: MIN;
-}
-/* end row-a*/
+		}
 
 
-.img-top {
-	width: 248px;
-	flex-shrink: 0;
-	align-self: center;
-	border-radius: 74px;
-	--minContent: 248;
-	--hSizing: FIXED;
-	--vSizing: FIXED;
-	--pConstraintHorizontal: CENTER;
-	--pConstraintVertical: MIN;
-}
+		.btn-bottom {
+			width: 276px;
+			display: flex;
+			justify-content: center;
+			align-self: center;
+			text-align: center;
+			background-color: #d9d9d9;
+			padding: 0 10px;
+			--minContent: 276;
+			--hSizing: FIXED;
+			--vSizing: HUG;
+			--pConstraintHorizontal: CENTER;
+			--pConstraintVertical: MIN;
+		}
 
-.title-inicio-sesion {
-	margin-top: 6px;
-	text-align: center;
-	--minContent: 874;
-	--hSizing: FILL;
-	--vSizing: HUG;
-	--pConstraintHorizontal: STRETCH;
-	--pConstraintVertical: MIN;
-}
-
-.row1 {
-	margin-left: 1px; margin-top: 52px;
-	gap: 14px;
-}
-
-.row2 {
-	margin-left: 27px; margin-top: 6px;
-	gap: 6px;
-}
-
-.btn-iniciar {
-	margin-left: -17px; margin-top: 179px; 
-	width: 145px;
-	display: flex;
-	justify-content: center;
-	align-self: center;
-	text-align: center;
-	background: linear-gradient(180deg, #d9d9d9 51%, #737373 100%) top left / auto auto no-repeat;
-	padding: 0 8px;
-	
-}
-
-.subtitle-crear-cuenta {
-	margin-top: 194px;
-	text-align: center;
-	--minContent: 874;
-	--hSizing: FILL;
-	--vSizing: HUG;
-	--pConstraintHorizontal: STRETCH;
-	--pConstraintVertical: MIN;
-}
-
-.btn-bottom {
-	width: 276px;
-	display: flex;
-	justify-content: center;
-	align-self: center;
-	text-align: center;
-	background-color: #d9d9d9;
-	padding: 0 10px;
-	--minContent: 276;
-	--hSizing: FIXED;
-	--vSizing: HUG;
-	--pConstraintHorizontal: CENTER;
-	--pConstraintVertical: MIN;
-}
 
 
 

@@ -236,9 +236,9 @@ body {
 }
 
 .header-group3 {
-	position: absolute; top: 9px; left: 7px; 
-	width: 10px; height: 8px;
-	--minContent: 10;
+	position: absolute; top: 11px; left: 9px; 
+	width: 12px; height: 10px;
+	--minContent: 12;
 	--hSizing: FIXED;
 	--vSizing: FIXED;
 	--pConstraintHorizontal: MIN;
