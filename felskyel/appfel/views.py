@@ -22,3 +22,6 @@ def registro(request):
 def contacto(request):
     return render (request, 'contacto.html')
 
+def prueba(request):
+    return render (request, 'prueba.html')
+

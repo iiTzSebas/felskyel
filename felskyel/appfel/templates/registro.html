@@ -2,77 +2,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="{% static 'css/reset.css' %}" />
-	<link rel="stylesheet" href="{% static 'css/global.css' %}" />
-	<link rel="stylesheet" href="{% static 'css/registro.css' %}" />
-	<title>Registro</title>
-
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="{% static 'css/registro.css' %}">
 </head>
-
 <body>
-	<h1 class="title-registro title2">Registro</h1>
 
-		
+<div class="container">
+    <h1>Registro</h1>
 
-		<div class="form-group">
-			<h2 class="subtitle-cual-es-tu subtitle3">¿Cuál es tu rol?</h2>
-			<div class="role-selection">
-				<input type="radio" id="cliente" name="rol" value="cliente" checked>
-				<label for="cliente" class="btn-b btn1 hover-dark">Cliente</label>
+    <form method="POST">
+        {% csrf_token %}
 
-				<input type="radio" id="proveedor" name="rol" value="proveedor">
-				<label for="proveedor" class="btn-b btn-proveedor hover-dark">Proveedor</label>
-			</div>
-		</div>
+        <fieldset>
+            <legend>Selecciona tu rol</legend>
 
-		<div class="form-group group1">
-			<label for="fname">Nombre:</label>
-			<input type="text" id="fname" name="fname" required>
-		</div>
+            <label>
+                <input type="radio" name="rol" value="cliente" checked>
+                Cliente
+            </label>
 
-		<div class="form-group group4">
-			<label for="lname">Apellido:</label>
-			<input type="text" id="lname" name="lname" required>
-		</div>
+            <label>
+                <input type="radio" name="rol" value="proveedor">
+                Proveedor
+            </label>
+        </fieldset>
 
-		<div class="form-group group5">
-			<label for="birthday">Fecha de nacimiento:</label>
-			<input type="date" id="birthday" name="birthday">
-		</div>
+        <fieldset>
+            <legend>Datos Personales</legend>
 
-		<div class="form-group group6">
-			<label for="email">Correo electrónico:</label>
-			<input type="email" id="email" name="email" required>
-		</div>
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="apellido" placeholder="Apellido" required>
+            <input type="date" name="fecha_nacimiento" required>
+            <input type="text" name="telefono" placeholder="Teléfono" required>
+        </fieldset>
 
-		<div class="form-group group7">
-			<label for="phone">Numero de teléfono:</label>
-			<input type="tel" id="phone" name="phone" required>
-		</div>
+        <fieldset>
+            <legend>Datos de la Cuenta</legend>
 
-		<div class="form-group group8">
-			<label for="username">Nombre de usuario:</label>
-			<input type="text" id="username" name="username" required>
-		</div>
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="text" name="username" placeholder="Usuario" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+        </fieldset>
 
-		<div class="form-group group7">
-			<label for="pwd">Contraseña:</label>
-			<input type="password" id="pwd" name="pwd" required>
-		</div>
+        <button type="submit">Registrarse</button>
 
-		<div class="form-group group7">
-			<label for="pwd_confirm">Confirmar contraseña:</label>
-			<input type="password" id="pwd_confirm" name="pwd_confirm" required>
-		</div>
+    </form>
+</div>
 
-		<div class="form-actions">
-			<button type="submit" class="btn-confirmar text2 hover-dark">Confirmar</button>
-			<button type="reset" class="btn-confirmar2 text2 hover-dark">Reiniciar</button>
-		</div>
-	</form>
 </body>
-
 </html>
