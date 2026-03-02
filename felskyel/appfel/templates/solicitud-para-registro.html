@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="{% static 'appfel/css/reset.css' %}" />
 	<link rel="stylesheet" href="{% static 'appfel/css/global.css' %}" />
 	<link rel="stylesheet" href="{% static 'appfel/css/solicitud-para-registro.css' %}" />
+	<title>Solicitud de Registro para Proveedor</title>
 
 </head>
 
@@ -20,68 +21,69 @@
 		
 	</div>
 	
-	<form method="POST" enctype="multipart/form-data">
+	{# Usar la etiqueta {% url %} hace que el formulario sea más robusto ante cambios en urls.py #}
+	<form method="POST" action="{% url 'solicitud_proveedor' %}" enctype="multipart/form-data">
 	{% csrf_token %}
 	<div class="row1">
-		<label class="text-c">Ingrese información de contacto:</label>
-		<input type="text" name="contacto" class="correo-o-numero" placeholder="Correo o número del cel" required>
+		<label for="contacto" class="text-c">Información de contacto</label>
+		<input type="text" id="contacto" name="contacto" class="correo-o-numero" placeholder="Correo o número del cel" required>
 	</div>
 	
 	<div class="row-b row2">
-		<label class="text-ingrese">Ingrese su nombre completo :</label>
-		<input type="text" name="nombre_completo" class="row-rect2" required>
+		<label for="nombre_completo" class="text-ingrese">Nombre completo</label>
+		<input type="text" id="nombre_completo" name="nombre_completo" class="row-rect2" required>
 	</div>
 	
 	<div class="row-b row3">
-		<label class="text-ingrese">Ingrese nombre del negocio:</label>
-		<input type="text" name="nombre_negocio" class="row-rect2" required>
+		<label for="nombre_negocio" class="text-ingrese">Nombre del negocio</label>
+		<input type="text" id="nombre_negocio" name="nombre_negocio" class="row-rect2" required>
 	</div>
 	
 	<div class="row-b row4">
-		<label class="text-ingrese">Ingrese correo electronico:</label>
-		<input type="email" name="email" class="row-rect2" required>
+		<label for="email" class="text-ingrese">Correo electrónico</label>
+		<input type="email" id="email" name="email" class="row-rect2" required>
 	</div>
 	
 	<div class="row-b row5">
-		<label class="text-ingrese">Ingrese número de contacto:</label>
-		<input type="tel" name="telefono" class="row-rect2" required>
+		<label for="telefono" class="text-ingrese">Número de contacto</label>
+		<input type="tel" id="telefono" name="telefono" class="row-rect2" required>
 	</div>
 	
 	<div class="row6">
-		<label class="text-c">Copia del documeto de indentidad/cedula:</label>
-		<input type="file" name="documento_identidad" class="documento" required>
+		<label for="documento_identidad" class="text-c">Copia del documento de identidad/cédula</label>
+		<input type="file" id="documento_identidad" name="documento_identidad" class="documento" accept=".pdf,.jpg,.png" required>
 	</div>
 	
 	<div class="row-b row7">
-		<label class="text-ingrese">Ingrese certificado de los productos:</label>
-		<input type="file" name="certificado_productos" class="row-rect2">
+		<label for="certificado_productos" class="text-ingrese">Certificado de los productos (opcional)</label>
+		<input type="file" id="certificado_productos" name="certificado_productos" class="row-rect2" accept=".pdf,.jpg,.png">
 	</div>
 	
 	<div class="row8">
-		<label class="text-ingrese text-registro-de">
+		<label for="registro_marca" class="text-ingrese text-registro-de">
 			Registro de marca o distribuidor autorizado (si venden marcas reconocidas):
 		</label>
-		<input type="file" name="registro_marca" class="rect-b rect-right">
+		<input type="file" id="registro_marca" name="registro_marca" class="rect-b rect-right" accept=".pdf,.jpg,.png">
 	</div>
 	
 	<div class="row-b row9">
-		<label class="text-ingrese">Ingrese domicilio:</label>
-		<input type="text" name="domicilio" class="row-rect2" required>
+		<label for="domicilio" class="text-ingrese">Domicilio</label>
+		<input type="text" id="domicilio" name="domicilio" class="row-rect2" required>
 	</div>
 	
 	<div class="row-c row10">
-		<label class="text-ingrese">Listado preliminar de productos:</label>
-		<textarea name="listado_productos" class="rect-b"></textarea>
+		<label for="listado_productos" class="text-ingrese">Listado preliminar de productos</label>
+		<textarea id="listado_productos" name="listado_productos" class="rect-b"></textarea>
 	</div>
 	
 	<div class="row-c row11">
-		<label class="text-ingrese">Origen de los productos:</label>
-		<textarea name="origen_productos" class="rect-b"></textarea>
+		<label for="origen_productos" class="text-ingrese">Origen de los productos</label>
+		<textarea id="origen_productos" name="origen_productos" class="rect-b"></textarea>
 	</div>
 	
 	<div class="row12">
 		<p class="text-ingrese">Ver terminos y condiciones</p>
-		<a href="#" class="btn-ver hover-bright" target="_blank">Ver</a>
+		<a href="{% url 'terminos_y_condiciones' %}" class="btn-ver hover-bright" target="_blank">Ver</a>
 	</div>
 	
 	<button type="submit" class="btn-bottom hover-bright">Enviar</button>
