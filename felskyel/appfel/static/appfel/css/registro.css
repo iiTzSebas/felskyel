@@ -1,248 +1,118 @@
-
-* {
-	--max-screen-size: 920;
-}
-
+/* ===== BODY ===== */
 body {
-	background-color: #96e7ff;
-	--minContent: 0;
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #74b9ff, #81ecec);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-.btn-b {
-	position: absolute;
-	display: flex;
-	font-size: 32px;
-	font-style: normal;
-	letter-spacing: 0px;
-	background-color: #d9d9d9;
-	padding: 10px 0;
-	border-radius: 20px;
-	--minContent: 161;
-	--hSizing: FIXED;
-	--vSizing: HUG;
-	--pConstraintHorizontal: MIN;
-	--pConstraintVertical: MIN;
+/* ===== FORM ===== */
+form {
+    background: white;
+    width: 100%;
+    max-width: 900px;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
 }
 
-
-
-/* group */
-
-.group {
-	position: absolute;
-	--min-font-size: 26; --max-font-size: 36; font-size: var(--interpolate);
-	text-align: right;
-	padding-right: 488px;
-	--minContent: 810;
-	--hSizing: HUG;
-	--vSizing: HUG;
-	--pConstraintHorizontal: MIN;
-	--pConstraintVertical: MIN;
+/* ===== TITULO ===== */
+h1 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 34px;
+    color: #2d3436;
 }
 
-.group-subtitle {
-	position: relative; z-index: 1;
-	--minContent: 314;
-	--hSizing: HUG;
-	--vSizing: HUG;
-	--pConstraintHorizontal: MIN;
-	--pConstraintVertical: MIN;
-}
-/* end group*/
-
-
-.rect-a {
-	position: absolute; top: 7px; 
-	width: calc(100% - 0px); height: 40px;
-	max-width: 810px;
-	background-color: #d9d9d9;
-	--minContent: 527;
-	--hSizing: FIXED;
-	--vSizing: FIXED;
-	--pConstraintHorizontal: MIN;
-	--pConstraintVertical: MIN;
+/* ===== FIELDSET ===== */
+fieldset {
+    border: none;
+    margin-bottom: 30px;
 }
 
-.title-registro {
-	position: absolute; top: 91px; left: 341px; right: 340px; 
-	text-align: center;
-	
+legend {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #0984e3;
 }
 
-.line1 {
-	position: absolute; top: 286px; left: 50%; 
-	translate: -50% 0;
-	margin-left: 103px;
-	width: 0; height: 22px;
-	flex-shrink: unset;
-	border-left: 3px solid #d9d9d9;
+/* ===== SECCIÓN ROL ===== */
+input[type="radio"] {
+    margin-right: 6px;
 }
 
-.btn-confirmar {
-	position: absolute; top: 160px; left: 50%; 
-	translate: -50% 0;
-	margin-left: -39px;
-	width: 225px;
-	display: flex;
-	justify-content: center;
-	text-align: center;
-	background-color: #f7f7f7;
-	padding: 6px 9px;
-	color: black;
+label {
+    font-size: 15px;
+    margin-right: 25px;
+    cursor: pointer;
 }
 
-.btn1 {
-	top: 240px; left: 590px; 
-	translate: -50% 0;
-	margin-left: 99px;
-	width: 161px;
-	justify-content: center;
-	text-align: center;
-	padding-left: 25px;
-	padding-right: 25px;
+/* ===== INPUTS EN FILA BONITA ===== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    margin: 8px;
+    width: 200px;
+    transition: 0.3s;
+    font-size: 14px;
 }
 
-.subtitle-cual-es-tu {
-	position: absolute; top: 177px; left: 318px; right: 318px; 
-	text-align: center;
-	--minContent: 284;
-	--hSizing: FILL;
-	--vSizing: HUG;
-	--pConstraintHorizontal: STRETCH;
-	--pConstraintVertical: MIN;
+/* Efecto moderno */
+input:focus {
+    border-color: #0984e3;
+    outline: none;
+    box-shadow: 0 0 8px rgba(9, 132, 227, 0.4);
 }
 
-.btn-proveedor {
-	top: 239px; left: 50%; 
-	translate: -50% 0;
-	margin-left: 99px;
-	width: 197px;
-	justify-content: center;
-	text-align: center;
-	padding-left: 9px;
-	padding-right: 9px;
+/* ===== ORGANIZAR CAMPOS EN FILAS ===== */
+fieldset:nth-of-type(2),
+fieldset:nth-of-type(3) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
-.subtitle-o {
-	position: absolute; top: 250px; left: 50%; 
-	translate: -50% 0;
-	margin-left: -25px;
-	width: max-content;
-	text-align: left;
-	--minContent: -5;
-	--hSizing: HUG;
-	--vSizing: HUG;
-	--pConstraintHorizontal: CENTER;
-	--pConstraintVertical: MIN;
+/* ===== BOTÓN ===== */
+button {
+    display: block;
+    margin: 20px auto 0 auto;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 10px;
+    background-color: #0984e3;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.group1 {
-	position: absolute; top: 361px; left: 20%; 
-	height: 54px;
-	--min-font-size: 26; --max-font-size: 36; font-size: var(--interpolate);
-	text-align: center;
-	padding-left: 5px;
+button:hover {
+    background-color: #0652dd;
+    transform: translateY(-3px);
 }
 
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    fieldset:nth-of-type(2),
+    fieldset:nth-of-type(3) {
+        flex-direction: column;
+        align-items: stretch;
+    }
 
-
-
-
-.group4 {
-	position: absolute; top: 445px; left: 20%;
-	height: 54px;
-	--min-font-size: 26; --max-font-size: 36; font-size: var(--interpolate);
-	padding-left: 5px;
-}
-
-
-.group5 {
-	position: absolute; top: 550px; left: 20%;
-	--min-font-size: 26; --max-font-size: 36; font-size: var(--interpolate);
-	text-align: center;
-	padding-right: 286px;
-	
-	
-}
-
-.rect1 {
-	left: 39px; 
-	width: calc(100% - 78px);
-}
-
-.subtitle-fecha-de {
-	position: relative; z-index: 1;
-	width: 100%;
-	max-width: 563px;
-	--minContent: 563;
-	--hSizing: FIXED;
-	--vSizing: HUG;
-	--pConstraintHorizontal: MIN;
-	--pConstraintVertical: MIN;
-}
-
-.group6 {
-	position: absolute; top: 646px; left: 20%;
-	height: 54px;
-	--min-font-size: 26; --max-font-size: 36; font-size: var(--interpolate);
-	padding-right: 516px;
-}
-
-
-.btn-confirmar2 {
-	position: absolute; top: 230px; left: 50%; 
-	translate: -50% 0;
-	margin-left: -39px;
-	width: 225px;
-	display: flex;
-	justify-content: center;
-	text-align: center;
-	background-color: #f7f7f7;
-	padding: 6px 9px;
-	color: black;
-}
-
-.subtitle-nombre-de-usuario {
-	position: absolute; z-index: 2; top: 742px; left: 39px; 
-	text-align: right;
-	--minContent: 327;
-	--hSizing: HUG;
-	--vSizing: HUG;
-	--pConstraintHorizontal: MIN;
-	--pConstraintVertical: MIN;
-}
-
-.group7 {
-	position: absolute; top: 838px; left: 20%;
-	--min-font-size: 26; --max-font-size: 36; font-size: var(--interpolate);
-	text-align: center;
-	padding-right: 384px;
-}
-
-
-.group8 {
-	position: absolute; top: 730px; left: 20%;
-	--min-font-size: 26; --max-font-size: 36; font-size: var(--interpolate);
-	text-align: center;
-	padding-right: 384px;
-}
-
-
-
-.confirmar {
-	position: absolute; top: 931px; left: 31px; 
-	width: calc(100% - 62px);
-	max-width: 810px;
-	text-align: center;
-	background-color: #d9d9d9;
-	padding: 0 6px;
-	--minContent: 810;
-	--hSizing: FIXED;
-	--vSizing: HUG;
-	--pConstraintHorizontal: MIN;
-	--pConstraintVertical: MIN;
-}
-
-div{
-	text-align: center;
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"] {
+        width: 100%;
+        margin: 8px 0;
+    }
 }
