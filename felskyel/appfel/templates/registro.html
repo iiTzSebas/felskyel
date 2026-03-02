@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,10 @@
 	<link rel="stylesheet" href="css/global.css" />
 	<link rel="stylesheet" href="css/registro.css" />
 
+	<link rel="stylesheet" href="{% static 'appfel/css/reset.css' %}" />
+	<link rel="stylesheet" href="{% static 'appfel/css/global.css' %}" />
+	<link rel="stylesheet" href="{% static 'appfel/css/registro.css' %}" />
+	<title>Registro</title>
 </head>
 
 <body>
@@ -30,6 +35,12 @@
 	<div class="group group4">
 		<label for="lname">Last name:</label>
   <input type="text" id="lname" name="lname"><br><br>
+	<h2 class="subtitle-cual-es-tu subtitle3">¿Cuál es tu rol?</h2>
+	<div class="role-selection">
+		<button class="btn-b btn1 hover-dark">Cliente</button>
+		<span class="subtitle-o subtitle3">o</span>
+		<!-- Para la navegación en Django, es mejor usar una etiqueta <a> con una URL de Django -->
+		<a href="solicitud-para-registro.html" class="btn-b btn-proveedor hover-dark">Proveedor</a>
 	</div>
 	
 	<div class="group5">
@@ -50,12 +61,43 @@
 	<div class="group group7">
     <label for="pwd">Password:</label>
     <input type="password" id="pwd" name="pwd"><br><br>
+	<form method="POST" action="" autocomplete="on" class="registration-form">
+		{% csrf_token %}
 
     <a href="perfil.html"><button type="submit" class="btn-confirmar text2 hover-dark">Confirmar</button></a>
 	
     <br><br>
 <button type="reset" class="btn-confirmar2 text2 hover-dark">Reiniciar</button> 
 </div>
+		<div class="form-group">
+			<label for="fname">First name:</label>
+			<input type="text" id="fname" name="fname" required>
+		</div>
+		<div class="form-group">
+			<label for="lname">Last name:</label>
+			<input type="text" id="lname" name="lname" required>
+		</div>
+		<div class="form-group">
+			<label for="birthday">Birthday:</label>
+			<input type="date" id="birthday" name="birthday">
+		</div>
+		<div class="form-group">
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" required>
+		</div>
+		<div class="form-group">
+			<label for="username">Nombre de usuario:</label>
+			<input type="text" id="username" name="username" required>
+		</div>
+		<div class="form-group">
+			<label for="pwd">Password:</label>
+			<input type="password" id="pwd" name="pwd" required>
+		</div>
+
+		<div class="form-actions">
+			<button type="submit" class="btn-confirmar text2 hover-dark">Confirmar</button>
+			<button type="reset" class="btn-confirmar2 text2 hover-dark">Reiniciar</button>
+		</div>
 	</form>
 	
 </body>
