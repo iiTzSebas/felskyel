@@ -22,3 +22,11 @@ def registro(request):
 def contacto(request):
     return render (request, 'contacto.html')
 
+def solicitud_proveedor(request):
+    if request.method == 'POST':
+        # Aquí iría la lógica para guardar los datos del formulario
+        return HttpResponse("Solicitud recibida correctamente.")
+    return render(request, 'solicitud-para-registro.html')
+
+def terminos_y_condiciones(request):
+    return HttpResponse("<h1>Términos y Condiciones</h1><p>Aquí va el contenido legal de tu sitio.</p>")
