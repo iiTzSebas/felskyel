@@ -80,8 +80,8 @@
 
 		<div class="form-actions">
 			<div class="terms-and-conditions">
-				<p>Ver terminos y condiciones</p>
-				<a href="{% url 'terminos_y_condiciones' %}" class="btn-ver hover-bright" target="_blank">Ver</a>
+				<input type="checkbox" id="aceptar_terminos" name="aceptar_terminos" required>
+				<label for="aceptar_terminos">He leído y acepto los <a href="{% url 'terminos_y_condiciones' %}" class="btn-ver hover-bright" target="_blank">términos y condiciones</a></label>
 			</div>
 			<button type="submit" class="btn-bottom hover-bright">Enviar</button>
 		</div>
