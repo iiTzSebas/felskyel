@@ -1,63 +1,73 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="css/reset.css" />
-	<link rel="stylesheet" href="css/global.css" />
-	<link rel="stylesheet" href="css/registro.css" />
+	<link rel="stylesheet" href="{% static 'css/reset.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/global.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/registro.css' %}" />
+	<title>Registro</title>
 
 </head>
 
 <body>
 	<h1 class="title-registro title2">Registro</h1>
-	
-	
-	<button class="btn-b btn1 hover-dark">cliente</button>
-	<h2 class="subtitle-cual-es-tu subtitle3">¿Cual es tu rol?</h2>
-	<button class="btn-b btn-proveedor hover-dark"
-	onclick="window.open('solicitud-para-registro.html')">Proveedor</button>
-	<h2 class="subtitle-o subtitle3">o</h2>
-	
-	<form action="/perfil.html" autocomplete="on">
-	<div class="group1">
-		<label for="fname">First name:</label>
-  <input type="text" id="fname" name="fname"><br><br>
+
+		
+
+		<div class="form-group">
+			<h2 class="subtitle-cual-es-tu subtitle3">¿Cuál es tu rol?</h2>
+			<div class="role-selection">
+				<input type="radio" id="cliente" name="rol" value="cliente" checked>
+				<label for="cliente" class="btn-b btn1 hover-dark">Cliente</label>
+
+				<input type="radio" id="proveedor" name="rol" value="proveedor">
+				<label for="proveedor" class="btn-b btn-proveedor hover-dark">Proveedor</label>
+			</div>
 		</div>
-		
-		
-	<div class="group group4">
-		<label for="lname">Last name:</label>
-  <input type="text" id="lname" name="lname"><br><br>
-	</div>
-	
-	<div class="group5">
-		<label for="birthday">Birthday:</label>
-  <input type="date" id="birthday" name="birthday">
-	</div>
-	
-	<div class="group group6">
-		<label for="email">Email:</label>
-  <input type="text" id="email" name="email"><br><br>
-	</div>
-	
-	<div class="group group8">
-	<label for="username">Nombre de usuario:</label>
-    <input type="text" id="username" name="username"><br><br>
-	</div>
 
-	<div class="group group7">
-    <label for="pwd">Password:</label>
-    <input type="password" id="pwd" name="pwd"><br><br>
+		<div class="form-group group1">
+			<label for="fname">Nombre:</label>
+			<input type="text" id="fname" name="fname" required>
+		</div>
 
-    <a href="perfil.html"><button type="submit" class="btn-confirmar text2 hover-dark">Confirmar</button></a>
-	
-    <br><br>
-<button type="reset" class="btn-confirmar2 text2 hover-dark">Reiniciar</button> 
-</div>
+		<div class="form-group group4">
+			<label for="lname">Apellido:</label>
+			<input type="text" id="lname" name="lname" required>
+		</div>
+
+		<div class="form-group group5">
+			<label for="birthday">Fecha de nacimiento:</label>
+			<input type="date" id="birthday" name="birthday">
+		</div>
+
+		<div class="form-group group6">
+			<label for="email">Correo electrónico:</label>
+			<input type="email" id="email" name="email" required>
+		</div>
+
+		<div class="form-group group8">
+			<label for="username">Nombre de usuario:</label>
+			<input type="text" id="username" name="username" required>
+		</div>
+
+		<div class="form-group group7">
+			<label for="pwd">Contraseña:</label>
+			<input type="password" id="pwd" name="pwd" required>
+		</div>
+
+		<div class="form-group group7">
+			<label for="pwd_confirm">Confirmar contraseña:</label>
+			<input type="password" id="pwd_confirm" name="pwd_confirm" required>
+		</div>
+
+		<div class="form-actions">
+			<button type="submit" class="btn-confirmar text2 hover-dark">Confirmar</button>
+			<button type="reset" class="btn-confirmar2 text2 hover-dark">Reiniciar</button>
+		</div>
 	</form>
-	
 </body>
 
 </html>
