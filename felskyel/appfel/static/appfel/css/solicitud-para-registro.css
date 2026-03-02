@@ -108,7 +108,7 @@ body {
 .form-control:focus {
     border-color: var(--primary-color);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(230, 108, 108, 0.1);
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
 }
 
 textarea.form-control {
@@ -120,7 +120,7 @@ textarea.form-control {
 .form-control-file {
     padding: 10px;
     background-color: #f0f0f0;
-    border: 1px dashed #50b8ca;
+    border: 1px dashed #999;
     cursor: pointer;
 }
 
@@ -158,6 +158,12 @@ textarea.form-control {
     padding: 0;
 }
 
+.buttons-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
 .btn-bottom {
     background-color: var(--primary-color);
     color: var(--white);
@@ -173,8 +179,54 @@ textarea.form-control {
 
 .btn-bottom:hover {
     transform: translateY(-2px);
-    background-color: #36c2c2;
-    box-shadow: 0 6px 12px rgba(54, 37, 37, 0.15);
+    background-color: #222;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.btn-cancel {
+    background-color: transparent;
+    color: #666;
+    padding: 16px 40px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.btn-cancel:hover {
+    background-color: #f0f0f0;
+    color: #333;
+    border-color: #bbb;
+}
+
+/* Mensajes de Django */
+.messages {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.messages li {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+}
+
+.messages li.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.messages li.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
 
 /* Responsive */

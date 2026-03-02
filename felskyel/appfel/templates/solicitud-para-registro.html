@@ -22,6 +22,13 @@
 	{# Usar la etiqueta {% url %} hace que el formulario sea más robusto ante cambios en urls.py #}
 	<form method="POST" action="{% url 'solicitud_proveedor' %}" enctype="multipart/form-data" class="provider-form">
 	{% csrf_token %}
+		{% if messages %}
+		<ul class="messages">
+			{% for message in messages %}
+			<li class="{{ message.tags }}">{{ message }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
 		<fieldset class="form-section">
 			<legend>Información Personal y del Negocio</legend>
 			<div class="form-group">
@@ -86,7 +93,10 @@
 				<input type="checkbox" id="aceptar_terminos" name="aceptar_terminos" required>
 				<label for="aceptar_terminos">He leído y acepto los <a href="{% url 'terminos_y_condiciones' %}" class="btn-ver hover-bright" target="_blank">términos y condiciones</a></label>
 			</div>
-			<button type="submit" class="btn-bottom hover-bright">Enviar</button>
+			<div class="buttons-container">
+				<a href="{% url 'inicio' %}" class="btn-cancel">Cancelar</a>
+				<button type="submit" class="btn-bottom hover-bright">Enviar</button>
+			</div>
 		</div>
 	</form>
 </body>
