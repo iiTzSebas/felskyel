@@ -262,7 +262,7 @@ body {
 	color: #fff;
 	font-weight: 500;
 	line-height: 1.5;
-	background: linear-gradient(#bcbcbc, #bcbcbc) top left / auto auto no-repeat, url(../assets/shop/header.png) center / cover no-repeat;
+	background: url('../img/shop/header.png') center / cover no-repeat;
 	padding-right: 2px;
 	padding-bottom: 180px;
 	--minContent: 1442;
@@ -513,16 +513,11 @@ body {
 }
 
 .img2 {
-	position: absolute; top: 1259px; left: 107px; 
+	position: absolute; top: 1259px; right: 107px; 
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	width: calc(100% - 214px);
 	max-width: 492px;
 	border-radius: 8px;
-	--minContent: 320;
-	--hSizing: FIXED;
-	--vSizing: FIXED;
-	--pConstraintHorizontal: MIN;
-	--pConstraintVertical: MIN;
 }	
 
 .search-container-custom {
@@ -550,5 +545,3 @@ body {
 			color: #333;
 			width: 100%;
 		}	
-
-
