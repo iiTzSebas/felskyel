@@ -523,4 +523,32 @@ body {
 	--vSizing: FIXED;
 	--pConstraintHorizontal: MIN;
 	--pConstraintVertical: MIN;
-}
+}	
+
+.search-container-custom {
+			display: flex;
+			align-items: center;
+			background-color: #ffffff;
+			border: 1px solid #e0e0e0;
+			border-radius: 50px;
+			padding: 8px 16px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+			transition: all 0.3s ease;
+			width: 260px;
+		}
+		.search-container-custom:focus-within {
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+			border-color: #bdbdbd;
+		}
+		.search-input-custom {
+			border: none;
+			outline: none;
+			background: transparent;
+			margin-left: 10px;
+			font-family: 'Inter', sans-serif;
+			font-size: 14px;
+			color: #333;
+			width: 100%;
+		}	
+
+
