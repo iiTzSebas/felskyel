@@ -1,87 +1,91 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="css/reset.css" />
-	<link rel="stylesheet" href="css/global.css" />
-	<link rel="stylesheet" href="css/solicitud-para-registro.css" />
+	<link rel="stylesheet" href="{% static 'appfel/css/reset.css' %}" />
+	<link rel="stylesheet" href="{% static 'appfel/css/global.css' %}" />
+	<link rel="stylesheet" href="{% static 'appfel/css/solicitud-para-registro.css' %}" />
+	<title>Solicitud de Registro para Proveedor</title>
 
 </head>
 
 <body>
 	<h1 class="title-solicitud-de">Solicitud de registro</h1>
-	<div class="por-favor">
-		Por favor complete la información requerida para continuar con su registro. Una vez finalice, haga clic en “Enviar”.<br />
-		 Recibirá una confirmación a través del método de contacto que haya seleccionado.<br />
-		<br />
-		
+	<div class="intro-text">
+		<p>Por favor complete la información requerida para continuar con su registro. Una vez finalice, haga clic en “Enviar”.</p>
+		<p>Recibirá una confirmación a través del método de contacto que haya seleccionado.</p>
 	</div>
 	
-	<div class="row1">
-		<p class="text-c">Ingrese información de contacto:</p>
-		<div class="correo-o-numero">Correo o número del cel </div>
-	</div>
-	
-	<div class="row-b row2">
-		<p class="text-ingrese">Ingrese su nombre completo :</p>
-		<div class="row-rect2"></div>
-	</div>
-	
-	<div class="row-b row3">
-		<p class="text-ingrese">Ingrese nombre del negocio:</p>
-		<div class="row-rect2"></div>
-	</div>
-	
-	<div class="row-b row4">
-		<p class="text-ingrese">Ingrese correo electronico:</p>
-		<div class="row-rect2"></div>
-	</div>
-	
-	<div class="row-b row5">
-		<p class="text-ingrese">Ingrese número de contacto:</p>
-		<div class="row-rect2"></div>
-	</div>
-	
-	<div class="row6">
-		<p class="text-c">Copia del documeto de indentidad/cedula:</p>
-		<div class="documento">Documento PDF</div>
-	</div>
-	
-	<div class="row-b row7">
-		<p class="text-ingrese">Ingrese certificado de los productos:</p>
-		<div class="row-rect2"></div>
-	</div>
-	
-	<div class="row8">
-		<p class="text-ingrese text-registro-de">
-			Registro de marca o distribuidor autorizado (si venden marcas reconocidas):
-		</p>
-		<div class="rect-b rect-right"></div>
-	</div>
-	
-	<div class="row-b row9">
-		<p class="text-ingrese">Ingrese domicilio:</p>
-		<div class="row-rect2"></div>
-	</div>
-	
-	<div class="row-c row10">
-		<p class="text-ingrese">Listado preliminar de productos:</p>
-		<div class="rect-b"></div>
-	</div>
-	
-	<div class="row-c row11">
-		<p class="text-ingrese">Origen de los productos:</p>
-		<div class="rect-b"></div>
-	</div>
-	
-	<div class="row12">
-		<p class="text-ingrese">Ver terminos y condiciones</p>
-		<button class="btn-ver hover-bright">Ver</button>
-	</div>
-	
-	<button class="btn-bottom hover-bright">Enviar</button>
+	{# Usar la etiqueta {% url %} hace que el formulario sea más robusto ante cambios en urls.py #}
+	<form method="POST" action="{% url 'solicitud_proveedor' %}" enctype="multipart/form-data" class="provider-form">
+	{% csrf_token %}
+		<fieldset class="form-section">
+			<legend>Información Personal y del Negocio</legend>
+			<div class="form-group">
+				<label for="contacto">Método de contacto preferido</label>
+				<input type="text" id="contacto" name="contacto" class="form-control" placeholder="Correo o número del cel" required>
+			</div>
+			<div class="form-group">
+				<label for="nombre_completo">Nombre completo</label>
+				<input type="text" id="nombre_completo" name="nombre_completo" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="nombre_negocio">Nombre del negocio</label>
+				<input type="text" id="nombre_negocio" name="nombre_negocio" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="email">Correo electrónico</label>
+				<input type="email" id="email" name="email" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="telefono">Número de contacto</label>
+				<input type="tel" id="telefono" name="telefono" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="domicilio">Domicilio</label>
+				<input type="text" id="domicilio" name="domicilio" class="form-control" required>
+			</div>
+		</fieldset>
+
+		<fieldset class="form-section">
+			<legend>Documentación</legend>
+			<div class="form-group">
+				<label for="documento_identidad">Copia del documento de identidad/cédula</label>
+				<input type="file" id="documento_identidad" name="documento_identidad" class="form-control-file" accept=".pdf,.jpg,.png" required>
+			</div>
+			<div class="form-group">
+				<label for="certificado_productos">Certificado de los productos (opcional)</label>
+				<input type="file" id="certificado_productos" name="certificado_productos" class="form-control-file" accept=".pdf,.jpg,.png">
+			</div>
+			<div class="form-group">
+				<label for="registro_marca">Registro de marca o distribuidor autorizado (si aplica)</label>
+				<input type="file" id="registro_marca" name="registro_marca" class="form-control-file" accept=".pdf,.jpg,.png">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-section">
+			<legend>Información de Productos</legend>
+			<div class="form-group">
+				<label for="listado_productos">Listado preliminar de productos</label>
+				<textarea id="listado_productos" name="listado_productos" class="form-control" rows="5"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="origen_productos">Origen de los productos</label>
+				<textarea id="origen_productos" name="origen_productos" class="form-control" rows="5"></textarea>
+			</div>
+		</fieldset>
+
+		<div class="form-actions">
+			<div class="terms-and-conditions">
+				<input type="checkbox" id="aceptar_terminos" name="aceptar_terminos" required>
+				<label for="aceptar_terminos">He leído y acepto los <a href="{% url 'terminos_y_condiciones' %}" class="btn-ver hover-bright" target="_blank">términos y condiciones</a></label>
+			</div>
+			<button type="submit" class="btn-bottom hover-bright">Enviar</button>
+		</div>
+	</form>
 </body>
 
 </html>
