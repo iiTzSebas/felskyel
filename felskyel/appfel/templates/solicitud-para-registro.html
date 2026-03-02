@@ -14,79 +14,77 @@
 
 <body>
 	<h1 class="title-solicitud-de">Solicitud de registro</h1>
-	<div class="por-favor">
-		Por favor complete la información requerida para continuar con su registro. Una vez finalice, haga clic en “Enviar”.<br />
-		 Recibirá una confirmación a través del método de contacto que haya seleccionado.<br />
-		<br />
-		
+	<div class="intro-text">
+		<p>Por favor complete la información requerida para continuar con su registro. Una vez finalice, haga clic en “Enviar”.</p>
+		<p>Recibirá una confirmación a través del método de contacto que haya seleccionado.</p>
 	</div>
 	
 	{# Usar la etiqueta {% url %} hace que el formulario sea más robusto ante cambios en urls.py #}
-	<form method="POST" action="{% url 'solicitud_proveedor' %}" enctype="multipart/form-data">
+	<form method="POST" action="{% url 'solicitud_proveedor' %}" enctype="multipart/form-data" class="provider-form">
 	{% csrf_token %}
-	<div class="row1">
-		<label for="contacto" class="text-c">Información de contacto</label>
-		<input type="text" id="contacto" name="contacto" class="correo-o-numero" placeholder="Correo o número del cel" required>
-	</div>
-	
-	<div class="row-b row2">
-		<label for="nombre_completo" class="text-ingrese">Nombre completo</label>
-		<input type="text" id="nombre_completo" name="nombre_completo" class="row-rect2" required>
-	</div>
-	
-	<div class="row-b row3">
-		<label for="nombre_negocio" class="text-ingrese">Nombre del negocio</label>
-		<input type="text" id="nombre_negocio" name="nombre_negocio" class="row-rect2" required>
-	</div>
-	
-	<div class="row-b row4">
-		<label for="email" class="text-ingrese">Correo electrónico</label>
-		<input type="email" id="email" name="email" class="row-rect2" required>
-	</div>
-	
-	<div class="row-b row5">
-		<label for="telefono" class="text-ingrese">Número de contacto</label>
-		<input type="tel" id="telefono" name="telefono" class="row-rect2" required>
-	</div>
-	
-	<div class="row6">
-		<label for="documento_identidad" class="text-c">Copia del documento de identidad/cédula</label>
-		<input type="file" id="documento_identidad" name="documento_identidad" class="documento" accept=".pdf,.jpg,.png" required>
-	</div>
-	
-	<div class="row-b row7">
-		<label for="certificado_productos" class="text-ingrese">Certificado de los productos (opcional)</label>
-		<input type="file" id="certificado_productos" name="certificado_productos" class="row-rect2" accept=".pdf,.jpg,.png">
-	</div>
-	
-	<div class="row8">
-		<label for="registro_marca" class="text-ingrese text-registro-de">
-			Registro de marca o distribuidor autorizado (si venden marcas reconocidas):
-		</label>
-		<input type="file" id="registro_marca" name="registro_marca" class="rect-b rect-right" accept=".pdf,.jpg,.png">
-	</div>
-	
-	<div class="row-b row9">
-		<label for="domicilio" class="text-ingrese">Domicilio</label>
-		<input type="text" id="domicilio" name="domicilio" class="row-rect2" required>
-	</div>
-	
-	<div class="row-c row10">
-		<label for="listado_productos" class="text-ingrese">Listado preliminar de productos</label>
-		<textarea id="listado_productos" name="listado_productos" class="rect-b"></textarea>
-	</div>
-	
-	<div class="row-c row11">
-		<label for="origen_productos" class="text-ingrese">Origen de los productos</label>
-		<textarea id="origen_productos" name="origen_productos" class="rect-b"></textarea>
-	</div>
-	
-	<div class="row12">
-		<p class="text-ingrese">Ver terminos y condiciones</p>
-		<a href="{% url 'terminos_y_condiciones' %}" class="btn-ver hover-bright" target="_blank">Ver</a>
-	</div>
-	
-	<button type="submit" class="btn-bottom hover-bright">Enviar</button>
+		<fieldset class="form-section">
+			<legend>Información Personal y del Negocio</legend>
+			<div class="form-group">
+				<label for="contacto">Método de contacto preferido</label>
+				<input type="text" id="contacto" name="contacto" class="form-control" placeholder="Correo o número del cel" required>
+			</div>
+			<div class="form-group">
+				<label for="nombre_completo">Nombre completo</label>
+				<input type="text" id="nombre_completo" name="nombre_completo" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="nombre_negocio">Nombre del negocio</label>
+				<input type="text" id="nombre_negocio" name="nombre_negocio" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="email">Correo electrónico</label>
+				<input type="email" id="email" name="email" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="telefono">Número de contacto</label>
+				<input type="tel" id="telefono" name="telefono" class="form-control" required>
+			</div>
+			<div class="form-group">
+				<label for="domicilio">Domicilio</label>
+				<input type="text" id="domicilio" name="domicilio" class="form-control" required>
+			</div>
+		</fieldset>
+
+		<fieldset class="form-section">
+			<legend>Documentación</legend>
+			<div class="form-group">
+				<label for="documento_identidad">Copia del documento de identidad/cédula</label>
+				<input type="file" id="documento_identidad" name="documento_identidad" class="form-control-file" accept=".pdf,.jpg,.png" required>
+			</div>
+			<div class="form-group">
+				<label for="certificado_productos">Certificado de los productos (opcional)</label>
+				<input type="file" id="certificado_productos" name="certificado_productos" class="form-control-file" accept=".pdf,.jpg,.png">
+			</div>
+			<div class="form-group">
+				<label for="registro_marca">Registro de marca o distribuidor autorizado (si aplica)</label>
+				<input type="file" id="registro_marca" name="registro_marca" class="form-control-file" accept=".pdf,.jpg,.png">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-section">
+			<legend>Información de Productos</legend>
+			<div class="form-group">
+				<label for="listado_productos">Listado preliminar de productos</label>
+				<textarea id="listado_productos" name="listado_productos" class="form-control" rows="5"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="origen_productos">Origen de los productos</label>
+				<textarea id="origen_productos" name="origen_productos" class="form-control" rows="5"></textarea>
+			</div>
+		</fieldset>
+
+		<div class="form-actions">
+			<div class="terms-and-conditions">
+				<p>Ver terminos y condiciones</p>
+				<a href="{% url 'terminos_y_condiciones' %}" class="btn-ver hover-bright" target="_blank">Ver</a>
+			</div>
+			<button type="submit" class="btn-bottom hover-bright">Enviar</button>
+		</div>
 	</form>
 </body>
 
