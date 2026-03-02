@@ -22,6 +22,9 @@ def registro(request):
 def contacto(request):
     return render (request, 'contacto.html')
 
+def prueba(request):
+    return render (request, 'prueba.html')
+
 def solicitud_proveedor(request):
     if request.method == 'POST':
         # Aquí iría la lógica para guardar los datos del formulario
