@@ -1,3 +1,4 @@
+{% extends 'base.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
@@ -11,6 +12,7 @@
 	<title>Solicitud de Registro para Proveedor</title>
 
 </head>
+{% block title %}Solicitud de Registro para Proveedor{% endblock %}
 
 <body>
 	<header class="header section">
@@ -19,7 +21,11 @@
 		</a>
 		<p class="header-text body-text1">smiLIFE</p>
 	</header>
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'appfel/css/solicitud-para-registro.css' %}" />
+{% endblock %}
 
+{% block content %}
 	<main class="main-container">
 	<h1 class="title-solicitud-de">Solicitud de registro</h1>
 	<div class="intro-text">
@@ -71,16 +77,22 @@
 				<label for="documento_identidad">Copia del documento de identidad/cédula</label>
 				<input type="file" id="documento_identidad" name="documento_identidad" class="form-control-file" accept=".pdf,.jpg,.png" required>
 				<small>Archivos permitidos: PDF, JPG, PNG. Tamaño máximo: 5MB.</small>
+				<input type="file" id="documento_identidad" name="documento_identidad" class="form-control-file" accept=".pdf,.jpg,.png" required aria-describedby="doc-id-help">
+				<small id="doc-id-help">Archivos permitidos: PDF, JPG, PNG. Tamaño máximo: 5MB.</small>
 			</div>
 			<div class="form-group">
 				<label for="certificado_productos">Certificado de los productos (opcional)</label>
 				<input type="file" id="certificado_productos" name="certificado_productos" class="form-control-file" accept=".pdf,.jpg,.png">
 				<small>Archivos permitidos: PDF, JPG, PNG. Tamaño máximo: 5MB.</small>
+				<input type="file" id="certificado_productos" name="certificado_productos" class="form-control-file" accept=".pdf,.jpg,.png" aria-describedby="cert-prod-help">
+				<small id="cert-prod-help">Archivos permitidos: PDF, JPG, PNG. Tamaño máximo: 5MB.</small>
 			</div>
 			<div class="form-group">
 				<label for="registro_marca">Registro de marca o distribuidor autorizado (si aplica)</label>
 				<input type="file" id="registro_marca" name="registro_marca" class="form-control-file" accept=".pdf,.jpg,.png">
 				<small>Archivos permitidos: PDF, JPG, PNG. Tamaño máximo: 5MB.</small>
+				<input type="file" id="registro_marca" name="registro_marca" class="form-control-file" accept=".pdf,.jpg,.png" aria-describedby="reg-marca-help">
+				<small id="reg-marca-help">Archivos permitidos: PDF, JPG, PNG. Tamaño máximo: 5MB.</small>
 			</div>
 		</fieldset>
 
@@ -143,3 +155,4 @@
 </body>
 
 </html>
+{% endblock %}
