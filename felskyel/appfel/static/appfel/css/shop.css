@@ -163,9 +163,11 @@ body {
 
 
 .card-list {
-	position: absolute; top: 2650px; right: 690px; 
-	width: calc(100% - 1580px); height: 532px;
-	max-width: 432px;
+	/* Movido hacia arriba y a la derecha, y hecho más responsivo */
+	position: absolute; top: 2630px; right: 50px; 
+	width: 100%;
+	max-width: 432px; /* Ancho máximo para consistencia en pantallas grandes */
+	height: auto; /* Altura flexible según el contenido */
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
@@ -174,18 +176,16 @@ body {
 	font-weight: 500;
 	line-height: 1.5;
 	--minContent: 432;
-	--hSizing: FIXED;
-	--vSizing: FIXED;
+	--vSizing: HUG; /* Se ajusta a la altura del contenido */
 	--pConstraintHorizontal: MIN;
 	--pConstraintVertical: MIN;
 }
 
 .card-list-img {
-	/* Se ajusta el ancho al 100% del contenedor y se aplican propiedades para responsividad.
-	   'width: unset' se ha reemplazado para asegurar que la imagen ocupe el espacio deseado. */
 	width: 100%;
-	height: auto; /* Mantiene la proporción de la imagen */
+	height: 350px; /* Mantiene la proporción de la imagen */
 	object-fit: cover; /* Se asegura que la imagen cubra el espacio sin deformarse */
+	border-radius: 8px; /* Añadido para un aspecto más suave */
 }
 
 .card-list-card {
@@ -325,7 +325,6 @@ body {
 	max-width: 412px;
 	display: flex;
 	justify-content: space-between;
-	background: url(../assets/shop/header-row.png) center / contain no-repeat;
 	padding-left: 13px;
 	padding-right: 25px;
 	--minContent: 110;
@@ -460,7 +459,7 @@ body {
 }
 
 .list1 {
-	position: absolute; top: 3095px; left: 6%; 
+	position: absolute; top: 3420px; left: 6%; 
 	width: 36%;
 	display: flex;
 	flex-direction: column;
@@ -474,7 +473,7 @@ body {
 }
 
 .list2 {
-	position: absolute; top: 3095px; right: 6%; 
+	position: absolute; top: 3420px; right: 6%; 
 	width: 36%;
 	display: flex;
 	flex-direction: column;
@@ -501,12 +500,15 @@ body {
 }
 
 .subtitle-comentarios {
-	position: absolute; top: 2989px; left: 80px; right: 80px; 
+	position: absolute; top: 3300px; left: 80px; right: 80px;
+	--minContent: 1440px;
 	--minContent: 1282;
 	--hSizing: FILL;
 	--vSizing: HUG;
 	--pConstraintHorizontal: STRETCH;
 	--pConstraintVertical: MIN;
+	border-top: 3.5px solid #e0e0e0;
+	padding-top: 40px;
 }
 
 .img1 {
@@ -534,30 +536,30 @@ body {
 }	
 
 .search-container-custom {
-			display: flex;
-			align-items: center;
-			background-color: #ffffff;
-			border: 1px solid #e0e0e0;
-			border-radius: 50px;
-			padding: 8px 16px;
-			box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-			transition: all 0.3s ease;
-			width: 260px;
-		}
-		.search-container-custom:focus-within {
-			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-			border-color: #bdbdbd;
-		}
-		.search-input-custom {
-			border: none;
-			outline: none;
-			background: transparent;
-			margin-left: 10px;
-			font-family: 'Inter', sans-serif;
-			font-size: 14px;
-			color: #333;
-			width: 100%;
-		}
+	display: flex;
+	align-items: center;
+	background-color: #ffffff;
+	border: 1px solid #e0e0e0;
+	border-radius: 50px;
+	padding: 8px 16px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+	transition: all 0.3s ease;
+	width: 100%; /* Ajustado para ocupar el contenedor */
+}
+.search-container-custom:focus-within {
+	box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+	border-color: #bdbdbd;
+}
+.search-input-custom {
+	border: none;
+	outline: none;
+	background: transparent;
+	margin-left: 10px;
+	font-family: 'Inter', sans-serif;
+	font-size: 14px;
+	color: #333;
+	width: 100%;
+}
 
 /* --- Responsive Design --- */
 
@@ -567,12 +569,19 @@ body {
 		position: static;
 		height: auto;
 		padding-bottom: 40px;
+		background-size: cover;
 	}
 
 	.header-row {
-		left: 50%;
-		transform: translateX(-50%);
-		top: 100px;
+		position: static;
+		width: 90%;
+		max-width: 360px;
+		margin: 20px auto;
+		padding: 0;
+		background: none;
+		display: flex;
+		justify-content: center;
+		height: auto;
 	}
 
 	.header-page-title {
@@ -580,17 +589,19 @@ body {
 		padding: 0 20px;
 	}
 
-	.img1, .img2, .card1, .card-big, .card-list, .list1, .list2, .copy1, .copy2, .subtitle-mas-productos, .subtitle-comentarios {
+	/* Reseteo general para todos los elementos absolutos */
+	.img1, .img2, .card1, .card-big, .card-list, .list1, .list2, .copy1, .copy2, .subtitle-mas-productos, .subtitle-comentarios, .copy-a, .card-b {
 		position: static;
 		width: 90%;
-		max-width: 675px;
-		margin: 40px auto;
+		max-width: 500px;
+		margin: 30px auto;
 		height: auto;
 		left: auto;
 		right: auto;
 		top: auto;
 		float: none;
 		text-align: center;
+		transform: none;
 	}
 
 	.copy-a, .card-b {
@@ -603,6 +614,10 @@ body {
 
 	.card-list {
 		max-width: 432px;
+	}
+
+	.copy-buttons {
+		justify-content: center;
 	}
 }
 

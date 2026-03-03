@@ -15,13 +15,57 @@
 </head>
 
 <body>
-	<div class="card-list">
-		<img src="{% static 'appfel/img/shop/card-list-img.png' %}" class="img-b card-list-img" />
+	<header class="header">
+		<div class="header-nav">
+			<a href="{% url 'inicio' %}"><p class="header-text-felskyel body-text3">Felskyel</p></a>
+			
+			<a href="{% url 'perfil' %}"><button class="btn-a btn1 hover-zoom">
+				<img src="{% static 'appfel/img/shop/btn/btn-icon.png' %}" class="btn-icon" />
+				<p class="btn-label">Perfil</p>
+			</button></a>
+			
+			<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" />
+		</div>
+
+		<!--barra de busqueda-->
+		<form class="header-row" role="search">
+			<div class="search-container-custom">
+				<svg xmlns="http://www.w3.org/2000/svg" width="36" height="16" fill="#999" class="bi bi-search" viewBox="0 0 16 16">
+					<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+				</svg>
+				<input class="search-input-custom" type="search" placeholder="Buscar" aria-label="Buscar">
+			</div>
+		</form>
 		
-		<div class="card-list-card">
-			<h2 class="card-list-subtitle">Crema de manos</h2>
-			<p class="card-list-text-producto-para">producto para el cuerpo</p>
-			<p class="card-list-text-bottom">$10,99</p>
+		<div class="header-page-title">
+			<h1 class="header-title">Tienda Felskyel</h1>
+			<h2 class="header-subtitle">Página principal</h2>
+		</div>
+		
+		<button class="header-btn hover-bright">Ir al carrito</button>
+	</header>
+	
+	<img src="{% static 'appfel/img/shop/img1.png' %}" class="img-a img1" />
+
+	<div class="copy-a copy1">
+		<h2 class="title copy-subtitle1">Jabón de carbon</h2>
+		<p class="subtitle-a copy-text">Producto para el rostro y cuerpo.</p>
+		
+		<div class="copy-buttons">
+			<button class="copy-btn-b copy-btn1 hover-bright">Agregar</button>
+			<button class="copy-btn-b copy-btn2 hover-dark">Ver más</button>
+		</div>
+	</div>
+	
+	<img src="{% static 'appfel/img/shop/img2.png' %}" class="img-a img2" />
+
+	<div class="copy-a copy2">
+		<h2 class="title copy-subtitle1">Protector de labios</h2>
+		<p class="subtitle-a copy-text">Producto para el rostro</p>
+		
+		<div class="copy-buttons">
+			<button class="copy-btn-b copy-btn1 hover-bright">Ingresar</button>
+			<button class="copy-btn-b copy-btn2 hover-dark">Ver más</button>
 		</div>
 	</div>
 	
@@ -34,7 +78,9 @@
 			<p class="card-text-bottom2">$10,99</p>
 		</div>
 	</div>
-	
+
+	<h2 class="subtitle-mas-productos subtitle-black">Más productos</h2>
+
 	<div class="card-b card-big">
 		<img src="{% static 'appfel/img/shop/card/card-img2.png' %}" class="img-b card-img2" />
 		
@@ -44,99 +90,19 @@
 			<p class="card-text-bottom2">$10,99</p>
 		</div>
 	</div>
-	
-	<h2 class="subtitle-mas-productos subtitle-black">Más productos</h2>
-	
-	<header class="header">
-		<div class="header-nav">
-			<a href="{% url 'inicio' %}"><p class="header-text-felskyel body-text3">Felskyel</p></a>
-			
-			<a href="{% url 'perfil' %}"><button class="btn-a btn1 hover-zoom">
-				<img src="{% static 'appfel/img/shop/btn/btn-icon.png' %}" class="btn-icon" />
-				<p class="btn-label">Perfil</p>
-			</button></a>
-			
-			<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" />
-			
-				<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Tienda Felskyel</title>
-	<style>
-		.search-container-custom {
-			display: flex;
-			align-items: center;
-			background-color: #ffffff;
-			border: 1px solid #e0e0e0;
-			border-radius: 50px;
-			padding: 8px 16px;
-			box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-			transition: all 0.3s ease;
-			width: 360px;
-		}
-		.search-container-custom:focus-within {
-			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-			border-color: #bdbdbd;
-		}
-		.search-input-custom {
-			border: none;
-			outline: none;
-			background: transparent;
-			margin-left: 10px;
-			font-family: 'Inter', sans-serif;
-			font-size: 14px;
-			color: #333;
-			width: 100%;
-		}
-	</style>
-</head>
-
-<body>
-			<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" />
-			
-			<!--barra de busqueda-->
-			<form class="header-row" role="search">
-				<div class="search-container-custom">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#999" class="bi bi-search" viewBox="0 0 16 16">
-						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-					</svg>
-					<input class="search-input-custom" type="search" placeholder="Buscar" aria-label="Buscar">
-				</div>
-			</form>
-			
-		</div>
-			</div>
-		</form>
-			
-		</div>
+	<div class="card-list">
+		<img src="{% static 'appfel/img/shop/card-list-img.png' %}" class="img-b card-list-img" />
 		
-		<div class="header-page-title">
-			<h1 class="header-title">Tienda Felskyel</h1>
-			<h2 class="header-subtitle">Página principal</h2>
-		</div>
-		
-		<button class="header-btn hover-bright">Ir al carrito</button>
-	</header>
-	
-	<div class="copy-a copy1">
-		<h2 class="title copy-subtitle1">Jabón de carbon</h2>
-		<p class="subtitle-a copy-text">Producto para el rostro y cuerpo.</p>
-		
-		<div class="copy-buttons">
-			<button class="copy-btn-b copy-btn1 hover-bright">Agregar</button>
-			<button class="copy-btn-b copy-btn2 hover-dark">Ver más</button>
+		<div class="card-list-card">
+			<h2 class="card-list-subtitle">Crema de manos</h2>
+			<p class="card-list-text-producto-para">producto para el cuerpo</p>
+			<p class="card-list-text-bottom">$10,99</p>
 		</div>
 	</div>
-	
-	<div class="copy-a copy2">
-		<h2 class="title copy-subtitle1">Protector de labios</h2>
-		<p class="subtitle-a copy-text">Producto para el rostro</p>
-		
-		<div class="copy-buttons">
-			<button class="copy-btn-b copy-btn1 hover-bright">Ingresar</button>
-			<button class="copy-btn-b copy-btn2 hover-dark">Ver más</button>
-		</div>
-	</div>
-	
+
+	<h2 class="subtitle-comentarios subtitle-black">Comentarios generales</h2>
+
 	<div class="list1">
 		<div class="copy-b copy3">
 			<img src="{% static 'appfel/img/shop/copy/copy-symbol.png' %}" class="copy-icon" />
@@ -196,10 +162,7 @@
 			</p>
 		</div>
 	</div>
-	
-	<h2 class="subtitle-comentarios subtitle-black">Comentarios generales</h2>
-	<img src="{% static 'appfel/img/shop/img1.png' %}" class="img-a img1" />
-	<img src="{% static 'appfel/img/shop/img2.png' %}" class="img-a img2" />
+
 </body>
 
 </html>
