@@ -13,6 +13,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>{% block titulo %}  {% endblock %}</title>
+	{% block extra_styles %}{% endblock %}
 </head>
 
 <body>
@@ -41,8 +42,8 @@
 			<br/>
 			Contactarme y tan pronto como pueda te responderé.
 		</p>
-	</div>
     {% endblock %}
+	</div>
 
 <div class="contact-form-container">		
 
@@ -81,8 +82,8 @@
 	
 
 <div class="column-right">
-    {% block imagen %}
-	<img src="{% static 'appfel/img/Foto_refe.png' %}" alt="Foto de referencia" class="img1" />
+
+	{% block imagen %} <img src="{% static 'appfel/img/Foto_refe.png' %}" alt="Foto de referencia" class="img1" /> {% endblock %}
 
 
 	<h2 class="subtitle-agendar-cita">Agendar cita.</h2>
@@ -111,7 +112,6 @@
 
 </div>
 	</div> <!-- End content-wrapper -->
-	{% endblock %}
 
 </main>
 	
