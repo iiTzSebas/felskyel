@@ -181,7 +181,11 @@ body {
 }
 
 .card-list-img {
-	width: unset;
+	/* Se ajusta el ancho al 100% del contenedor y se aplican propiedades para responsividad.
+	   'width: unset' se ha reemplazado para asegurar que la imagen ocupe el espacio deseado. */
+	width: 100%;
+	height: auto; /* Mantiene la proporción de la imagen */
+	object-fit: cover; /* Se asegura que la imagen cubra el espacio sin deformarse */
 }
 
 .card-list-card {
@@ -508,8 +512,12 @@ body {
 .img1 {
 	position: absolute;
 	top: 843px; left: 987px; 
-	width: calc(100% - 1374px);
+	/* El cálculo anterior no era responsivo. Este nuevo cálculo ajusta el ancho
+	   considerando la posición izquierda y un margen derecho (ej. 80px). */
+	width: calc(100% - 1067px); /* 987px de la izquierda + 80px de margen derecho */
 	max-width: 675px;
+	height: auto; /* Mantiene la proporción de la imagen */
+	object-fit: cover; /* Se asegura que la imagen cubra el espacio sin deformarse */
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	border: 1px solid #060606;
 	border-radius: 8px;
@@ -520,6 +528,8 @@ body {
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	width: calc(100% - 214px);
 	max-width: 492px;
+	height: auto; /* Mantiene la proporción de la imagen */
+	object-fit: cover; /* Se asegura que la imagen cubra el espacio sin deformarse */
 	border-radius: 8px;
 }	
 
