@@ -712,4 +712,18 @@ body {
         flex-direction: row;
         align-items: flex-start;
     }
+
+	
+}
+
+/* --- Animación de presionar botones --- */
+.btn,
+.section-btn-s {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn:active,
+.section-btn-s:active {
+    transform: translateY(2px);
+    box-shadow: none;
 }

@@ -561,6 +561,20 @@ body {
 	width: 100%;
 }
 
+/* --- Animación de presionar botones --- */
+.copy-btn-b,
+.header-btn,
+.btn-a {
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.copy-btn-b:active,
+.header-btn:active,
+.btn-a:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
 /* --- Responsive Design --- */
 
 /* Tablet and smaller desktops */
