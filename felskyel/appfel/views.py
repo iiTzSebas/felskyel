@@ -20,10 +20,10 @@ def registro(request):
     return render (request, 'registro.html')
 
 def contacto(request):
-    return render (request, 'contacto.html')
+    return render (request, 'contactos-proveedor/contacto.html')
 
-def prueba(request):
-    return render (request, 'prueba.html')
+def prueba2(request):
+    return render (request, 'prueba2.html')
 
 def solicitud_proveedor(request):
     if request.method == 'POST':
