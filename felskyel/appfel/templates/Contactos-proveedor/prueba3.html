@@ -1,0 +1,33 @@
+{% extends "contactos-proveedor/base-contacto.html" %} 
+
+{% load static %}
+
+<title>{% block titulo %} ball {% endblock %}</title>
+
+{% block extra_styles %}
+<style>
+	body {
+		background-color: yellow; /* Color AliceBlue como ejemplo */
+	}
+</style>
+{% endblock %}
+
+{% block nombre %} BALL {% endblock %}
+
+
+{% block contenido %}
+
+<p>“Hola soy Hector, soy el proveedor de BALL, he trabajado en este negicio 9 meses, si tienes alguna duda o quieres agendar una cita,  hazlo sin ningún problema, estaré al pendiente para tu asesoramiento.”<br />
+	<br/>
+¿Tienes dudas ?<br />
+	<br/>
+Contactarme y tan pronto como pueda te responderé. ¡VAMOS CON TODO!</p>
+
+
+{% endblock %}
+
+
+{% block imagen %} <img src="{% static 'appfel/img/ball.png' %}" alt="Foto el" class="hola2" /> {% endblock %}
+
+
+{% block pie %} Redes BALL {% endblock %}

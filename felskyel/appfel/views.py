@@ -23,7 +23,10 @@ def contacto(request):
     return render (request, 'contactos-proveedor/contacto.html')
 
 def prueba2(request):
-    return render (request, 'prueba2.html')
+    return render (request, 'contactos-proveedor/prueba2.html')
+
+def prueba3(request):
+    return render (request, 'contactos-proveedor/prueba3.html')
 
 def solicitud_proveedor(request):
     if request.method == 'POST':
