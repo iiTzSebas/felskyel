@@ -75,12 +75,22 @@ body {
 }
 
 .column-left {
-	flex: 1;
+	flex: 2;
 	min-width: 300px;
 	max-width: 600px;
 }
 
 .img1 {
+	width: 100%;
+	max-width: 350px;
+	height: auto;
+	border-radius: 12px;
+	margin-bottom: 30px;
+	object-fit: cover;
+	position: static;
+}
+
+.hola2{
 	width: 100%;
 	max-width: 350px;
 	height: auto;
