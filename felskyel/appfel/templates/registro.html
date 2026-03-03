@@ -3,52 +3,102 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro</title>
-    <link rel="stylesheet" href="{% static 'css/registro.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - smiLIFE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'appfel/css/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'appfel/css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'appfel/css/registro.css' %}" />
 </head>
 <body>
 
-<div class="container">
-    <h1>Registro</h1>
+    <header class="header section">
+		
+	</header>
 
-    <form method="POST">
-        {% csrf_token %}
+    <main class="main-container">
+        <div class="registro-form-container">
+            <h1 class="title">Registro</h1>
+            <p class="intro-text">Crea tu cuenta para empezar a usar Felskyel. Elige si eres cliente o proveedor.</p>
 
-        <fieldset>
-            <legend>Selecciona tu rol</legend>
+            <form method="POST" class="registro-form">
+                {% csrf_token %}
 
-            <label>
-                <input type="radio" name="rol" value="cliente" checked>
-                Cliente
-            </label>
+                <fieldset class="form-section">
+                    <legend>1. Selecciona tu rol</legend>
+                    <div class="form-group-radio">
+                        <label class="radio-label">
+                            <input type="radio" name="rol" value="cliente" checked>
+                            <span class="radio-custom"></span>
+                            Cliente
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="rol" value="proveedor">
+                            <span class="radio-custom"></span>
+                            Proveedor
+                        </label>
+                    </div>
+                </fieldset>
 
-            <label>
-                <input type="radio" name="rol" value="proveedor">
-                Proveedor
-            </label>
-        </fieldset>
+                <fieldset class="form-section">
+                    <legend>2. Datos Personales</legend>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="Tu número de teléfono" required class="form-control">
+                    </div>
+                </fieldset>
 
-        <fieldset>
-            <legend>Datos Personales</legend>
+                <fieldset class="form-section">
+                    <legend>3. Datos de la Cuenta</legend>
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Nombre de usuario</label>
+                        <input type="text" id="username" name="username" placeholder="Elige un nombre de usuario" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" placeholder="Crea una contraseña segura" required class="form-control">
+                    </div>
+                </fieldset>
 
-            <input type="text" name="nombre" placeholder="Nombre" required>
-            <input type="text" name="apellido" placeholder="Apellido" required>
-            <input type="date" name="fecha_nacimiento" required>
-            <input type="text" name="telefono" placeholder="Teléfono" required>
-        </fieldset>
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Registrarse</button>
+                </div>
 
-        <fieldset>
-            <legend>Datos de la Cuenta</legend>
+            </form>
+        </div>
+    </main>
 
-            <input type="email" name="email" placeholder="Correo electrónico" required>
-            <input type="text" name="username" placeholder="Usuario" required>
-            <input type="password" name="password" placeholder="Contraseña" required>
-        </fieldset>
+    <footer class="footer section">
+		
+	</footer>
 
-        <button type="submit">Registrarse</button>
-
-    </form>
-</div>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const roleInputs = document.querySelectorAll('input[name="rol"]');
+            roleInputs.forEach(function(input) {
+                input.addEventListener('change', function() {
+                    if (this.value === 'proveedor') {
+                        window.location.href = "{% url 'solicitud_proveedor' %}";
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

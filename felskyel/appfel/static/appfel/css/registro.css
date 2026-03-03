@@ -1,118 +1,278 @@
-/* ===== BODY ===== */
+/* c:\Users\LOQ\Documents\GitHub\felskyel\felskyel\appfel\static\appfel\css\registro.css */
+
+/* Variables y estilos base consistentes con el resto del sitio */
+:root {
+    --primary-color: #000000;
+    --background-color: #6affc3; /* Mismo verde que en contacto.css */
+    --white: #ffffff;
+    --text-color: #333333;
+    --border-color: #ccc;
+    --border-radius: 8px;
+    --input-padding: 12px;
+}
+
 body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #74b9ff, #81ecec);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* Estilos del Header y Footer (asumiendo que son los mismos de contacto.css) */
+.header {
+	position: relative;
+	width: 100%;
+	padding: 20px 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center; /* Centrar el texto */
+	box-sizing: border-box;
+}
+
+.header-arrow-left {
+	position: absolute;
+	left: 40px; /* Posicionar a la izquierda */
+	top: 50%;
+	transform: translateY(-50%);
+	width: 30px;
+}
+
+.header-text {
+	font-size: 24px;
+	font-weight: bold;
+    margin: 0;
+}
+
+.footer {
+	width: 100%;
+	padding: 20px 40px;
+	background-color: #000;
+	margin-top: auto;
+	box-sizing: border-box;
+	color: #fff;
+}
+
+.footer-row-bottom {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.footer-subtitle {
+	color: #fff;
+	margin: 0;
+}
+
+.social-buttons {
+	display: flex;
+	gap: 15px;
+}
+
+.social-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	background-color: #fff;
+	color: #000;
+	border-radius: 50%;
+	text-decoration: none;
+	transition: transform 0.2s ease;
+}
+
+.social-btn:hover {
+	transform: scale(1.1);
+}
+
+
+/* Contenedor principal del formulario */
+.main-container {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-}
-
-/* ===== FORM ===== */
-form {
-    background: white;
+    padding: 40px 20px;
     width: 100%;
-    max-width: 900px;
+    box-sizing: border-box;
+}
+
+.registro-form-container {
+    background-color: var(--white);
     padding: 40px;
-    border-radius: 18px;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
 }
 
-/* ===== TITULO ===== */
-h1 {
+.title {
+    font-size: 2rem;
+    font-weight: 800;
     text-align: center;
-    margin-bottom: 35px;
-    font-size: 34px;
-    color: #2d3436;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
-/* ===== FIELDSET ===== */
-fieldset {
-    border: none;
-    margin-bottom: 30px;
+.intro-text {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    color: #666;
 }
 
-legend {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #0984e3;
-}
-
-/* ===== SECCIÓN ROL ===== */
-input[type="radio"] {
-    margin-right: 6px;
-}
-
-label {
-    font-size: 15px;
-    margin-right: 25px;
-    cursor: pointer;
-}
-
-/* ===== INPUTS EN FILA BONITA ===== */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="date"] {
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    margin: 8px;
-    width: 200px;
-    transition: 0.3s;
-    font-size: 14px;
-}
-
-/* Efecto moderno */
-input:focus {
-    border-color: #0984e3;
-    outline: none;
-    box-shadow: 0 0 8px rgba(9, 132, 227, 0.4);
-}
-
-/* ===== ORGANIZAR CAMPOS EN FILAS ===== */
-fieldset:nth-of-type(2),
-fieldset:nth-of-type(3) {
+/* Estilo del formulario */
+.registro-form {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    flex-direction: column;
+    gap: 25px;
 }
 
-/* ===== BOTÓN ===== */
-button {
+.form-section {
+    border: 1px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    background-color: #fcfcfc;
+}
+
+.form-section legend {
+    font-weight: 700;
+    padding: 0 10px;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
     display: block;
-    margin: 20px auto 0 auto;
-    padding: 12px 35px;
-    border: none;
-    border-radius: 10px;
-    background-color: #0984e3;
-    color: white;
-    font-weight: bold;
-    font-size: 15px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.form-control {
+    width: 100%;
+    padding: var(--input-padding);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+}
+
+/* Estilos para Radio buttons */
+.form-group-radio {
+    display: flex;
+    gap: 20px;
+    padding-top: 10px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
     cursor: pointer;
-    transition: 0.3s;
+    font-weight: 500;
 }
 
-button:hover {
-    background-color: #0652dd;
-    transform: translateY(-3px);
+.radio-label input[type="radio"] {
+    display: none; /* Ocultar el radio button por defecto */
 }
 
-/* ===== RESPONSIVE ===== */
+.radio-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    margin-right: 10px;
+    display: inline-block;
+    position: relative;
+    transition: border-color 0.3s;
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom {
+    border-color: var(--primary-color);
+}
+
+.radio-label input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Botón de envío */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.btn-submit {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 16px 60px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    width: 100%;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    background-color: #222;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-    fieldset:nth-of-type(2),
-    fieldset:nth-of-type(3) {
-        flex-direction: column;
-        align-items: stretch;
+    .registro-form-container {
+        padding: 30px 20px;
+    }
+    
+    .form-section {
+        padding: 20px 15px;
+    }
+    
+    .title {
+        font-size: 1.75rem;
     }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="date"] {
-        width: 100%;
-        margin: 8px 0;
+    .header-text {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+    }
+
+    .header-arrow-left {
+        left: 20px;
     }
 }
