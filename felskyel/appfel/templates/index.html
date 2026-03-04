@@ -20,7 +20,7 @@
 		<div class="header-group1">
 			<object data="assets/header-search.svg" class="header-search" type="image/svg+xml"></object>
 		</div>
-		<a href="." class="header-text-left body-text">Felskyel</p></a>
+		<a href="." class="header-text-left body-text">Felskyel</a>
 		<form class="header-text-buscar d-flex" role="search">
 			<div class="input-group">
 				<span class="input-group-text bg-white border-end-0 rounded-start-pill">
@@ -56,12 +56,17 @@
 							Adquiere cuantos productos de tu cuidado personal necesites, brindados por una variedad de proveedores.
 						</h2>
 					</div>
+
+	<br>
+	<br>
 					<div class="text">
 						<h2 class="text-subtitle1">Asesorarte con tu proveedor escojido</h2>
 						<h2 class="text-subtitle2">
 							Asigna citas programadas con el proveedor para una mejor interracción y comunicate con él por medio de nuestro chat.
 						</h2>
 					</div>
+	<br>
+	<br>
 					<div class="text text4">
 						<h2 class="text-subtitle1">Observar las experiencias de los demás clientes</h2>
 						<h2 class="text-subtitle2">
@@ -107,60 +112,50 @@
 		<section class="contact-section">
 			<h2 class="subtitle-contacto subtitle1">Contacto proveedores</h2>
 
-
-			<div class="card1">
-				<h2 class="card-subtitle2">smiLIFE</h2>
-
-
-				<div class="card-group">
-					<a href="{% url 'contacto' %}" class="card-a hover-bright">
-					<img src="{% static 'appfel/img/card-mask-group.png' %}" class="card-mask-group" />
-					</a>
-					
-
+			<div class="provider-cards-container">
+				<div class="card1">
+					<h2 class="card-subtitle2">smiLIFE</h2>
+					<div class="card-group">
+						<a href="{% url 'contacto' %}" class="card-a hover-bright">
+						<img src="{% static 'appfel/img/card-mask-group.png' %}" class="card-mask-group" />
+						</a>
+					</div>
+					<p class="card-text-right">
+						Jhoana <br />
+						activa
+					</p>
 				</div>
-				<p class="card-text-right">
-					Jhoana <br />
-					activa
-				</p>
-			</div>
-
-	<div class="card1">
-		<h2 class="card-subtitle2">Esika</h2>
-		
-		<div class="card-group">
-			<a href="{% url 'prueba2' %}" class="card-a hover-bright">
-			<img src="{% static 'appfel/img/Ellaper.jpeg' %}" alt="Foto ella" class="card-mask-group" />
-			</a>
-
-		</div>
-		
-		<p class="card-text-right">
-			Esika <br />
-			activa
-		</p>
-	</div>
-
-	<div class="card1">
-				<h2 class="card-subtitle2">BALL</h2>
-
-
-				<div class="card-group">
-					<a href="{% url 'prueba3' %}" class="card-a hover-bright">
-					<img src="{% static 'appfel/img/ballper.jpeg' %}" class="card-mask-group" />
-					</a>
-					
-
+	
+				<div class="card1">
+					<h2 class="card-subtitle2">Esika</h2>
+					<div class="card-group">
+						<a href="{% url 'prueba2' %}" class="card-a hover-bright">
+						<img src="{% static 'appfel/img/Ellaper.jpeg' %}" alt="Foto ella" class="card-mask-group" />
+						</a>
+					</div>
+					<p class="card-text-right">
+						Esika <br />
+						activa
+					</p>
 				</div>
-				<p class="card-text-right">
-					Ball <br />
-					En espera
-				</p>
+	
+				<div class="card1">
+					<h2 class="card-subtitle2">BALL</h2>
+					<div class="card-group">
+						<a href="{% url 'prueba3' %}" class="card-a hover-bright">
+						<img src="{% static 'appfel/img/ballper.jpeg' %}" class="card-mask-group" />
+						</a>
+					</div>
+					<p class="card-text-right">
+						Ball <br />
+						En espera
+					</p>
+				</div>
 			</div>
-
-			<br>
 		</section>
+
 	</main>
+
 	<footer class="footer">
 	</footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
