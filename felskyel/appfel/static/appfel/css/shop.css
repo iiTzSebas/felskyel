@@ -228,6 +228,17 @@ body {
 	--pConstraintVertical: MIN;
 }
 
+.card-list .copy-buttons {
+	gap: 20px;
+	justify-content: flex-start; /* Asegura la alineación a la izquierda */
+}
+
+/* Estilo para que ambos botones en la card-list sean negros */
+.card-list .copy-btn-b {
+	background-color: #000;
+	color: #000000;
+}
+
 .card1 {
 	top: 1762px; right: 137px; 
 	width: calc(100% - 274px);
@@ -658,4 +669,6 @@ body {
 		align-items: center;
 		width: 100%;
 	}
+
+	
 }
