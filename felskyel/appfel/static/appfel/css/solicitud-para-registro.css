@@ -251,3 +251,10 @@ textarea.form-control {
         font-size: 1.75rem;
     }
 }
+
+/* Ocultar elementos del header y footer (flecha, texto y redes sociales) */
+.header-arrow-left,
+.header-text,
+.social-buttons {
+    display: none !important;
+}
