@@ -255,6 +255,7 @@ textarea.form-control {
 /* Ocultar elementos del header y footer (flecha, texto y redes sociales) */
 .header-arrow-left,
 .header-text,
+.footer-subtitle,
 .social-buttons {
     display: none !important;
 }
