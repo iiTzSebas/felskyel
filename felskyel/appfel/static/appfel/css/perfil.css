@@ -94,7 +94,7 @@
 			justify-content: center;
 			align-self: center;
 			text-align: center;
-			background-color: #d9d9d9;
+			background: linear-gradient(180deg, #d9d9d9 51%, #737373 100%) top left / auto auto no-repeat;
 			padding: 0 10px;
 			--minContent: 276;
 			--hSizing: FIXED;
