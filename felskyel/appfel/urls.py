@@ -11,4 +11,7 @@ urlpatterns = [
     path('prueba3/', views.prueba3, name='prueba3'),
     path('solicitud-proveedor/', views.solicitud_proveedor, name='solicitud_proveedor'),
     path('terminos-y-condiciones/', views.terminos_y_condiciones, name='terminos_y_condiciones'),
+    path('panel-control/', views.panel, name='panel'),
+    path('perfil_contacto/', views.perfil_contacto, name='perfil_contacto'),
+    path('admin_productos/', views.admin_productos, name='admin_productos'),
 ]

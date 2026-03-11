@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Configuración de Proveedor{% endblock %}
+
+{% block styles %}
+    <style>
+	    body {
+		    background-color: white; /* Color AliceBlue como ejemplo */
+	    }
+    </style>
+{% endblock %}
+
+{% block nombre %} Panel de configuración {% endblock %}
+
+{% block content %}
+<h2>Configura y modifica tu perfil a tu estilo </h2>
+
+<p>Aqui en esta sección como provedor puedes agregar los productos que vendes, eliminarlos si ya no tienes en stock, configurar y agendar tus citas cuando lo necesites, y modificar tu perfil de contacto para que tus clientes se comuniquen contigo.</p>
+
+<h2>Configuración contacto y productos </h2>
+
+<!--bs5-button-a-->
+<a
+	name=""
+	id=""
+	class="btn btn-primary"
+	href="{% url 'perfil_contacto' %}"
+	role="button"
+	>Configurar Perfil de contacto</a
+>
+
+<a
+	name=""
+	id=""
+	class="btn btn-primary"
+	href="{% url 'admin_productos' %}"
+	role="button"
+	>Administrar productos</a
+>
+
+{% endblock %}
+
+{% block footer %}{% endblock %}

@@ -28,6 +28,16 @@ def prueba2(request):
 def prueba3(request):
     return render (request, 'contactos-proveedor/prueba3.html')
 
+def panel(request):
+    return render (request, 'panel_control/panel-control.html')
+
+def perfil_contacto(request):
+    return render (request, 'panel_control/perfil_contacto.html')
+
+def admin_productos(request):
+    return render (request, 'panel_control/admin_productos.html')
+
+
 def solicitud_proveedor(request):
     if request.method == 'POST':
         # Aquí iría la lógica para guardar los datos del formulario
