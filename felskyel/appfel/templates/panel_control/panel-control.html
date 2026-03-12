@@ -4,40 +4,66 @@
 {% block title %}Configuración de Proveedor{% endblock %}
 
 {% block styles %}
-    <style>
-	    body {
-		    background-color: white; /* Color AliceBlue como ejemplo */
-	    }
-    </style>
+    <!-- Vinculamos el nuevo CSS específico para el panel -->
+    <link rel="stylesheet" href="{% static 'appfel/css/panel-control.css' %}">
 {% endblock %}
 
-{% block nombre %} Panel de configuración {% endblock %}
+{% block nombre %} {% endblock %}
 
 {% block content %}
-<h2>Configura y modifica tu perfil a tu estilo </h2>
+<div class="container py-5">
+    
+    <!-- Cabecera del panel -->
+    <div class="panel-header">
+        <h1 class="panel-title display-5">Configura y modifica tu perfil</h1>
+        <p class="panel-description lead">
+            En esta sección como proveedor puedes agregar los productos que vendes, eliminarlos si ya no tienes en stock, configurar tus citas y modificar tu perfil de contacto para que tus clientes se comuniquen contigo.
+        </p>
+    </div>
 
-<p>Aqui en esta sección como provedor puedes agregar los productos que vendes, eliminarlos si ya no tienes en stock, configurar y agendar tus citas cuando lo necesites, y modificar tu perfil de contacto para que tus clientes se comuniquen contigo.</p>
+    <!-- Grilla de Tarjetas -->
+    <div class="row g-4 justify-content-center">
+        
+        <!-- Tarjeta 1: Perfil de Contacto -->
+        <div class="col-md-6 col-lg-5">
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <!-- Icono SVG: Usuario/Agenda -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Perfil de Contacto</h3>
+                <p class="card-text">
+                    Actualiza tus datos de contacto, configura cómo te ven los clientes y gestiona la información de tus citas.
+                </p>
+                <a href="{% url 'perfil_contacto' %}" class="btn btn-panel">
+                    Configurar Perfil
+                </a>
+            </div>
+        </div>
 
-<h2>Configuración contacto y productos </h2>
+        <!-- Tarjeta 2: Administrar Productos -->
+        <div class="col-md-6 col-lg-5">
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <!-- Icono SVG: Caja/Producto -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
+                        <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-1.187 0L.169 13.09a1 1 0 0 1-.609-.928V3.5a.5.5 0 0 1 .531-.475l7.186-2.852z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Administrar Productos</h3>
+                <p class="card-text">
+                    Sube nuevos productos a tu tienda, actualiza precios, descripciones y controla tu stock disponible.
+                </p>
+                <a href="{% url 'admin_productos' %}" class="btn btn-panel">
+                    Gestionar Productos
+                </a>
+            </div>
+        </div>
 
-<!--bs5-button-a-->
-<a
-	name=""
-	id=""
-	class="btn btn-primary"
-	href="{% url 'perfil_contacto' %}"
-	role="button"
-	>Configurar Perfil de contacto</a
->
-
-<a
-	name=""
-	id=""
-	class="btn btn-primary"
-	href="{% url 'admin_productos' %}"
-	role="button"
-	>Administrar productos</a
->
+    </div>
+</div>
 
 {% endblock %}
 

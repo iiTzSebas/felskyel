@@ -4,18 +4,206 @@
 {% block title %}Configuración de Proveedor{% endblock %}
 
 {% block styles %}
-    <style>
-	    body {
-		    background-color: red; /* Color AliceBlue como ejemplo */
-	    }
-    </style>
+    <link rel="stylesheet" href="{% static 'appfel/css/perfil-contacto.css' %}">
 {% endblock %}
 
-{% block nombre %} red {% endblock %}
+{% block nombre %}{% endblock %}
 
 {% block content %}
+<div class="container editor-container">
+    <div class="editor-header">
+        <h1 class="editor-title">Edita tu Perfil de Contacto</h1>
+        <p class="editor-subtitle lead">Los cambios que realices aquí se reflejarán en tu página pública para los clientes.</p>
+    </div>
 
+    <div class="row g-5">
+        <!-- Columna del Formulario -->
+        <div class="col-lg-7">
+            <form class="profile-form" onsubmit="return false;">
+                <!-- Información Principal -->
+                <fieldset class="form-section">
+                    <legend>Información Principal</legend>
+                    <div class="form-group">
+                        <label for="nombre_proveedor">Tu Nombre (o el de la persona de contacto)</label>
+                        <input type="text" id="nombre_proveedor" class="form-control" value="Jhoana">
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Texto de presentación</label>
+                        <textarea id="descripcion" class="form-control" rows="5">“Hola soy Jhoana, soy una de las proveedoras de smiLIFE, he trabajado en esta industria durante 4 años, si tienes alguna duda o quieres agendar una cita,  hazlo sin ningún problema, estaré al pendiente para tu asesoramiento.”</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="foto_perfil">Foto de Perfil</label>
+                        <input type="file" id="foto_perfil" class="form-control" accept="image/*">
+                    </div>
+                </fieldset>
 
+                <!-- Apariencia del Perfil -->
+                <fieldset class="form-section">
+                    <legend>Apariencia del Perfil</legend>
+                    <div class="form-group">
+                        <label>Estado</label>
+                        <div class="d-flex gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="estado" id="estado_activa" value="activa" checked>
+                                <label class="form-check-label" for="estado_activa">Activa</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="estado" id="estado_espera" value="en espera">
+                                <label class="form-check-label" for="estado_espera">En espera</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="color_fondo">Color de fondo de tu página</label>
+                        <div class="color-input-wrapper">
+                            <input type="color" id="color_fondo" class="form-control form-control-color" value="#6affc3">
+                            <span id="color_hex">#6affc3</span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <!-- Redes Sociales -->
+                <fieldset class="form-section">
+                    <legend>Redes Sociales</legend>
+                    <div class="form-group">
+                        <label for="red_whatsapp">WhatsApp (URL completa, ej: https://wa.me/57...)</label>
+                        <input type="url" id="red_whatsapp" class="form-control" placeholder="https://wa.me/...">
+                    </div>
+                    <div class="form-group">
+                        <label for="red_instagram">Instagram (URL completa)</label>
+                        <input type="url" id="red_instagram" class="form-control" placeholder="https://instagram.com/tu_usuario">
+                    </div>
+                </fieldset>
+
+                <!-- Botones -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Guardar Cambios</button>
+                    <button type="reset" class="btn-cancel">Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Columna de la Vista Previa -->
+        <div class="col-lg-5">
+            <div class="preview-wrapper">
+                <h2 class="preview-title">Vista Previa</h2>
+                <div id="preview-container" class="preview-container">
+                    <img id="preview-img" src="{% static 'appfel/img/Foto_refe.png' %}" alt="Vista previa de la foto" class="preview-img" />
+                    <h3 id="preview-name" class="preview-name">Jhoana</h3>
+                    <p id="preview-status" class="preview-status activa">activa</p>
+                    <p id="preview-text" class="preview-text">“Hola soy Jhoana, soy una de las proveedoras de smiLIFE, he trabajado en esta industria durante 4 años, si tienes alguna duda o quieres agendar una cita,  hazlo sin ningún problema, estaré al pendiente para tu asesoramiento.”</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // --- Elementos del Formulario ---
+    const nombreInput = document.getElementById('nombre_proveedor');
+    const descripcionInput = document.getElementById('descripcion');
+    const fotoInput = document.getElementById('foto_perfil');
+    const colorInput = document.getElementById('color_fondo');
+    const colorHexDisplay = document.getElementById('color_hex');
+    const estadoRadios = document.querySelectorAll('input[name="estado"]');
+
+    // --- Elementos de la Vista Previa ---
+    const previewContainer = document.getElementById('preview-container');
+    const previewImg = document.getElementById('preview-img');
+    const previewName = document.getElementById('preview-name');
+    const previewStatus = document.getElementById('preview-status');
+    const previewText = document.getElementById('preview-text');
+
+    /**
+     * Determina si el color de texto debe ser negro o blanco basado en el color de fondo.
+     * @param {string} hexColor - El color de fondo en formato hexadecimal (ej: #RRGGBB).
+     * @returns {string} - Retorna '#000000' (negro) o '#ffffff' (blanco).
+     */
+    function getContrastColor(hexColor) {
+        if (!hexColor) return '#000000';
+
+        // Quitar el # para el cálculo
+        const hex = hexColor.replace('#', '');
+
+        // Convertir hex a RGB
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
+
+        // Fórmula para calcular la luminancia (YIQ)
+        const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+
+        // Retorna negro para fondos claros, y blanco para fondos oscuros
+        return (yiq >= 128) ? '#000000' : '#ffffff';
+    }
+
+    // --- Funciones de actualización ---
+    function updateName() {
+        previewName.textContent = nombreInput.value || 'Tu Nombre';
+    }
+
+    function updateDescription() {
+        previewText.textContent = descripcionInput.value || 'Tu texto de presentación aparecerá aquí.';
+    }
+
+    function updateImage(event) {
+        const file = event.target.files[0];
+        if (file) {
+            previewImg.src = URL.createObjectURL(file);
+        }
+    }
+
+    function updateColor() {
+        const colorValue = colorInput.value;
+        const textColor = getContrastColor(colorValue);
+
+        previewContainer.style.backgroundColor = colorValue;
+        colorHexDisplay.textContent = colorValue;
+
+        // Aplicar el color de texto de contraste a todos los elementos de texto
+        previewName.style.color = textColor;
+        previewStatus.style.color = textColor;
+        previewText.style.color = textColor;
+    }
+
+    function updateStatus() {
+        const selectedStatus = document.querySelector('input[name="estado"]:checked').value;
+        previewStatus.textContent = selectedStatus;
+        previewStatus.className = 'preview-status'; // Reset class
+        if (selectedStatus === 'activa') {
+            previewStatus.classList.add('activa');
+        } else {
+            previewStatus.classList.add('en-espera');
+        }
+    }
+
+    // --- Asignar Event Listeners ---
+    nombreInput.addEventListener('input', updateName);
+    descripcionInput.addEventListener('input', updateDescription);
+    fotoInput.addEventListener('change', updateImage);
+    colorInput.addEventListener('input', updateColor);
+    estadoRadios.forEach(radio => radio.addEventListener('change', updateStatus));
+
+    // --- Lógica del botón Cancelar (Reset) ---
+    const form = document.querySelector('.profile-form');
+    form.addEventListener('reset', function() {
+        // Pequeño delay para que el reset del navegador ocurra primero
+        setTimeout(() => {
+            updateName();
+            updateDescription();
+            updateColor();
+            updateStatus();
+            // Para la imagen, la reseteamos a la original
+            previewImg.src = "{% static 'appfel/img/Foto_refe.png' %}";
+        }, 0);
+    });
+
+    // --- Inicialización ---
+    // Llama a updateColor al cargar la página para asegurar el contraste inicial
+    updateColor();
+});
+</script>
 {% endblock %}
 
 {% block footer %}{% endblock %}
