@@ -36,7 +36,12 @@
 			<button type="submit" class="btn-iniciar hover-bright text2">Iniciar</button>
 		</div>
 	</form>
+
 	<br>
+	<div class="password-reset-link-container">
+		<!-- Este enlace llevará a la página para solicitar el restablecimiento -->
+		<a href="{% url 'password_reset_request' %}" class="password-reset-link">¿Olvidaste tu contraseña?</a>
+	</div>
 
 	<h2 class="subtitle-crear-cuenta subtitle2">Crear cuenta</h2>
 	<button class="btn-bottom text2 hover-dark"
