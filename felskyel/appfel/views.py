@@ -74,4 +74,7 @@ def gel_ducha(request):
 def primer_catalogo(request):
     return render (request, 'primer-catalogo.html')
 
+def crema_manos(request):
+    return render (request, 'crema-manos.html')
+
 

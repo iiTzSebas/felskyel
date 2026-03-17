@@ -7,7 +7,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static 'appfel/css/reset.css' %}" />
 	<link rel="stylesheet" href="{% static 'appfel/css/global.css' %}" />
-	<link rel="stylesheet" href="{% static 'appfel/css/contacto.css' %}" />
+	<link rel="stylesheet" href="{% static 'appfel/css/productos.css' %}" />
 	
 
 	<meta charset="utf-8" />
@@ -16,18 +16,18 @@
 	{% block extra_styles %}
 	<style>
 		body {
-			background-color: #ffffff; /* Fondo blanco */
+			background-color: #ffffff; /* Fondo blanco para la página de producto */
 		}
 
-		/* Estructura de producto (Imagen Izquierda - Info Derecha) */
+		/* Invertir columnas para poner la imagen a la izquierda */
 		.content-wrapper {
 			flex-direction: row-reverse;
-			align-items: flex-start;
+			align-items: flex-start; /* Alinear al inicio para que el contenido no se estire verticalmente */
 			gap: 50px;
 		}
 
 		/* Ajustes para la imagen */
-		.column-right { 
+		.column-right { /* Ahora a la izquierda */
 			flex: 1;
 			max-width: 500px;
 			opacity: 0.8; /* Imagen un poco más tenue para indicar inactivo */
@@ -40,7 +40,7 @@
 		}
 
 		/* Ajustes para la información del producto */
-		.column-left { 
+		.column-left { /* Ahora a la derecha */
 			flex: 1;
 			max-width: 600px;
 		}
@@ -49,13 +49,12 @@
 			font-size: 2.5rem;
 			font-weight: 700;
 			margin-bottom: 1rem;
-            color: #555;
 		}
 
 		.product-price {
 			font-size: 2rem;
 			font-weight: 500;
-			color: #777; /* Precio en gris */
+			color: #777; /* Precio en gris para agotado (originalmente verde en activo) */
 			margin-bottom: 1.5rem;
             text-decoration: line-through; /* Opcional: tachado si quieres enfatizar */
 		}
@@ -70,10 +69,10 @@
 			display: flex;
 			flex-direction: column;
 			gap: 20px;
-			background-color: #f0f0f0; /* Fondo más oscuro */
+			background-color: #f8f9fa;
 			padding: 20px;
 			border-radius: 8px;
-            border: 1px solid #ddd;
+            /* border: 1px solid #ddd; eliminado para coincidir con el estilo limpio */
 		}
 
         /* Botón de Agotado */
@@ -96,58 +95,34 @@
             text-align: center;
             margin-bottom: 5px;
 		}
+
 		.header {
-			background-color: #42ffc0; /* Color solicitado */
-			position: relative;
-			padding: 20px 40px;
 			background-color: #42ffc0;
 			padding: 15px 40px;
 			display: flex;
 			align-items: center;
-			justify-content: center;
-			box-sizing: border-box;
-        }
-
-		.header-arrow-left {
-			position: absolute;
-			left: 40px;
-			top: 50%;
-			transform: translateY(-50%);
+		}
 		.header-nav {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			width: 100%;
 		}
-
-		.header-text {
-			font-size: 22px;
-		.header-text-felskyel {
-			font-size: 1.5rem;
-			font-weight: 700;
-			color: #000;
-			text-decoration: none;
-			margin: 0;
-		}
-		.btn-a.btn1 {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			background-color: rgba(255, 255, 255, 0.5);
-			border: none;
-			border-radius: 8px;
-			padding: 8px 15px;
-			cursor: pointer;
-			text-decoration: none;
+		/* Ajuste para que la flecha se integre en el flujo normal, no absoluta */
+		.header-arrow-left {
+			position: static !important;
+			transform: none !important;
+			margin-right: 15px;
 		}
 		.btn-icon {
 			width: 20px;
 			height: 20px;
 		}
-		.btn-label {
-			margin: 0;
-			font-weight: 500;
-			color: #000;
+		.header-shopping {
+			transition: transform 0.1s ease;
+		}
+		.header-shopping:active {
+			transform: translateY(2px);
 		}
 
 		/* Contenedor del formulario de reseñas */
@@ -260,17 +235,10 @@
 						<path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
 					</svg>
 				</a>
-				<a href="{% url 'inicio' %}" style="text-decoration: none;"><p class="header-text-felskyel body-text3">Felskyel</p></a>
+				<p class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0;">Felskyel</p>
 			</div>
 			
-			<div style="display: flex; align-items: center; gap: 15px;">
-				<a href="{% url 'perfil' %}" class="btn-a btn1 hover-zoom">
-					<img src="{% static 'appfel/img/shop/btn/btn-icon.png' %}" class="btn-icon" />
-					<p class="btn-label">Perfil</p>
-				</a>
-				
 				<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" style="width: 32px; height: 32px; cursor: pointer; position: static;" />
-			</div>
 		</div>
 	</header>
 
