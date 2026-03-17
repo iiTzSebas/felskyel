@@ -18,4 +18,9 @@ urlpatterns = [
     path('password_reset_done/', views.password_reset_done, name='password_reset_done'),
     path('password_reset_complete/', views.password_reset_complete, name='password_reset_complete'),
     path('password_reset_confirm/', views.password_reset_confirm, name='password_reset_confirm'),
+    path('jabon-de-carbon/', views.jabon_de_carbon, name='jabon_de_carbon'),
+    path('protector-labios/', views.protector_labios, name='protector_labios'),
+    path('shampoo/', views.shampoo, name='shampoo'),
+    path('gel-ducha/', views.gel_ducha, name='gel_ducha'),
+    path('primer-catalogo/', views.primer_catalogo, name='primer_catalogo'),
 ]

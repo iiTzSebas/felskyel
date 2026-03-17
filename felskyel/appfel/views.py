@@ -58,3 +58,20 @@ def solicitud_proveedor(request):
 
 def terminos_y_condiciones(request):
     return HttpResponse("<h1>Términos y Condiciones</h1><p>Aquí va el contenido legal de tu sitio.</p>")
+
+def jabon_de_carbon(request):
+    return render (request, 'jabon_de_carbon.html')
+
+def protector_labios(request):
+    return render (request, 'protector-labios.html')
+
+def shampoo(request):
+    return render (request, 'shampoo.html')
+
+def gel_ducha(request):
+    return render (request, 'gel-ducha.html')
+
+def primer_catalogo(request):
+    return render (request, 'primer-catalogo.html')
+
+

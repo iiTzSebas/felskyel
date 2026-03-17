@@ -1,0 +1,57 @@
+{% extends "Contactos-proveedor/base-productos.html" %} 
+
+{% load static %}
+
+{% block titulo %} Protector de labios {% endblock %}
+
+{% block nombre %} Protector de labios {% endblock %}
+{% block nombre_header %} Protector de labios {% endblock %}
+
+{% block product_price %}
+<span class="price-amount">$4.300</span>
+{% endblock %}
+
+{% block contenido %}
+<p>
+	Este protector de labios proporciona una barrera contra los elementos climáticos y ayuda a mantener los labios hidratados y suaves.
+</p>
+<p>Úsalo diariamente para mejores resultados.</p>
+{% endblock %}
+
+{% block review_summary %}
+	<div class="review-summary">
+		<div class="average-rating">2.5</div>
+		<div>
+			<div class="stars-container">★★☆☆☆</div>
+			<p class="text-b" style="margin: 5px 0 0; color: #666; font-weight: 400;">Basado en 2 opiniones</p>
+		</div>
+	</div>
+{% endblock %}
+
+{% block reviews_content %}
+		<!-- Opinión de ejemplo 1 -->
+		<div class="review-item">
+			<div class="review-header">
+				<div>
+					<p class="review-author" style="margin: 0;">Usuario 1</p>
+					<div class="stars-container" style="font-size: 1rem;">★★☆☆☆</div>
+				</div>
+				<span class="review-date">Hace 1 semana</span>
+			</div>
+			<p class="review-text">El producto es bueno, pero esperaba más hidratación. No me gustó mucho el aroma.</p>
+		</div>
+
+		<!-- Opinión de ejemplo 2 -->
+		<div class="review-item">
+			<div class="review-header">
+				<div>
+					<p class="review-author" style="margin: 0;">Usuario 2</p>
+					<div class="stars-container" style="font-size: 1rem;">★★★☆☆</div>
+				</div>
+				<span class="review-date">Hace 2 semanas</span>
+			</div>
+			<p class="review-text">Funciona bien para mantener mis labios hidratados, aunque el efecto no dura todo el día.</p>
+		</div>
+{% endblock %}
+
+{% block imagen %} <img src="{% static 'appfel/img/shop/img2.png' %}" alt="Protector de labios" class="img1" /> {% endblock %}

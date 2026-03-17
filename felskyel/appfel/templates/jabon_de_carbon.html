@@ -1,0 +1,62 @@
+{% extends "Contactos-proveedor/base-productos.html" %} 
+
+{% load static %}
+
+{% block titulo %} Jabón de Carbón {% endblock %}
+
+{% block nombre %} Jabón de Carbón Activado {% endblock %}
+{% block nombre_header %} Jabón de Carbón Activado {% endblock %}
+
+{% block product_price %}
+<span class="price-amount">$20.000</span>
+{% endblock %}
+
+{% block contenido %}
+<p>
+	Este jabón de carbón activado limpia profundamente la piel, eliminando impurezas y el exceso de grasa. 
+	Es ideal para pieles mixtas o grasas, ayudando a desintoxicar los poros y dejando una sensación de frescura inigualable.
+	Producto de 
+</p>
+<br>
+<p>Úsalo diariamente para mejores resultados.</p>
+<br>
+<p>Producto de smiLIFE</p>
+{% endblock %}
+
+{% block review_summary %}
+	<div class="review-summary">
+		<div class="average-rating">4.5</div>
+		<div>
+			<div class="stars-container">★★★★☆</div>
+			<p class="text-b" style="margin: 5px 0 0; color: #666; font-weight: 400;">Basado en 14 opiniones</p>
+		</div>
+	</div>
+{% endblock %}
+
+{% block reviews_content %}
+		<!-- Opinión de ejemplo 1 -->
+		<div class="review-item">
+			<div class="review-header">
+				<div>
+					<p class="review-author" style="margin: 0;">Usuario 1</p>
+					<div class="stars-container" style="font-size: 1rem;">★★★★★</div>
+				</div>
+				<span class="review-date">Hace 1 semana</span>
+			</div>
+			<p class="review-text">¡Increíble! Este jabón ha cambiado mi piel. Limpia en profundidad sin resecar y ha reducido mis puntos negros. ¡Totalmente recomendado!</p>
+		</div>
+
+		<!-- Opinión de ejemplo 2 -->
+		<div class="review-item">
+			<div class="review-header">
+				<div>
+					<p class="review-author" style="margin: 0;">Usuario 2</p>
+					<div class="stars-container" style="font-size: 1rem;">★★★★☆</div>
+				</div>
+				<span class="review-date">Hace 2 semanas</span>
+			</div>
+			<p class="review-text">Muy buen jabón, deja la cara súper limpia y fresca. Le doy 4 estrellas solo porque se gasta un poco rápido, pero por lo demás es excelente.</p>
+		</div>
+{% endblock %}
+
+{% block imagen %} <img src="{% static 'appfel/img/shop/img1.png' %}" alt="Jabón de Carbón" class="img1" /> {% endblock %}

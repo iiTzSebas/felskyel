@@ -1,0 +1,58 @@
+{% extends "Contactos-proveedor/base-productos-agotado.html" %} 
+
+{% load static %}
+
+{% block titulo %} Gel de Ducha {% endblock %}
+
+{% block nombre %} Gel de Ducha Refrescante {% endblock %}
+{% block nombre_header %} Gel de Ducha {% endblock %}
+
+{% block product_price %}
+<span class="price-amount">$12.500</span>
+{% endblock %}
+
+{% block contenido %}
+<p>
+	Nuestro gel de ducha proporciona una limpieza suave y efectiva, dejando tu piel hidratada y con un aroma revitalizante.
+	Formulado con ingredientes naturales que cuidan la barrera protectora de tu piel.
+</p>
+<p>Ideal para uso diario en todo tipo de piel.</p>
+{% endblock %}
+
+{% block review_summary %}
+	<div class="review-summary">
+		<div class="average-rating">4.2</div>
+		<div>
+			<div class="stars-container">★★★★☆</div>
+			<p class="text-b" style="margin: 5px 0 0; color: #666; font-weight: 400;">Basado en 8 opiniones</p>
+		</div>
+	</div>
+{% endblock %}
+
+{% block reviews_content %}
+		<!-- Opinión de ejemplo 1 -->
+		<div class="review-item">
+			<div class="review-header">
+				<div>
+					<p class="review-author" style="margin: 0;">Sofia L.</p>
+					<div class="stars-container" style="font-size: 1rem;">★★★★★</div>
+				</div>
+				<span class="review-date">Hace 1 semana</span>
+			</div>
+			<p class="review-text">Huele delicioso y deja la piel muy suave. Me encanta usarlo por las mañanas para despertar con energía.</p>
+		</div>
+
+		<!-- Opinión de ejemplo 2 -->
+		<div class="review-item">
+			<div class="review-header">
+				<div>
+					<p class="review-author" style="margin: 0;">Miguel A.</p>
+					<div class="stars-container" style="font-size: 1rem;">★★★★☆</div>
+				</div>
+				<span class="review-date">Hace 2 semanas</span>
+			</div>
+			<p class="review-text">Es un buen producto, hace bastante espuma. Lástima que esté agotado ahora mismo, quería comprar más.</p>
+		</div>
+{% endblock %}
+
+{% block imagen %} <img src="{% static 'appfel/img/shop/card/card-img2.png' %}" alt="Gel de Ducha" class="img1" /> {% endblock %}

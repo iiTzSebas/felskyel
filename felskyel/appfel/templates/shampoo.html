@@ -1,0 +1,58 @@
+{% extends "Contactos-proveedor/base-productos.html" %} 
+
+{% load static %}
+
+{% block titulo %} Shampoo {% endblock %}
+
+{% block nombre %} Shampoo {% endblock %}
+{% block nombre_header %} Shampoo {% endblock %}
+
+{% block product_price %}
+<span class="price-amount">$35.250</span>
+{% endblock %}
+
+{% block contenido %}
+<p>
+	Este shampoo limpia profundamente el cabello y el cuero cabelludo, eliminando impurezas y el exceso de grasa. 
+	Es ideal para cabellos normales o grasos, ayudando a revitalizar y darle brillo natural.
+</p>
+<p>Úsalo diariamente para mejores resultados.</p>
+{% endblock %}
+
+{% block review_summary %}
+	<div class="review-summary">
+		<div class="average-rating">3.7</div>
+		<div>
+			<div class="stars-container">★★★★☆</div>
+			<p class="text-b" style="margin: 5px 0 0; color: #666; font-weight: 400;">Basado en 5 opiniones</p>
+		</div>
+	</div>
+{% endblock %}
+
+{% block reviews_content %}
+		<!-- Opinión de ejemplo 1 -->
+		<div class="review-item">
+			<div class="review-header">
+				<div>
+					<p class="review-author" style="margin: 0;">Usuario 1</p>
+					<div class="stars-container" style="font-size: 1rem;">★★★★★</div>
+				</div>
+				<span class="review-date">Hace 1 semana</span>
+			</div>
+			<p class="review-text">¡Me encantó! Deja el cabello súper suave y con un brillo natural increíble. Además el aroma dura todo el día.</p>
+		</div>
+
+		<!-- Opinión de ejemplo 2 (Neutral) -->
+		<div class="review-item">
+			<div class="review-header">
+				<div>
+					<p class="review-author" style="margin: 0;">Usuario 2</p>
+					<div class="stars-container" style="font-size: 1rem;">★★★☆☆</div>
+				</div>
+				<span class="review-date">Hace 2 semanas</span>
+			</div>
+			<p class="review-text">El shampoo cumple su función, limpia bien y huele rico, pero no noté cambios extraordinarios en mi cabello. Es un producto normal, ni muy bueno ni malo.</p>
+		</div>
+{% endblock %}
+
+{% block imagen %} <img src="{% static 'appfel/img/shop/card/card-img1.png' %}" alt="Shampoo" class="img1" /> {% endblock %}
