@@ -31,14 +31,18 @@
 				<input class="form-control border-start-0 rounded-end-pill" type="search" placeholder="Buscar" aria-label="Buscar">
 			</div>
 		</form>
-		
-		<div class="header-group2">
-			<img src="{% static 'appfel/img/pefil_f.png' %}" class="header-group3" />
-			<a href="{% url 'perfil' %}" class="header-text-perfil">Perfil</a>
-		</div>
 
 		<div class="header-group2">
 			<a href="{% url 'crud' %}" class="header-text-perfil">crud</a>
+		</div>
+
+		<div class="header-group2">
+			<a href="{% url 'manual' %}" class="header-text-perfil">Manual</a>
+		</div>
+
+		<div class="header-group2">
+			<img src="{% static 'appfel/img/pefil_f.png' %}" class="header-group3" />
+			<a href="{% url 'perfil' %}" class="header-text-perfil">Perfil</a>
 		</div>
 
 	</header>
@@ -50,6 +54,8 @@
 			</div>
 			<img src="{% static 'appfel/img/img1.png' %}" alt="Img1" class="img1" />
 		</section>
+
+
 
 		<section class="features-section">
 			<h2 class="subtitle-en-felskyel subtitle1">En Felskyel puedes:</h2>

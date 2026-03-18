@@ -52,6 +52,9 @@ def password_reset_complete(request):
 def crud (request):
     return render (request, 'crud/indexx.html')
 
+def manual (request):
+    return render (request, 'manual_usuario.html')
+
 
 def solicitud_proveedor(request):
     if request.method == 'POST':
