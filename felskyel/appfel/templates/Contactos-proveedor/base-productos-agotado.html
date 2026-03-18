@@ -221,6 +221,102 @@
 			color: #555;
 			line-height: 1.6;
 		}
+
+		/* Estilos para Sección de Productos Relacionados */
+.related-products-wrapper {
+    margin-top: 80px;
+    width: 100%;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 40px;
+}
+
+.related-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.related-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.related-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border-color: transparent;
+}
+
+.related-card-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    background-color: #f9f9f9;
+}
+
+.related-card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.related-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+.related-card-desc {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita a 2 líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.related-card-price {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2a9d8f; /* Mismo verde que el producto principal */
+    margin-top: auto;
+    margin-bottom: 15px;
+}
+
+.btn-related-view {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-related-view:hover {
+    background-color: #333;
+}
+
 	</style>
 	{% endblock %}
 </head>
@@ -276,6 +372,64 @@
 		{% block imagen %} <img src="https://via.placeholder.com/500x500.png?text=Agotado" alt="Imagen del producto" class="img1" /> {% endblock %}
 	</div>
 	</div> <!-- End content-wrapper -->
+
+
+
+	<!-- Sección de Productos Relacionados -->
+{% block related_products %}
+<div class="related-products-wrapper">
+    <h2 class="related-title">Productos relacionados</h2>
+    
+    <div class="related-grid">
+        <!-- Tarjeta 1 -->
+        <div class="related-card">
+            <img src="{% static 'appfel/img/shop/card/card-img1.png' %}" alt="Producto Relacionado" class="related-card-img" />
+            <div class="related-card-body">
+                <h3 class="related-card-title">Producto 1</h3>
+                <p class="related-card-desc">Descripción breve del primer producto relacionado.</p>
+                <p class="related-card-price">$10,99</p>
+                <a href="#" class="btn-related-view">Ver Detalles</a>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="related-card">
+            <img src="{% static 'appfel/img/shop/card/card-img2.png' %}" alt="Producto Relacionado" class="related-card-img" />
+            <div class="related-card-body">
+                <h3 class="related-card-title">Producto 2</h3>
+                <p class="related-card-desc">Este producto es ideal para complementar tu compra.</p>
+                <p class="related-card-price">$12,50</p>
+                <a href="#" class="btn-related-view">Ver Detalles</a>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="related-card">
+            <img src="{% static 'appfel/img/shop/card/card-img3.png' %}" alt="Producto Relacionado" class="related-card-img" />
+            <div class="related-card-body">
+                <h3 class="related-card-title">Producto 3</h3>
+                <p class="related-card-desc">Otra excelente opción disponible ahora.</p>
+                <p class="related-card-price">$8,99</p>
+                <a href="#" class="btn-related-view">Ver Detalles</a>
+            </div>
+        </div>
+        
+        <!-- Tarjeta 4 -->
+        <div class="related-card">
+            <img src="{% static 'appfel/img/shop/card/card-img4.png' %}" alt="Producto Relacionado" class="related-card-img" />
+            <div class="related-card-body">
+                <h3 class="related-card-title">Producto 4</h3>
+                <p class="related-card-desc">Descripción del cuarto producto.</p>
+                <p class="related-card-price">$10,99</p>
+                <a href="#" class="btn-related-view">Ver Detalles</a>
+            </div>
+    </div>
+</div>
+
+			<!-- Puedes agregar más tarjetas siguiendo este formato -->
+		</div>
+	</div>
+	{% endblock %}
 
 
 	<!-- Sección de Ratings y Opiniones (Se mantiene igual) -->
