@@ -49,6 +49,9 @@ def password_reset_confirm(request):
 def password_reset_complete(request):
     return render (request, 'rest_passw/password_reset_complete.html')
 
+def crud (request):
+    return render (request, 'crud/indexx.html')
+
 
 def solicitud_proveedor(request):
     if request.method == 'POST':
@@ -77,4 +80,5 @@ def primer_catalogo(request):
 def crema_manos(request):
     return render (request, 'crema-manos.html')
 
-
+def manual_usuario(request):
+    return render(request, 'manual_usuario.html')
