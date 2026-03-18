@@ -24,4 +24,5 @@ urlpatterns = [
     path('gel-ducha/', views.gel_ducha, name='gel_ducha'),
     path('primer-catalogo/', views.primer_catalogo, name='primer_catalogo'),
     path('crema-manos/', views.crema_manos, name='crema_manos'),
+    path('crud/', views.crud, name='crud'),
 ]
