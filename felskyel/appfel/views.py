@@ -80,4 +80,5 @@ def primer_catalogo(request):
 def crema_manos(request):
     return render (request, 'crema-manos.html')
 
-
+def manual_usuario(request):
+    return render(request, 'manual_usuario.html')
