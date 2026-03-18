@@ -4,6 +4,8 @@
 
 {% block title %} Manual de Usuario {% endblock %}
 
+{% block nombre %} Manual de Usuario {% endblock %}
+
 {% block styles %}
 <style>
     /* Desplazamiento suave */
@@ -32,7 +34,6 @@
                     Introducción
                 </a>
                 <a href="#navegacion" class="list-group-item list-group-item-action">Navegación</a>
-                <a href="#estudiantes" class="list-group-item list-group-item-action">Gestión de Estudiantes</a>
                 <a href="#productos" class="list-group-item list-group-item-action">Catálogo y Productos</a>
                 <a href="#contacto" class="list-group-item list-group-item-action">Soporte y Ayuda</a>
             </div>
@@ -44,8 +45,6 @@
             <!-- Sección: Introducción -->
             <section id="introduccion" class="mb-5">
                 <h1 class="display-5 mb-3">Manual de Usuario</h1>
-                <p class="lead text-muted">Bienvenido a la documentación oficial del Sistema de Control Zeus.</p>
-                <p>Esta guía está diseñada para ayudarte a entender y utilizar todas las herramientas disponibles en nuestra plataforma, desde la gestión de asistencia hasta los servicios de soporte.</p>
                 <p class="lead text-muted">Bienvenido a la documentación oficial de Felskyel - smiLIFE.</p>
                 <p>Esta guía está diseñada para ayudarte a navegar por nuestra tienda virtual, conocer nuestros productos orgánicos (jabones, shampoos, cremas) y gestionar tus pedidos fácilmente.</p>
                 <hr>
@@ -57,34 +56,21 @@
                 <p>El sistema cuenta con una barra de menú superior disponible en todas las pantallas:</p>
                 <ul class="list-group list-group-flush mb-3">
                     <li class="list-group-item"><i class="bi bi-house-door"></i> <strong>Inicio:</strong> Pantalla de bienvenida e información general.</li>
-                    <li class="list-group-item"><i class="bi bi-gear"></i> <strong>Servicios:</strong> Catálogo de lo que ofrece nuestra plataforma.</li>
-                    <li class="list-group-item"><i class="bi bi-people"></i> <strong>Nosotros:</strong> Información sobre el equipo de desarrollo.</li>
                     <li class="list-group-item"><i class="bi bi-shop"></i> <strong>Tienda:</strong> Catálogo completo de nuestros productos naturales.</li>
                     <li class="list-group-item"><i class="bi bi-person-circle"></i> <strong>Perfil:</strong> Gestión de tu cuenta y datos personales.</li>
                     <li class="list-group-item"><i class="bi bi-envelope"></i> <strong>Contáctenos:</strong> Canales de atención y formularios PQR.</li>
-                    <li class="list-group-item"><i class="bi bi-calendar-check"></i> <strong>Asistencia:</strong> Módulo principal para gestión de alumnos.</li>
                 </ul>
             </section>
 
-            <!-- Sección: Estudiantes -->
-            <section id="estudiantes" class="mb-5">
-                <h3><span class="text-primary">#</span> Gestión de Estudiantes</h3>
-                <p>En el módulo de <strong>Asistencia</strong>, podrás administrar la base de datos de los alumnos.</p>
             <!-- Sección: Productos -->
             <section id="productos" class="mb-5">
                 <h3><span class="text-primary">#</span> Catálogo y Productos</h3>
                 <p>Explora nuestra variedad de productos diseñados para tu bienestar.</p>
                 
                 <div class="card mb-4 border-primary">
-                    <div class="card-header bg-primary text-white">¿Cómo agregar un estudiante?</div>
                     <div class="card-header bg-primary text-white">¿Cómo realizar una compra?</div>
                     <div class="card-body">
                         <ol>
-                            <li>Dirígete a la sección <strong>Asistencia</strong> en el menú.</li>
-                            <li>Haz clic en el botón verde <strong>Agregar Estudiante</strong>.</li>
-                            <li>Completa el formulario con el <em>Nombre</em>, <em>Apellido</em> y selecciona la <em>Clase</em>.</li>
-                            <li>Sube una <strong>foto de perfil</strong> (opcional pero recomendado).</li>
-                            <li>Presiona <strong>Guardar</strong> para finalizar.</li>
                             <li>Dirígete a la sección <strong>Tienda</strong> o selecciona una categoría (Jabones, Cremas, etc.).</li>
                             <li>Haz clic en el producto que te interesa para ver detalles e ingredientes.</li>
                             <li>Presiona el botón <strong>Añadir al carrito</strong>.</li>
@@ -95,7 +81,6 @@
                 </div>
 
                 <div class="alert alert-warning" role="alert">
-                    <strong>Nota:</strong> Utiliza los botones <span class="badge bg-warning text-dark">Editar</span> y <span class="badge bg-danger">Eliminar</span> en la tabla de estudiantes para modificar registros existentes.
                     <strong>Nota:</strong> Si deseas ver el historial de tus compras, asegúrate de haber <a href="{% url 'registro' %}">creado una cuenta</a> antes de comprar.
                 </div>
             </section>
