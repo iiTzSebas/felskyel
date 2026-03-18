@@ -2,14 +2,34 @@
 
 {% load static %}
 
-{% block Titulo %} Manual de Usuario {% endblock %}
+{% block title %} Manual de Usuario {% endblock %}
 
-{% block contenido %}
+{% block nombre %} Manual de Usuario {% endblock %}
+
+{% block styles %}
+<style>
+    /* Desplazamiento suave */
+    html {
+        scroll-behavior: smooth;
+    }
+    /* Evita que el título quede oculto bajo el header fijo al navegar */
+    section {
+        scroll-margin-top: 150px; 
+    }
+    /* Estilo activo coherente con el diseño (negro) */
+    .list-group-item.active {
+        background-color: #000 !important;
+        border-color: #000 !important;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
 <div class="container py-4">
     <div class="row">
         <!-- Menú lateral de navegación del manual -->
         <div class="col-lg-3 mb-4">
-            <div class="list-group sticky-top" style="top: 2rem;">
+            <div id="manual-menu" class="list-group sticky-top" style="top: 180px;">
                 <a href="#introduccion" class="list-group-item list-group-item-action active" aria-current="true">
                     Introducción
                 </a>
@@ -79,16 +99,15 @@
 
 <!-- Script simple para manejar la clase 'active' en el menú lateral -->
 <script>
-    const links = document.querySelectorAll('.list-group-item-action');
-    links.forEach(link => {
-        link.addEventListener('click', function() {
-            links.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
+    document.addEventListener("DOMContentLoaded", function(){
+        // Inicializar ScrollSpy de Bootstrap en el cuerpo del documento
+        var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+            target: '#manual-menu',
+            offset: 160
         });
     });
 </script>
-{% endblock %}
-
-{% block pie %}
-Manual de Usuario - Versión 2024
+<div class="text-center mt-5 text-muted">
+    Manual de Usuario - Versión 2024
+</div>
 {% endblock %}
