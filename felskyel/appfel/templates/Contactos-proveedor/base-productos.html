@@ -261,6 +261,10 @@
 			border-color: transparent;
 		}
 
+		.related-card:active {
+			transform: translateY(2px);
+		}
+
 		.related-card-img {
 			width: 100%;
 			height: 250px;
@@ -313,11 +317,15 @@
 			border-radius: 8px;
 			font-weight: 600;
 			font-size: 1rem;
-			transition: background-color 0.2s ease;
+			transition: background-color 0.2s ease, transform 0.1s ease;
 		}
 
 		.btn-related-view:hover {
 			background-color: #333;
+		}
+
+		.btn-related-view:active {
+			transform: translateY(2px);
 		}
 
 	</style>

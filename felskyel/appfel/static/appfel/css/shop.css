@@ -586,6 +586,34 @@ body {
     box-shadow: none;
 }
 
+/* --- Animación de Tarjetas (Cards) --- */
+.card-b, .card-list {
+    transition: transform 0.2s ease;
+}
+
+.card-b:hover, .card-list:hover {
+    transform: translateY(-5px);
+}
+
+.card-b:active, .card-list:active {
+    transform: translateY(2px);
+}
+
+.carousel-container {
+	position: absolute;
+	top: 500px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	max-width: 1000px;
+	z-index: 10;
+	--minContent: 500;
+	--hSizing: FIXED;
+	--vSizing: FIXED;
+	--pConstraintHorizontal: CENTER;
+	--pConstraintVertical: MIN;
+}
+
 /* --- Responsive Design --- */
 
 /* Tablet and smaller desktops */
@@ -615,7 +643,7 @@ body {
 	}
 
 	/* Reseteo general para todos los elementos absolutos */
-	.img1, .img2, .card1, .card-big, .card-list, .list1, .list2, .copy1, .copy2, .subtitle-mas-productos, .subtitle-comentarios, .copy-a, .card-b {
+	.img1, .img2, .card1, .card-big, .card-list, .list1, .list2, .copy1, .copy2, .subtitle-mas-productos, .subtitle-comentarios, .copy-a, .card-b, .carousel-container {
 		position: static;
 		width: 90%;
 		max-width: 500px;
