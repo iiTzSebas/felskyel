@@ -16,20 +16,18 @@
     <title>{% block title %}smiLIFE{% endblock %}</title>
 </head>
 <body>
-    <header class="header section">
+
+        <h1 class="header-text body-text1">{% block nombre %}  {% endblock %}</h1>
+
+        {% block content %}
+
+        <header class="header section">
         <a href="{% url 'inicio' %}">
         <img src="{% static 'appfel/img/header-arrow-left.png' %}" alt="Volver a la página de inicio" class="header-arrow-left"/>
         </a>
         
-        <h1 class="header-text body-text1">{% block nombre %}  {% endblock %}</h1>
 
-        <div class="position-absolute top-50 translate-middle-y" style="right: 40px;">
-            <a href="{% url 'manual_usuario' %}" class="btn btn-outline-dark btn-sm fw-bold">Manual de Usuario</a>
-        </div>
-    </header>
 
-    {% block content %}
-    {% endblock %}
 
     {% block footer %}
         <footer class="footer section">
@@ -63,5 +61,7 @@
             <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
             <script>twemoji.parse(document.body);</script>
     {% endblock footer %}
+
+        {% endblock %}
 </body>
 </html>
