@@ -13,12 +13,6 @@ def index(request):
 def shop(request):
     return render (request, 'shop.html')
 
-def perfil(request):
-    return render (request, 'perfil.html')
-
-def registro(request):
-    return render (request, 'registro.html')
-
 def contacto(request):
     return render (request, 'contactos-proveedor/contacto.html')
 
