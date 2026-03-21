@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+
+
+
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-warning">
+            {{form.non_field_errors|striptags}}
+        </div>
+        {% endif %}
+
+
+        <!--campo del usuario-->
+        <div class="mb-3">
+            <label for="{{form.username.id_for_label}}"
+            class="form-label">Usuario</label>
+            <input type="text" name= "{{form.username.html_name}}" 
+                id="{{form.username.id_for_label}}" class="form-control" 
+                value="{{form.username.value|default_if_none:'' }}">
+            {% if form.username.errors %}
+            <div class="invalid-feedback d-block">
+                {{form.username.errors|striptags}}
+            </div>
+            {% endif %}
+        </div>
+
+        <!--campo contraseña-->
+        <div class="mb-3">
+            <label for="{{form.password1.id_for_label}}"
+            class="form-label">Contraseña</label>
+            <div class="input-group">
+                <input type="password" name= "{{form.password1.html_name}}" 
+                id="{{form.password1.id_for_label}}" 
+                class="form-control">
+                <span class="input-group-text" style="cursor: pointer;" 
+                onclick="togglePassword('{{form.password1.id_for_label}}')">
+                <i class="fa fa-eye" id="icon-{{form.password1.
+                    id_for_label}}"></i>"
+                </span>
+            </div>
+            {% if form.password1.errors %}
+            <div class="invalid-feedback d-block">
+                {{form.password1.errors|striptags}}
+            </div>
+            {% endif %}
+        </div>
+
+        <!--boton registro-->
+        <div class="d-grib mt-3">
+            <button type="submit" class="btn btn-primary btn-lg">
+            Ingresar
+            </button>
+        </div>
+        
+    </form>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+

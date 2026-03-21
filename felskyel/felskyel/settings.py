@@ -125,7 +125,7 @@ staticfiles_dirs = [
 
 AUTH_USER_MODEL = 'usuarios.Usuario'
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'inicio'
 LOGOUT_REDIRECT_URL = 'login'
 
 # Default primary key field type

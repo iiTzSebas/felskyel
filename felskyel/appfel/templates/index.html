@@ -40,10 +40,51 @@
 			<a href="{% url 'manual' %}" class="header-text-perfil">Manual</a>
 		</div>
 
+		{% comment %}
 		<div class="header-group2">
 			<img src="{% static 'appfel/img/pefil_f.png' %}" class="header-group3" />
 			<a href="{% url 'perfil' %}" class="header-text-perfil">Perfil</a>
 		</div>
+		{% endcomment %}
+
+		<!-- Usuario / Invitado -->
+                    <ul class="navbar-nav mb-2 mb-lg-0 order-6 order-lg-5">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="avatar-sm rounded-circle overflow-hidden me-2"
+                                    style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#FFFFFF{% else %}#eee400{% endif %};">
+                                    {% if user.is_authenticated and user.profile.avatar %}
+                                        <img src="{% static 'img/avatares/'|add:user.profile.avatar|add:'.webp' %}" 
+                                            alt="Avatar" class="rounded-circle"
+                                            style="width:100%; height:100%; object-fit:cover;">
+                                    {% else %}
+                                        <img src="{% static 'appfel/img/img.png' %}" 
+                                            alt="Invitado" class="rounded-circle"
+                                            style="width:100%; height:100%; object-fit:cover;">
+                                    {% endif %}
+                                </div>
+                                <span class="text-white">
+                                    Hola,
+                                    {% if user.is_authenticated %}
+                                        <span class="text-danger">{{ user.username }}</span>
+                                    {% else %}
+                                        <span class="text-warning">Invitado</span>
+                                    {% endif %}
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                {% if user.is_authenticated %}
+                                    <li><a class="dropdown-item" href="{% url 'p' %}">Mi perfil</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'reggistro' %}">Registrarse</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
 
 	</header>
 	<main>

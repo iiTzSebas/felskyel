@@ -20,10 +20,14 @@
 		<div class="header-nav">
 			<a href="{% url 'inicio' %}"><p class="header-text-felskyel body-text3">Felskyel</p></a>
 			
-			<a href="{% url 'perfil' %}"><button class="btn-a btn1 hover-zoom">
-				<img src="{% static 'appfel/img/shop/btn/btn-icon.png' %}" class="btn-icon" />
-				<p class="btn-label">Perfil</p>
-			</button></a>
+
+
+					{% comment %}
+		<div class="header-group2">
+			<img src="{% static 'appfel/img/pefil_f.png' %}" class="header-group3" />
+			<a href="{% url 'perfil' %}" class="header-text-perfil">Perfil</a>
+		</div>
+		{% endcomment %}
 			
 			<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" />
 		</div>
