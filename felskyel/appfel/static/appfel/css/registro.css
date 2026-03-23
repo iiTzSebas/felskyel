@@ -41,6 +41,13 @@ body {
 	width: 30px;
 }
 
+.img-top {
+	width: 250px !important;
+	height: auto;
+	margin-bottom: 20px;
+	border-radius: 20px;
+}
+
 .header-text {
 	font-size: 24px;
 	font-weight: bold;

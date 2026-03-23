@@ -49,7 +49,7 @@
 
 		<!-- Usuario / Invitado -->
                     <ul class="navbar-nav mb-2 mb-lg-0 order-6 order-lg-5">
-                        <li class="nav-item dropdown">
+                        <li class="header-group2">
                             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
                             role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <div class="avatar-sm rounded-circle overflow-hidden me-2"
@@ -59,17 +59,17 @@
                                             alt="Avatar" class="rounded-circle"
                                             style="width:100%; height:100%; object-fit:cover;">
                                     {% else %}
-                                        <img src="{% static 'appfel/img/img.png' %}" 
+                                        <img src="{% static 'appfel/img/pefil_f.png' %}" 
                                             alt="Invitado" class="rounded-circle"
                                             style="width:100%; height:100%; object-fit:cover;">
                                     {% endif %}
                                 </div>
-                                <span class="text-white">
+                                <span class="header-text-perfil">
                                     Hola,
                                     {% if user.is_authenticated %}
                                         <span class="text-danger">{{ user.username }}</span>
                                     {% else %}
-                                        <span class="text-warning">Invitado</span>
+                                        <span class="header-text-perfil">Invitado</span>
                                     {% endif %}
                                 </span>
                             </a>

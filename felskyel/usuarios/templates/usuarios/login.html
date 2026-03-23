@@ -3,11 +3,22 @@
 
 {% block title %}Iniciar Sesión{% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'appfel/css/registro.css' %}" />
+{% endblock %}
+
 {% block content %}
 
+<div class="d-flex justify-content-center my-4">
+<img src="{% static 'appfel/img/img.png' %}" alt="perfil usuario"  class="img-top" />
+</div>
 
+<main class="main-container">
+    <div class="registro-form-container">
 
-    <form method="post" novalidate>
+        <h1 class="title">Iniciar Sesión</h1>
+        
+        <form method="post" novalidate class="registro-form">
         {% csrf_token %}
 
         {% if form.non_field_errors %}
@@ -18,12 +29,13 @@
 
 
         <!--campo del usuario-->
-        <div class="mb-3">
+        <div class="form-group">
             <label for="{{form.username.id_for_label}}"
-            class="form-label">Usuario</label>
+            class="">Usuario</label>
             <input type="text" name= "{{form.username.html_name}}" 
                 id="{{form.username.id_for_label}}" class="form-control" 
-                value="{{form.username.value|default_if_none:'' }}">
+                value="{{form.username.value|default_if_none:'' }}"
+                placeholder="Ingresa tu usuario">
             {% if form.username.errors %}
             <div class="invalid-feedback d-block">
                 {{form.username.errors|striptags}}
@@ -32,38 +44,56 @@
         </div>
 
         <!--campo contraseña-->
-        <div class="mb-3">
-            <label for="{{form.password1.id_for_label}}"
-            class="form-label">Contraseña</label>
+        <div class="form-group">
+            <label for="{{form.password.id_for_label}}"
+            class="">Contraseña</label>
             <div class="input-group">
-                <input type="password" name= "{{form.password1.html_name}}" 
-                id="{{form.password1.id_for_label}}" 
-                class="form-control">
-                <span class="input-group-text" style="cursor: pointer;" 
-                onclick="togglePassword('{{form.password1.id_for_label}}')">
-                <i class="fa fa-eye" id="icon-{{form.password1.
-                    id_for_label}}"></i>"
+                <input type="password" name= "{{form.password.html_name}}" 
+                id="{{form.password.id_for_label}}" 
+                class="form-control"
+                placeholder="Ingresa tu contraseña">
+                <span class="input-group-text" style="cursor: pointer;"
+                onclick="togglePassword('{{form.password.id_for_label}}')">
+                <i class="fa fa-eye" id="icon-{{form.password.id_for_label}}"></i>
                 </span>
             </div>
-            {% if form.password1.errors %}
+            {% if form.password.errors %}
             <div class="invalid-feedback d-block">
-                {{form.password1.errors|striptags}}
+                {{form.password.errors|striptags}}
             </div>
             {% endif %}
         </div>
 
+        <div class="password-reset-link-container text-center mb-3">
+	        <!-- Este enlace llevará a la página para solicitar el restablecimiento -->
+		    <a href="{% url 'password_reset_request' %}" class="password-reset-link">¿Olvidaste tu contraseña?</a>
+	    </div>
+
         <!--boton registro-->
-        <div class="d-grib mt-3">
-            <button type="submit" class="btn btn-primary btn-lg">
+        <div class="form-actions">
+            <button type="submit" class="btn-submit">
             Ingresar
             </button>
         </div>
         
     </form>
+    </div>
+<script>
+ // Mostrar/ocultar contraseña
+function togglePassword(fieldId) {
+    const field = document.getElementById(fieldId);
+    const icon = document.getElementById('icon-' + fieldId);
+    if (field.type === "password") {
+        field.type = "text";
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        field.type = "password";
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+</script>
+</main>
 
 {% endblock %}
-
-{% block footer %}
-
-{% endblock %}
-

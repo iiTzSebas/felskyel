@@ -4,10 +4,20 @@
 <html lang="es">
 <head>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!--css-->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 	<link rel="stylesheet" href="{% static 'appfel/css/reset.css' %}" />
 	<link rel="stylesheet" href="{% static 'appfel/css/global.css' %}" />
 	<link rel="stylesheet" href="{% static 'appfel/css/contacto.css' %}" />
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+
 	
 
 	<meta charset="utf-8" />
@@ -29,7 +39,6 @@
 	</header>
 
 	
-	{% block contenido %}
 	
 <main class="main-content">
 	<div class="content-wrapper">
@@ -38,12 +47,15 @@
 		<h1 class="copy-title title1">Contacto</h1>
 		<h2 class="subtitle-a copy-subtitle3">Contactarte con tu proveedor </h2>
 
+    {% block contenido %}
 		<p class="copy-text2 body-text1">
 			“Hola soy Jhoana, soy una de las proveedoras de smiLIFE, he trabajado en esta industria durante 4 años, si tienes alguna duda o quieres agendar una cita,  hazlo sin ningún problema, estaré al pendiente para tu asesoramiento.”<br />
 			<br/>
 			¿Tienes dudas en como aplicarte tu crema, tienes algunas dudas sobre que producto es el ideal para ti, quieres un asesoramiento previo antes de tu compra?<br />
 			<br/>
 			Contactarme y tan pronto como pueda te responderé.
+		</p>
+    {% endblock %}
 	</div>
 
 <div class="contact-form-container">		
@@ -80,7 +92,6 @@
 
 </div>
 	</div> <!-- End column-left -->
-
 	
 
 <div class="column-right">
@@ -151,8 +162,7 @@
 
 	</footer>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <script>twemoji.parse(document.body);</script>
 </body>
-
-{% endblock %}
 </html>
