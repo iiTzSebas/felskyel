@@ -1,0 +1,72 @@
+{% extends "crud/base-base-base.html" %} 
+
+{% load static %}
+
+<title>{% block titulo %} CRUD {% endblock %}</title>
+
+
+{% block nombre %} Sección crud {% endblock %}
+
+
+{% block contenido %}
+
+<!--bs5-card-head-foot-->
+<div class="card">
+    <div class="card-header">Usuario</div>
+    <div class="card-body">
+        <h4 class="card-title">tabla usuario</h4>
+        <!--bs5-table-default-->
+        <div
+            class="table-responsive"
+        >
+            <table
+                class="table table-primary"
+            >
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">tipo usuario</th>
+                        <th scope="col">nombres</th>
+                        <th scope="col">apellidos</th>
+                        <th scope="col">telefono</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">correo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="">
+                        <td scope="row">R1C1</td>
+                        <td>R1C2</td>
+                        <td>R1C3</td>
+                        <td>R1C4</td>
+                        <td>R1C5</td>
+                        <td>R1C6</td>
+                        <td>R1C7</td>
+
+                    </tr>
+                    <tr class="">
+                        <td scope="row">Item</td>
+                        <td>Item</td>
+                        <td>Item</td>
+                        <td>Item</td>
+                        <td>Item</td>
+                        <td>Item</td>
+                        <td>Item</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--fin bs5-table-default-->
+        
+    </div>
+    <div class="card-footer text-muted">Footer</div>
+</div>
+<!--fin del bs5-->
+
+{% endblock %}
+
+
+
+
+{% block pie %} {% endblock %}

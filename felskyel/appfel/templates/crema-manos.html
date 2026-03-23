@@ -1,0 +1,59 @@
+{% extends "Contactos-proveedor/base-productos.html" %} 
+
+{% load static %}
+
+{% block titulo %} Crema de manos {% endblock %}
+
+{% block nombre %} Crema de manos {% endblock %}
+{% block nombre_header %} Crema de manos {% endblock %}
+
+{% block product_price %}
+<span class="price-amount">$9.200</span>
+{% endblock %}
+
+{% block contenido %}
+<p>
+	Esta crema de manos hidratante es perfecta para hidratar profundamente la piel, eliminando impurezas y el exceso de grasa. 
+	Es ideal para pieles mixtas o grasas, ayudando a desintoxicar los poros y dejando una sensación de frescura inigualable.
+</p>
+<br>
+<br>
+{% endblock %}
+
+{% block review_summary %}
+	<div class="review-summary">
+		<div class="average-rating">4.8</div>
+		<div>
+			<div class="stars-container">★★★★★</div>
+			<p class="text-b" style="margin: 5px 0 0; color: #666; font-weight: 400;">Basado en 23 opiniones</p>
+		</div>
+	</div>
+{% endblock %}
+
+{% block reviews_content %}
+		<!-- Opinión de ejemplo 1 -->
+		<div class="review-item">
+			<div class="review-header">
+				<div>
+					<p class="review-author" style="margin: 0;">Usuario 1</p>
+					<div class="stars-container" style="font-size: 1rem;">★★★★★</div>
+				</div>
+				<span class="review-date">Hace 3 días</span>
+			</div>
+			<p class="review-text">Me encanta esta crema, deja mis manos súper suaves y no es pegajosa. El olor es muy agradable y dura bastante.</p>
+		</div>
+
+		<!-- Opinión de ejemplo 2 -->
+		<div class="review-item">
+			<div class="review-header">
+				<div>
+					<p class="review-author" style="margin: 0;">Usuario 2</p>
+					<div class="stars-container" style="font-size: 1rem;">★★★★★</div>
+				</div>
+				<span class="review-date">Hace 2 semanas</span>
+			</div>
+			<p class="review-text">Buena hidratación para manos secas, especialmente con este clima. El tamaño es perfecto para llevar en el bolso a todas partes.</p>
+		</div>
+{% endblock %}
+
+{% block imagen %} <img src="{% static 'appfel/img/shop/card-list-img.png' %}" alt="Crema de manos" class="img1" /> {% endblock %}

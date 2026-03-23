@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'appfel',
-    'carrito',
+    'carito',
+    'usuarios',
 ]
 
 MIDDLEWARE = [
@@ -121,5 +122,13 @@ static_root = BASE_DIR / 'static'
 staticfiles_dirs = [
     BASE_DIR / 'appfel/static',
 ]
+
+
+AUTH_USER_MODEL = 'usuarios.Usuario'
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'inicio'
+LOGOUT_REDIRECT_URL = 'login'
+
+# Default primary key field type
 
 
