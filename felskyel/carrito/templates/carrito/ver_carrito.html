@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Carrito de compras{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">🛒 Tu Carrito de Compras</h2>
+
+    {% if items %}
+        <table class="table table-bordered text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                <tr>
+                    <td>{{ item.producto.nombre }}</td>
+
+                    <!-- BOTONES + - -->
+                    <td>
+                        <a href="{% url 'carrito:restar_cantidad' item.id %}" 
+                        class="btn btn-sm btn-outline-secondary">➖</a>
+
+                        <strong class="mx-2">{{ item.cantidad }}</strong>
+
+                        <a href="{% url 'carrito:sumar_cantidad' item.id %}" 
+                        class="btn btn-sm btn-outline-secondary">➕</a>
+                    </td>
+
+                    <td>${{ item.producto.precio }}</td>
+
+                    <!-- SUBTOTAL -->
+                    <td>
+                        ${{ item.subtotal }}
+                    </td>
+
+                    <!-- ACCIONES -->
+                    <td>
+                        <a href="{% url 'carrito:eliminar_del_carrito' item.id %}" 
+                        class="btn btn-danger btn-sm">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- TOTAL -->
+        <div class="text-end mt-4">
+            <h4>Total: <strong>${{ total }}</strong></h4>
+
+            <a href="{% url 'carrito:vaciar_carrito' %}" 
+            class="btn btn-warning mt-2">
+                Vaciar carrito
+            </a>
+        </div>
+
+    {% else %}
+        <div class="alert alert-info text-center">
+            Tu carrito está vacío 🛒
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
