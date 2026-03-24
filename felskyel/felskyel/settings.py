@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'appfel',
-    'carito',
+    'carrito',
     'usuarios',
+    'productos',
 ]
 
 MIDDLEWARE = [
@@ -130,5 +131,3 @@ LOGIN_REDIRECT_URL = 'inicio'
 LOGOUT_REDIRECT_URL = 'login'
 
 # Default primary key field type
-
-
