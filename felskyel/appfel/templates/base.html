@@ -20,6 +20,71 @@
     {% block styles %}{% endblock %}
 
     <title>{% block title %}smiLIFE{% endblock %}</title>
+
+    <style>
+        /* Botón flotante para cambiar tema */
+        #theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1050; /* Por encima de la mayoría de elementos */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        #theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- ESTILOS MODO OSCURO --- */
+        body.dark-mode {
+            /* Redefinición de variables CSS usadas en tus archivos (registro.css, etc) */
+            --background-color: #121212;
+            --white: #1e1e1e;
+            --text-color: #e0e0e0;
+            --primary-color: #ffffff;
+            
+            /* Forzar colores para elementos que no usan variables */
+            background-color: #121212 !important;
+            color: #e0e0e0 !important;
+        }
+
+        /* Invertir colores del botón de tema */
+        body.dark-mode #theme-toggle {
+            background-color: #fff;
+            color: #000;
+        }
+
+        /* Adaptación de componentes comunes (tarjetas, formularios, listas) */
+        body.dark-mode .card, 
+        body.dark-mode .card-b,
+        body.dark-mode .list-group-item,
+        body.dark-mode .registro-form-container,
+        body.dark-mode .login-container,
+        body.dark-mode .profile-form,
+        body.dark-mode .modal-content {
+            background-color: #1e1e1e !important;
+            color: #e0e0e0 !important;
+            border-color: #444 !important;
+        }
+
+        body.dark-mode .form-control {
+            background-color: #2c2c2c !important;
+            border-color: #555 !important;
+            color: #fff !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -69,5 +134,34 @@
     {% endblock footer %}
 
         {% endblock %}
+
+    <!-- Botón de cambio de tema -->
+    <button id="theme-toggle" aria-label="Cambiar modo oscuro/claro">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('theme-toggle');
+            const icon = toggleBtn.querySelector('i');
+            const body = document.body;
+
+            // 1. Verificar si hay una preferencia guardada
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
+                icon.classList.replace('fa-moon', 'fa-sun');
+            }
+
+            // 2. Manejar el clic
+            toggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                const isDark = body.classList.contains('dark-mode');
+                // Guardar preferencia y cambiar icono
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                icon.classList.toggle('fa-sun', isDark);
+                icon.classList.toggle('fa-moon', !isDark);
+            });
+        });
+    </script>
 </body>
 </html>
