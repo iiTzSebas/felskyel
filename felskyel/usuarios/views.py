@@ -12,6 +12,7 @@ def reggistro_view(request):
         if form.is_valid():
             usuario = form.save()
             login(request, usuario)
+            messages.success(request, f"¡Bienvenido {usuario.username}! Tu cuenta ha sido creada exitosamente.")
             return redirect('inicio')
     else:
         form = RegistroForm()
