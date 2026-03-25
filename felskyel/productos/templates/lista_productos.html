@@ -29,15 +29,14 @@
         /* --- HEADER --- */
         .header {
             position: relative;
-            background: url("{% static 'appfel/img/shop/header.png' %}") center / cover no-repeat;
-            padding: 30px 20px 120px 20px; /* Padding inferior grande para efecto de superposición */
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{% static 'appfel/img/shop/header.png' %}") center / cover no-repeat;
+            padding: 40px 20px 120px 20px; /* Padding inferior grande para efecto de superposición */
             color: #fff;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            /* Overlay oscuro para mejorar lectura del texto */
-            box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.25);
+            justify-content: center;
         }
 
         .header-nav {
@@ -63,6 +62,7 @@
             height: 30px;
             filter: brightness(0) invert(1); /* Vuelve el icono blanco */
             cursor: pointer;
+            position: static !important; /* Override shop.css absolute positioning */
             transition: transform 0.2s;
         }
 
@@ -114,7 +114,7 @@
         .header-title {
             font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             letter-spacing: -2px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
@@ -129,7 +129,7 @@
             background-color: #fff;
             color: #000;
             border: none;
-            padding: 14px 35px;
+            padding: 12px 30px;
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 700;
@@ -146,9 +146,7 @@
 
         /* --- CONTENIDO PRINCIPAL --- */
         .main-container {
-            margin-top: 400px; /* Espacio para el header absoluto */
-            padding-bottom: 100px;
-            margin-top: -60px; /* Efecto de superposición sobre el header */
+            margin-top: -80px; /* Efecto de superposición sobre el header */
             position: relative;
             z-index: 10;
             padding-bottom: 80px;
@@ -156,32 +154,29 @@
 
         @media (max-width: 1200px) {
             .main-container {
-                margin-top: 50px;
+                margin-top: -40px;
+                padding-left: 15px;
+                padding-right: 15px;
             }
         }
 
         /* Estilo de Tarjetas inspirado en shop.css */
         /* --- TARJETAS DE PRODUCTO --- */
         .product-card {
-            border: 1px solid rgba(0,0,0,0.05);
-            border-radius: 12px;
             border: none;
             border-radius: 16px;
             overflow: hidden;
             background: #fff;
-            transition: transform 0.2s, box-shadow 0.2s;
             transition: all 0.3s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
         .product-img {
@@ -196,11 +191,9 @@
         }
 
         .product-body {
-            padding: 20px;
             padding: 24px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
             gap: 12px;
             flex-grow: 1;
         }
@@ -208,15 +201,12 @@
         .product-title {
             font-family: 'Inter', sans-serif;
             font-weight: 700;
-            font-size: 1.2rem;
             font-size: 1.3rem;
             margin-bottom: 0;
             color: #1a1a1a;
         }
 
         .product-desc {
-            color: #666;
-            font-size: 0.9rem;
             color: #6c757d;
             font-size: 0.95rem;
             line-height: 1.5;
@@ -229,9 +219,6 @@
         }
 
         .product-price {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 10px;
             font-weight: 800;
             font-size: 1.4rem;
             margin-top: 15px;
@@ -243,40 +230,29 @@
             background-color: #000;
             color: #fff;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: background-color 0.2s;
             padding: 12px;
             border-radius: 10px;
             font-weight: 600;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
         .btn-black:hover {
-            background-color: #333;
             background-color: #444;
             color: #fff;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
         .btn-light-custom {
-            background-color: #e6e6e6;
-            color: #000;
             background-color: #f1f3f5;
             color: #212529;
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 500;
             padding: 12px;
             border-radius: 10px;
             font-weight: 600;
             text-align: center;
-            transition: background-color 0.2s;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
         .btn-light-custom:hover {
-            background-color: #d4d4d4;
             background-color: #e9ecef;
             color: #000;
             transform: translateY(-2px);
@@ -285,9 +261,7 @@
         /* Sección de comentarios adaptada a flujo normal */
         /* --- SECCIÓN DE COMENTARIOS --- */
         .comments-section {
-            margin-top: 80px;
             border-top: 1px solid #e0e0e0;
-            padding-top: 50px;
             margin-top: 100px;
             background-color: #fff;
             padding: 60px 40px;
@@ -296,17 +270,14 @@
         }
         
         .comment-item {
-            margin-bottom: 30px;
             margin-bottom: 35px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            align-items: flex-start;
             gap: 15px;
+            align-items: flex-start;
         }
         
         .comment-icon {
-            width: 24px;
             width: 32px;
             height: 32px;
             flex-shrink: 0;
@@ -321,8 +292,6 @@
         }
         
         .comment-text {
-            color: #333;
-            line-height: 1.5;
             color: #555;
             line-height: 1.6;
             margin: 0;
@@ -409,18 +378,12 @@
     <div class="container main-container">
         
         <!-- Grid de Productos -->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
             {% for producto in lista_productos %}
             <div class="col">
                 <div class="product-card">
                     <!-- Imagen: Usamos lógica para mostrar imagen o default -->
-                    {% if producto.imagen %}
-                        <img src="{% static 'appfel/img/catalogo/' %}{{ producto.imagen }}" class="product-img" alt="{{ producto.nombre }}">
-                    {% else %}
-                        <img src="{% static 'appfel/img/shop/card/card-img1.png' %}" class="product-img" alt="{{ producto.nombre }}">
-                    {% endif %}
-                    
+                        <img src="{% static 'appfel/img/shop/portadasp/'%}{{ producto.imagen }}">
                     <div class="product-body">
                         <h3 class="product-title">{{ producto.nombre }}</h3>
                         <p class="product-desc">{{ producto.descripcion|default:"Producto de excelente calidad para tu cuidado personal." }}</p>

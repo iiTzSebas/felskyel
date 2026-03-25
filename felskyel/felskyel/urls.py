@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('appfel.urls')),
     path('usuarios/', include('usuarios.urls')),
     path('productos/', include('productos.urls')),
+    path('carrito/', include('carrito.urls')),
 ]
