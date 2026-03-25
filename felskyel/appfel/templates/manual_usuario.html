@@ -20,6 +20,12 @@
         background-color: #000 !important;
         border-color: #000 !important;
     }
+    img.emoji {
+        height: 1.2em;
+        width: 1.2em;
+        margin: 0 0.1em;
+        vertical-align: middle;
+    }
 </style>
 {% endblock %}
 
@@ -103,6 +109,12 @@
             target: '#manual-menu',
             offset: 160
         });
+    });
+</script>
+<script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        twemoji.parse(document.body);
     });
 </script>
 <div class="text-center mt-5 text-muted">
