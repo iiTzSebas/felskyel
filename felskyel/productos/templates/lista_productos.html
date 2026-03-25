@@ -15,427 +15,174 @@
 	<title>Tienda Felskyel</title>
 
     <style>
-        /* Estilos personalizados para adaptar el diseño estático a dinámico */
-        /* --- ESTILOS MODERNOS Y RESPONSIVOS (Reemplazan a shop.css) --- */
-        
-        body {
-            background-color: #f4f6f8; /* Fondo gris muy suave para contraste */
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        /* --- HEADER --- */
+        /* --- HEADER RESTAURADO (Estilo Moderno) --- */
         .header {
-            position: relative;
-            background: url("{% static 'appfel/img/shop/header.png' %}") center / cover no-repeat;
-            padding: 30px 20px 120px 20px; /* Padding inferior grande para efecto de superposición */
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            right: auto !important;
+            height: auto !important;
+            background: url("{% static 'appfel/img/shop/header.png' %}") center / cover no-repeat !important;
+            padding: 30px 20px 100px 20px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
             text-align: center;
-            /* Overlay oscuro para mejorar lectura del texto */
             box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.25);
+            color: #fff;
         }
 
         .header-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            position: relative !important;
+            height: auto !important;
             width: 100%;
             max-width: 1200px;
-            margin-bottom: 40px;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            margin-bottom: 30px;
         }
 
         .header-text-felskyel {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #fff;
+            position: static !important;
+            font-size: 1.8rem !important;
+            font-weight: 800 !important;
+            color: #fff !important;
+            margin: 0 !important;
             text-decoration: none;
-            letter-spacing: -0.5px;
-            margin: 0;
         }
 
         .header-shopping {
-            width: 30px;
-            height: 30px;
-            filter: brightness(0) invert(1); /* Vuelve el icono blanco */
-            cursor: pointer;
-            transition: transform 0.2s;
+            position: static !important;
+            width: 30px !important;
+            height: 30px !important;
+            filter: brightness(0) invert(1);
         }
 
-        .header-shopping:hover {
-            transform: scale(1.1);
-        }
-
-        /* Barra de búsqueda */
         .header-row {
-            display: flex;
-            justify-content: center;
+            position: static !important;
+            top: auto !important;
+            left: auto !important;
             width: 100%;
-            margin-bottom: 30px;
+            max-width: 550px;
+            height: auto !important;
+            margin: 0 auto 30px auto;
+            background: transparent !important;
+            display: flex !important;
+            padding: 0 !important;
         }
 
         .search-container-custom {
-            display: flex;
-            align-items: center;
             background-color: rgba(255, 255, 255, 0.95);
+            width: 100%;
             border-radius: 50px;
-            padding: 12px 25px;
-            width: 100%;
-            max-width: 550px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-            transition: all 0.3s ease;
-        }
-
-        .search-container-custom:focus-within {
-            background-color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-        }
-
-        .search-input-custom {
+            padding: 10px 20px;
             border: none;
-            outline: none;
-            background: transparent;
-            margin-left: 15px;
-            font-size: 1rem;
-            color: #333;
-            width: 100%;
         }
 
-        /* Títulos del Header */
         .header-page-title {
-            margin-bottom: 30px;
+            position: static !important;
+            margin: 0 0 25px 0 !important;
+            color: #fff !important;
         }
 
         .header-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: -2px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .header-subtitle {
-            font-size: 1.5rem;
-            font-weight: 400;
-            opacity: 0.95;
+            font-size: 3rem !important;
+            margin-bottom: 5px !important;
         }
 
         .header-btn {
-            background-color: #fff;
-            color: #000;
-            border: none;
-            padding: 14px 35px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .header-btn:hover {
-            background-color: #333;
-            color: #fff;
-            transform: translateY(-3px);
+            position: static !important;
+            background-color: #fff !important;
+            color: #000 !important;
+            margin: 0 !important;
+            padding: 12px 35px !important;
+            border-radius: 50px !important;
+            font-size: 1.1rem !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
         }
 
-        /* --- CONTENIDO PRINCIPAL --- */
         .main-container {
-            margin-top: 400px; /* Espacio para el header absoluto */
-            padding-bottom: 100px;
-            margin-top: -60px; /* Efecto de superposición sobre el header */
+            margin-top: 60px;
             position: relative;
             z-index: 10;
-            padding-bottom: 80px;
+            background-color: transparent;
+            padding-top: 0;
         }
-
-        @media (max-width: 1200px) {
-            .main-container {
-                margin-top: 50px;
-            }
-        }
-
-        /* Estilo de Tarjetas inspirado en shop.css */
-        /* --- TARJETAS DE PRODUCTO --- */
-        .product-card {
-            border: 1px solid rgba(0,0,0,0.05);
-            border-radius: 12px;
-            border: none;
-            border-radius: 16px;
-            overflow: hidden;
-            background: #fff;
-            transition: transform 0.2s, box-shadow 0.2s;
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-        }
-
-        .product-img {
-            height: 280px;
-            object-fit: cover;
-            width: 100%;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover .product-img {
-            transform: scale(1.05);
-        }
-
-        .product-body {
-            padding: 20px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            gap: 12px;
-            flex-grow: 1;
-        }
-
-        .product-title {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            font-size: 1.2rem;
-            font-size: 1.3rem;
-            margin-bottom: 0;
-            color: #1a1a1a;
-        }
-
-        .product-desc {
-            color: #666;
-            font-size: 0.9rem;
-            color: #6c757d;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            flex-grow: 1;
-            /* Limitar a 3 líneas */
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .product-price {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-top: 10px;
-            font-weight: 800;
-            font-size: 1.4rem;
-            margin-top: 15px;
-            color: #000;
-        }
-
-        /* Botones de las tarjetas */
-        .btn-black {
-            background-color: #000;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: background-color 0.2s;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-        .btn-black:hover {
-            background-color: #333;
-            background-color: #444;
-            color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .btn-light-custom {
-            background-color: #e6e6e6;
-            color: #000;
-            background-color: #f1f3f5;
-            color: #212529;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 500;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 600;
-            text-align: center;
-            transition: background-color 0.2s;
-            transition: all 0.2s;
-        }
-        .btn-light-custom:hover {
-            background-color: #d4d4d4;
-            background-color: #e9ecef;
-            color: #000;
-            transform: translateY(-2px);
-        }
-
-        /* Sección de comentarios adaptada a flujo normal */
-        /* --- SECCIÓN DE COMENTARIOS --- */
-        .comments-section {
-            margin-top: 80px;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 50px;
-            margin-top: 100px;
-            background-color: #fff;
-            padding: 60px 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
-        }
-        
-        .comment-item {
-            margin-bottom: 30px;
-            margin-bottom: 35px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: flex-start;
-            gap: 15px;
-        }
-        
-        .comment-icon {
-            width: 24px;
-            width: 32px;
-            height: 32px;
-            flex-shrink: 0;
-            margin-top: 4px;
-        }
-        
-        .comment-user {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: #000;
-        }
-        
-        .comment-text {
-            color: #333;
-            line-height: 1.5;
-            color: #555;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        /* --- PAGINACIÓN --- */
-        .pagination .page-link {
-            color: #333;
-            border: none;
-            background: transparent;
-            font-weight: 600;
-            border-radius: 50%;
-            margin: 0 3px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.2s ease;
-        }
-        .pagination .page-link:hover {
-            background-color: #e9ecef;
-            color: #000;
-        }
-        .pagination .page-item.active .page-link {
-            background-color: #000;
-            border-color: #000;
-            color: #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        /* --- MEDIA QUERIES (Móvil) --- */
-        @media (max-width: 768px) {
-            .header {
-                padding: 20px 20px 80px 20px;
-            }
-            .header-title {
-                font-size: 2.2rem;
-            }
-            .main-container {
-                margin-top: -40px;
-            }
-            .product-img {
-                height: 220px;
-            }
-            .comments-section {
-                padding: 40px 20px;
-                margin-top: 60px;
-            }
-            .comment-item {
-                flex-direction: column;
-                gap: 10px;
-            }
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
         }
     </style>
 </head>
 
 <body>
-    <!-- Header Original -->
+    <!-- Header Restaurado -->
     <header class="header">
         <div class="header-nav">
-            <a href="{% url 'inicio' %}"><p class="header-text-felskyel body-text3">Felskyel</p></a>
-            <img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" />
+            <a href="{% url 'inicio' %}" class="header-text-felskyel">Felskyel</a>
+            <img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping" alt="Carrito" />
         </div>
 
-        <form class="header-row" role="search">
-            <div class="search-container-custom">
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="16" fill="#999" class="bi bi-search" viewBox="0 0 16 16">
+        <div class="header-row">
+            <form class="search-container-custom d-flex align-items-center" role="search">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#999" class="bi bi-search me-2" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                 </svg>
                 <input class="search-input-custom" type="search" placeholder="Buscar" aria-label="Buscar">
-            </div>
-        </form>
+            </form>
+        </div>
         
-        <div class="header-page-title text-white">
+        <div class="header-page-title">
             <h1 class="header-title">Tienda Felskyel</h1>
             <h2 class="header-subtitle">Página principal</h2>
         </div>
         
-        <button class="header-btn hover-bright">Ir al carrito</button>
+        <button class="header-btn">Ir al carrito</button>
     </header>
 
     <!-- Contenedor Principal (Reemplaza los elementos absolutos img1, copy1, etc.) -->
     <div class="container main-container">
         
         <!-- Grid de Productos -->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
             {% for producto in lista_productos %}
             <div class="col">
-                <div class="product-card">
+                <div class="card-b h-100 position-relative border-0">
                     <!-- Imagen: Usamos lógica para mostrar imagen o default -->
+                    <div class="position-relative overflow-hidden">
                     {% if producto.imagen %}
-                        <img src="{% static 'appfel/img/catalogo/' %}{{ producto.imagen }}" class="product-img" alt="{{ producto.nombre }}">
+                        <img src="{% static 'appfel/img/catalogo/' %}{{ producto.imagen }}" class="product-img w-100" alt="{{ producto.nombre }}">
                     {% else %}
-                        <img src="{% static 'appfel/img/shop/card/card-img1.png' %}" class="product-img" alt="{{ producto.nombre }}">
+                        <img src="{% static 'appfel/img/shop/card/card-img1.png' %}" class="product-img w-100" alt="{{ producto.nombre }}">
                     {% endif %}
+                    </div>
                     
-                    <div class="product-body">
-                        <h3 class="product-title">{{ producto.nombre }}</h3>
-                        <p class="product-desc">{{ producto.descripcion|default:"Producto de excelente calidad para tu cuidado personal." }}</p>
-                        <p class="product-price">${{ producto.precio }}</p>
+                    <div class="d-flex flex-column pt-3 w-100">
+                        <h3 class="card-subtitle2">{{ producto.nombre }}</h3>
+                        <div class="text-warning small mb-2">★★★★☆</div>
                         
-                        <div class="d-flex gap-3 mt-auto">
-                            <button class="btn-black flex-grow-1">Agregar</button>
-                            <a href="#" class="btn-light-custom flex-grow-1">Ver más</a>
+                        <p class="card-text2 mb-3">{{ producto.descripcion|default:"Producto de excelente calidad para tu cuidado personal."|truncatechars:100 }}</p>
+                        
+                        <div class="mt-auto">
+                            <p class="card-subtitle2 mb-3">${{ producto.precio }}</p>
+                            <div class="d-flex gap-2">
+                                <button class="copy-btn-b" style="background-color: #000; color: #fff;">Agregar</button>
+                                <a href="#" class="copy-btn-b" style="background-color: #e6e6e6; color: #000; text-decoration: none;">Ver más</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             {% empty %}
             <div class="col-12 text-center py-5">
-                <h3>No hay productos disponibles en este momento.</h3>
+                <div class="py-5 bg-white rounded-3 shadow-sm">
+                    <h3 class="text-muted">No hay productos disponibles en este momento.</h3>
+                    <p class="mb-0">Vuelve a intentarlo más tarde.</p>
+                </div>
             </div>
             {% endfor %}
         </div>
@@ -478,42 +225,68 @@
             </ul>
         </nav>
         {% endif %}
+    </div>
 
-        <!-- Sección de Comentarios (Adaptada) -->
-        <div class="comments-section">
-            <h2 class="text-center fw-bold mb-5" style="font-size: 2rem;">Comentarios generales</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <!-- Copia de la lista 1 -->
-                    <div class="comment-item">
-                        <img src="{% static 'appfel/img/shop/copy/copy-symbol.png' %}" class="comment-icon" />
-                        <h3 class="comment-user">Nombre de usuario</h3>
-                        <p class="comment-text">Texto para lo que quieras decir. Agrega puntos clave, citas, anécdotas o una historia muy muy breve.</p>
+    <!-- Sección de Comentarios Separada -->
+    <div class="container mb-5" style="margin-top: 80px;">
+        <!-- Línea separadora estilo shop.css -->
+        <div class="w-100 mx-auto" style="border-top: 3.5px solid #e0e0e0; padding-top: 40px; max-width: 1200px;">
+            <h2 class="header-subtitle text-center mb-5 text-dark fw-bold" style="font-size: 2rem;">Lo que dicen nuestros clientes</h2>
+            
+            <div class="row g-5" style="padding: 0 6%;">
+                <!-- Columna Izquierda (Simula List1) -->
+                <div class="col-md-6 d-flex flex-column gap-4">
+                    <!-- Comentario 1 -->
+                    <div class="copy-b copy7 h-auto">
+                        <img src="{% static 'appfel/img/shop/copy/copy-symbol.png' %}" class="copy-icon" style="width: 32px;" />
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <h3 class="card-subtitle2 mb-0">Laura Martínez</h3>
+                            <div class="text-warning small">★★★★★</div>
+                        </div>
+                        <p class="card-text2">"Me encantan los productos. La crema hidratante ha salvado mi piel este invierno. ¡Súper recomendados!"</p>
                     </div>
-                    <div class="comment-item">
-                        <img src="{% static 'appfel/img/shop/copy/copy-icon.png' %}" class="comment-icon" />
-                        <h3 class="comment-user">Nombre de usuario</h3>
-                        <p class="comment-text">Texto para lo que quieras afirmar. Agrega puntos clave, citas, anécdotas o una historia muy muy breve.</p>
+
+                    <!-- Comentario 2 -->
+                    <div class="copy-b copy7 h-auto">
+                        <img src="{% static 'appfel/img/shop/copy/copy-icon.png' %}" class="copy-icon" style="width: 32px;" />
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <h3 class="card-subtitle2 mb-0">Carlos Ruiz</h3>
+                            <div class="text-warning small">★★★★☆</div>
+                        </div>
+                        <p class="card-text2">"El envío fue muy rápido y la presentación del producto es impecable. El jabón huele increíble."</p>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <!-- Copia de la lista 2 -->
-                    <div class="comment-item">
-                        <img src="{% static 'appfel/img/shop/copy/copy-symbol.png' %}" class="comment-icon" />
-                        <h3 class="comment-user">Nombre de usuario</h3>
-                        <p class="comment-text">Texto para lo que quieras sugerir. Agrega puntos clave, citas, anécdotas o una historia muy muy breve.</p>
+
+                <!-- Columna Derecha (Simula List2) -->
+                <div class="col-md-6 d-flex flex-column gap-4">
+                    <!-- Comentario 3 -->
+                    <div class="copy-b copy7 h-auto">
+                        <img src="{% static 'appfel/img/shop/copy/copy-symbol.png' %}" class="copy-icon" style="width: 32px;" />
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <h3 class="card-subtitle2 mb-0">Ana Gómez</h3>
+                            <div class="text-warning small">★★★★★</div>
+                        </div>
+                        <p class="card-text2">"Excelente atención al cliente. Tuve una duda sobre los ingredientes y me respondieron enseguida. El producto es 10/10."</p>
                     </div>
-                    <div class="comment-item">
-                        <img src="{% static 'appfel/img/shop/copy/copy-icon.png' %}" class="comment-icon" />
-                        <h3 class="comment-user">Nombre de usuario</h3>
-                        <p class="comment-text">Texto para lo que quieras escribir. Agrega puntos clave, citas, anécdotas o una historia muy muy breve.</p>
+
+                    <!-- Comentario 4 -->
+                    <div class="copy-b copy7 h-auto">
+                        <img src="{% static 'appfel/img/shop/copy/copy-icon.png' %}" class="copy-icon" style="width: 32px;" />
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <h3 class="card-subtitle2 mb-0">David Diaz</h3>
+                            <div class="text-warning small">★★★★★</div>
+                        </div>
+                        <p class="card-text2">"Volveré a comprar sin duda. La calidad precio es inmejorable para productos artesanales."</p>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <script>
+        twemoji.parse(document.body);
+    </script>
 </body>
 </html>
