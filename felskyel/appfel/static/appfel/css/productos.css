@@ -372,3 +372,18 @@ body {
 		justify-content: center;
 	}
 }
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #061a12; /* Verde muy oscuro */
+        color: #e6edf3;
+    }
+    .input-group-input, .input-group-input2 {
+        background-color: #161b22;
+        color: #fff;
+        border: 1px solid #30363d;
+    }
+    .text-b, .copy-text2 {
+        color: #e6edf3;
+    }
+}

@@ -336,3 +336,22 @@ img {
         gap: 20px;
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #0d1117;
+        color: #e6edf3;
+    }
+    .header {
+        background-color: #161b22;
+    }
+    .header-text-left, .header-text-perfil {
+        color: #fff !important;
+    }
+    .text {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    .text-subtitle2 {
+        color: #c9d1d9;
+    }
+}
