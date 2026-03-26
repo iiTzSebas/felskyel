@@ -187,48 +187,62 @@ body {
 }
 
 /* Estilos para Radio buttons */
-.form-group-radio {
+.role-selector {
     display: flex;
-    gap: 20px;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 15px;
     padding-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
 }
 
-.radio-label {
+.role-selector input[type="radio"] {
+    display: none;
+}
+
+.role-card {
+    flex: 1;
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
+    padding: 16px 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     cursor: pointer;
-    font-weight: 500;
-}
-
-.radio-label input[type="radio"] {
-    display: none; /* Ocultar el radio button por defecto */
-}
-
-.radio-custom {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    margin-right: 10px;
-    display: inline-block;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
     position: relative;
-    transition: border-color 0.3s;
 }
 
-.radio-label input[type="radio"]:checked + .radio-custom {
+.role-card i {
+    font-size: 1.2rem;
+    margin-right: 15px;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.role-text {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.role-selector input[type="radio"]:checked + .role-card {
     border-color: var(--primary-color);
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-width: 2px;
 }
 
-.radio-label input[type="radio"]:checked + .radio-custom::after {
-    content: '';
-    width: 10px;
-    height: 10px;
-    background-color: var(--primary-color);
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.role-selector input[type="radio"]:checked + .role-card i,
+.role-selector input[type="radio"]:checked + .role-card .role-text {
+    color: var(--primary-color);
+}
+
+.role-card:hover {
+    background-color: #f0f0f0;
 }
 
 

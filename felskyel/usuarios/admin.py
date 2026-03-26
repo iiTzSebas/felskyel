@@ -6,12 +6,13 @@ from .forms import RegistroForm
 # Register your models here.
 class UsuarioAdmin(UserAdmin):
     add_form = RegistroForm
-    list_display = ('username', 'email', 'is_staff', 'is_active')
+    list_display = ('username', 'email', 'user_type', 'is_staff', 'is_active')
     list_filter = ('is_staff', 'is_superuser','is_active' )
     
     #campos que se mostraran al editar un usuario 
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password')}),
+        ('Información Personal', {'fields': ('user_type', 'fecha_nacimiento')}),
         ('permisos', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Fechas importantes', {'fields': ('last_login', 'date_joined')}),
     )
@@ -19,7 +20,7 @@ class UsuarioAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'email', 'password1', 'password2'),
+            'fields': ('username', 'email', 'user_type', 'fecha_nacimiento', 'password1', 'password2'),
         }),
     )
     search_fields = ('username', 'email')
