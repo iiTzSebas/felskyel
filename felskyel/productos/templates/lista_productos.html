@@ -354,7 +354,9 @@
     <header class="header">
         <div class="header-nav">
             <a href="{% url 'inicio' %}"><p class="header-text-felskyel body-text3">Felskyel</p></a>
-            <img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" />
+            <a href="{% url 'carrito:ver_carrito' %}">
+                <img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" />
+            </a>
         </div>
 
         <form class="header-row" role="search">
@@ -371,7 +373,7 @@
             <h2 class="header-subtitle">Página principal</h2>
         </div>
         
-        <button class="header-btn hover-bright">Ir al carrito</button>
+        <a href="{% url 'carrito:ver_carrito' %}" class="header-btn hover-bright text-decoration-none">Ir al carrito</a>
     </header>
 
     <!-- Contenedor Principal (Reemplaza los elementos absolutos img1, copy1, etc.) -->
@@ -383,7 +385,7 @@
             <div class="col">
                 <div class="product-card">
                     <!-- Imagen: Usamos lógica para mostrar imagen o default -->
-                        <img src="{% static 'appfel/img/shop/portadasp/'%}{{ producto.imagen }}">
+                        <img src="{% static 'appfel/img/shop/portadasp/' %}{{ producto.imagen }}" class="product-img" alt="{{ producto.nombre }}">
                     <div class="product-body">
                         <h3 class="product-title">{{ producto.nombre }}</h3>
                         <p class="product-desc">{{ producto.descripcion|default:"Producto de excelente calidad para tu cuidado personal." }}</p>
