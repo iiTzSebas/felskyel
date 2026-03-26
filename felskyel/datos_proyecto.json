@@ -526,8 +526,8 @@
     "fields": {
         "nombre": "Crema de manos",
         "descripcion": "Hidratación profunda para pieles secas.",
-        "precio": "9200.00",
-        "imagen": "card-list-img.png"
+        "precio": "92.00",
+        "imagen": "card-img1.png"
     }
 }
 ]
