@@ -1,18 +1,71 @@
 {% extends "base.html" %}
-{% load static %} 
+{% load static %}
 
 {% block title %}Perfil{% endblock %}
 
 {% block content %}
+<!-- Cargamos el CSS aquí directamente por si el block extra_styles no existe en base.html -->
+<link rel="stylesheet" href="{% static 'appfel/css/perfil_usuario.css' %}" />
+<!-- Aseguramos Bootstrap por si no viene en la base -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<h2 class="text-body">Bienvenido, {{user.username}}</h2>
-<p class="text-body">Email: {{user.email}}</p>
-<a href="{% url 'logout' %}" class="btn btn-danger">Cerrar sesión</a>
+<main class="profile-main">
+    <div class="profile-card">
+        <div class="card-banner"></div>
+        <div class="profile-header">
+            <div class="profile-avatar">
+                {{ user.username|first|upper }}
+            </div>
+            <h2 class="profile-name">{{ user.username }}</h2>
+            <span class="profile-badge">
+                {% if user.user_type == 'P' %}Proveedor{% else %}Cliente{% endif %}
+            </span>
+        </div>
 
+        <div class="profile-info">
+            <div class="info-item">
+                <div class="info-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="info-content">
+                    <span class="info-label">Correo electrónico</span>
+                    <span class="info-value">{{ user.email }}</span>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                </div>
+                <div class="info-content">
+                    <span class="info-label">Miembro desde</span>
+                    <span class="info-value">{{ user.date_joined|date:"F Y" }}</span>
+                </div>
+            </div>
+            {% if user.fecha_nacimiento %}
+            <div class="info-item">
+                <div class="info-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                </div>
+                <div class="info-content">
+                    <span class="info-label">Cumpleaños</span>
+                    <span class="info-value">{{ user.fecha_nacimiento }}</span>
+                </div>
+            </div>
+            {% endif %}
+        </div>
 
+        <div class="profile-actions d-grid gap-2 px-4 pb-5">
+            <a href="{% url 'productos:lista_productos' %}" class="btn btn-dark btn-lg fw-bold shadow-sm py-3" style="border-radius: 12px;">
+                Ir a la Tienda
+            </a>
+            <a href="{% url 'logout' %}" class="btn btn-outline-danger btn-sm fw-bold mt-2" style="border-radius: 10px;">
+                Cerrar sesión
+            </a>
+        </div>
+    </div>
+</main>
 {% endblock %}
 
 {% block footer %}
 
 {% endblock %}
-
