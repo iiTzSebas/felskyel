@@ -392,8 +392,8 @@
                         <p class="product-price">${{ producto.precio }}</p>
                         
                         <div class="d-flex gap-3 mt-auto">
-                            <a href="{% url 'carrito:agregar_al_carrito' producto.id %}" class="btn-black flex-grow-1 text-center text-decoration-none">Agregar</a>
-                            <a href="#" class="btn-light-custom flex-grow-1">Ver más</a>
+                            <a href="{% url 'carrito:agregar_al_carrito' producto.id %}?next={% url 'productos:detalle' producto.id %}" class="btn-black flex-grow-1 text-center text-decoration-none">Agregar</a>
+                            <a href="{% url 'productos:detalle' producto.id %}" class="btn-light-custom flex-grow-1">Ver más</a>
                         </div>
                     </div>
                 </div>
