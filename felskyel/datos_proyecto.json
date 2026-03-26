@@ -519,5 +519,15 @@
         "descripcion": "Labial que protege los labios 24 horas sabor a fresa",
         "imagen": "img2.png"
     }
+},
+{
+    "model": "productos.producto",
+    "pk": 3,
+    "fields": {
+        "nombre": "Crema de manos",
+        "descripcion": "Hidratación profunda para pieles secas.",
+        "precio": "92.00",
+        "imagen": "card-img1.png"
+    }
 }
 ]

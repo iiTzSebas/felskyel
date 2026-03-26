@@ -1,0 +1,113 @@
+:root {
+    --primary-color: #000000;
+    --brand-green: #6affc3;
+    --brand-dark: #111111;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --border-color: #eeeeee;
+    --text-main: #212529;
+    --text-muted: #6c757d;
+    --danger: #ff4d4d;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.profile-main {
+    background-color: var(--brand-green) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.profile-card {
+    background-color: var(--white) !important;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin: auto;
+}
+
+.card-banner {
+    height: 100px;
+    background-color: var(--brand-dark);
+}
+
+.profile-header {
+    margin-top: -50px;
+    padding: 0 20px 20px;
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background-color: var(--brand-green);
+    color: var(--brand-dark);
+    border-radius: 50%;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 2.5rem;
+    font-weight: 800;
+    border: 5px solid var(--white);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+}
+
+.profile-badge {
+    display: inline-block;
+    background-color: var(--light-gray);
+    color: var(--text-muted);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.profile-info {
+    padding: 0 25px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex !important;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.info-icon {
+    margin-right: 12px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+.info-content {
+    display: flex !important;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--brand-dark);
+}
