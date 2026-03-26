@@ -17,6 +17,25 @@
     <form method="post" novalidate class="registro-form">
         {% csrf_token %}
 
+        <!--campo tipo usuario parecido al de usuario-->
+        <div class="form-group">
+            <label>Selecciona tu rol</label>
+            <div class="role-selector">
+                <input type="radio" name="user_type" value="cliente" id="role-cliente" checked>
+                <label for="role-cliente" class="role-card">
+                    <i class="fa fa-user"></i>
+                    <span class="role-text">Soy Cliente</span>
+                </label>
+
+                <input type="radio" name="user_type" value="proveedor" id="role-proveedor">
+                <label for="role-proveedor" class="role-card">
+                    <i class="fa fa-store"></i>
+                    <span class="role-text">Soy Proveedor</span>
+                </label>
+            </div>
+        </div>
+
+
         <!--campo del usuario-->
         <div class="form-group">
             <label for="{{form.username.id_for_label}}"
@@ -43,6 +62,21 @@
                 {% if form.email.errors %}
             <div class="invalid-feedback d-block">
                 {{form.email.errors|striptags}}
+            </div>
+            {% endif %}
+        </div>
+
+        <!--campo fecha de nacimiento-->
+        <div class="form-group">
+            <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+            <input type="date" name="fecha_nacimiento" 
+                id="fecha_nacimiento" class="form-control"
+                value="{{ form.fecha_nacimiento.value|default_if_none:'' }}" 
+                required>
+            <small class="form-text text-muted">Debes ser mayor de 18 años para registrarte.</small>
+            {% if form.fecha_nacimiento.errors %}
+            <div class="invalid-feedback d-block">
+                {{form.fecha_nacimiento.errors|striptags}}
             </div>
             {% endif %}
         </div>
@@ -98,7 +132,26 @@
 
     </form>
     </div>
+
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const roleInputs = document.querySelectorAll('input[name="user_type"]');
+        roleInputs.forEach(function(input) {
+            input.addEventListener('change', function() {
+                if (this.value === 'proveedor') {
+                    window.location.href = "{% url 'solicitud_proveedor' %}";
+                }
+            });
+        });
+
+        // Restricción de fecha mínima en el calendario (Lado del cliente)
+        const fechaInput = document.getElementById('fecha_nacimiento');
+        const hoy = new Date();
+        // Restamos 18 años a la fecha actual
+        const hace18Anios = new Date(hoy.getFullYear() - 18, hoy.getMonth(), hoy.getDate());
+        fechaInput.max = hace18Anios.toISOString().split("T")[0];
+    });
+
     function togglePassword(fieldId) {
         var input = document.getElementById(fieldId);
         var icon = document.getElementById('icon-' + fieldId);

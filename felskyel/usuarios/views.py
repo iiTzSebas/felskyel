@@ -40,3 +40,4 @@ def logout_view(request):
 @login_required
 def p_view(request):
     return render(request, 'usuarios/p.html')
+

@@ -4,6 +4,10 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 # Create your models here.
 class Usuario(AbstractUser):
     email = models.EmailField(unique=True)
+    
+    # ... tus otros campos ...
+    user_type = models.CharField(max_length=20, default='cliente')
+    fecha_nacimiento = models.DateField(null=True, blank=True)
 
     #Evitar conflictos de reverse accessors
     groups = models.ManyToManyField(

@@ -10,6 +10,9 @@ def prueba(request):
 def index(request):
     return render (request, 'index.html')
 
+def solicitud_proveedor(request):
+    return render (request, 'solicitud-para-registro.html')
+
 def shop(request):
     return render (request, 'shop.html')
 
