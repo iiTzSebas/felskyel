@@ -506,7 +506,19 @@
 				<div class="review-header">
 					<div>
 						<p class="review-author" style="margin: 0;">{{ review.usuario.username }}</p>
-						<div class="stars-container" style="font-size: 1rem;">{% if review.calificacion == 5 %}★★★★★{% elif review.calificacion == 4 %}★★★★☆{% else %}★★★☆☆{% endif %}</div>
+						<div class="stars-container" style="font-size: 1rem;">
+							{% if review.calificacion == 5 %}
+								★★★★★
+							{% elif review.calificacion == 4 %}
+								★★★★☆
+							{% elif review.calificacion == 3 %}
+								★★★☆☆
+							{% elif review.calificacion == 2 %}
+								★★☆☆☆
+							{% else %}
+								★☆☆☆☆
+							{% endif %}
+						</div>
 					</div>
 					<span class="review-date">{{ review.fecha|date:"d M Y" }}</span>
 				</div>
