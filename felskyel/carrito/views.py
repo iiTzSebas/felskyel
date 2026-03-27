@@ -28,9 +28,11 @@ def ver_carrito(request):
 
 @login_required
 def eliminar_del_carrito(request, item_id):
-    item = get_object_or_404(ItemCarrito, id=item_id, carrito__usuario=request.user)
-    if item:
-        item.delete()
+    # Buscamos el item por el ID del producto dentro del carrito del usuario
+    item = get_object_or_404(ItemCarrito, producto_id=item_id, carrito__usuario=request.user)
+    nombre_producto = item.producto.nombre
+    item.delete()
+    messages.success(request, f"{nombre_producto} eliminado del carrito.")
     return redirect('carrito:ver_carrito')
 
 @login_required
