@@ -476,33 +476,53 @@
         <!-- Sección de Comentarios (Adaptada) -->
         <div class="comments-section">
             <h2 class="text-center fw-bold mb-5" style="font-size: 2rem;">Comentarios generales</h2>
+            
+            {% if user.is_authenticated %}
+            <!-- Formulario para añadir comentario -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8">
+                    <div class="p-4 rounded-4 shadow-sm border bg-light">
+                        <h4 class="fw-bold mb-3">Cuéntanos tu experiencia</h4>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <textarea name="texto" class="form-control" rows="3" placeholder="Escribe tu opinión aquí..." required></textarea>
+                                </div>
+                                <div class="col-12 text-end">
+                                    <button type="submit" class="btn-black rounded-pill px-4">Publicar opinión</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="text-center mb-5">
+                <p class="text-muted">¿Quieres dejarnos tu opinión? <a href="{% url 'login' %}" class="fw-bold text-dark text-decoration-none border-bottom">Inicia sesión aquí</a></p>
+            </div>
+            {% endif %}
+
             <div class="row">
+                {% for comentario in comentarios_generales %}
                 <div class="col-md-6">
-                    <!-- Copia de la lista 1 -->
                     <div class="comment-item">
                         <img src="{% static 'appfel/img/shop/copy/copy-symbol.png' %}" class="comment-icon" />
-                        <h3 class="comment-user">Nombre de usuario</h3>
-                        <p class="comment-text">Texto para lo que quieras decir. Agrega puntos clave, citas, anécdotas o una historia muy muy breve.</p>
-                    </div>
-                    <div class="comment-item">
-                        <img src="{% static 'appfel/img/shop/copy/copy-icon.png' %}" class="comment-icon" />
-                        <h3 class="comment-user">Nombre de usuario</h3>
-                        <p class="comment-text">Texto para lo que quieras afirmar. Agrega puntos clave, citas, anécdotas o una historia muy muy breve.</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <!-- Copia de la lista 2 -->
-                    <div class="comment-item">
-                        <img src="{% static 'appfel/img/shop/copy/copy-symbol.png' %}" class="comment-icon" />
-                        <h3 class="comment-user">Nombre de usuario</h3>
-                        <p class="comment-text">Texto para lo que quieras sugerir. Agrega puntos clave, citas, anécdotas o una historia muy muy breve.</p>
-                    </div>
-                    <div class="comment-item">
-                        <img src="{% static 'appfel/img/shop/copy/copy-icon.png' %}" class="comment-icon" />
-                        <h3 class="comment-user">Nombre de usuario</h3>
-                        <p class="comment-text">Texto para lo que quieras escribir. Agrega puntos clave, citas, anécdotas o una historia muy muy breve.</p>
+                        <h3 class="comment-user">{{ comentario.usuario.username }}</h3>
+                        <p class="comment-text">{{ comentario.texto }}</p>
+                        <small class="text-muted">
+                            {% if comentario.producto %}
+                                Sobre: <strong>{{ comentario.producto.nombre }}</strong> · 
+                            {% endif %}
+                            {{ comentario.fecha|date:"d M Y" }}
+                        </small>
                     </div>
                 </div>
+                {% empty %}
+                <div class="col-12 text-center">
+                    <p class="text-muted">Aún no hay comentarios recientes para mostrar.</p>
+                </div>
+                {% endfor %}
             </div>
         </div>
 
