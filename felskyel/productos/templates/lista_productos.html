@@ -63,11 +63,15 @@
             filter: brightness(0) invert(1); /* Vuelve el icono blanco */
             cursor: pointer;
             position: static !important; /* Override shop.css absolute positioning */
-            transition: transform 0.2s;
+            transition: transform 0.1s ease;
         }
 
         .header-shopping:hover {
             transform: scale(1.1);
+        }
+
+        .header-shopping:active {
+            transform: translateY(2px);
         }
 
         /* Barra de búsqueda */
@@ -134,7 +138,7 @@
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         
@@ -142,6 +146,11 @@
             background-color: #333;
             color: #fff;
             transform: translateY(-3px);
+        }
+
+        .header-btn:active {
+            transform: translateY(2px);
+            box-shadow: none;
         }
 
         /* --- CONTENIDO PRINCIPAL --- */
@@ -233,13 +242,18 @@
             padding: 12px;
             border-radius: 10px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease;
         }
         .btn-black:hover {
             background-color: #444;
             color: #fff;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-black:active {
+            transform: translateY(2px);
+            box-shadow: none;
         }
 
         .btn-light-custom {
@@ -250,12 +264,17 @@
             border-radius: 10px;
             font-weight: 600;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.3s ease;
         }
         .btn-light-custom:hover {
             background-color: #e9ecef;
             color: #000;
             transform: translateY(-2px);
+        }
+
+        .btn-light-custom:active {
+            transform: translateY(2px);
+            box-shadow: none;
         }
 
         /* Sección de comentarios adaptada a flujo normal */
@@ -378,6 +397,16 @@
 
     <!-- Contenedor Principal (Reemplaza los elementos absolutos img1, copy1, etc.) -->
     <div class="container main-container">
+        {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
         
         <!-- Grid de Productos -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">

@@ -347,7 +347,9 @@
 				<p class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0;">Felskyel</p>
 			</div>
 				
-				<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" style="width: 32px; height: 32px; cursor: pointer; position: static;" />
+				<a href="{% url 'carrito:ver_carrito' %}">
+					<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" style="width: 32px; height: 32px; cursor: pointer; position: static;" />
+				</a>
 			</div>
 		</div>
 	</header>
@@ -355,6 +357,17 @@
 	
 	
 <main class="main-content">
+	{% if messages %}
+	<div class="container mt-3">
+		{% for message in messages %}
+		<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+			{{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		{% endfor %}
+	</div>
+	{% endif %}
+
 	<div class="content-wrapper">
 	<div class="column-left">
 		<div class="product-info">
@@ -375,7 +388,7 @@
 
 			{% block product_actions %}
 			<div class="product-actions">
-				<a href="{% url 'carrito:agregar_al_carrito' producto.id %}?next={{ request.path }}" class="btn-add-to-cart hover-bright text-decoration-none">Agregar</a>
+				<a href="{% url 'carrito:agregar_al_carrito' producto.id %}?next={{ request.path }}" class="btn-add-to-cart hover-bright text-decoration-none">Agregar al carrito</a>
 				<a href="{% url 'contacto' %}" class="btn-add-to-cart hover-bright">Contactar Proveedor</a>
 			</div>
 			{% endblock %}
@@ -398,55 +411,22 @@
     <h2 class="related-title">Productos relacionados</h2>
     
     <div class="related-grid">
-        <!-- Tarjeta 1 -->
+        {% for related in related_products %}
         <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img1.png' %}" alt="Producto Relacionado" class="related-card-img" />
+            <img src="{% static 'appfel/img/shop/portadasp/' %}{{ related.imagen }}" alt="{{ related.nombre }}" class="related-card-img" />
             <div class="related-card-body">
-                <h3 class="related-card-title">Producto 1</h3>
-                <p class="related-card-desc">Descripción breve del primer producto relacionado.</p>
-                <p class="related-card-price">$10,99</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
+                <h3 class="related-card-title">{{ related.nombre }}</h3>
+                <p class="related-card-desc">{{ related.descripcion|default:"Calidad garantizada para tu cuidado." }}</p>
+                <p class="related-card-price">${{ related.precio }}</p>
+                <a href="{% url 'productos:detalle' related.id %}" class="btn-related-view">Ver Detalles</a>
             </div>
         </div>
-
-        <!-- Tarjeta 2 -->
-        <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img2.png' %}" alt="Producto Relacionado" class="related-card-img" />
-            <div class="related-card-body">
-                <h3 class="related-card-title">Producto 2</h3>
-                <p class="related-card-desc">Este producto es ideal para complementar tu compra.</p>
-                <p class="related-card-price">$12,50</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
-            </div>
-        </div>
-
-        <!-- Tarjeta 3 -->
-        <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img3.png' %}" alt="Producto Relacionado" class="related-card-img" />
-            <div class="related-card-body">
-                <h3 class="related-card-title">Producto 3</h3>
-                <p class="related-card-desc">Otra excelente opción disponible ahora.</p>
-                <p class="related-card-price">$8,99</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
-            </div>
-        </div>
-        
-        <!-- Tarjeta 4 -->
-        <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img4.png' %}" alt="Producto Relacionado" class="related-card-img" />
-            <div class="related-card-body">
-                <h3 class="related-card-title">Producto 4</h3>
-                <p class="related-card-desc">Descripción del cuarto producto.</p>
-                <p class="related-card-price">$10,99</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
-            </div>
+        {% empty %}
+        <p class="text-muted">No hay otros productos para mostrar.</p>
+        {% endfor %}
     </div>
 </div>
-
-			<!-- Puedes agregar más tarjetas siguiendo este formato -->
-		</div>
-	</div>
-	{% endblock %}
+{% endblock %}
 
 
 
@@ -460,18 +440,19 @@
 		
 		{% block review_summary %}
 		<div class="review-summary">
-			<div class="average-rating">0.0</div>
+			<div class="average-rating">{{ promedio }}</div>
 			<div>
 				<div class="stars-container">★★★★★</div>
-				<p class="text-b" style="margin: 5px 0 0; color: #666; font-weight: 400;">Basado en 12 opiniones</p>
+				<p class="text-b" style="margin: 5px 0 0; color: #666; font-weight: 400;">Basado en {{ total_comentarios }} opiniones</p>
 			</div>
 		</div>
 		{% endblock %}
 
 		<!-- Formulario para agregar reseña -->
 		<div class="add-review-container">
+			{% if user.is_authenticated %}
 			<h3 class="text-b" style="margin-bottom: 15px; font-size: 1.2rem;">Deja tu opinión</h3>
-			<form action="#" method="post">
+			<form method="post">{% csrf_token %}
 				<div style="margin-bottom: 15px;">
 					<label for="rating" class="text-b" style="font-weight: 400; display:block; margin-bottom:5px;">Calificación:</label>
 					<select name="rating" id="rating" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc; width: 100%; max-width: 200px; background-color: white;">
@@ -486,36 +467,44 @@
 					<label for="comment" class="text-b" style="font-weight: 400; display:block; margin-bottom:5px;">Tu comentario:</label>
 					<textarea name="comment" id="comment" rows="4" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; resize: vertical;" placeholder="Comparte tu experiencia con este producto..."></textarea>
 				</div>
-				<button type="button" class="btn-add-to-cart hover-bright" style="width: auto; padding: 10px 25px;" onclick="alert('¡Gracias! Tu comentario ha sido enviado para revisión.')">Enviar opinión</button>
+				<button type="submit" class="btn-add-to-cart hover-bright" style="width: auto; padding: 10px 25px;">Enviar opinión</button>
 			</form>
+			{% else %}
+			<div class="text-center py-3">
+				<p class="mb-3">Debes iniciar sesión para dejar una opinión.</p>
+				<a href="{% url 'login' %}" class="btn-add-to-cart text-decoration-none" style="display: inline-block; width: auto; padding: 10px 30px;">Iniciar Sesión</a>
+			</div>
+			{% endif %}
 		</div>
-
 
 		<div class="review-list">
 			{% block reviews_content %}
-			<!-- Opinión de ejemplo 1 -->
+			{% for review in comentarios %}
 			<div class="review-item">
 				<div class="review-header">
 					<div>
-						<p class="review-author" style="margin: 0;">Usuario 1</p>
-						<div class="stars-container" style="font-size: 1rem;">★★★★★</div>
+						<p class="review-author" style="margin: 0;">{{ review.usuario.username }}</p>
+						<div class="stars-container" style="font-size: 1rem;">
+							{% if review.calificacion == 5 %}
+								★★★★★
+							{% elif review.calificacion == 4 %}
+								★★★★☆
+							{% elif review.calificacion == 3 %}
+								★★★☆☆
+							{% elif review.calificacion == 2 %}
+								★★☆☆☆
+							{% else %}
+								★☆☆☆☆
+							{% endif %}
+						</div>
 					</div>
-					<span class="review-date">Hace 2 días</span>
+					<span class="review-date">{{ review.fecha|date:"d M Y" }}</span>
 				</div>
-				<p class="review-text">¡Me encanta este producto! Ha mejorado mi piel notablemente en solo una semana. El envío fue súper rápido.</p>
+				<p class="review-text">{{ review.texto }}</p>
 			</div>
-
-			<!-- Opinión de ejemplo 2 -->
-			<div class="review-item">
-				<div class="review-header">
-					<div>
-						<p class="review-author" style="margin: 0;">Usuario 2</p>
-						<div class="stars-container" style="font-size: 1rem;">★★★★☆</div>
-					</div>
-					<span class="review-date">Hace 1 semana</span>
-				</div>
-				<p class="review-text">Buen producto, cumple lo que promete. El aroma es un poco fuerte para mi gusto, pero la calidad es excelente.</p>
-			</div>
+			{% empty %}
+			<p class="text-muted">Aún no hay opiniones para este producto.</p>
+			{% endfor %}
 			{% endblock %}
 		</div>
 	</div>

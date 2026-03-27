@@ -17,7 +17,6 @@ def agregar_al_carrito(request, producto_id):
         item.save()
     
     messages.success(request, f"{producto.nombre} se añadió al carrito.")
-    return redirect('productos:lista_productos')
     next_url = request.GET.get('next')
     if next_url:
         return redirect(next_url)
@@ -35,16 +34,13 @@ def ver_carrito(request):
 def eliminar_del_carrito(request, item_id):
     # Buscamos el item por el ID del producto dentro del carrito del usuario
     item = get_object_or_404(ItemCarrito, producto_id=item_id, carrito__usuario=request.user)
-    nombre_producto = item.producto.nombre
     item.delete()
-    messages.success(request, f"{nombre_producto} eliminado del carrito.")
     return redirect('carrito:ver_carrito')
 
 @login_required
 def vaciar_carrito(request):
     carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
     carrito.items.all().delete()
-    messages.info(request, "El carrito se ha vaciado correctamente.")
     return redirect('carrito:ver_carrito')
 
 @login_required
