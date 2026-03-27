@@ -375,7 +375,7 @@
 
 			{% block product_actions %}
 			<div class="product-actions">
-				<a href="{% url 'carrito:agregar_al_carrito' producto.id %}" class="btn-add-to-cart hover-bright text-decoration-none">Agregar</a>
+				<a href="{% url 'carrito:agregar_al_carrito' producto.id %}?next={{ request.path }}" class="btn-add-to-cart hover-bright text-decoration-none">Agregar</a>
 				<a href="{% url 'contacto' %}" class="btn-add-to-cart hover-bright">Contactar Proveedor</a>
 			</div>
 			{% endblock %}
