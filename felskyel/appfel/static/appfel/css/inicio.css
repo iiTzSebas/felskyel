@@ -37,9 +37,11 @@ img {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    position: relative;
-    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+    transition: background-color 0.3s ease;
 }
 
 /* Logo */
@@ -354,4 +356,9 @@ img {
     .text-subtitle2 {
         color: #c9d1d9;
     }
+}
+
+/* Compatibilidad con el modo oscuro definido en base.html */
+body.dark-mode .header {
+    background-color: #1e1e1e !important;
 }
