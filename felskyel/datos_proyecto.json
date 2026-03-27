@@ -23,7 +23,9 @@
         "date_joined": "2026-03-25T17:32:03.217Z",
         "email": "maxi@gmail.com",
         "groups": [],
-        "user_permissions": []
+        "user_permissions": [],
+        "user_type": "P",
+        "fecha_nacimiento": "1995-05-20"
     }
 },
 {
@@ -54,6 +56,16 @@
         "descripcion": "Hidratación profunda para pieles secas.",
         "precio": "92.00",
         "imagen": "card-img1.png"
+    }
+},
+{
+    "model": "productos.producto",
+    "pk": 4,
+    "fields": {
+        "nombre": "Shampoo de Aloe Vera",
+        "precio": "25.50",
+        "descripcion": "Shampoo orgánico restaurador con extracto puro de aloe vera para todo tipo de cabello.",
+        "imagen": "img-shampoo.png"
     }
 }
 ]
