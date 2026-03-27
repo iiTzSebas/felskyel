@@ -377,7 +377,7 @@
 
 			{% block product_actions %}
 			<div class="product-actions">
-				<a href="{% url 'carrito:agregar_al_carrito' producto.id %}?next={{ request.path }}" class="btn-add-to-cart hover-bright text-decoration-none">Agregar</a>
+				<a href="{% url 'carrito:agregar_al_carrito' producto.id %}?next={{ request.path }}" class="btn-add-to-cart hover-bright text-decoration-none">Agregar al carrito</a>
 				<a href="{% url 'contacto' %}" class="btn-add-to-cart hover-bright">Contactar Proveedor</a>
 			</div>
 			{% endblock %}
@@ -462,18 +462,19 @@
 		
 		{% block review_summary %}
 		<div class="review-summary">
-			<div class="average-rating">0.0</div>
+			<div class="average-rating">{{ promedio }}</div>
 			<div>
 				<div class="stars-container">★★★★★</div>
-				<p class="text-b" style="margin: 5px 0 0; color: #666; font-weight: 400;">Basado en 12 opiniones</p>
+				<p class="text-b" style="margin: 5px 0 0; color: #666; font-weight: 400;">Basado en {{ total_comentarios }} opiniones</p>
 			</div>
 		</div>
 		{% endblock %}
 
 		<!-- Formulario para agregar reseña -->
 		<div class="add-review-container">
+			{% if user.is_authenticated %}
 			<h3 class="text-b" style="margin-bottom: 15px; font-size: 1.2rem;">Deja tu opinión</h3>
-			<form action="#" method="post">
+			<form method="post">{% csrf_token %}
 				<div style="margin-bottom: 15px;">
 					<label for="rating" class="text-b" style="font-weight: 400; display:block; margin-bottom:5px;">Calificación:</label>
 					<select name="rating" id="rating" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc; width: 100%; max-width: 200px; background-color: white;">
@@ -488,36 +489,32 @@
 					<label for="comment" class="text-b" style="font-weight: 400; display:block; margin-bottom:5px;">Tu comentario:</label>
 					<textarea name="comment" id="comment" rows="4" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; resize: vertical;" placeholder="Comparte tu experiencia con este producto..."></textarea>
 				</div>
-				<button type="button" class="btn-add-to-cart hover-bright" style="width: auto; padding: 10px 25px;" onclick="alert('¡Gracias! Tu comentario ha sido enviado para revisión.')">Enviar opinión</button>
+				<button type="submit" class="btn-add-to-cart hover-bright" style="width: auto; padding: 10px 25px;">Enviar opinión</button>
 			</form>
+			{% else %}
+			<div class="text-center py-3">
+				<p class="mb-3">Debes iniciar sesión para dejar una opinión.</p>
+				<a href="{% url 'login' %}" class="btn-add-to-cart text-decoration-none" style="display: inline-block; width: auto; padding: 10px 30px;">Iniciar Sesión</a>
+			</div>
+			{% endif %}
 		</div>
-
 
 		<div class="review-list">
 			{% block reviews_content %}
-			<!-- Opinión de ejemplo 1 -->
+			{% for review in comentarios %}
 			<div class="review-item">
 				<div class="review-header">
 					<div>
-						<p class="review-author" style="margin: 0;">Usuario 1</p>
-						<div class="stars-container" style="font-size: 1rem;">★★★★★</div>
+						<p class="review-author" style="margin: 0;">{{ review.usuario.username }}</p>
+						<div class="stars-container" style="font-size: 1rem;">{% if review.calificacion == 5 %}★★★★★{% elif review.calificacion == 4 %}★★★★☆{% else %}★★★☆☆{% endif %}</div>
 					</div>
-					<span class="review-date">Hace 2 días</span>
+					<span class="review-date">{{ review.fecha|date:"d M Y" }}</span>
 				</div>
-				<p class="review-text">¡Me encanta este producto! Ha mejorado mi piel notablemente en solo una semana. El envío fue súper rápido.</p>
+				<p class="review-text">{{ review.texto }}</p>
 			</div>
-
-			<!-- Opinión de ejemplo 2 -->
-			<div class="review-item">
-				<div class="review-header">
-					<div>
-						<p class="review-author" style="margin: 0;">Usuario 2</p>
-						<div class="stars-container" style="font-size: 1rem;">★★★★☆</div>
-					</div>
-					<span class="review-date">Hace 1 semana</span>
-				</div>
-				<p class="review-text">Buen producto, cumple lo que promete. El aroma es un poco fuerte para mi gusto, pero la calidad es excelente.</p>
-			</div>
+			{% empty %}
+			<p class="text-muted">Aún no hay opiniones para este producto.</p>
+			{% endfor %}
 			{% endblock %}
 		</div>
 	</div>
