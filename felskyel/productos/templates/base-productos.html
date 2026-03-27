@@ -347,7 +347,9 @@
 				<p class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0;">Felskyel</p>
 			</div>
 				
-				<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" style="width: 32px; height: 32px; cursor: pointer; position: static;" />
+				<a href="{% url 'carrito:ver_carrito' %}">
+					<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" style="width: 32px; height: 32px; cursor: pointer; position: static;" />
+				</a>
 			</div>
 		</div>
 	</header>
