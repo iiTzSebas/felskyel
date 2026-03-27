@@ -4,10 +4,33 @@ from django.contrib import messages
 from django.db.models import Avg
 
 def lista_productos(request):
-    # Aquí iría la lógica para obtener los productos desde la base de datos
-    productos =  Producto.objects.all()
-    # Reemplaza esto con tu consulta real a la base de datos
-    contexto_catalogo = {'lista_productos': productos}
+    productos = Producto.objects.all()
+    # Obtenemos los últimos 4 comentarios de cualquier producto para la sección general
+    comentarios_generales = Comentario.objects.select_related('usuario', 'producto').all().order_by('-fecha')[:4]
+
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            messages.error(request, "Debes iniciar sesión para dejar un comentario.")
+            return redirect('login')
+        
+        texto = request.POST.get('texto', '').strip()
+        
+        if texto:
+            Comentario.objects.create(
+                usuario=request.user,
+                texto=texto,
+                # producto=None y calificacion=5 ya son los valores por defecto
+                # definidos en el modelo, por lo que no es estrictamente
+                # necesario pasarlos aquí si no cambian.
+            )
+            return redirect('productos:lista_productos')
+        else:
+            messages.warning(request, "El comentario no puede estar vacío.")
+
+    contexto_catalogo = {
+        'lista_productos': productos,
+        'comentarios_generales': comentarios_generales
+    }
     return render(request, 'lista_productos.html', contexto_catalogo)
 
 def detalle_producto(request, producto_id):

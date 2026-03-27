@@ -13,11 +13,12 @@ class Producto(models.Model):
         return self.nombre
 
 class Comentario(models.Model):
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='comentarios')
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name='comentarios', null=True, blank=True)
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     calificacion = models.IntegerField(default=5)
     texto = models.TextField()
     fecha = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Comentario de {self.usuario.username} en {self.producto.nombre}"
+        destino = self.producto.nombre if self.producto else "General"
+        return f"Comentario de {self.usuario.username} en {destino}"
