@@ -400,55 +400,22 @@
     <h2 class="related-title">Productos relacionados</h2>
     
     <div class="related-grid">
-        <!-- Tarjeta 1 -->
+        {% for related in related_products %}
         <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img1.png' %}" alt="Producto Relacionado" class="related-card-img" />
+            <img src="{% static 'appfel/img/shop/portadasp/' %}{{ related.imagen }}" alt="{{ related.nombre }}" class="related-card-img" />
             <div class="related-card-body">
-                <h3 class="related-card-title">Producto 1</h3>
-                <p class="related-card-desc">Descripción breve del primer producto relacionado.</p>
-                <p class="related-card-price">$10,99</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
+                <h3 class="related-card-title">{{ related.nombre }}</h3>
+                <p class="related-card-desc">{{ related.descripcion|default:"Calidad garantizada para tu cuidado." }}</p>
+                <p class="related-card-price">${{ related.precio }}</p>
+                <a href="{% url 'productos:detalle' related.id %}" class="btn-related-view">Ver Detalles</a>
             </div>
         </div>
-
-        <!-- Tarjeta 2 -->
-        <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img2.png' %}" alt="Producto Relacionado" class="related-card-img" />
-            <div class="related-card-body">
-                <h3 class="related-card-title">Producto 2</h3>
-                <p class="related-card-desc">Este producto es ideal para complementar tu compra.</p>
-                <p class="related-card-price">$12,50</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
-            </div>
-        </div>
-
-        <!-- Tarjeta 3 -->
-        <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img3.png' %}" alt="Producto Relacionado" class="related-card-img" />
-            <div class="related-card-body">
-                <h3 class="related-card-title">Producto 3</h3>
-                <p class="related-card-desc">Otra excelente opción disponible ahora.</p>
-                <p class="related-card-price">$8,99</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
-            </div>
-        </div>
-        
-        <!-- Tarjeta 4 -->
-        <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img4.png' %}" alt="Producto Relacionado" class="related-card-img" />
-            <div class="related-card-body">
-                <h3 class="related-card-title">Producto 4</h3>
-                <p class="related-card-desc">Descripción del cuarto producto.</p>
-                <p class="related-card-price">$10,99</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
-            </div>
+        {% empty %}
+        <p class="text-muted">No hay otros productos para mostrar.</p>
+        {% endfor %}
     </div>
 </div>
-
-			<!-- Puedes agregar más tarjetas siguiendo este formato -->
-		</div>
-	</div>
-	{% endblock %}
+{% endblock %}
 
 
 

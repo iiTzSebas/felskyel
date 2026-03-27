@@ -36,10 +36,14 @@ def detalle_producto(request, producto_id):
             
         return redirect('productos:detalle', producto_id=producto.id)
 
+    # Obtenemos 4 productos aleatorios o diferentes al actual para la sección "Relacionados"
+    related_products = Producto.objects.exclude(id=producto.id).order_by('?')[:4]
+
     contexto = {
         'producto': producto,
         'comentarios': comentarios,
         'promedio': round(promedio, 1),
-        'total_comentarios': comentarios.count()
+        'total_comentarios': comentarios.count(),
+        'related_products': related_products
     }
     return render(request, 'detalle_producto.html', contexto)
