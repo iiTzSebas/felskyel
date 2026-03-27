@@ -1,14 +1,5 @@
 [
 {
-    "model": "carrito.carrito",
-    "pk": 1,
-    "fields": {
-        "usuario": 1,
-        "creado": "2026-03-25T17:39:33.815Z",
-        "actualizado": "2026-03-25T17:39:33.815Z"
-    }
-},
-{
     "model": "usuarios.usuario",
     "pk": 1,
     "fields": {
@@ -22,19 +13,59 @@
         "is_active": true,
         "date_joined": "2026-03-25T17:32:03.217Z",
         "email": "maxi@gmail.com",
+        "user_type": "cliente",
+        "fecha_nacimiento": null,
         "groups": [],
-        "user_permissions": [],
-        "user_type": "P",
-        "fecha_nacimiento": "1995-05-20"
+        "user_permissions": []
+    }
+},
+{
+    "model": "usuarios.usuario",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$Qa9C0PRPGZwddtqoi0ArOJ$fKilCVnuMQHPctg6dHlDdL4l8iQcweDVF4rVhcL8Z/k=",
+        "last_login": "2026-03-27T17:33:01.572Z",
+        "is_superuser": false,
+        "username": "sebastian",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2026-03-27T17:01:25.855Z",
+        "email": "jtoscanoprieto32@gmail.com",
+        "user_type": "cliente",
+        "fecha_nacimiento": "2005-09-10",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "usuarios.usuario",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$iZnHhB7CMvAAnATw3hwj13$n1U7Qp9ruq8OnSMFPrrn53G5H+zER7rx1ZU72gq/w90=",
+        "last_login": null,
+        "is_superuser": true,
+        "username": "sebas",
+        "first_name": "",
+        "last_name": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-03-27T17:02:25.904Z",
+        "email": "admin@admin.com",
+        "user_type": "cliente",
+        "fecha_nacimiento": null,
+        "groups": [],
+        "user_permissions": []
     }
 },
 {
     "model": "productos.producto",
     "pk": 1,
     "fields": {
-        "nombre": "jabón de carbón",
+        "nombre": "jab¾n de carb¾n",
         "precio": "20.20",
-        "descripcion": "jabón de en cencía de carbón que ayuda a prevenir el acné.",
+        "descripcion": "jab¾n de en cencÝa de carb¾n que ayuda a prevenir el acnÚ.",
         "imagen": "img1.png"
     }
 },
@@ -53,19 +84,38 @@
     "pk": 3,
     "fields": {
         "nombre": "Crema de manos",
-        "descripcion": "Hidratación profunda para pieles secas.",
         "precio": "92.00",
+        "descripcion": "Hidrataci¾n profunda para pieles secas.",
         "imagen": "card-img1.png"
     }
 },
 {
-    "model": "productos.producto",
-    "pk": 4,
+    "model": "productos.comentario",
+    "pk": 1,
     "fields": {
-        "nombre": "Shampoo de Aloe Vera",
-        "precio": "25.50",
-        "descripcion": "Shampoo orgánico restaurador con extracto puro de aloe vera para todo tipo de cabello.",
-        "imagen": "img-shampoo.png"
+        "producto": null,
+        "usuario": 2,
+        "calificacion": 5,
+        "texto": "Excelente pagina para comprar productos la recomiendo!",
+        "fecha": "2026-03-27T17:43:37.321Z"
+    }
+},
+{
+    "model": "carrito.carrito",
+    "pk": 1,
+    "fields": {
+        "usuario": 1,
+        "creado": "2026-03-25T17:39:33.815Z",
+        "actualizado": "2026-03-25T17:39:33.815Z"
+    }
+},
+{
+    "model": "carrito.carrito",
+    "pk": 2,
+    "fields": {
+        "usuario": 2,
+        "creado": "2026-03-27T17:01:32.448Z",
+        "actualizado": "2026-03-27T17:01:32.448Z"
     }
 }
 ]
