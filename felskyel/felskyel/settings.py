@@ -131,4 +131,14 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'inicio'
 LOGOUT_REDIRECT_URL = 'login'
 
+# Configuración de Medios (subidas)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Configuración de Email (Placeholder para desarrollo)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Los correos se verán en la consola
+DEFAULT_FROM_EMAIL = 'no-reply@felskyel.com'
+ADMIN_EMAIL = 'admin@felskyel.com'
+
 # Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
