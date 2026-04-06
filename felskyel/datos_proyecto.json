@@ -172,9 +172,9 @@
   "model": "productos.producto",
   "pk": 1,
   "fields": {
-    "nombre": "jab¾n de carb¾n",
+    "nombre": "jabón de carbón",
     "precio": "20.20",
-    "descripcion": "jab¾n de en cencÝa de carb¾n que ayuda a prevenir el acnÚ.",
+    "descripcion": "jabón de esencia de carbón que ayuda a prevenir el acné.",
     "imagen": "img1.png"
   }
 },
@@ -194,7 +194,7 @@
   "fields": {
     "nombre": "Crema de manos",
     "precio": "92.00",
-    "descripcion": "Hidrataci¾n profunda para pieles secas.",
+    "descripcion": "Hidratación profunda para pieles secas.",
     "imagen": "card-img1.png"
   }
 },
