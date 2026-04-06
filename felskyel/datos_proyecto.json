@@ -172,9 +172,9 @@
   "model": "productos.producto",
   "pk": 1,
   "fields": {
-    "nombre": "jabón de carbón",
+    "nombre": "Jabón de Carbón",
     "precio": "20.20",
-    "descripcion": "jabón de esencia de carbón que ayuda a prevenir el acné.",
+    "descripcion": "Jabón de esencia de carbón que ayuda a prevenir el acné.",
     "imagen": "img1.png"
   }
 },
