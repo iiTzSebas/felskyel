@@ -140,5 +140,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Los correos s
 DEFAULT_FROM_EMAIL = 'no-reply@felskyel.com'
 ADMIN_EMAIL = 'admin@felskyel.com'
 
+# Cuando estés listo para producción con Gmail, usarías algo así:
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'tu-correo@gmail.com'
+# EMAIL_HOST_PASSWORD = 'tu-password-de-aplicacion'
+
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
