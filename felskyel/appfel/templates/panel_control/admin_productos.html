@@ -5,17 +5,105 @@
 {% block title %}Configuración de Proveedor{% endblock %}
 
 {% block styles %}
-    <style>
-	    body {
-		    background-color: yellow; /* Color AliceBlue como ejemplo */
-	    }
-    </style>
+    <!-- Vinculamos el nuevo CSS específico para el panel -->
+    <link rel="stylesheet" href="{% static 'appfel/css/admin_productos.css' %}">
 {% endblock %}
 
-{% block nombre %} black{% endblock %}
+{% block nombre %} {% endblock %}
 
 {% block content %}
+<div class="container admin-container">
+    <div class="row">
+        <!-- Columna de Formulario para añadir -->
+        <div class="col-lg-4">
+            <div class="card-admin">
+                <div class="card-header-custom">Nuevo Producto</div>
+                <div class="card-body p-4">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label">Nombre del producto</label>
+                            <input type="text" name="nombre" class="form-control" placeholder="Ej: Jabón de Avena" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Precio (COP)</label>
+                            <input type="number" name="precio" class="form-control" placeholder="0.00" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descripción</label>
+                            <textarea name="descripcion" class="form-control" rows="3" placeholder="Detalles del producto..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Imagen del producto</label>
+                            <input type="file" name="imagen" class="form-control" accept="image/*">
+                        </div>
+                        <div class="form-check form-switch mb-4">
+                            <input class="form-check-input" type="checkbox" name="disponible" id="flexSwitchCheckChecked" checked>
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Disponible en stock</label>
+                        </div>
+                        <button type="submit" class="btn btn-add w-100">Subir a la Tienda</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
+        <!-- Columna de Lista de Productos -->
+        <div class="col-lg-8">
+            <div class="card-admin">
+                <div class="card-header-custom">Mis Productos Publicados</div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for producto in productos %}
+                            <tr>
+                                <td>
+                                    {% if producto.imagen %}
+                                        <img src="{{ producto.imagen.url }}" class="product-list-img">
+                                    {% else %}
+                                        <div class="product-list-img bg-secondary d-flex align-items-center justify-content-center text-white">?</div>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="fw-bold text-dark">{{ producto.nombre }}</div>
+                                    <small class="text-muted">{{ producto.descripcion|truncatechars:40 }}</small>
+                                </td>
+                                <td><span class="fw-bold">${{ producto.precio }}</span></td>
+                                <td>
+                                    <!-- Aquí se muestra si tiene stock o no -->
+                                    <span class="status-badge status-available">En Stock</span>
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                        <a href="{% url 'productos:eliminar_producto' producto.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Estás seguro?')">
+                                            Eliminar
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center py-5">
+                                    <p class="text-muted mb-0">No has subido productos todavía.</p>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block footer %}{% endblock %}
