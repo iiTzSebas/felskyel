@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Resultados de búsqueda - Felskyel{% endblock %}
+
+{% block styles %}
+<style>
+    /* Estilos para que coincida con el diseño de la tienda */
+    .search-header {
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url("{% static 'appfel/img/shop/header.png' %}") center / cover no-repeat;
+        padding: 80px 20px;
+        text-align: center;
+        color: white;
+        margin-bottom: 40px;
+    }
+    .search-title {
+        font-weight: 800;
+        font-size: 3rem;
+        letter-spacing: -1px;
+    }
+    .search-query-text {
+        font-style: italic;
+        color: #6affc3;
+        font-weight: 700;
+    }
+    .product-card {
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #fff;
+        transition: all 0.3s ease;
+        height: 100%;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+    .product-img {
+        height: 250px;
+        object-fit: cover;
+        width: 100%;
+        transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-img {
+        transform: scale(1.05);
+    }
+    .product-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .product-title {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: #1a1a1a;
+        margin: 0;
+    }
+    .product-price {
+        font-weight: 800;
+        font-size: 1.3rem;
+        color: #000;
+        margin: 0;
+    }
+    .btn-black {
+        background-color: #000;
+        color: #fff !important;
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+    .btn-black:hover {
+        background-color: #444;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="search-header">
+    <div class="container">
+        <h1 class="search-title">Resultados de búsqueda</h1>
+        <p class="lead">
+            Buscaste: <span class="search-query-text">"{{ query }}"</span>
+        </p>
+    </div>
+</div>
+
+<main class="container mb-5">
+    <section>
+
+        {% if page_obj.object_list %}
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                
+                {% for producto in page_obj %}
+                    <div class="col">
+                        <div class="product-card">
+                            
+                            {% if producto.imagen %}
+                                <img src="{% static 'appfel/img/shop/portadasp/' %}{{ producto.imagen }}" 
+                                    class="product-img" 
+                                    alt="{{ producto.nombre }}">
+                            {% else %}
+                                <img src="{% static 'appfel/img/default_product.png' %}" 
+                                    class="product-img" 
+                                    alt="Sin imagen">
+                            {% endif %}
+
+                            <div class="product-body">
+                                <h3 class="product-title">{{ producto.nombre }}</h3>
+                                <p class="product-price">${{ producto.precio }}</p>
+                                <a href="{% url 'productos:detalle' producto.id %}" class="btn-black">
+                                    Ver detalles
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <!-- 🔽 PAGINACIÓN -->
+            <div class="d-flex justify-content-center mt-5">
+                <nav>
+                    <ul class="pagination">
+
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?q={{ query }}&page={{ page_obj.previous_page_number }}">
+                                    Anterior
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <li class="page-item active">
+                            <span class="page-link">
+                                Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+                            </span>
+                        </li>
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?q={{ query }}&page={{ page_obj.next_page_number }}">
+                                    Siguiente
+                                </a>
+                            </li>
+                        {% endif %}
+
+                    </ul>
+                </nav>
+            </div>
+
+        {% else %}
+            <div class="text-center py-5">
+                <h2 class="text-muted">No encontramos coincidencias para tu búsqueda.</h2>
+                <p>
+                    Intenta con otros términos o 
+                    <a href="{% url 'productos:lista_productos' %}" class="fw-bold text-dark">
+                        explora la tienda completa
+                    </a>.
+                </p>
+            </div>
+        {% endif %}
+
+    </section>
+</main>
+{% endblock %}

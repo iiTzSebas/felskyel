@@ -21,16 +21,12 @@
 			<object data="assets/header-search.svg" class="header-search" type="image/svg+xml"></object>
 		</div>
 		<a href="." class="header-text-left body-text">Felskyel</a>
-		<form class="header-text-buscar d-flex" role="search">
-			<div class="input-group">
-				<span class="input-group-text bg-white border-end-0 rounded-start-pill">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-					</svg>
-				</span>
-				<input class="form-control border-start-0 rounded-end-pill" type="search" placeholder="Buscar" aria-label="Buscar">
-			</div>
-		</form>
+		<!-- Buscador -->
+                    <form class="d-flex mb-2 mb-lg-0 me-lg-3 order-5 order-lg-4" role="search" action="{% url 'buscar' %}" method="get">
+                        <input class="form-control me-2" type="search" name="q" placeholder="Buscar..." aria-label="Buscar"
+                            value="{{ request.GET.q|default:'' }}">
+                        <button class="btn btn-outline-info" type="submit">Buscar</button>
+                    </form>
 
 		<div class="header-group2">
 			<a href="{% url 'crud' %}" class="header-text-perfil">crud</a>
