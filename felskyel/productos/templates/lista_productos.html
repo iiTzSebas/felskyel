@@ -30,13 +30,11 @@
         .header {
             position: relative;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{% static 'appfel/img/shop/header.png' %}") center / cover no-repeat;
-            padding: 40px 20px 120px 20px; /* Padding inferior grande para efecto de superposición */
+            padding: 10px 20px 180px 20px; /* Ajustado para subir el contenido */
             color: #fff;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            justify-content: center;
+            /* align-items y justify-content se manejan en los elementos internos */
         }
 
         .header-nav {
@@ -45,7 +43,7 @@
             align-items: center;
             width: 100%;
             max-width: 1200px;
-            margin-bottom: 40px;
+            margin: 0 auto 10px auto; /* Centra el nav y ajusta el margen inferior */
         }
 
         .header-text-felskyel {
@@ -54,6 +52,7 @@
             color: #fff;
             text-decoration: none;
             letter-spacing: -0.5px;
+            position: static; /* Override absolute positioning from shop.css */
             margin: 0;
         }
 
@@ -79,7 +78,8 @@
             display: flex;
             justify-content: center;
             width: 100%;
-            margin-bottom: 30px;
+            max-width: 550px; /* Limita el ancho de la barra de búsqueda */
+            margin: 0 auto 10px auto; /* Centra la barra de búsqueda y ajusta el margen inferior */
         }
 
         .search-container-custom {
@@ -112,13 +112,15 @@
 
         /* Títulos del Header */
         .header-page-title {
-            margin-bottom: 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 800px; /* Limita el ancho de los títulos */
+            margin: 0 auto; /* Centra los títulos */
         }
 
         .header-title {
             font-size: 3.5rem;
             font-weight: 800;
-            margin-bottom: 15px;
             letter-spacing: -2px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
@@ -358,8 +360,8 @@
         /* --- MEDIA QUERIES (Móvil) --- */
         @media (max-width: 768px) {
             .header {
-                padding: 20px 20px 80px 20px;
-            }
+                padding: 10px 20px 60px 20px;
+            } /* Mantener el padding para móviles */
             .header-title {
                 font-size: 2.2rem;
             }
@@ -543,7 +545,6 @@
                 {% for comentario in comentarios_generales %}
                 <div class="col-md-6">
                     <div class="comment-item">
-                        <img src="{% static 'appfel/img/shop/copy/copy-symbol.png' %}" class="comment-icon" />
                         <h3 class="comment-user">{{ comentario.usuario.username }}</h3>
                         <p class="comment-text">{{ comentario.texto }}</p>
                         <small class="text-muted">
