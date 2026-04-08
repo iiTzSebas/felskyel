@@ -52,6 +52,7 @@
             color: #fff;
             text-decoration: none;
             letter-spacing: -0.5px;
+            position: static; /* Override absolute positioning from shop.css */
             margin: 0;
         }
 
@@ -546,7 +547,6 @@
                 {% for comentario in comentarios_generales %}
                 <div class="col-md-6">
                     <div class="comment-item">
-                        <img src="{% static 'appfel/img/shop/copy/copy-symbol.png' %}" class="comment-icon" />
                         <h3 class="comment-user">{{ comentario.usuario.username }}</h3>
                         <p class="comment-text">{{ comentario.texto }}</p>
                         <small class="text-muted">
