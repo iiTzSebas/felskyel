@@ -166,44 +166,24 @@
 			<h2 class="subtitle-contacto subtitle1">Contacto proveedores</h2>
 
 			<div class="provider-cards-container">
-				<div class="card1">
-					<h2 class="card-subtitle2">smiLIFE</h2>
-					<div class="card-group">
-						<a href="{% url 'contacto' %}" class="card-a hover-bright">
-						<img src="{% static 'appfel/img/card-mask-group.png' %}" class="card-mask-group" />
-						</a>
-					</div>
-					<p class="card-text-right">
-						Jhoana <br />
-						En linea
-					</p>
-				</div>
-	
-				<div class="card1">
-					<h2 class="card-subtitle2">Esika</h2>
-					<div class="card-group">
-						<a href="{% url 'prueba2' %}" class="card-a hover-bright">
-						<img src="{% static 'appfel/img/Ellaper.jpeg' %}" alt="Foto ella" class="card-mask-group" />
-						</a>
-					</div>
-					<p class="card-text-right">
-						Esika <br />
-						En linea
-					</p>
-				</div>
-	
-				<div class="card1">
-					<h2 class="card-subtitle2">BALL</h2>
-					<div class="card-group">
-						<a href="{% url 'prueba3' %}" class="card-a hover-bright">
-						<img src="{% static 'appfel/img/ballper.jpeg' %}" class="card-mask-group" />
-						</a>
-					</div>
-					<p class="card-text-right">
-						Ball <br />
-						En espera
-					</p>
-				</div>
+                {% for prov in proveedores %}
+				    <div class="card1">
+					    <h2 class="card-subtitle2">{{ prov.nombre_publico|default:prov.nombre_negocio }}</h2>
+					    <div class="card-group">
+						    <a href="{% url 'detalle_proveedor' prov.id %}" class="card-a hover-bright">
+                                {% if prov.foto_perfil %}
+						            <img src="{{ prov.foto_perfil.url }}" class="card-mask-group" />
+                                {% else %}
+                                    <img src="{% static 'appfel/img/pefil_f.png' %}" class="card-mask-group" />
+                                {% endif %}
+						    </a>
+					    </div>
+					    <p class="card-text-right">
+						    {{ prov.nombre_publico|default:prov.nombre_negocio }} <br />
+						    {{ prov.estado|capfirst }}
+					    </p>
+				    </div>
+                {% endfor %}
 			</div>
 		</section>
 

@@ -1,0 +1,44 @@
+{% extends "contactos-proveedor/base-contacto.html" %}
+{% load static %}
+
+{% block titulo %}{{ proveedor.nombre_publico|default:proveedor.nombre_negocio }}{% endblock %}
+
+{% block extra_styles %}
+<style>
+    body {
+        background-color: {{ proveedor.color_fondo }};
+    }
+    /* Estilos para el estado visual */
+    .status-badge {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+    .status-activa { background-color: #d4edda; color: #155724; }
+    .status-espera { background-color: #fff3cd; color: #856404; }
+</style>
+{% endblock %}
+
+{% block nombre %}{{ proveedor.nombre_publico|default:proveedor.nombre_negocio }}{% endblock %}
+
+{% block contenido %}
+    <p class="copy-text2 body-text1">
+        {{ proveedor.descripcion|linebreaksbr }}
+    </p>
+    <div class="status-badge {% if proveedor.estado == 'activa' %}status-activa{% else %}status-espera{% endif %}">
+        {{ proveedor.estado|capfirst }}
+    </div>
+{% endblock %}
+
+{% block imagen %}
+    {% if proveedor.foto_perfil %}
+        <img src="{{ proveedor.foto_perfil.url }}" alt="Foto de {{ proveedor.nombre_publico }}" class="img1" />
+    {% else %}
+        <img src="{% static 'appfel/img/pefil_f.png' %}" alt="Foto por defecto" class="img1" />
+    {% endif %}
+{% endblock %}
+
+{% block pie %}Redes de {{ proveedor.nombre_publico|default:proveedor.nombre_negocio }}{% endblock %}

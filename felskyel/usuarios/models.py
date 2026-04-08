@@ -72,12 +72,13 @@ class ProviderApplication(models.Model):
 class ProviderProfile(models.Model):
     user = models.OneToOneField(Usuario, on_delete=models.CASCADE, related_name='perfil_proveedor')
     nombre_negocio = models.CharField(max_length=200)
+    nombre_publico = models.CharField(max_length=150, blank=True)
     descripcion = models.TextField(blank=True)
     foto_perfil = models.ImageField(upload_to='proveedores/perfiles/', null=True, blank=True)
     
     ESTADO_CHOICES = [
-        ('activo', 'Activo'),
-        ('inactivo', 'Inactivo'),
+        ('activa', 'Activa'),
+        ('en espera', 'En espera'),
         ('en_revision', 'En Revisión'),
     ]
     estado = models.CharField(max_length=20, choices=ESTADO_CHOICES, default='en_revision')
@@ -89,6 +90,8 @@ class ProviderProfile(models.Model):
     whatsapp = models.URLField(blank=True)
     instagram = models.URLField(blank=True)
     facebook = models.URLField(blank=True)
+    telegram = models.URLField(blank=True)
+    tiktok = models.URLField(blank=True)
     color_fondo = models.CharField(max_length=7, default='#ffffff')
 
     def __str__(self):

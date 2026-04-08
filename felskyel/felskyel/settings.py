@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'appfel',
     'carrito',
     'usuarios',
@@ -108,6 +109,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
 LANGUAGE_CODE = 'es-co'
+
+USE_L10N = True
+
+USE_THOUSAND_SEPARATOR = True
 
 TIME_ZONE = 'UTC'
 
