@@ -394,12 +394,14 @@
         </div>
 
         <!-- Buscador -->
-                    <form class="d-flex mb-2 mb-lg-0 me-lg-3 order-5 order-lg-4" role="search" action="{% url 'buscar' %}" method="get">
-                        <input class="form-control me-2" type="search" name="q" placeholder="Buscar..." aria-label="Buscar"
-                            value="{{ request.GET.q|default:'' }}">
-                        <button class="btn btn-outline-info" type="submit">Buscar</button>
+                    <form class="header-row" role="search" action="/buscar/" method="get">
+                        <div class="search-container-custom">
+                            <input class="search-input-custom" type="search" name="q" placeholder="Buscar..." aria-label="Buscar">
+                            <button class="btn btn-outline-info border-0" type="submit">🔍</button>
+                        </div>
                     </form>
 
+        <!-- Barra de búsqueda -->
         <div class="header-page-title text-white">
             <h1 class="header-title">Tienda Felskyel</h1>
             <h2 class="header-subtitle">Página principal</h2>
