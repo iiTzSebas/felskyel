@@ -52,12 +52,17 @@
             /* Redefinición de variables CSS usadas en tus archivos (registro.css, etc) */
             --background-color: #121212;
             --white: #1e1e1e;
-            --text-color: #e0e0e0;
+            --text-color: #ffffff;
             --primary-color: #ffffff;
             
             /* Forzar colores para elementos que no usan variables */
             background-color: #121212 !important;
-            color: #e0e0e0 !important;
+            color: #ffffff !important;
+        }
+
+        /* Forzar color blanco en todos los elementos de texto comunes */
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode h6, body.dark-mode p, body.dark-mode span, body.dark-mode label, body.dark-mode li, body.dark-mode small, body.dark-mode i, body.dark-mode a {
+            color: #ffffff !important;
         }
 
         /* Invertir colores del botón de tema */
@@ -75,7 +80,7 @@
         body.dark-mode .profile-form,
         body.dark-mode .modal-content {
             background-color: #1e1e1e !important;
-            color: #e0e0e0 !important;
+            color: #ffffff !important;
             border-color: #444 !important;
         }
 
