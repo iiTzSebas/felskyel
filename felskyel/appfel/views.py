@@ -1,17 +1,22 @@
 from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from usuarios.models import ProviderProfile # Importante importar el modelo correcto
 
-from django.shortcuts import render
 
 # Create your views here.
 
-def prueba(request):
-    return HttpResponse("Prueba pantalla")
-
 def index(request):
-    return render (request, 'index.html')
+    # Solo mostramos proveedores que han marcado su perfil como activo
+    proveedores = ProviderProfile.objects.filter(estado='activa')
+    return render (request, 'index.html', {'proveedores': proveedores})
 
-def solicitud_proveedor(request):
-    return render (request, 'solicitud-para-registro.html')
+def detalle_proveedor(request, pk):
+    # Buscamos el proveedor por su Primary Key (ID)
+    proveedor = get_object_or_404(ProviderProfile, pk=pk)
+    # Retornamos una nueva plantilla que crearemos a continuación
+    return render(request, 'Contactos-proveedor/perfil_publico_proveedor.html', {'proveedor': proveedor})
 
 def shop(request):
     return render (request, 'shop.html')
@@ -28,36 +33,41 @@ def prueba3(request):
 def panel(request):
     return render (request, 'panel_control/panel-control.html')
 
+@login_required
 def perfil_contacto(request):
-    return render (request, 'panel_control/perfil_contacto.html')
+    # 1. Validación de seguridad primero: Solo proveedores pueden editar su perfil público
+    if request.user.user_type != 'proveedor':
+        messages.error(request, "Acceso denegado. Esta sección es solo para proveedores.")
+        return redirect('inicio')
 
-def admin_productos(request):
-    return render (request, 'panel_control/admin_productos.html')
+    # 2. Intentamos obtener el perfil del proveedor logueado
+    perfil = get_object_or_404(ProviderProfile, user=request.user)
 
-def password_reset_request(request):
-    return render (request, 'rest_passw/password_reset_request.html')
+    if request.method == 'POST':
+        # Actualizamos los campos con lo que viene del formulario
+        perfil.nombre_publico = request.POST.get('nombre_publico')
+        perfil.descripcion = request.POST.get('descripcion')
+        perfil.estado = request.POST.get('estado')
+        perfil.color_fondo = request.POST.get('color_fondo')
+        perfil.whatsapp = request.POST.get('whatsapp')
+        perfil.instagram = request.POST.get('instagram')
+        perfil.facebook = request.POST.get('facebook')
+        perfil.telegram = request.POST.get('telegram')
+        perfil.tiktok = request.POST.get('tiktok')
 
-def password_reset_done(request):
-    return render (request, 'rest_passw/password_reset_done.html')
+        # Manejo de la foto de perfil
+        if request.FILES.get('foto_perfil'):
+            perfil.foto_perfil = request.FILES.get('foto_perfil')
 
-def password_reset_confirm(request):
-    return render (request, 'rest_passw/password_reset_confirm.html')
+        perfil.save()
+        messages.success(request, "¡Tu perfil público ha sido actualizado con éxito!")
+        return redirect('perfil_contacto')
 
-def password_reset_complete(request):
-    return render (request, 'rest_passw/password_reset_complete.html')
+    # Si es un GET, simplemente mostramos el formulario con los datos actuales
+    return render(request, 'panel_control/perfil_contacto.html', {'perfil': perfil})
 
 def crud (request):
     return render (request, 'crud/indexx.html')
-
-def manual (request):
-    return render (request, 'manual_usuario.html')
-
-
-def solicitud_proveedor(request):
-    if request.method == 'POST':
-        # Aquí iría la lógica para guardar los datos del formulario
-        return HttpResponse("Solicitud recibida correctamente.")
-    return render(request, 'solicitud-para-registro.html')
 
 def terminos_y_condiciones(request):
     return HttpResponse("<h1>Términos y Condiciones</h1><p>Aquí va el contenido legal de tu sitio.</p>")

@@ -2,6 +2,37 @@ from productos.models import Producto, Comentario
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.db.models import Avg
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def admin_productos(request):
+    # Corregimos la validación según el modelo Usuario (donde PROVEEDOR = 'proveedor')
+    if request.user.user_type != 'proveedor':
+        messages.error(request, "Acceso denegado. Solo proveedores pueden administrar productos.")
+        return redirect('inicio')
+
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        precio = request.POST.get('precio')
+        descripcion = request.POST.get('descripcion')
+        imagen = request.FILES.get('imagen')
+        # El stock se puede manejar como un booleano de disponibilidad
+        disponible = request.POST.get('disponible') == 'on'
+
+        if nombre and precio:
+            Producto.objects.create(
+                nombre=nombre,
+                precio=precio,
+                descripcion=descripcion,
+                imagen=imagen,
+                # Asegúrate de que el modelo Producto tenga el campo 'user' o 'proveedor'
+                # proveedor=request.user 
+            )
+            messages.success(request, f"Producto '{nombre}' añadido correctamente.")
+            return redirect('productos:admin_productos')
+
+    productos_proveedor = Producto.objects.all() # Aquí podrías filtrar por proveedor en el futuro
+    return render(request, 'panel_control/admin_productos.html', {'productos': productos_proveedor})
 
 def lista_productos(request):
     productos = Producto.objects.all()
@@ -70,3 +101,12 @@ def detalle_producto(request, producto_id):
         'related_products': related_products
     }
     return render(request, 'detalle_producto.html', contexto)
+
+@login_required
+def eliminar_producto(request, producto_id):
+    if request.user.user_type == 'proveedor':
+        producto = get_object_or_404(Producto, id=producto_id)
+        nombre = producto.nombre
+        producto.delete()
+        messages.success(request, f"Producto '{nombre}' eliminado.")
+    return redirect('productos:admin_productos')

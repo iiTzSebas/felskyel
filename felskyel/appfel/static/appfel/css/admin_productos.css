@@ -1,0 +1,75 @@
+:root {
+    --accent-color: #42ffc0;
+    --dark-bg: #1a1a1a;
+    }
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Inter', sans-serif;
+    }
+
+.admin-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    }
+
+.card-admin {
+    background: white;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+    overflow: hidden;
+    }
+
+
+.card-header-custom {
+    background-color: var(--dark-bg);
+    color: white;
+    padding: 20px;
+    font-weight: 700;
+    font-size: 1.25rem;
+    }
+
+
+.form-label {
+    font-weight: 600;
+    color: #444;
+    }
+
+
+.btn-add {
+    background-color: var(--accent-color);
+    color: black;
+    font-weight: 700;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    }
+
+
+.btn-add:hover {
+    background-color: #36d9a3;
+    transform: translateY(-2px);
+    }
+
+
+.product-list-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    }
+
+
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    }
+
+
+.status-available { background: #e6fffa; color: #2c7a7b; }
+.status-out { background: #fff5f5; color: #c53030; }

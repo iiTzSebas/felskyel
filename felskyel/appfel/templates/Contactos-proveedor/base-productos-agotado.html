@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 
 <!DOCTYPE html>
 <html lang="es">
@@ -353,7 +354,11 @@
 			
 			<div class="product-price">
 				{% block product_price %}
-				<span class="price-amount">$0.00 COP</span>
+                {% if producto %}
+					<span class="price-amount">${{ producto.precio|intcomma }} COP</span>
+                {% else %}
+                    <span class="price-amount">$0 COP</span>
+                {% endif %}
 				{% endblock %}
 			</div>
 

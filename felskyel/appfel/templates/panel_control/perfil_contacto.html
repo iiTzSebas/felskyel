@@ -19,21 +19,22 @@
     <div class="row g-5">
         <!-- Columna del Formulario -->
         <div class="col-lg-7">
-            <form class="profile-form" onsubmit="return false;">
+            <form class="profile-form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
                 <!-- Información Principal -->
                 <fieldset class="form-section">
                     <legend>Información Principal</legend>
                     <div class="form-group">
                         <label for="nombre_proveedor">Tu Nombre (o el de la persona de contacto)</label>
-                        <input type="text" id="nombre_proveedor" class="form-control" value="Nombre">
+                        <input type="text" id="nombre_proveedor" name="nombre_publico" class="form-control" value="{{ perfil.nombre_publico|default:'Nombre' }}">
                     </div>
                     <div class="form-group">
                         <label for="descripcion">Texto de presentación</label>
-                        <textarea id="descripcion" class="form-control" rows="5">“Hola soy... , soy una de las proveedoras de..., he trabajado en esta industria durante 4 años, si tienes alguna duda o quieres agendar una cita,  hazlo sin ningún problema, estaré al pendiente para tu asesoramiento.”</textarea>
+                        <textarea id="descripcion" name="descripcion" class="form-control" rows="5">{{ perfil.descripcion|default:'' }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="foto_perfil">Foto de Perfil</label>
-                        <input type="file" id="foto_perfil" class="form-control" accept="image/*">
+                        <input type="file" id="foto_perfil" name="foto_perfil" class="form-control" accept="image/*">
                     </div>
                 </fieldset>
 
@@ -44,11 +45,11 @@
                         <label>Estado</label>
                         <div class="d-flex gap-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="estado" id="estado_activa" value="activa" checked>
+                                <input class="form-check-input" type="radio" name="estado" id="estado_activa" value="activa" {% if perfil.estado == 'activa' %}checked{% endif %}>
                                 <label class="form-check-label" for="estado_activa">Activa</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="estado" id="estado_espera" value="en espera">
+                                <input class="form-check-input" type="radio" name="estado" id="estado_espera" value="en espera" {% if perfil.estado == 'en espera' %}checked{% endif %}>
                                 <label class="form-check-label" for="estado_espera">En espera</label>
                             </div>
                         </div>
@@ -56,7 +57,7 @@
                     <div class="form-group">
                         <label for="color_fondo">Color de fondo de tu página</label>
                         <div class="color-input-wrapper">
-                            <input type="color" id="color_fondo" class="form-control form-control-color" value="#ffffff">
+                            <input type="color" id="color_fondo" name="color_fondo" class="form-control form-control-color" value="{{ perfil.color_fondo|default:'#ffffff' }}">
                             <span id="color_hex">#ffffff</span>
                         </div>
                     </div>
@@ -68,23 +69,23 @@
 
                     <div class="form-group">
                         <label for="red_whatsapp">WhatsApp (URL completa, ej: https://wa.me/57...)</label>
-                        <input type="url" id="red_whatsapp" class="form-control" placeholder="https://wa.me/...">
+                        <input type="url" id="red_whatsapp" name="whatsapp" class="form-control" value="{{ perfil.whatsapp|default:'' }}" placeholder="https://wa.me/...">
                     </div>
                     <div class="form-group">
                         <label for="red_instagram">Instagram (URL completa)</label>
-                        <input type="url" id="red_instagram" class="form-control" placeholder="https://instagram.com/tu_usuario">
+                        <input type="url" id="red_instagram" name="instagram" class="form-control" value="{{ perfil.instagram|default:'' }}" placeholder="https://instagram.com/tu_usuario">
                     </div>
                     <div class="form-group">
                         <label for="red_facebook">facebook(URL completa)</label>
-                        <input type="url" id="red_facebook" class="form-control" placeholder="https://facebook.com/tu_usuario">
+                        <input type="url" id="red_facebook" name="facebook" class="form-control" value="{{ perfil.facebook|default:'' }}" placeholder="https://facebook.com/tu_usuario">
                     </div>
                     <div class="form-group">
                         <label for="telegram">telegram (URL completa)</label>
-                        <input type="url" id="red_telegram" class="form-control" placeholder="https://telegram.com/tu_usuario">
+                        <input type="url" id="red_telegram" name="telegram" class="form-control" value="{{ perfil.telegram|default:'' }}" placeholder="https://telegram.com/tu_usuario">
                     </div>
                     <div class="form-group">
                         <label for="tiktok">tiktok (URL completa)</label>
-                        <input type="url" id="red_tiktok" class="form-control" placeholder="https://tiktok.com/tu_usuario">
+                        <input type="url" id="red_tiktok" name="tiktok" class="form-control" value="{{ perfil.tiktok|default:'' }}" placeholder="https://tiktok.com/tu_usuario">
                     </div>
                 </fieldset>
 

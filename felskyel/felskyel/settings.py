@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'appfel',
     'carrito',
     'usuarios',
@@ -109,6 +110,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-co'
 
+USE_L10N = True
+
+USE_THOUSAND_SEPARATOR = True
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -131,4 +136,21 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'inicio'
 LOGOUT_REDIRECT_URL = 'login'
 
+# Configuración de Medios (subidas)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# Configuración de Email (Placeholder para desarrollo)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Los correos se verán en la consola
+DEFAULT_FROM_EMAIL = 'no-reply@felskyel.com'
+ADMIN_EMAIL = 'admin@felskyel.com'
+
+# Cuando estés listo para producción con Gmail, usarías algo así:
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'tu-correo@gmail.com'
+# EMAIL_HOST_PASSWORD = 'tu-password-de-aplicacion'
+
 # Default primary key field type
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
