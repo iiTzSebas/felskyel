@@ -60,7 +60,10 @@ ROOT_URLCONF = 'felskyel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [],    
+        'DIRS': [
+            BASE_DIR / 'appfel' / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -154,4 +157,4 @@ ADMIN_EMAIL = 'admin@felskyel.com'
 # EMAIL_HOST_PASSWORD = 'tu-password-de-aplicacion'
 
 # Default primary key field type
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
