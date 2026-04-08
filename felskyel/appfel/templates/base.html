@@ -48,6 +48,10 @@
         }
 
         /* --- ESTILOS MODO OSCURO --- */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
         body.dark-mode {
             /* Redefinición de variables CSS usadas en tus archivos (registro.css, etc) */
             --background-color: #121212;
@@ -66,8 +70,19 @@
         }
 
         /* Forzar color blanco en todos los elementos de texto comunes */
-        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode h6, body.dark-mode p, body.dark-mode span, body.dark-mode label, body.dark-mode li, body.dark-mode small, body.dark-mode i, body.dark-mode a {
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode h5, body.dark-mode h6, 
+        body.dark-mode p, body.dark-mode span, body.dark-mode label, body.dark-mode li, body.dark-mode small, 
+        body.dark-mode i, body.dark-mode a:not(.social-btn):not(.copy-btn2) {
             color: #ffffff !important;
+        }
+
+        /* Mantener texto negro en botones que permanecen claros */
+        body.dark-mode .social-btn, 
+        body.dark-mode .copy-btn2, 
+        body.dark-mode .btn-dia-y-hora label,
+        body.dark-mode .btn-dia-y-hora span,
+        body.dark-mode .btn-dia-y-hora p {
+            color: #000000 !important;
         }
 
         /* Invertir colores del botón de tema */
@@ -81,6 +96,10 @@
         body.dark-mode .card-b,
         body.dark-mode .list-group-item,
         body.dark-mode .registro-form-container,
+        body.dark-mode .provider-form,
+        body.dark-mode .form-section,
+        body.dark-mode .text,
+        body.dark-mode .card1,
         body.dark-mode .login-container,
         body.dark-mode .profile-form,
         body.dark-mode .modal-content {
@@ -89,10 +108,20 @@
             border-color: #444 !important;
         }
 
-        body.dark-mode .form-control {
+        body.dark-mode .form-control,
+        body.dark-mode textarea,
+        body.dark-mode select,
+        body.dark-mode .input-group-input,
+        body.dark-mode .input-group-input2 {
             background-color: #2c2c2c !important;
             border-color: #555 !important;
             color: #fff !important;
+        }
+
+        /* Suavizar imágenes y fondos con imágenes */
+        body.dark-mode img, 
+        body.dark-mode .header {
+            filter: brightness(0.85) contrast(1.1);
         }
     </style>
 </head>
