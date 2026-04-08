@@ -71,13 +71,16 @@ img {
     height: 42px; /* Altura fija para mayor elegancia */
     width: 100%;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 2px solid transparent; /* Borde base para evitar saltos visuales */
     transition: all 0.3s ease;
 }
 
+.search-container-custom:hover,
 .search-container-custom:focus-within {
     background-color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    border-color: #6affc3; /* Color verde al pasar el mouse o hacer clic */
 }
 
 .search-input-custom {

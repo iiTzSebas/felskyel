@@ -165,22 +165,34 @@
 
 			<div class="provider-cards-container">
                 {% for prov in proveedores %}
-				    <div class="card1">
-					    <h2 class="card-subtitle2">{{ prov.nombre_publico|default:prov.nombre_negocio }}</h2>
-					    <div class="card-group">
-						    <a href="{% url 'detalle_proveedor' prov.id %}" class="card-a hover-bright">
+					<div class="card1">
+						<h2 class="card-subtitle2">{{ prov.nombre_publico|default:prov.nombre_negocio }}</h2>
+						<div class="card-group">
+							<a href="{% url 'detalle_proveedor' prov.id %}" class="card-a hover-bright">
                                 {% if prov.foto_perfil %}
-						            <img src="{{ prov.foto_perfil.url }}" class="card-mask-group" />
+									<img src="{{ prov.foto_perfil.url }}" class="card-mask-group" />
                                 {% else %}
                                     <img src="{% static 'appfel/img/pefil_f.png' %}" class="card-mask-group" />
                                 {% endif %}
-						    </a>
-					    </div>
-					    <p class="card-text-right">
-						    {{ prov.nombre_publico|default:prov.nombre_negocio }} <br />
-						    {{ prov.estado|capfirst }}
-					    </p>
-				    </div>
+						</a>
+						</div>
+						<p class="card-text-right">
+							{{ prov.nombre_publico|default:prov.nombre_negocio }} <br />
+
+							<!--Despued-disponoble-->
+							{% if prov.estado == 'activa'%}
+								Disponible
+							{% else %}
+								{% if prov.estado == 'en espera' %}
+								No disponible
+								{% else %}
+							{{ prov.estado|capfirst }}
+						{% endif %}
+						{% endif %}
+						
+
+						</p>
+					</div>
                 {% endfor %}
 			</div>
 		</section>

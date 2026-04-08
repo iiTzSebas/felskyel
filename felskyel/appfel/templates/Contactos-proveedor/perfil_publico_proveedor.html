@@ -28,9 +28,21 @@
     <p class="copy-text2 body-text1">
         {{ proveedor.descripcion|linebreaksbr }}
     </p>
+    
     <div class="status-badge {% if proveedor.estado == 'activa' %}status-activa{% else %}status-espera{% endif %}">
-        {{ proveedor.estado|capfirst }}
+        {% if proveedor.estado == 'activa' %}
+            Disponible
+        {% else %}
+            {% if proveedor.estado == 'en espera' %}
+            No disponible
+                {% else %}
+            {% if proveedor.estado == 'en espera' %}
+            No disponible
+                {% else %}
+            {{ proveedor.estado|capfirst }}
+        {% endif %}
     </div>
+
 {% endblock %}
 
 {% block imagen %}
