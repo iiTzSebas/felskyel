@@ -16,7 +16,6 @@ urlpatterns = [
     path('terminos-y-condiciones/', views.terminos_y_condiciones, name='terminos_y_condiciones'),
     path('panel-control/', views.panel, name='panel'),
     path('perfil_contacto/', views.perfil_contacto, name='perfil_contacto'),
-    path('admin_productos/', views.admin_productos, name='admin_productos'),
 
     path('jabon-de-carbon/', views.jabon_de_carbon, name='jabon_de_carbon'),
     path('protector-labios/', views.protector_labios, name='protector_labios'),
@@ -25,7 +24,7 @@ urlpatterns = [
     path('primer-catalogo/', views.primer_catalogo, name='primer_catalogo'),
     path('crema-manos/', views.crema_manos, name='crema_manos'),
     path('crud/', views.crud, name='crud'),
-    path('manual/', views.manual, name='manual'),
+    path('manual/', views.manual_usuario, name='manual'),
     
         # 1. Formulario para ingresar el email
     path('password_reset/', auth_views.PasswordResetView.as_view(

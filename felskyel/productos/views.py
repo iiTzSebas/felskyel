@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def admin_productos(request):
-    # Verificamos que sea proveedor (asumiendo 'P' como valor en el modelo Usuario)
-    if request.user.user_type != 'P':
+    # Corregimos la validación según el modelo Usuario (donde PROVEEDOR = 'proveedor')
+    if request.user.user_type != 'proveedor':
         messages.error(request, "Acceso denegado. Solo proveedores pueden administrar productos.")
         return redirect('inicio')
 
@@ -25,7 +25,7 @@ def admin_productos(request):
                 precio=precio,
                 descripcion=descripcion,
                 imagen=imagen,
-                # Asumiendo que quieres guardar quién es el dueño, si el modelo lo permite:
+                # Asegúrate de que el modelo Producto tenga el campo 'user' o 'proveedor'
                 # proveedor=request.user 
             )
             messages.success(request, f"Producto '{nombre}' añadido correctamente.")
@@ -104,7 +104,7 @@ def detalle_producto(request, producto_id):
 
 @login_required
 def eliminar_producto(request, producto_id):
-    if request.user.user_type == 'P':
+    if request.user.user_type == 'proveedor':
         producto = get_object_or_404(Producto, id=producto_id)
         nombre = producto.nombre
         producto.delete()

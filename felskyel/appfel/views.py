@@ -8,7 +8,8 @@ from usuarios.models import ProviderProfile # Importante importar el modelo corr
 # Create your views here.
 
 def index(request):
-    proveedores = ProviderProfile.objects.all()
+    # Solo mostramos proveedores que han marcado su perfil como activo
+    proveedores = ProviderProfile.objects.filter(estado='activa')
     return render (request, 'index.html', {'proveedores': proveedores})
 
 def detalle_proveedor(request, pk):
@@ -34,7 +35,12 @@ def panel(request):
 
 @login_required
 def perfil_contacto(request):
-    # Intentamos obtener el perfil del proveedor logueado
+    # 1. Validación de seguridad primero: Solo proveedores pueden editar su perfil público
+    if request.user.user_type != 'proveedor':
+        messages.error(request, "Acceso denegado. Esta sección es solo para proveedores.")
+        return redirect('inicio')
+
+    # 2. Intentamos obtener el perfil del proveedor logueado
     perfil = get_object_or_404(ProviderProfile, user=request.user)
 
     if request.method == 'POST':
@@ -60,14 +66,8 @@ def perfil_contacto(request):
     # Si es un GET, simplemente mostramos el formulario con los datos actuales
     return render(request, 'panel_control/perfil_contacto.html', {'perfil': perfil})
 
-def admin_productos(request):
-    return render (request, 'panel_control/admin_productos.html')
-
 def crud (request):
     return render (request, 'crud/indexx.html')
-
-def manual (request):
-    return render (request, 'manual_usuario.html')
 
 def terminos_y_condiciones(request):
     return HttpResponse("<h1>Términos y Condiciones</h1><p>Aquí va el contenido legal de tu sitio.</p>")
