@@ -29,10 +29,12 @@
 				<button type="submit">🔍</button>
 			</div>
 		</form>
+		{% comment %}
 
 		<div class="header-group2">
 			<a href="{% url 'crud' %}" class="header-text-perfil">crud</a>
 		</div>
+		{% endcomment %}
 
 		<div class="header-group2">
 			<a href="{% url 'manual' %}" class="header-text-perfil">Manual</a>
@@ -139,17 +141,24 @@
 				<div class="category-item">
 					<img src="{% static 'appfel/img/mask-group1.png' %}" class="mask-group1" />
 					<h2 class="subtitle-copy subtitle2">Piel y rostro</h2>
+					{% comment %}
 					<button class="btn btn1 hover-bright">Ingresar</button>
+					{% endcomment %}
 				</div>
 				<div class="category-item">
 					<img src="{% static 'appfel/img/mask-group2.png' %}" class="mask-group2" />
 					<h2 class="subtitle-cabello subtitle2">Cabello</h2>
+					{% comment %}
 					<button class="btn btn2 hover-bright">Ingresar</button>
+					{% endcomment %}
 				</div>
 				<div class="category-item">
 					<img src="{% static 'appfel/img/mask-group3.png' %}" class="mask-group3" />
 					<h2 class="subtitle-cuerpo subtitle2">Cuerpo</h2>
+					{% comment %}
 					<button class="btn btn3 hover-bright">Ingresar</button>
+					{% endcomment %}
+
 				</div>
 			</div>
 		</section>
