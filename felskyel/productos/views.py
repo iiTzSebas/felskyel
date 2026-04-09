@@ -37,7 +37,7 @@ def admin_productos(request):
 def lista_productos(request):
     productos = Producto.objects.all()
     # Filtramos para obtener solo comentarios que NO pertenecen a un producto (comentarios del sitio)
-    comentarios_generales = Comentario.objects.filter(producto__isnull=True).select_related('usuario').order_by('-fecha')[:4]
+    comentarios_generales = Comentario.objects.filter(producto__isnull=True).select_related('usuario').order_by('-fecha')[:6]
 
     if request.method == 'POST':
         if not request.user.is_authenticated:
@@ -63,6 +63,34 @@ def lista_productos(request):
         'comentarios_generales': comentarios_generales
     }
     return render(request, 'lista_productos.html', contexto_catalogo)
+
+def todos_los_comentarios_generales(request):
+    # Obtenemos TODOS los comentarios generales
+    comentarios_generales = Comentario.objects.filter(producto__isnull=True).select_related('usuario').order_by('-fecha')
+
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            messages.error(request, "Debes iniciar sesión para dejar un comentario.")
+            return redirect('login')
+        
+        texto = request.POST.get('texto', '').strip()
+        
+        if texto:
+            Comentario.objects.create(
+                usuario=request.user,
+                texto=texto,
+            )
+            messages.success(request, "¡Gracias! Tu opinión ha sido enviada.")
+            return redirect('productos:todos_los_comentarios_generales')
+        else:
+            messages.warning(request, "El comentario no puede estar vacío.")
+
+    contexto = {
+        'comentarios_generales': comentarios_generales,
+        'total_comentarios': comentarios_generales.count()
+    }
+    return render(request, 'todos_los_comentarios_generales.html', contexto)
+
 
 def detalle_producto(request, producto_id):
     producto = get_object_or_404(Producto, id=producto_id)
