@@ -1,6 +1,4 @@
 [
-
-
 {
   "model": "carrito.carrito",
   "pk": 3,
@@ -116,7 +114,7 @@
     "user": 4,
     "nombre_negocio": "FINEFEEL",
     "nombre_publico": "Fino Aroma",
-    "descripcion": "Hola soy Alex, soy uno de los proveedores de Fino Aroma, he trabajado en esta industria durante 4 a±os, si tienes alguna duda o quieres agendar una cita, hazlo sin ning·n problema, estarÚ al pendiente para tu asesoramiento.",
+    "descripcion": "Hola soy Alex, soy uno de los proveedores de Fino Aroma, he trabajado en esta industria durante 4 años, si tienes alguna duda o quieres agendar una cita, hazlo sin ningún problema, estaré al pendiente para tu asesoramiento.",
     "foto_perfil": "proveedores/perfiles/Alex_2PSnJPQ.png",
     "estado": "activa",
     "email_contacto": "nicol233@gmail.com",
@@ -134,9 +132,9 @@
   "model": "productos.producto",
   "pk": 1,
   "fields": {
-    "nombre": "Jab¾n de Carb¾n",
+    "nombre": "Jabón de Carbón",
     "precio": "80000",
-    "descripcion": "Jab¾n de esencia de carb¾n que ayuda a prevenir el acnÚ.",
+    "descripcion": "Jabón de esencia de carbón que ayuda a prevenir el acné.",
     "imagen": "proveedores/imagenes/img1_zMSyVnx.png"
   }
 },
@@ -156,7 +154,7 @@
   "fields": {
     "nombre": "Shampoo natural",
     "precio": "15000",
-    "descripcion": "Descubre un shampoo elaborado con ingredientes puros que limpian, nutren y revitalizan desde la raÝz. Sin quÝmicos agresivos, solo suavidad, brillo y frescura en cada lavado. íTu cabello lo notarß desde el primer uso!",
+    "descripcion": "Descubre un shampoo elaborado con ingredientes puros que limpian, nutren y revitalizan desde la raíz. Sin químicos agresivos, solo suavidad, brillo y frescura en cada lavado. ¡Tu cabello lo notará desde el primer uso!",
     "imagen": "proveedores/imagenes/card-img1_cPww98I.png"
   }
 },
@@ -166,7 +164,7 @@
   "fields": {
     "nombre": "Crema de manos",
     "precio": "15000",
-    "descripcion": "Hidrataci¾n profunda para pieles secas.",
+    "descripcion": "Hidratación profunda para pieles secas.",
     "imagen": "proveedores/imagenes/cremamanos_0dAj6p3.jpeg"
   }
 },
@@ -176,7 +174,7 @@
   "fields": {
     "nombre": "Gotas de los ojos",
     "precio": "9000",
-    "descripcion": "Solo utilizado para personas con irritaci¾n ocular",
+    "descripcion": "Solo utilizado para personas con irritación ocular",
     "imagen": "proveedores/imagenes/default_oBEUy9o.png"
   }
 },
@@ -184,9 +182,9 @@
   "model": "productos.producto",
   "pk": 8,
   "fields": {
-    "nombre": "Jab¾n s¾lido",
+    "nombre": "Jabón sólido",
     "precio": "20000",
-    "descripcion": "Jab¾n utilizado para tratamiento de acnÚ",
+    "descripcion": "Jabón utilizado para tratamiento de acné",
     "imagen": "proveedores/imagenes/Jabonsolido_ykmvwhT.png"
   }
 },
@@ -196,7 +194,7 @@
   "fields": {
     "nombre": "Shampo Rosa",
     "precio": "11000",
-    "descripcion": "Shampoo rosa que cuida y resalta tu cabello con suavidad \r\nLimpia profundamente mientras hidrata, dejando un brillo natural y un aroma delicioso que dura todo el dÝa. Ideal para darle a tu rutina un toque fresco, femenino y especial",
+    "descripcion": "Shampoo rosa que cuida y resalta tu cabello con suavidad \r\nLimpia profundamente mientras hidrata, dejando un brillo natural y un aroma delicioso que dura todo el día. Ideal para darle a tu rutina un toque fresco, femenino y especial",
     "imagen": "proveedores/imagenes/Rosasham.png"
   }
 },
