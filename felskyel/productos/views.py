@@ -36,8 +36,8 @@ def admin_productos(request):
 
 def lista_productos(request):
     productos = Producto.objects.all()
-    # Obtenemos los últimos 4 comentarios de cualquier producto para la sección general
-    comentarios_generales = Comentario.objects.select_related('usuario', 'producto').all().order_by('-fecha')[:4]
+    # Filtramos para obtener solo comentarios que NO pertenecen a un producto (comentarios del sitio)
+    comentarios_generales = Comentario.objects.filter(producto__isnull=True).select_related('usuario').order_by('-fecha')[:4]
 
     if request.method == 'POST':
         if not request.user.is_authenticated:
