@@ -91,6 +91,7 @@
             width: 100%;
             max-width: 550px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            border: 2px solid transparent; /* Evita que la barra salte al aparecer el borde verde */
             transition: all 0.3s ease;
         }
 
@@ -466,7 +467,11 @@
             <div class="col">
                 <div class="product-card">
                     <!-- Imagen: Usamos lógica para mostrar imagen o default -->
-                        <img src="{% static 'appfel/img/shop/portadasp/' %}{{ producto.imagen }}" class="product-img" alt="{{ producto.nombre }}">
+                    {% if producto.imagen %}
+                        <img src="{{ producto.imagen.url }}" class="product-img" alt="{{ producto.nombre }}">
+                    {% else %}
+                        <img src="{% static 'appfel/img/shop/default_product.png' %}" class="product-img" alt="{{ producto.nombre }} (Sin imagen)">
+                    {% endif %}
                     <div class="product-body">
                         <h3 class="product-title">{{ producto.nombre }}</h3>
                         <p class="product-desc">{{ producto.descripcion|default:"Producto de excelente calidad para tu cuidado personal." }}</p>

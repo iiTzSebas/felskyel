@@ -33,13 +33,11 @@
         {% if proveedor.estado == 'activa' %}
             Disponible
         {% else %}
-            {% if proveedor.estado == 'en espera' %}
-            No disponible
-                {% else %}
-            {% if proveedor.estado == 'en espera' %}
-            No disponible
-                {% else %}
-            {{ proveedor.estado|capfirst }}
+            {% if proveedor.estado == 'en espera' or proveedor.estado == 'espera' %}
+                No disponible
+            {% else %}
+                {{ proveedor.estado|capfirst }}
+            {% endif %}
         {% endif %}
     </div>
 
@@ -54,3 +52,36 @@
 {% endblock %}
 
 {% block pie %}Redes de {{ proveedor.nombre_publico|default:proveedor.nombre_negocio }}{% endblock %}
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Obtenemos el color que viene de la base de datos
+    const bgColor = "{{ proveedor.color_fondo|default:'#6affc3' }}";
+
+    /**
+     * Determina si el color de texto debe ser negro o blanco basado en el color de fondo.
+     */
+    function getContrastColor(hexColor) {
+        if (!hexColor) return '#000000';
+        const hex = hexColor.replace('#', '');
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
+        const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        return (yiq >= 128) ? '#000000' : '#ffffff';
+    }
+
+    // 2. Calculamos el color ideal para el texto
+    const textColor = getContrastColor(bgColor);
+
+    // 3. Aplicamos el color al cuerpo y a elementos específicos
+    document.body.style.color = textColor;
+    
+    // Aplicar a títulos y textos de presentación para asegurar legibilidad
+    const elementsToTint = document.querySelectorAll('.copy-text2, .product-title, .header-text, .footer-subtitle, .status-badge');
+    elementsToTint.forEach(el => {
+        el.style.color = textColor;
+    });
+});
+</script>

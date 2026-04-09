@@ -25,4 +25,14 @@
 </div>
 {% endblock %}
 
-{% block imagen %} <img src="{% static 'appfel/img/shop/portadasp/' %}{{ producto.imagen }}" alt="{{ producto.nombre }}" class="img1" /> {% endblock %}
+{% block imagen %} 
+
+    {% if producto.imagen %}
+        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img1" />
+    {% else %}
+        <img src="{% static 'appfel/img/shop/default_product.png' %}" alt="{{ producto.nombre }} (Sin imagen)" class="img1" />
+    {% endif %}
+    
+{% endblock %}
+
+

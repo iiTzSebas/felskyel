@@ -414,7 +414,11 @@
     <div class="related-grid">
         {% for related in related_products %}
         <div class="related-card">
-            <img src="{% static 'appfel/img/shop/portadasp/' %}{{ related.imagen }}" alt="{{ related.nombre }}" class="related-card-img" />
+            {% if related.imagen %}
+                <img src="{{ related.imagen.url }}" alt="{{ related.nombre }}" class="related-card-img" />
+            {% else %}
+                <img src="{% static 'appfel/img/shop/default_product.png' %}" alt="{{ related.nombre }} (Sin imagen)" class="related-card-img" />
+            {% endif %}
             <div class="related-card-body">
                 <h3 class="related-card-title">{{ related.nombre }}</h3>
                 <p class="related-card-desc">{{ related.descripcion|default:"Calidad garantizada para tu cuidado." }}</p>

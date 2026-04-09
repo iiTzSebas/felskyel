@@ -101,11 +101,9 @@
                         <div class="product-card">
                             
                             {% if producto.imagen %}
-                                <img src="{% static 'appfel/img/shop/portadasp/' %}{{ producto.imagen }}" 
-                                    class="product-img" 
-                                    alt="{{ producto.nombre }}">
+                                <img src="{{ producto.imagen.url }}" class="product-img" alt="{{ producto.nombre }}">
                             {% else %}
-                                <img src="{% static 'appfel/img/default_product.png' %}" 
+                                <img src="{% static 'appfel/img/shop/default_product.png' %}" 
                                     class="product-img" 
                                     alt="Sin imagen">
                             {% endif %}
