@@ -19,7 +19,7 @@ class Usuario(AbstractUser):
         default=CLIENTE,
         verbose_name="Tipo de Usuario"
     )
-    fecha_nacimiento = models.DateField(null=True, blank=True)
+    es_mayor_edad = models.BooleanField(default=False, verbose_name="Es mayor de 18")
 
     #Evitar conflictos de reverse accessors
     groups = models.ManyToManyField(

@@ -66,17 +66,25 @@
             {% endif %}
         </div>
 
-        <!--campo fecha de nacimiento-->
+        <!-- Confirmación de mayoría de edad -->
         <div class="form-group">
-            <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-            <input type="date" name="fecha_nacimiento" 
-                id="fecha_nacimiento" class="form-control"
-                value="{{ form.fecha_nacimiento.value|default_if_none:'' }}" 
-                required>
-            <small class="form-text text-muted">Debes ser mayor de 18 años para registrarte.</small>
-            {% if form.fecha_nacimiento.errors %}
+            <label>¿Eres mayor de 18 años?</label>
+            <div class="role-selector">
+                <input type="radio" name="es_mayor_edad" value="True" id="mayor-si" 
+                    {% if form.es_mayor_edad.value == True %}checked{% endif %} required>
+                <label for="mayor-si" class="role-card">
+                    <span class="role-text">Sí, soy mayor</span>
+                </label>
+
+                <input type="radio" name="es_mayor_edad" value="False" id="mayor-no"
+                    {% if form.es_mayor_edad.value == False %}checked{% endif %}>
+                <label for="mayor-no" class="role-card">
+                    <span class="role-text">No soy mayor</span>
+                </label>
+            </div>
+            {% if form.es_mayor_edad.errors %}
             <div class="invalid-feedback d-block">
-                {{form.fecha_nacimiento.errors|striptags}}
+                {{form.es_mayor_edad.errors|striptags}}
             </div>
             {% endif %}
         </div>
@@ -143,13 +151,6 @@
                 }
             });
         });
-
-        // Restricción de fecha mínima en el calendario (Lado del cliente)
-        const fechaInput = document.getElementById('fecha_nacimiento');
-        const hoy = new Date();
-        // Restamos 18 años a la fecha actual
-        const hace18Anios = new Date(hoy.getFullYear() - 18, hoy.getMonth(), hoy.getDate());
-        fechaInput.max = hace18Anios.toISOString().split("T")[0];
     });
 
     function togglePassword(fieldId) {
