@@ -398,6 +398,47 @@
     <header class="header">
         <div class="header-nav">
             <a href="{% url 'inicio' %}"><p class="header-text-felskyel body-text3">Felskyel</p></a>
+
+            <!-- Usuario / Invitado -->
+            <ul class="navbar-nav mb-0 ms-auto me-3 d-flex flex-row align-items-center">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#" id="userDropdown"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="avatar-sm rounded-circle overflow-hidden me-2"
+                            style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#FFFFFF{% else %}#eee400{% endif %};">
+                            {% if user.is_authenticated and user.profile.avatar %}
+                                <img src="{% static 'img/avatares/'|add:user.profile.avatar|add:'.webp' %}" 
+                                    alt="Avatar" class="rounded-circle"
+                                    style="width:100%; height:100%; object-fit:cover;">
+                            {% else %}
+                                <img src="{% static 'appfel/img/pefil_f.png' %}" 
+                                    alt="Invitado" class="rounded-circle"
+                                    style="width:100%; height:100%; object-fit:cover;">
+                            {% endif %}
+                        </div>
+                        <span class="header-text-perfil">
+                            Hola,
+                            {% if user.is_authenticated %}
+                                <span class="fw-bold">{{ user.username }}</span>
+                            {% else %}
+                                <span class="header-text-perfil">Invitado</span>
+                            {% endif %}
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'p' %}">Mi perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+                            <li><a class="dropdown-item" href="{% url 'reggistro' %}">Registrarse</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+            
+
             <a href="{% url 'carrito:ver_carrito' %}">
                 <img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" />
             </a>
