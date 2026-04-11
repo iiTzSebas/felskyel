@@ -324,6 +324,62 @@
     transform: translateY(2px);
 }
 
+		/* Estilos para el Buscador (Adaptados de lista_productos) */
+		.header-row {
+			display: flex;
+			justify-content: center;
+			flex: 1; /* Permite que el buscador ocupe el espacio central */
+			max-width: 550px;
+			margin: 0 20px;
+		}
+
+		.search-container-custom {
+			display: flex;
+			align-items: center;
+			background-color: rgba(255, 255, 255, 0.95);
+			border-radius: 50px;
+			padding: 12px 25px;
+			width: 100%;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+			border: 2px solid transparent;
+			transition: all 0.3s ease;
+		}
+
+		.search-container-custom:focus-within,
+		.search-container-custom:hover {
+			background-color: #fff;
+			transform: translateY(-2px);
+			box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+			border-color: #6affc3;
+		}
+
+		.search-input-custom {
+			border: none;
+			outline: none;
+			background: transparent;
+			margin-left: 15px;
+			font-size: 1rem;
+			color: #333;
+			width: 100%;
+		}
+
+		.search-container-custom button {
+			background: none;
+			border: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			font-size: 1.0rem;
+			cursor: pointer;
+		}
+
+		/* Ajuste por si twemoji convierte la lupa en imagen */
+		.search-container-custom button img.emoji {
+			width: 20px !important;
+			height: 20px !important;
+		}
+
 	</style>
 	{% endblock %}
 </head>
@@ -338,12 +394,59 @@
 						<path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
 					</svg>
 				</a>
-				<p class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0;">Felskyel</p>
+				<a href="{% url 'inicio' %}" class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0; text-decoration: none;">Felskyel</a>
 			</div>
 
-				<a href="{% url 'carrito:ver_carrito' %}">
-					<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" style="width: 32px; height: 32px; cursor: pointer; position: static;" />
-				</a>
+			<!-- Buscador Adaptado -->
+			<form class="header-row" role="search" action="/buscar/" method="get">
+				<div class="search-container-custom">
+					<input class="search-input-custom" type="search" name="q" placeholder="Buscar..." aria-label="Buscar">
+					<button type="submit">🔍</button>
+				</div>
+			</form>
+
+			<!-- Usuario / Invitado -->
+			<ul class="navbar-nav mb-0 ms-auto me-3 d-flex flex-row align-items-center">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle d-flex align-items-center text-dark" href="#" id="userDropdown"
+					role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<div class="avatar-sm rounded-circle overflow-hidden me-2"
+							style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#FFFFFF{% else %}#eee400{% endif %}; border: 1px solid rgba(0,0,0,0.1);">
+							{% if user.is_authenticated and user.profile.avatar %}
+								<img src="{% static 'img/avatares/'|add:user.profile.avatar|add:'.webp' %}" 
+									alt="Avatar" class="rounded-circle"
+									style="width:100%; height:100%; object-fit:cover;">
+							{% else %}
+								<img src="{% static 'appfel/img/pefil_f.png' %}" 
+									alt="Invitado" class="rounded-circle"
+									style="width:100%; height:100%; object-fit:cover;">
+							{% endif %}
+						</div>
+						<span class="header-text-perfil">
+							Hola,
+							{% if user.is_authenticated %}
+								<span class="fw-bold">{{ user.username }}</span>
+							{% else %}
+								<span>Invitado</span>
+							{% endif %}
+						</span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end shadow border-0">
+						{% if user.is_authenticated %}
+							<li><a class="dropdown-item" href="{% url 'p' %}">Mi perfil</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+						{% else %}
+							<li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+							<li><a class="dropdown-item" href="{% url 'reggistro' %}">Registrarse</a></li>
+						{% endif %}
+					</ul>
+				</li>
+			</ul>
+
+			<a href="{% url 'carrito:ver_carrito' %}">
+				<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" style="width: 32px; height: 32px; cursor: pointer; position: static;" />
+			</a>
 		</div>
 	</header>
 
@@ -500,5 +603,8 @@
 	{% endblock %}
 
 </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>twemoji.parse(document.body);</script>
 </body>
 </html>
