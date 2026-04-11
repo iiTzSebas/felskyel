@@ -30,6 +30,10 @@
                             <input type="number" name="precio" class="form-control" placeholder="0.00" required>
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Cantidad en Stock</label>
+                            <input type="number" name="stock" class="form-control" value="1" min="0" required>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Descripción</label>
                             <textarea name="descripcion" class="form-control" rows="3" placeholder="Detalles del producto..."></textarea>
                         </div>
@@ -57,7 +61,7 @@
                             <tr>
                                 <th>Imagen</th>
                                 <th>Producto</th>
-                                <th>Precio</th>
+                                <th>Precio / Stock</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
@@ -72,11 +76,14 @@
                                     <div class="fw-bold text-dark">{{ producto.nombre }}</div>
                                     <small class="text-muted">{{ producto.descripcion|truncatechars:40 }}</small>
                                 </td>
-                                <td><span class="fw-bold">${{ producto.precio }}</span></td>
+                                <td>
+                                    <span class="fw-bold text-success">${{ producto.precio }}</span><br>
+                                    <small class="text-muted">{{ producto.stock }} unid.</small>
+                                </td>
                                 <td>
                                     <!-- Aquí se muestra si tiene stock o no -->
-                                    <span class="status-badge {% if producto.disponible %}status-available{% else %}status-unavailable{% endif %}">
-                                        {% if producto.disponible %}En stock{% else %}Agotad{% endif %}
+                                    <span class="status-badge {% if producto.disponible and producto.stock > 0 %}status-available{% else %}status-unavailable{% endif %}">
+                                        {% if producto.disponible and producto.stock > 0 %}En stock{% else %}Agotado{% endif %}
                                     </span>
                                 </td>
                                 <td>

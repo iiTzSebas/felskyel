@@ -15,6 +15,7 @@ def admin_productos(request):
         nombre = request.POST.get('nombre')
         precio = request.POST.get('precio')
         descripcion = request.POST.get('descripcion')
+        stock = request.POST.get('stock', 0)
         imagen = request.FILES.get('imagen')
         # El stock se puede manejar como un booleano de disponibilidad
         disponible = request.POST.get('disponible') == 'on'
@@ -25,6 +26,7 @@ def admin_productos(request):
                 precio=precio,
                 descripcion=descripcion,
                 imagen=imagen,
+                stock=int(stock),
                 disponible=disponible,
                 proveedor=request.user 
             )
@@ -130,7 +132,7 @@ def detalle_producto(request, producto_id):
         'related_products': related_products
     }
 
-    if not producto.disponible:
+    if not producto.disponible or (hasattr(producto, 'stock') and producto.stock <= 0):
         return render(request, 'Contactos-proveedor/base-productos-agotado.html', contexto)
         
     return render(request, 'detalle_producto.html', contexto)
@@ -159,6 +161,7 @@ def editar_producto(request, producto_id):
         producto.nombre = request.POST.get('nombre')
         producto.precio = request.POST.get('precio')
         producto.descripcion = request.POST.get('descripcion')
+        producto.stock = int(request.POST.get('stock', 0))
         # El checkbox solo se envía si está marcado
         producto.disponible = request.POST.get('disponible') == 'on'
         
