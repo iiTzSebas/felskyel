@@ -202,7 +202,7 @@
         "user": 1,
         "content_type": 10,
         "object_id": "8",
-        "object_repr": "Jab¾n s¾lido",
+        "object_repr": "Jabón sólido",
         "action_flag": 2,
         "change_message": "[{\"changed\": {\"fields\": [\"Descripcion\"]}}]"
     }
@@ -215,7 +215,7 @@
         "user": 1,
         "content_type": 10,
         "object_id": "8",
-        "object_repr": "Jab¾n s¾lido",
+        "object_repr": "Jabón sólido",
         "action_flag": 2,
         "change_message": "[{\"changed\": {\"fields\": [\"Imagen\"]}}]"
     }
@@ -280,7 +280,7 @@
         "user": 1,
         "content_type": 10,
         "object_id": "1",
-        "object_repr": "Jab¾n de Carb¾n",
+        "object_repr": "Jabón de Carbón",
         "action_flag": 2,
         "change_message": "[{\"changed\": {\"fields\": [\"Imagen\"]}}]"
     }
@@ -293,7 +293,7 @@
         "user": 1,
         "content_type": 10,
         "object_id": "8",
-        "object_repr": "Jab¾n s¾lido",
+        "object_repr": "Jabón sólido",
         "action_flag": 2,
         "change_message": "[{\"changed\": {\"fields\": [\"Imagen\"]}}]"
     }
@@ -358,7 +358,7 @@
         "user": 1,
         "content_type": 10,
         "object_id": "1",
-        "object_repr": "Jab¾n de Carb¾n",
+        "object_repr": "Jabón de Carbón",
         "action_flag": 2,
         "change_message": "[{\"changed\": {\"fields\": [\"Imagen\"]}}]"
     }
@@ -436,7 +436,7 @@
         "user": 1,
         "content_type": 10,
         "object_id": "8",
-        "object_repr": "Jab¥n s¥lido",
+        "object_repr": "Jabón sólido",
         "action_flag": 3,
         "change_message": ""
     }
@@ -501,7 +501,7 @@
         "user": 1,
         "content_type": 10,
         "object_id": "1",
-        "object_repr": "Jab¥n de Carb¥n",
+        "object_repr": "Jabón de Carbón",
         "action_flag": 3,
         "change_message": ""
     }
@@ -777,7 +777,7 @@
         "user": 4,
         "nombre_negocio": "FINEFEEL",
         "nombre_publico": "Alex",
-        "descripcion": "Hola soy Alex, soy uno de los proveedores de Fino Aroma, he trabajado en esta industria durante 4 a±os, si tienes alguna duda o quieres agendar una cita, hazlo sin ning·n problema, estarÚ al pendiente para tu asesoramiento.",
+        "descripcion": "Hola soy Alex, soy uno de los proveedores de Fino Aroma, he trabajado en esta industria durante 4 años, si tienes alguna duda o quieres agendar una cita, hazlo sin ningún problema, estaré al pendiente para tu asesoramiento.",
         "foto_perfil": "proveedores/perfiles/Alex_2PSnJPQ.png",
         "estado": "activa",
         "email_contacto": "nicol233@gmail.com",
@@ -798,7 +798,7 @@
         "user": 6,
         "nombre_negocio": "Aroma",
         "nombre_publico": "Sofia",
-        "descripcion": "Hola soy SOFIA, soy una de las proveedoras de..., he trabajado en esta industria durante 4 a±os, si tienes alguna duda o quieres agendar una cita, hazlo sin ning·n problema, estarÚ al pendiente para tu asesoramiento.",
+        "descripcion": "Hola soy SOFIA, soy una de las proveedoras de..., he trabajado en esta industria durante 4 años, si tienes alguna duda o quieres agendar una cita, hazlo sin ningún problema, estaré al pendiente para tu asesoramiento.",
         "foto_perfil": "proveedores/perfiles/Ellaper.jpeg",
         "estado": "activa",
         "email_contacto": "Aroma23@gmail.com",
@@ -818,7 +818,7 @@
     "fields": {
         "nombre": "Shampoo Rosa",
         "precio": "15000",
-        "descripcion": "Shampoo rosa que cuida y resalta tu cabello con suavidad \r\nLimpia profundamente mientras hidrata, dejando un brillo natural y un aroma delicioso que dura todo el d¦a. Ideal para darle a tu rutina un toque fresco, femenino y especial",
+        "descripcion": "Shampoo rosa que cuida y resalta tu cabello con suavidad \r\nLimpia profundamente mientras hidrata, dejando un brillo natural y un aroma delicioso que dura todo el día. Ideal para darle a tu rutina un toque fresco, femenino y especial",
         "imagen": "proveedores/imagenes/Rosasham_hFUbYtk.png",
         "disponible": true,
         "proveedor": 4
@@ -828,9 +828,9 @@
     "model": "productos.producto",
     "pk": 12,
     "fields": {
-        "nombre": "Jab¾n solido",
+        "nombre": "Jabón sólido",
         "precio": "12000",
-        "descripcion": "Jab¾n solido utilizado para tratamiento de acnÚ",
+        "descripcion": "Jabón sólido utilizado para tratamiento de acné",
         "imagen": "proveedores/imagenes/Jabonsolido_WeX74EP.png",
         "disponible": true,
         "proveedor": 4
@@ -842,7 +842,7 @@
     "fields": {
         "nombre": "Gotas de los ojos",
         "precio": "10000",
-        "descripcion": "Solo utilizado para personas con irritaci¾n ocular",
+        "descripcion": "Solo utilizado para personas con irritación ocular",
         "imagen": "proveedores/imagenes/default_DImn4ao.png",
         "disponible": false,
         "proveedor": 4
@@ -854,7 +854,7 @@
     "fields": {
         "nombre": "Shampoo natural",
         "precio": "11000",
-        "descripcion": "Descubre un shampoo elaborado con ingredientes puros que limpian, nutren y revitalizan desde la raÝz. Sin quÝmicos agresivos, solo suavidad, brillo y frescura en cada lavado. t· cabello lo notar desde el primer uso!",
+        "descripcion": "Descubre un shampoo elaborado con ingredientes puros que limpian, nutren y revitalizan desde la raíz. Sin químicos agresivos, solo suavidad, brillo y frescura en cada lavado. ¡tu cabello lo notará desde el primer uso!",
         "imagen": "proveedores/imagenes/card-img2_ZlzkH9K.png",
         "disponible": true,
         "proveedor": 6
@@ -864,9 +864,9 @@
     "model": "productos.producto",
     "pk": 15,
     "fields": {
-        "nombre": "Jab¾n de Carb¾n",
+        "nombre": "Jabón de Carbón",
         "precio": "10000",
-        "descripcion": "Jab¾n de esencia de carb¾n que ayuda a prevenir el acnÚ. ",
+        "descripcion": "Jabón de esencia de carbón que ayuda a prevenir el acné. ",
         "imagen": "proveedores/imagenes/img1_44Vv2gB.png",
         "disponible": true,
         "proveedor": 6
@@ -878,7 +878,7 @@
     "fields": {
         "nombre": "Hidratante para manos",
         "precio": "15000",
-        "descripcion": "Hidrataci¾n profunda para pieles secas.",
+        "descripcion": "Hidratación profunda para pieles secas.",
         "imagen": "proveedores/imagenes/cremamanos_ARW1GPZ.jpeg",
         "disponible": true,
         "proveedor": 6
@@ -912,7 +912,7 @@
     "model": "productos.producto",
     "pk": 20,
     "fields": {
-        "nombre": "Jab¾n de avena",
+        "nombre": "Jabón de avena",
         "precio": "6000",
         "descripcion": "Avena",
         "imagen": "",
