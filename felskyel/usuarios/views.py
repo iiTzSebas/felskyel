@@ -20,8 +20,12 @@ def reggistro_view(request):
             'secret': settings.RECAPTCHA_SECRET_KEY,
             'response': recaptcha_response
         }
-        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
-        result = r.json()
+        try:
+            r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data, timeout=5)
+            result = r.json()
+        except (requests.exceptions.RequestException, ValueError):
+            messages.error(request, "Error de conexión al verificar el captcha. Por favor intente de nuevo.")
+            return render(request, 'usuarios/reggistro.html', {'form': form})
 
         if not result.get('success'):
             messages.error(request, "Por favor, confirma que no eres un robot.")
@@ -51,8 +55,12 @@ def solicitud_proveedor_view(request):
             'secret': settings.RECAPTCHA_SECRET_KEY,
             'response': recaptcha_response
         }
-        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
-        result = r.json()
+        try:
+            r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data, timeout=5)
+            result = r.json()
+        except requests.exceptions.RequestException:
+            messages.error(request, "Error de comunicación con Google. Inténtalo de nuevo.")
+            return render(request, 'solicitud-para-registro.html')
 
         if not result.get('success'):
             messages.error(request, "CAPTCHA inválido. Intenta de nuevo.")
