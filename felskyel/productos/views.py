@@ -129,6 +129,10 @@ def detalle_producto(request, producto_id):
         'total_comentarios': comentarios.count(),
         'related_products': related_products
     }
+
+    if not producto.disponible:
+        return render(request, 'Contactos-proveedor/base-productos-agotado.html', contexto)
+        
     return render(request, 'detalle_producto.html', contexto)
 
 @login_required
