@@ -5,6 +5,7 @@
 
 {% block styles %}
 	<link rel="stylesheet" href="{% static 'appfel/css/solicitud-para-registro.css' %}" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 {% endblock %}
 
 {% block content %}
@@ -89,10 +90,16 @@
 
 		</fieldset>
 
+		<!--ternimod y condiciones-->
 		<div class="form-actions">
-			<div class="terms-and-conditions">
-				<input type="checkbox" id="aceptar_terminos" name="aceptar_terminos" required>
+			<div class="terms-and-conditions d-flex align-items-center justify-content-center gap-2">
+				<input type="checkbox" id="aceptar_terminos" name="aceptar_terminos" required style="width: auto;">
 				<label for="aceptar_terminos">He leído y acepto los <a href="{% url 'terminos_y_condiciones' %}" class="btn-ver hover-bright" target="_blank">términos y condiciones</a></label>
+			</div>
+
+			<!-- reCAPTCHA -->
+			<div class="form-group d-flex justify-content-center my-3">
+				<div class="g-recaptcha" data-sitekey="6LcxtrIsAAAAAHKzShd3ZvVoPpx0Flh2HIMZWxPt"></div>
 			</div>
 
 			<div class="buttons-container">

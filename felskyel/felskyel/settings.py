@@ -149,6 +149,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Los correos s
 DEFAULT_FROM_EMAIL = 'no-reply@felskyel.com'
 ADMIN_EMAIL = 'admin@felskyel.com'
 
+# Configuración de Google reCAPTCHA
+RECAPTCHA_SECRET_KEY = '6LcxtrIsAAAAAJONTsdEQx8zlPI3HrnbEj4ve5AF'
+
 # Cuando estés listo para producción con Gmail, usarías algo así:
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_PORT = 587

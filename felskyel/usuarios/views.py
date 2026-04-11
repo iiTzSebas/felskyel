@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
@@ -12,6 +13,25 @@ from django.conf import settings
 def reggistro_view(request):
     if request.method == 'POST':
         form = RegistroForm(request.POST)
+        
+        # Verificación de reCAPTCHA
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+        data = {
+            'secret': settings.RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json()
+
+        if not result.get('success'):
+            messages.error(request, "Por favor, confirma que no eres un robot.")
+            return render(request, 'usuarios/reggistro.html', {'form': form})
+
+        # Validación de seguridad: Verificar si se aceptaron los términos
+        if not request.POST.get('aceptar_terminos'):
+            messages.error(request, "Debes aceptar los términos y condiciones para registrarte.")
+            return render(request, 'usuarios/reggistro.html', {'form': form})
+            
         if form.is_valid():
             if form.cleaned_data.get('user_type') == Usuario.PROVEEDOR:
                 return redirect('solicitud_proveedor')
@@ -25,6 +45,24 @@ def reggistro_view(request):
 
 def solicitud_proveedor_view(request):
     if request.method == 'POST':
+        # Verificación de reCAPTCHA para proveedores
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+        data = {
+            'secret': settings.RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json()
+
+        if not result.get('success'):
+            messages.error(request, "CAPTCHA inválido. Intenta de nuevo.")
+            return render(request, 'solicitud-para-registro.html')
+
+        # Validación de seguridad para la solicitud de proveedor
+        if not request.POST.get('aceptar_terminos'):
+            messages.error(request, "Debes aceptar los términos y condiciones para enviar la solicitud.")
+            return render(request, 'solicitud-para-registro.html')
+            
         try:
             app = ProviderApplication.objects.create(
                 nombre_completo=request.POST.get('nombre_completo'),

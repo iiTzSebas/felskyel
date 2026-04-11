@@ -70,7 +70,7 @@ def crud (request):
     return render (request, 'crud/indexx.html')
 
 def terminos_y_condiciones(request):
-    return HttpResponse("<h1>Términos y Condiciones</h1><p>Aquí va el contenido legal de tu sitio.</p>")
+    return render(request, 'terminos_y_condiciones.html')
 
 def jabon_de_carbon(request):
     return render (request, 'jabon_de_carbon.html')

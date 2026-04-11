@@ -141,3 +141,29 @@ def eliminar_producto(request, producto_id):
         producto.delete()
         messages.success(request, f"Producto '{nombre}' eliminado.")
     return redirect('productos:admin_productos')
+
+@login_required
+def editar_producto(request, producto_id):
+    if request.user.user_type != 'proveedor':
+        messages.error(request, "Acceso denegado.")
+        return redirect('inicio')
+    
+    # Obtenemos el producto asegurándonos de que pertenezca al proveedor actual
+    producto = get_object_or_404(Producto, id=producto_id, proveedor=request.user)
+
+    if request.method == 'POST':
+        producto.nombre = request.POST.get('nombre')
+        producto.precio = request.POST.get('precio')
+        producto.descripcion = request.POST.get('descripcion')
+        # El checkbox solo se envía si está marcado
+        producto.disponible = request.POST.get('disponible') == 'on'
+        
+        nueva_imagen = request.FILES.get('imagen')
+        if nueva_imagen:
+            producto.imagen = nueva_imagen
+            
+        producto.save()
+        messages.success(request, f"Producto '{producto.nombre}' actualizado correctamente.")
+        return redirect('productos:admin_productos')
+
+    return render(request, 'panel_control/editar_producto.html', {'producto': producto})
