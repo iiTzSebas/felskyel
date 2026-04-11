@@ -19,20 +19,14 @@
 {% block product_actions %}
 <div class="product-actions">
     <a href="{% url 'carrito:agregar_al_carrito' producto.id %}?next={{ request.path }}" class="btn-add-to-cart hover-bright text-decoration-none">Agregar</a>
-    <a href="{% url 'contacto' %}" class="btn-add-to-cart hover-bright text-decoration-none" style="background-color: #666;">
-        Contactar Proveedor
-    </a>
+    {% if producto.proveedor.perfil_proveedor %}
+        <a href="{% url 'detalle_proveedor' producto.proveedor.perfil_proveedor.pk %}" class="btn-add-to-cart hover-bright text-decoration-none" style="background-color: #666;">
+            Contactar Proveedor
+        </a>
+    {% endif %}
 </div>
 {% endblock %}
 
 {% block imagen %} 
-
-    {% if producto.imagen %}
-        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img1" />
-    {% else %}
-        <img src="{% static 'appfel/img/shop/default_product.png' %}" alt="{{ producto.nombre }} (Sin imagen)" class="img1" />
-    {% endif %}
-    
+    <img src="{{ producto.imagen_url }}" alt="{{ producto.nombre }}" class="img1">
 {% endblock %}
-
-

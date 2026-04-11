@@ -25,13 +25,14 @@ def admin_productos(request):
                 precio=precio,
                 descripcion=descripcion,
                 imagen=imagen,
-                # Asegúrate de que el modelo Producto tenga el campo 'user' o 'proveedor'
-                # proveedor=request.user 
+                disponible=disponible,
+                proveedor=request.user 
             )
             messages.success(request, f"Producto '{nombre}' añadido correctamente.")
             return redirect('productos:admin_productos')
 
-    productos_proveedor = Producto.objects.all() # Aquí podrías filtrar por proveedor en el futuro
+    # Filtramos para que Sofia solo vea lo de Sofia y Alex solo lo de Alex
+    productos_proveedor = Producto.objects.filter(proveedor=request.user)
     return render(request, 'panel_control/admin_productos.html', {'productos': productos_proveedor})
 
 def lista_productos(request):
@@ -133,7 +134,9 @@ def detalle_producto(request, producto_id):
 @login_required
 def eliminar_producto(request, producto_id):
     if request.user.user_type == 'proveedor':
-        producto = get_object_or_404(Producto, id=producto_id)
+        # Al agregar proveedor=request.user, Django devolverá 404 si el producto 
+        # existe pero pertenece a otra persona. Seguridad ante todo.
+        producto = get_object_or_404(Producto, id=producto_id, proveedor=request.user)
         nombre = producto.nombre
         producto.delete()
         messages.success(request, f"Producto '{nombre}' eliminado.")

@@ -390,7 +390,9 @@
 			{% block product_actions %}
 			<div class="product-actions">
 				<a href="{% url 'carrito:agregar_al_carrito' producto.id %}?next={{ request.path }}" class="btn-add-to-cart hover-bright text-decoration-none">Agregar al carrito</a>
-				<a href="{% url 'contacto' %}" class="btn-add-to-cart hover-bright">Contactar Proveedor</a>
+				{% if producto.proveedor.perfil_proveedor %}
+					<a href="{% url 'detalle_proveedor' producto.proveedor.perfil_proveedor.pk %}" class="btn-add-to-cart hover-bright">Contactar Proveedor</a>
+				{% endif %}
 			</div>
 			{% endblock %}
 		</div>
@@ -417,7 +419,7 @@
             {% if related.imagen %}
                 <img src="{{ related.imagen.url }}" alt="{{ related.nombre }}" class="related-card-img" />
             {% else %}
-                <img src="{% static 'appfel/img/shop/default_product.png' %}" alt="{{ related.nombre }} (Sin imagen)" class="related-card-img" />
+                <img src="{% static 'appfel/img/default.png' %}" alt="{{ related.nombre }} (Sin imagen)" class="related-card-img" />
             {% endif %}
             <div class="related-card-body">
                 <h3 class="related-card-title">{{ related.nombre }}</h3>

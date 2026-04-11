@@ -66,11 +66,7 @@
                             {% for producto in productos %}
                             <tr>
                                 <td>
-                                    {% if producto.imagen %}
-                                        <img src="{{ producto.imagen.url }}" class="product-list-img">
-                                    {% else %}
-                                        <div class="product-list-img bg-secondary d-flex align-items-center justify-content-center text-white">?</div>
-                                    {% endif %}
+                                    <img src="{{ producto.imagen_url }}" class="product-list-img" alt="{{ producto.nombre }}">
                                 </td>
                                 <td>
                                     <div class="fw-bold text-dark">{{ producto.nombre }}</div>
@@ -79,7 +75,9 @@
                                 <td><span class="fw-bold">${{ producto.precio }}</span></td>
                                 <td>
                                     <!-- Aquí se muestra si tiene stock o no -->
-                                    <span class="status-badge status-available">En Stock</span>
+                                    <span class="status-badge {% if producto.disponible %}status-available{% else %}status-unavailable{% endif %}">
+                                        {% if producto.disponible %}En stock{% else %}Agotad{% endif %}
+                                    </span>
                                 </td>
                                 <td>
                                     <div class="btn-group">
