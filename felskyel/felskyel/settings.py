@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'usuarios',
     'productos',
     'buscar',
+    'factura',
 ]
 
 MIDDLEWARE = [
@@ -158,3 +159,9 @@ ADMIN_EMAIL = 'admin@felskyel.com'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
+# Stripe configuración
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STRIPE_PUBLIC_KEY = "pk_test_51TL99mJ0mJlBAw9dBViEjbNrAgJ48VgCT0MgEg8ugZNzAXo8LkJ6jHP6xohksHtAZVS96dJsiyVZvQeEcq2f6aCH00rjQxn4Gr"
+STRIPE_SECRET_KEY = "sk_test_51TL99mJ0mJlBAw9dp8lypAO9NtOPpNF1sEtkrs6rX9IEQKIFE7N8zL8amBwquiunN2XxbW4q820pOeUXeoFfmsZw00wkWt5ZMO"
+
+
