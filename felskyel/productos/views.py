@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def admin_productos(request):
-    # Corregimos la validación según el modelo Usuario (donde PROVEEDOR = 'proveedor')
-    if request.user.user_type != 'proveedor':
+    # Ajustamos a 'P' que es lo que usa tu base de datos según p.html
+    if request.user.user_type not in ['proveedor', 'P']:
         messages.error(request, "Acceso denegado. Solo proveedores pueden administrar productos.")
         return redirect('inicio')
 
@@ -15,18 +15,23 @@ def admin_productos(request):
         nombre = request.POST.get('nombre')
         precio = request.POST.get('precio')
         descripcion = request.POST.get('descripcion')
-        stock = request.POST.get('stock', 0)
+        stock_raw = request.POST.get('stock')
         imagen = request.FILES.get('imagen')
         # El stock se puede manejar como un booleano de disponibilidad
         disponible = request.POST.get('disponible') == 'on'
 
         if nombre and precio:
+            try:
+                nuevo_stock = int(stock_raw) if stock_raw else 0
+            except ValueError:
+                nuevo_stock = 0
+                
             Producto.objects.create(
                 nombre=nombre,
                 precio=precio,
                 descripcion=descripcion,
                 imagen=imagen,
-                stock=int(stock),
+                stock=nuevo_stock,
                 disponible=disponible,
                 proveedor=request.user 
             )
@@ -132,7 +137,7 @@ def detalle_producto(request, producto_id):
         'related_products': related_products
     }
 
-    if not producto.disponible or (hasattr(producto, 'stock') and producto.stock <= 0):
+    if not producto.disponible or producto.stock <= 0:
         return render(request, 'Contactos-proveedor/base-productos-agotado.html', contexto)
         
     return render(request, 'detalle_producto.html', contexto)
@@ -150,7 +155,7 @@ def eliminar_producto(request, producto_id):
 
 @login_required
 def editar_producto(request, producto_id):
-    if request.user.user_type != 'proveedor':
+    if request.user.user_type not in ['proveedor', 'P']:
         messages.error(request, "Acceso denegado.")
         return redirect('inicio')
     
@@ -161,7 +166,13 @@ def editar_producto(request, producto_id):
         producto.nombre = request.POST.get('nombre')
         producto.precio = request.POST.get('precio')
         producto.descripcion = request.POST.get('descripcion')
-        producto.stock = int(request.POST.get('stock', 0))
+        stock_raw = request.POST.get('stock')
+        
+        try:
+            producto.stock = int(stock_raw) if stock_raw else 0
+        except ValueError:
+            pass # Mantiene el valor anterior si hay error
+        
         # El checkbox solo se envía si está marcado
         producto.disponible = request.POST.get('disponible') == 'on'
         
@@ -174,3 +185,27 @@ def editar_producto(request, producto_id):
         return redirect('productos:admin_productos')
 
     return render(request, 'panel_control/editar_producto.html', {'producto': producto})
+
+@login_required
+def actualizar_stock(request, producto_id):
+    """Permite sumar unidades al stock actual rápidamente."""
+    if request.user.user_type not in ['proveedor', 'P']:
+        return redirect('inicio')
+    
+    producto = get_object_or_404(Producto, id=producto_id, proveedor=request.user)
+    
+    if request.method == 'POST':
+        cantidad_sumar = request.POST.get('cantidad_sumar')
+        try:
+            cantidad = int(cantidad_sumar) if cantidad_sumar else 0
+            if cantidad > 0:
+                producto.stock += cantidad
+                # Si el producto tiene stock, aseguramos que aparezca disponible
+                if producto.stock > 0:
+                    producto.disponible = True
+                producto.save()
+                messages.success(request, f"Se añadieron {cantidad} unidades a {producto.nombre}.")
+        except ValueError:
+            messages.error(request, "Cantidad inválida.")
+            
+    return redirect('productos:admin_productos')
