@@ -8,9 +8,10 @@ from .models import Factura, ItemFactura
 from carrito.models import Carrito
 from productos.models import Producto
 
-# 🔑 Configurar Stripe
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
+# --- CONFIGURACIÓN DE STRIPE ---
+# ⚠️ CADA INTEGRANTE DEBE PEGAR SU PROPIA LLAVE AQUÍ PARA QUE FUNCIONE
+stripe.api_key = "PEGA_AQUÍ_TU_LLAVE_DE_STRIPE" 
+# -------------------------------
 @login_required
 def crear_checkout(request):
     try:
