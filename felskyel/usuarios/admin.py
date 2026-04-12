@@ -102,7 +102,7 @@ class ProviderApplicationAdmin(admin.ModelAdmin):
                     'email_contacto': solicitud.email,
                     'telefono_contacto': solicitud.telefono,
                     'domicilio_negocio': solicitud.domicilio,
-                    'estado': 'activo'
+                    'estado': 'activa'
                 }
             )
             

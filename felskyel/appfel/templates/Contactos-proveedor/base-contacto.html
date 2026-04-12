@@ -32,94 +32,36 @@
 	
 <main class="main-content">
 	<div class="content-wrapper">
-	<div class="column-left">
-	<div class="copy1">
-		<h1 class="copy-title title1">Contacto</h1>
-		<h2 class="subtitle-a copy-subtitle3">Contactarte con tu proveedor </h2>
+        <!-- Columna Izquierda: Información y Formulario -->
+        <div class="column-left">
+            <div class="copy1">
+                <h1 class="copy-title title1">Contacto</h1>
+                <h2 class="subtitle-a copy-subtitle3 mb-4">Contactarte con tu proveedor</h2>
 
-    {% block contenido %}
-		<p class="copy-text2 body-text1">
-			“Hola soy Jhoana, soy una de las proveedoras de smiLIFE, he trabajado en esta industria durante 4 años, si tienes alguna duda o quieres agendar una cita,  hazlo sin ningún problema, estaré al pendiente para tu asesoramiento.”<br />
-			<br/>
-			¿Tienes dudas en como aplicarte tu crema, tienes algunas dudas sobre que producto es el ideal para ti, quieres un asesoramiento previo antes de tu compra?<br />
-			<br/>
-			Contactarme y tan pronto como pueda te responderé.
-		</p>
-    {% endblock %}
-	</div>
+                {% block contenido %}
+                    <p class="copy-text2 body-text1">
+                        ¿Tienes dudas en como aplicarte tu producto, o quieres un asesoramiento previo antes de tu compra?<br />
+                        Contáctanos y tan pronto como podamos te responderemos.
+                    </p>
+                {% endblock %}
+            </div>
 
-<div class="contact-form-container">		
+            {% block formulario_contacto %}{% endblock %}
+        </div>
 
-<h2 class="subtitle-heading subtitle1">Contactarme</h2>
-	<div class="form">
-		<div class="input-group input-group1">
-			<p class="text-b">Nombre</p>
-			<input class="input-group-input input-white" value="Jane" required />
-		</div>
-		
-		<div class="input-group input-group2">
-			<p class="text-b">Apellido</p>
-			<input class="input-group-input input-white" value="Smitherton" required />
-		</div>
-		
-		<div class="input-group input-group3">
-			<p class="text-b">Correo electrónico</p>
-			<input class="input-group-input input-white" value="correoelectrónico@dominioficticiodejane.net" required />
-		</div>
-		
-		<div class="input-group input-group4">
-			<p class="text-b">Número de contacto</p>
-			<input class="input-group-input input-white" value="320 593 4175" required />
-		</div>
-		
-		
-		<div class="input-group5">
-			<p class="text-b">Tu mensaje</p>
-			<textarea class="input-group-input2 small-text input-white">Escribe tu pregunta o mensaje</textarea>
-		</div>
-		<button class="form-btn body-text2 btn-black hover-bright">Enviar</button>
-	</div>
-
-</div>
-	</div> <!-- End column-left -->
-	
-
-<div class="column-right">
-
-	{% block imagen %} <img src="{% static 'appfel/img/Foto_refe.png' %}" alt="Foto de referencia" class="img1" /> {% endblock %}
-
-
-	<h2 class="subtitle-agendar-cita">Agendar cita.</h2>
-	
-<section class="btn-dia-y-hora">
-		<form action="procesar_cita.php" method="post">
-    <div class="appointment-group">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" class="input-group-input input-white" required>
+        <!-- Columna Derecha: Imagen de Perfil -->
+        <div class="column-right">
+            <div class="profile-card-container">
+                {% block imagen %} 
+                    <img src="{% static 'appfel/img/Foto_refe.png' %}" alt="Foto de referencia" class="img1" /> 
+                {% endblock %}
+            </div>
+            {% block formulario_cita %}{% endblock %}
+        </div>
     </div>
-
-    <div class="appointment-group">
-        <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha" class="input-group-input input-white" required>
-    </div>
-
-    <div class="appointment-group">
-        <label for="hora">Hora:</label>
-        <input type="time" id="hora" name="hora" class="input-group-input input-white" required>
-    </div>
-
-    <button class="btn-generar text1 hover-bright">Generar</button>
-
-		</form>
-</section>
-
-</div>
-	</div> <!-- End content-wrapper -->
-
 </main>
 	
 	<footer class="footer section">
-		
 		<div class="footer-row-bottom">
 			<h2 class="footer-subtitle subheading">{% block pie %} {% endblock %}</h2>
 			<div class="social-buttons">

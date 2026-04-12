@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistroForm, LoginForm
-from .models import Usuario, ProviderApplication, ProviderProfile
+from .models import Usuario, ProviderApplication, ProviderProfile, Cita
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -113,7 +113,17 @@ def mi_perfil_view(request):
             messages.warning(request, "Tu perfil de proveedor aún no está configurado.")
             return redirect('inicio')
     else:
-        return render(request, 'usuarios/p.html')
+        # Obtenemos las citas solicitadas por este cliente, ordenadas por la más reciente
+        citas = Cita.objects.filter(cliente=request.user).order_by('-creada_en')
+        return render(request, 'usuarios/p.html', {'citas': citas})
+
+@login_required
+def eliminar_cita_cliente_view(request, cita_id):
+    # Buscamos la cita asegurándonos de que pertenezca al usuario actual
+    cita_obj = get_object_or_404(Cita, id=cita_id, cliente=request.user)
+    cita_obj.delete()
+    messages.success(request, "La solicitud ha sido eliminada correctamente.")
+    return redirect('mi_perfil')
 
 def login_view(request):
     if request.method == 'POST':
