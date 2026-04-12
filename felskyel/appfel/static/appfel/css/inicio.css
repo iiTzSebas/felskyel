@@ -108,10 +108,11 @@ img {
 
 /* Ajuste global para Twemoji en el texto */
 img.emoji {
-    height: 1.1em;
-    width: 1.1em;
+    height: 1em;
+    width: 1em;
     margin: 0 .05em 0 .1em;
-    vertical-align: -0.15em;
+    vertical-align: -0.1em;
+    display: inline-block;
 }
 
 .search-container-custom button img.emoji {

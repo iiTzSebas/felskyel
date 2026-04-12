@@ -12,6 +12,15 @@ body {
 	font-family: 'Inter', sans-serif;
 }
 
+/* Ajuste para Twemoji en el contenido principal */
+img.emoji {
+	height: 1em;
+	width: 1em;
+	margin: 0 .05em 0 .1em;
+	vertical-align: -0.1em;
+	display: inline-block;
+}
+
 .text-b {
 	font-size: 16px;
 	font-style: normal;

@@ -42,6 +42,15 @@ body {
     box-sizing: border-box;
 }
 
+/* Ajuste para Twemoji en textos y etiquetas */
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+    display: inline-block;
+}
+
 /* Estilos del Header y Footer (asumiendo que son los mismos de contacto.css) */
 .header {
 	position: relative;
