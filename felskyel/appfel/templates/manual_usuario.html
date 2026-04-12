@@ -7,6 +7,38 @@
 
 {% block styles %}
 <style>
+    /* Estilos integrados para el Header para mantener consistencia */
+    .header {
+        background-color: #ffffff;
+        padding: 15px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start !important;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .header-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .header-arrow-left {
+        position: static !important;
+        transform: none !important;
+        margin-right: 15px;
+        color: #000;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+    .header-arrow-left svg {
+        width: 24px;
+        height: 24px;
+    }
     /* Desplazamiento suave */
     html {
         scroll-behavior: smooth;
@@ -20,27 +52,40 @@
         background-color: #000 !important;
         border-color: #000 !important;
     }
+    /* Ajuste global para Twemoji en el texto */
     img.emoji {
-        height: 1.2em;
-        width: 1.2em;
-        margin: 0 0.1em;
-        vertical-align: middle;
+        height: 1.1em;
+        width: 1.1em;
+        margin: 0 .05em 0 .1em;
+        vertical-align: -0.15em;
     }
 </style>
 {% endblock %}
 
 {% block content %}
+<header class="header">
+    <div class="header-nav">
+        <div style="display: flex; align-items: center;">
+            <a href="javascript:history.back()" class="header-arrow-left" aria-label="Volver a la página anterior">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
+                </svg>
+            </a>
+            <a href="{% url 'inicio' %}" class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0; text-decoration: none;">Felskyel 🌿</a>
+        </div>
+    </div>
+</header>
 <div class="container py-4">
     <div class="row">
         <!-- Menú lateral de navegación del manual -->
         <div class="col-lg-3 mb-4">
             <div id="manual-menu" class="list-group sticky-top" style="top: 180px;">
                 <a href="#introduccion" class="list-group-item list-group-item-action active" aria-current="true">
-                    Introducción Al manual de usuario.
+                    Introducción 📖
                 </a>
-                <a href="#navegacion" class="list-group-item list-group-item-action">Navegación</a>
-                <a href="#productos" class="list-group-item list-group-item-action">Catálogo y Productos</a>
-                <a href="#contacto" class="list-group-item list-group-item-action">Soporte y Ayuda</a>
+                <a href="#navegacion" class="list-group-item list-group-item-action">Navegación 🗺️</a>
+                <a href="#productos" class="list-group-item list-group-item-action">Catálogo y Productos 🧼</a>
+                <a href="#contacto" class="list-group-item list-group-item-action">Soporte y Ayuda 🆘</a>
             </div>
         </div>
 
@@ -49,7 +94,7 @@
             
             <!-- Sección: Introducción -->
             <section id="introduccion" class="mb-5">
-                <h1 class="display-5 mb-3">Manual de Usuario</h1>
+                <h1 class="display-5 mb-3">Manual de Usuario 📖</h1>
                 <p class="lead text-muted">Bienvenido a la documentación oficial de Felskyel.</p>
                 <p>Esta guía está diseñada para ayudarte a navegar por nuestra tienda virtual, conocer nuestros productos orgánicos (jabones, shampoos, cremas) y gestionar tus pedidos fácilmente.</p>
                 <hr>
@@ -57,30 +102,30 @@
 
             <!-- Sección: Navegación -->
             <section id="navegacion" class="mb-5">
-                <h3><span class="text-primary">#</span> Navegación General</h3>
+                <h3><span class="text-primary">#</span> Navegación General 🗺️</h3>
                 <p>El sistema cuenta con una barra de menú superior disponible en todas las pantallas:</p>
                 <ul class="list-group list-group-flush mb-3">
-                    <li class="list-group-item"><i class="bi bi-house-door"></i> <strong>Inicio:</strong> Pantalla de bienvenida e información general.</li>
-                    <li class="list-group-item"><i class="bi bi-shop"></i> <strong>Tienda:</strong> Catálogo completo de nuestros productos naturales.</li>
-                    <li class="list-group-item"><i class="bi bi-person-circle"></i> <strong>Perfil:</strong> Gestión de tu cuenta y datos personales.</li>
-                    <li class="list-group-item"><i class="bi bi-envelope"></i> <strong>Contáctenos:</strong> Canales de atención y formularios PQR.</li>
+                    <li class="list-group-item"><i class="bi bi-house-door"></i> <strong>Inicio: 🏠</strong> Pantalla de bienvenida e información general.</li>
+                    <li class="list-group-item"><i class="bi bi-shop"></i> <strong>Tienda: 🛒</strong> Catálogo completo de nuestros productos naturales.</li>
+                    <li class="list-group-item"><i class="bi bi-person-circle"></i> <strong>Perfil: 👤</strong> Gestión de tu cuenta y datos personales.</li>
+                    <li class="list-group-item"><i class="bi bi-envelope"></i> <strong>Contáctenos: 📞</strong> Canales de atención y formularios PQR.</li>
                 </ul>
             </section>
 
             <!-- Sección: Productos -->
             <section id="productos" class="mb-5">
-                <h3><span class="text-primary">#</span> Catálogo y Productos</h3>
+                <h3><span class="text-primary">#</span> Catálogo y Productos 🧼</h3>
                 <p>Explora nuestra variedad de productos diseñados para tu bienestar.</p>
                 
                 <div class="card mb-4 border-primary">
-                    <div class="card-header bg-primary text-white">¿Cómo realizar una compra?</div>
+                    <div class="card-header bg-primary text-white">¿Cómo realizar una compra? 🛍️</div>
                     <div class="card-body">
                         <ol>
-                            <li>Dirígete a la sección <strong>Tienda</strong> o selecciona una categoría (Jabones, Cremas, etc.).</li>
-                            <li>Haz clic en el producto que te interesa para ver detalles e ingredientes.</li>
-                            <li>Presiona el botón <strong>Añadir al carrito</strong>.</li>
-                            <li>Ve al carrito de compras y selecciona <strong>Finalizar Pedido</strong>.</li>
-                            <li>Completa tus datos de envío y pago.</li>
+                            <li>Dirígete a la sección <strong>Tienda</strong> o selecciona una categoría (Jabones, Cremas, etc.). 🛒</li>
+                            <li>Haz clic en el producto que te interesa para ver detalles e ingredientes. 🔍</li>
+                            <li>Presiona el botón <strong>Añadir al carrito</strong>. ➕</li>
+                            <li>Ve al carrito de compras y selecciona <strong>Finalizar Pedido</strong>. 💳</li>
+                            <li>Completa tus datos de envío y pago. 🚚</li>
                         </ol>
                     </div>
                 </div>
@@ -92,7 +137,7 @@
             
             <!-- Sección: Contacto -->
             <section id="contacto" class="mb-5">
-                <h3><span class="text-primary">#</span> Soporte y Ayuda</h3>
+                <h3><span class="text-primary">#</span> Soporte y Ayuda 🆘</h3>
                 <p>Si experimentas problemas técnicos o tienes dudas adicionales:</p>
                 <p>Visita la sección de <a href="{% url 'contacto' %}">Contacto</a> para acceder al chat en vivo, líneas de atención 24/7 y ubicación de sedes físicas.</p>
             </section>

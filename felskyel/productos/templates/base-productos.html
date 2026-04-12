@@ -411,12 +411,16 @@
 		}
 
 		/* Ajuste por si twemoji convierte la lupa en imagen */
-		.search-container-custom button img.emoji {
-			width: 22px !important;
-			height: 22px !important;
-			width: 20px !important;
-			height: 20px !important;
-		}
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+        }
+
+        .search-container-custom button img.emoji {
+            vertical-align: middle;
+        }
 
 	</style>
 	{% endblock %}
