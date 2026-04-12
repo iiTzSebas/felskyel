@@ -60,7 +60,6 @@ ROOT_URLCONF = 'felskyel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],    
         'DIRS': [
             BASE_DIR / 'appfel' / 'templates',
         ],

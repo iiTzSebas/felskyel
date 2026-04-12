@@ -14,8 +14,13 @@ urlpatterns = [
     path('prueba2/', views.prueba2, name='prueba2'),
     path('prueba3/', views.prueba3, name='prueba3'),
     path('terminos-y-condiciones/', views.terminos_y_condiciones, name='terminos_y_condiciones'),
+    
     path('panel-control/', views.panel, name='panel'),
     path('perfil_contacto/', views.perfil_contacto, name='perfil_contacto'),
+    path('cita-cliente/', views.cita, name='cita'),
+    path('gestionar-cita/<int:cita_id>/<str:accion>/', views.gestionar_cita, name='gestionar_cita'),
+    path('eliminar-cita/<int:cita_id>/', views.eliminar_cita, name='eliminar_cita'),
+    path('eliminar-cita-cliente/<int:cita_id>/', usuarios_views.eliminar_cita_cliente_view, name='eliminar_cita_cliente'),
 
     path('jabon-de-carbon/', views.jabon_de_carbon, name='jabon_de_carbon'),
     path('protector-labios/', views.protector_labios, name='protector_labios'),

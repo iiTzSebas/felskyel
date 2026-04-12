@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Citas{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'appfel/css/admin_productos.css' %}">
+{% endblock %}
+
+{% block nombre %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold">Gestión de Citas y Consultas</h1>
+        <a href="{% url 'panel' %}" class="btn btn-outline-secondary">Volver al Panel</a>
+    </div>
+
+    {% if citas %}
+    <div class="row row-cols-1 g-4">
+        {% for cita in citas %}
+        <div class="col">
+            <div class="card shadow-sm border-0 {% if cita.estado == 'aceptada' %}border-start border-success border-4{% elif cita.estado == 'rechazada' %}border-start border-danger border-4{% endif %}">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <h5 class="fw-bold mb-1">{{ cita.nombre }} {{ cita.apellido }}</h5>
+                            <p class="text-muted mb-2 small"><i class="bi bi-geo-alt-fill"></i> {{ cita.direccion }}</p>
+                            <div class="d-flex gap-2">
+                                <span class="badge {% if cita.estado == 'pendiente' %}bg-warning text-dark{% elif cita.estado == 'aceptada' %}bg-success{% else %}bg-danger{% endif %} text-uppercase">
+                                    {{ cita.estado }}
+                                </span>
+                                {% if cita.fecha %}
+                                <span class="badge bg-info text-dark">{{ cita.fecha }} | {{ cita.hora }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-5 mt-3 mt-md-0">
+                            <p class="mb-1 text-dark"><strong>Mensaje:</strong> {{ cita.mensaje }}</p>
+                            <p class="mb-0 text-muted small"><strong>Contacto:</strong> {{ cita.email }} | {{ cita.telefono }}</p>
+                        </div>
+                        <div class="col-md-3 text-md-end mt-3 mt-md-0">
+                            {% if cita.estado == 'pendiente' %}
+                            <div class="btn-group w-100">
+                                <a href="{% url 'gestionar_cita' cita.id 'aceptar' %}" class="btn btn-success">Aceptar</a>
+                                <a href="{% url 'gestionar_cita' cita.id 'rechazar' %}" class="btn btn-danger">Rechazar</a>
+                            </div>
+                            {% else %}
+                            <p class="small text-muted mb-2">Solicitud procesada el {{ cita.creada_en|date:"d/m/Y" }}</p>
+                            <a href="{% url 'eliminar_cita' cita.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro de tu historial?')">
+                                <i class="bi bi-trash"></i> Eliminar
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-5 bg-white rounded shadow-sm">
+        <i class="bi bi-calendar-x display-1 text-muted"></i>
+        <p class="lead mt-3 text-muted">Aún no has recibido solicitudes de contacto o citas.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
