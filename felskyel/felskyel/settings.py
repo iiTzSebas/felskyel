@@ -165,6 +165,6 @@ RECAPTCHA_SECRET_KEY = '6LcxtrIsAAAAAJONTsdEQx8zlPI3HrnbEj4ve5AF'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # --- CONFIGURACIÓN PARA EL GRUPO ---
 # Muchachos, peguen su llave de Stripe aquí abajo entre las comillas:
-STRIPE_PUBLIC_KEY = "PEGA_AQUI_TU_LLAVE_PUBLICA"
-STRIPE_SECRET_KEY = "PEGA_AQUI_TU_LLAVE_SECRETA"
+STRIPE_PUBLIC_KEY = "pk_test_51TLFjUHr3uj7vgffJwATBNsRGLApYzw6KKlfApH2eUiwAGPH6xI9HBEit5WJzM75zsFHixTQkmdTsd9E6Db9VGXq00o70MzGx2"
+STRIPE_SECRET_KEY = "sk_test_51TLFjUHr3uj7vgffeiRiV8Lu7X1eY4DipNBKJAUKkthfQ361KRJ9zIX0qB3QbNMVVfZBlOdCutr3AxbclYn85T3G00GtQiByFl"
 # --------------------------------------------

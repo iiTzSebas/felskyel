@@ -10,7 +10,7 @@ from productos.models import Producto
 
 # --- CONFIGURACIÓN DE STRIPE ---
 # ⚠️ CADA INTEGRANTE DEBE PEGAR SU PROPIA LLAVE AQUÍ PARA QUE FUNCIONE
-stripe.api_key = "pk_test_51TLFjUHr3uj7vgffJwATBNsRGLApYzw6KKlfApH2eUiwAGPH6xI9HBEit5WJzM75zsFHixTQkmdTsd9E6Db9VGXq00o70MzGx2" 
+stripe.api_key = "sk_test_51TLFjUHr3uj7vgffeiRiV8Lu7X1eY4DipNBKJAUKkthfQ361KRJ9zIX0qB3QbNMVVfZBlOdCutr3AxbclYn85T3G00GtQiByFl" 
 # -------------------------------
 @login_required
 def crear_checkout(request):

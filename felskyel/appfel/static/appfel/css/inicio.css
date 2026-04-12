@@ -401,32 +401,3 @@ img.emoji {
         gap: 20px;
     }
 }
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: rgba(20, 92, 118, 0.8);
-        color: rgb(0, 0, 0);
-    }
-    div {
-        color: rgb(0, 0, 0);
-    }
-    .header {
-        background-color: #161b22; /* Azul muy oscuro/negro para contraste */
-        color: #fff;
-    }
-    .header-text-left, .header-group2 {
-        color: #fff;
-    }
-    .footer, .footer-subtitle, .footer-row-bottom, .footer-line {
-        background-color: #161b22;
-        color: #fff !important;
-    }
-    .text {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-}
-
-/* Compatibilidad con el modo oscuro definido en base.html */
-body.dark-mode .header {
-    background-color: #1e1e1e !important;
-}

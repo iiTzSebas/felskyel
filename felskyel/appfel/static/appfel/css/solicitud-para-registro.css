@@ -11,31 +11,6 @@
     --input-padding: 12px;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary-color: #6affc3; /* El verde ahora como color de acento */
-        --background-color: #0d1117; /* Fondo oscuro profundo */
-        --text-color: #e6edf3;
-        --white: #161b22; /* Fondo de tarjetas oscuro */
-        --border-color: #30363d;
-    }
-
-    .form-section {
-        background-color: #0d1117 !important;
-        border-color: #30363d !important;
-    }
-
-    .form-control, .form-control-file {
-        background-color: #0d1117 !important;
-        color: #e6edf3 !important;
-        border-color: #30363d !important;
-    }
-
-    .btn-cancel {
-        color: #8b949e !important;
-    }
-}
-
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--background-color);
