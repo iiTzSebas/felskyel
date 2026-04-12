@@ -5,6 +5,16 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'appfel/css/admin_productos.css' %}">
+    <style>
+        /* Ajuste para Twemoji en el texto del panel */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+            display: inline-block;
+        }
+    </style>
 {% endblock %}
 
 {% block nombre %}{% endblock %}
@@ -65,6 +75,9 @@
     </div>
     {% endif %}
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>twemoji.parse(document.body);</script>
 {% endblock %}
 
 {% block footer %}{% endblock %}
