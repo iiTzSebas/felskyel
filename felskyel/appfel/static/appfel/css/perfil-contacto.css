@@ -151,7 +151,7 @@ textarea.form-control {
 /* --- VISTA PREVIA --- */
 .preview-wrapper {
     position: sticky;
-    top: 2rem; /* Fija la vista previa al hacer scroll */
+    top: 6rem; /* Ajustado para que no se oculte tras el header sticky */
 }
 
 .preview-title {
