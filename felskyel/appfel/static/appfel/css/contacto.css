@@ -12,7 +12,7 @@ body {
 	font-family: 'Inter', sans-serif;
 }
 
-/* Ajuste para Twemoji en el contenido principal */
+/* Ajuste para Twemoji en el texto del panel */
 img.emoji {
 	height: 1em;
 	width: 1em;
