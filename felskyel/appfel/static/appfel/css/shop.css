@@ -7,6 +7,15 @@ body {
 	--minContent: 0;
 }
 
+/* Ajuste para Twemoji en descripciones y títulos */
+img.emoji {
+	height: 1em;
+	width: 1em;
+	margin: 0 .05em 0 .1em;
+	vertical-align: -0.1em;
+	display: inline-block;
+}
+
 .img-b {
 	width: 100%;
 	flex-shrink: 0;
