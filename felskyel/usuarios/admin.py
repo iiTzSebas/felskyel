@@ -27,7 +27,7 @@ class UsuarioAdmin(UserAdmin):
     #campos que se mostraran al editar un usuario 
     fieldsets = (
         (None, {'fields': ('username', 'email', 'password')}),
-        ('Información Personal', {'fields': ('user_type', 'fecha_nacimiento')}),
+        ('Información Personal', {'fields': ('user_type', 'es_mayor_edad')}),
         ('permisos', {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('Fechas importantes', {'fields': ('last_login', 'date_joined')}),
     )
@@ -35,7 +35,7 @@ class UsuarioAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username', 'email', 'user_type', 'fecha_nacimiento', 'password1', 'password2'),
+            'fields': ('username', 'email', 'user_type', 'es_mayor_edad', 'password1', 'password2'),
         }),
     )
     search_fields = ('username', 'email')
@@ -102,7 +102,7 @@ class ProviderApplicationAdmin(admin.ModelAdmin):
                     'email_contacto': solicitud.email,
                     'telefono_contacto': solicitud.telefono,
                     'domicilio_negocio': solicitud.domicilio,
-                    'estado': 'activo'
+                    'estado': 'activa'
                 }
             )
             

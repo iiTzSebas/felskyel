@@ -5,16 +5,60 @@
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'appfel/css/registro.css' %}" />
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        /* Estilos integrados para el Header */
+        .header {
+            background-color: #308665;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start !important;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .header-arrow-left {
+            position: static !important;
+            transform: none !important;
+            margin-right: 15px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .header-arrow-left svg {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
 {% endblock %}
 
-
 {% block content %}
+<header class="header">
+    <div class="header-nav">
+        <div style="display: flex; align-items: center;">
+            <a href="javascript:history.back()" class="header-arrow-left" aria-label="Volver a la página anterior">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
+                </svg>
+            </a>
+            <a href="{% url 'inicio' %}" class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0; text-decoration: none;">Felskyel</a>
+        </div>
+    </div>
+</header>
 
 <main class="main-container">
     <div class="registro-form-container">
     <h1 class="title">Registro de Usuario</h1>
     
-    <form method="post" novalidate class="registro-form">
+    <form method="post" class="registro-form" id="form-registro">
         {% csrf_token %}
 
         <!--campo tipo usuario parecido al de usuario-->
@@ -66,17 +110,25 @@
             {% endif %}
         </div>
 
-        <!--campo fecha de nacimiento-->
+        <!-- Confirmación de mayoría de edad -->
         <div class="form-group">
-            <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-            <input type="date" name="fecha_nacimiento" 
-                id="fecha_nacimiento" class="form-control"
-                value="{{ form.fecha_nacimiento.value|default_if_none:'' }}" 
-                required>
-            <small class="form-text text-muted">Debes ser mayor de 18 años para registrarte.</small>
-            {% if form.fecha_nacimiento.errors %}
+            <label>¿Eres mayor de 18 años?</label>
+            <div class="role-selector">
+                <input type="radio" name="es_mayor_edad" value="True" id="mayor-si" 
+                    {% if form.es_mayor_edad.value == True %}checked{% endif %} required>
+                <label for="mayor-si" class="role-card">
+                    <span class="role-text">Sí, soy mayor</span>
+                </label>
+
+                <input type="radio" name="es_mayor_edad" value="False" id="mayor-no"
+                    {% if form.es_mayor_edad.value == False %}checked{% endif %}>
+                <label for="mayor-no" class="role-card">
+                    <span class="role-text">No soy mayor</span>
+                </label>
+            </div>
+            {% if form.es_mayor_edad.errors %}
             <div class="invalid-feedback d-block">
-                {{form.fecha_nacimiento.errors|striptags}}
+                {{form.es_mayor_edad.errors|striptags}}
             </div>
             {% endif %}
         </div>
@@ -123,11 +175,24 @@
             {% endif %}
         </div>
 
-        <!--boton registro-->
+        <!-- Aceptación de términos y condiciones -->
+        <div class="form-group mb-4">
+            <div class="terms-and-conditions d-flex align-items-center justify-content-center gap-2">
+                <input type="checkbox" id="aceptar_terminos" name="aceptar_terminos" required style="width: auto;">
+                <label for="aceptar_terminos" class="mb-0">
+                    He leído y acepto los <a href="{% url 'terminos_y_condiciones' %}" class="btn-ver hover-bright" target="_blank">términos y condiciones</a>
+                </label>
+            </div>
+        </div>
+
+        <!-- reCAPTCHA -->
+        <div class="form-group d-flex justify-content-center mb-4">
+            <div class="g-recaptcha" data-sitekey="6LcxtrIsAAAAAHKzShd3ZvVoPpx0Flh2HIMZWxPt"></div>
+        </div>
+
+        <!-- Botón de registro -->
         <div class="form-actions">
-            <button type="submit" class="btn-submit">
-                Registrarse
-            </button>
+            <button type="submit" class="btn-submit">Registrarse</button>
         </div>
 
     </form>
@@ -135,6 +200,23 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Forzar el reinicio del selector de roles al cargar la página
+        // Esto soluciona el problema de las flechas "atrás/adelante" del navegador
+        const roleCliente = document.getElementById('role-cliente');
+        if (roleCliente) {
+            roleCliente.checked = true;
+        }
+
+        const form = document.getElementById('form-registro');
+        const checkbox = document.getElementById('aceptar_terminos');
+        const submitBtn = form.querySelector('.btn-submit');
+
+        // Opcional: Deshabilitar el botón al inicio si no está marcado
+        // submitBtn.disabled = !checkbox.checked;
+        // checkbox.addEventListener('change', function() {
+        //    submitBtn.disabled = !this.checked;
+        // });
+
         const roleInputs = document.querySelectorAll('input[name="user_type"]');
         roleInputs.forEach(function(input) {
             input.addEventListener('change', function() {
@@ -143,13 +225,15 @@
                 }
             });
         });
+    });
 
-        // Restricción de fecha mínima en el calendario (Lado del cliente)
-        const fechaInput = document.getElementById('fecha_nacimiento');
-        const hoy = new Date();
-        // Restamos 18 años a la fecha actual
-        const hace18Anios = new Date(hoy.getFullYear() - 18, hoy.getMonth(), hoy.getDate());
-        fechaInput.max = hace18Anios.toISOString().split("T")[0];
+    // Adicionalmente, usamos el evento pageshow para asegurar que funcione 
+    // incluso si el navegador recupera la página del cache (bfcache)
+    window.addEventListener('pageshow', function(event) {
+        const roleCliente = document.getElementById('role-cliente');
+        if (roleCliente) {
+            roleCliente.checked = true;
+        }
     });
 
     function togglePassword(fieldId) {

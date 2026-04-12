@@ -324,6 +324,62 @@
     transform: translateY(2px);
 }
 
+		/* Estilos para el Buscador (Adaptados de lista_productos) */
+		.header-row {
+			display: flex;
+			justify-content: center;
+			flex: 1; /* Permite que el buscador ocupe el espacio central */
+			max-width: 550px;
+			margin: 0 20px;
+		}
+
+		.search-container-custom {
+			display: flex;
+			align-items: center;
+			background-color: rgba(255, 255, 255, 0.95);
+			border-radius: 50px;
+			padding: 12px 25px;
+			width: 100%;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+			border: 2px solid transparent;
+			transition: all 0.3s ease;
+		}
+
+		.search-container-custom:focus-within,
+		.search-container-custom:hover {
+			background-color: #fff;
+			transform: translateY(-2px);
+			box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+			border-color: #6affc3;
+		}
+
+		.search-input-custom {
+			border: none;
+			outline: none;
+			background: transparent;
+			margin-left: 15px;
+			font-size: 1rem;
+			color: #333;
+			width: 100%;
+		}
+
+		.search-container-custom button {
+			background: none;
+			border: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			font-size: 1.0rem;
+			cursor: pointer;
+		}
+
+		/* Ajuste por si twemoji convierte la lupa en imagen */
+		.search-container-custom button img.emoji {
+			width: 20px !important;
+			height: 20px !important;
+		}
+
 	</style>
 	{% endblock %}
 </head>
@@ -333,26 +389,87 @@
 	<header class="header">
 		<div class="header-nav">
 			<div style="display: flex; align-items: center;">
-				<a href="{% url 'Tienda' %}" class="header-arrow-left" aria-label="Volver a la Tienda">
+				<a href="{% url 'productos:lista_productos' %}" class="header-arrow-left" aria-label="Volver a la Tienda">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
 						<path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
 					</svg>
 				</a>
-				<p class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0;">Felskyel</p>
+				<a href="{% url 'inicio' %}" class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0; text-decoration: none;">Felskyel</a>
 			</div>
-			
+
+			<!-- Buscador Adaptado -->
+			<form class="header-row" role="search" action="/buscar/" method="get">
+				<div class="search-container-custom">
+					<input class="search-input-custom" type="search" name="q" placeholder="Buscar..." aria-label="Buscar">
+					<button type="submit">🔍</button>
+				</div>
+			</form>
+
+			<!-- Usuario / Invitado -->
+			<ul class="navbar-nav mb-0 ms-auto me-3 d-flex flex-row align-items-center">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle d-flex align-items-center text-dark" href="#" id="userDropdown"
+					role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<div class="avatar-sm rounded-circle overflow-hidden me-2"
+							style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#FFFFFF{% else %}#eee400{% endif %}; border: 1px solid rgba(0,0,0,0.1);">
+							{% if user.is_authenticated and user.profile.avatar %}
+								<img src="{% static 'img/avatares/'|add:user.profile.avatar|add:'.webp' %}" 
+									alt="Avatar" class="rounded-circle"
+									style="width:100%; height:100%; object-fit:cover;">
+							{% else %}
+								<img src="{% static 'appfel/img/pefil_f.png' %}" 
+									alt="Invitado" class="rounded-circle"
+									style="width:100%; height:100%; object-fit:cover;">
+							{% endif %}
+						</div>
+						<span class="header-text-perfil">
+							Hola,
+							{% if user.is_authenticated %}
+								<span class="fw-bold">{{ user.username }}</span>
+							{% else %}
+								<span>Invitado</span>
+							{% endif %}
+						</span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end shadow border-0">
+						{% if user.is_authenticated %}
+							<li><a class="dropdown-item" href="{% url 'p' %}">Mi perfil</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+						{% else %}
+							<li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+							<li><a class="dropdown-item" href="{% url 'reggistro' %}">Registrarse</a></li>
+						{% endif %}
+					</ul>
+				</li>
+			</ul>
+
+			<a href="{% url 'carrito:ver_carrito' %}">
 				<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" style="width: 32px; height: 32px; cursor: pointer; position: static;" />
+			</a>
 		</div>
 	</header>
 
 	
 	
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
 <main class="main-content">
 	<div class="content-wrapper">
 	<div class="column-left">
 		<div class="product-info">
-			<h1 class="product-title">{% block product_title %} 
-                {% block nombre %} Nombre del Producto {% endblock %}{% endblock %}</h1>
+			<h1 class="product-title">
+                {% block product_title %}{% block nombre %}{{ producto.nombre }}{% endblock %}{% endblock %}
+            </h1>
 			
 			<div class="product-price">
 				{% block product_price %}
@@ -366,7 +483,7 @@
 
 			<div class="product-description">
 				{% block contenido %}
-				<p>Descripción detallada del producto. Beneficios, ingredientes y modo de uso.</p>
+				<p>{{ producto.descripcion|linebreaksbr }}</p>
 				{% endblock %}
 			</div>
 
@@ -380,7 +497,13 @@
 	
 
 	<div class="column-right">
-		{% block imagen %} <img src="https://via.placeholder.com/500x500.png?text=Agotado" alt="Imagen del producto" class="img1" /> {% endblock %}
+		{% block imagen %}
+            {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="img1" />
+            {% else %}
+                <img src="https://via.placeholder.com/500x500.png?text=Agotado" alt="Agotado" class="img1" />
+            {% endif %}
+        {% endblock %}
 	</div>
 	</div> <!-- End content-wrapper -->
 
@@ -392,54 +515,25 @@
     <h2 class="related-title">Productos relacionados</h2>
     
     <div class="related-grid">
-        <!-- Tarjeta 1 -->
+        {% for rp in related_products %}
         <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img1.png' %}" alt="Producto Relacionado" class="related-card-img" />
+            {% if rp.imagen %}
+                <img src="{{ rp.imagen.url }}" alt="{{ rp.nombre }}" class="related-card-img" />
+            {% else %}
+                <img src="{% static 'appfel/img/shop/card/card-img1.png' %}" alt="Sin imagen" class="related-card-img" />
+            {% endif %}
             <div class="related-card-body">
-                <h3 class="related-card-title">Producto 1</h3>
-                <p class="related-card-desc">Descripción breve del primer producto relacionado.</p>
-                <p class="related-card-price">$10,99</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
+                <h3 class="related-card-title">{{ rp.nombre }}</h3>
+                <p class="related-card-desc">{{ rp.descripcion|truncatechars:80 }}</p>
+                <p class="related-card-price">${{ rp.precio|intcomma }}</p>
+                <a href="{% url 'productos:detalle' rp.id %}" class="btn-related-view">Ver Detalles</a>
             </div>
         </div>
-
-        <!-- Tarjeta 2 -->
-        <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img2.png' %}" alt="Producto Relacionado" class="related-card-img" />
-            <div class="related-card-body">
-                <h3 class="related-card-title">Producto 2</h3>
-                <p class="related-card-desc">Este producto es ideal para complementar tu compra.</p>
-                <p class="related-card-price">$12,50</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
-            </div>
-        </div>
-
-        <!-- Tarjeta 3 -->
-        <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img3.png' %}" alt="Producto Relacionado" class="related-card-img" />
-            <div class="related-card-body">
-                <h3 class="related-card-title">Producto 3</h3>
-                <p class="related-card-desc">Otra excelente opción disponible ahora.</p>
-                <p class="related-card-price">$8,99</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
-            </div>
-        </div>
-        
-        <!-- Tarjeta 4 -->
-        <div class="related-card">
-            <img src="{% static 'appfel/img/shop/card/card-img4.png' %}" alt="Producto Relacionado" class="related-card-img" />
-            <div class="related-card-body">
-                <h3 class="related-card-title">Producto 4</h3>
-                <p class="related-card-desc">Descripción del cuarto producto.</p>
-                <p class="related-card-price">$10,99</p>
-                <a href="#" class="btn-related-view">Ver Detalles</a>
-            </div>
+        {% empty %}
+            <p>No hay productos relacionados disponibles.</p>
+        {% endfor %}
     </div>
 </div>
-
-			<!-- Puedes agregar más tarjetas siguiendo este formato -->
-		</div>
-	</div>
 	{% endblock %}
 
 
@@ -450,18 +544,20 @@
 		
 		{% block review_summary %}
 		<div class="review-summary">
-			<div class="average-rating">0.0</div>
+			<div class="average-rating">{{ promedio|default:"0.0" }}</div>
 			<div>
 				<div class="stars-container">★★★★★</div>
-				<p class="text-b" style="margin: 5px 0 0; color: #666; font-weight: 400;">Basado en 0 opiniones</p>
+				<p class="text-b" style="margin: 5px 0 0; color: #666; font-weight: 400;">Basado en {{ total_comentarios }} opiniones</p>
 			</div>
 		</div>
 		{% endblock %}
 
 		<!-- Formulario para agregar reseña -->
 		<div class="add-review-container">
+            {% if user.is_authenticated %}
 			<h3 class="text-b" style="margin-bottom: 15px; font-size: 1.2rem;">Deja tu opinión</h3>
-			<form action="#" method="post">
+			<form action="{% url 'productos:detalle' producto.id %}" method="post">
+                {% csrf_token %}
 				<div style="margin-bottom: 15px;">
 					<label for="rating" class="text-b" style="font-weight: 400; display:block; margin-bottom:5px;">Calificación:</label>
 					<select name="rating" id="rating" style="padding: 8px; border-radius: 4px; border: 1px solid #ccc; width: 100%; max-width: 200px; background-color: white;">
@@ -476,20 +572,39 @@
 					<label for="comment" class="text-b" style="font-weight: 400; display:block; margin-bottom:5px;">Tu comentario:</label>
 					<textarea name="comment" id="comment" rows="4" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc; resize: vertical;" placeholder="¿Qué te pareció este producto?"></textarea>
 				</div>
-				<button type="button" class="btn-submit-review hover-bright" onclick="alert('¡Gracias! Tu comentario ha sido enviado para revisión.')">Enviar opinión</button>
+				<button type="submit" class="btn-submit-review hover-bright">Enviar opinión</button>
 			</form>
+            {% else %}
+            <p class="text-center">Debes <a href="{% url 'login' %}">iniciar sesión</a> para dejar un comentario.</p>
+            {% endif %}
 		</div>
 
 		<div class="review-list">
 			{% block reviews_content %}
+            {% for comentario in comentarios %}
 			<div class="review-item">
-				<p class="review-text">No hay opiniones por el momento.</p>
+				<div class="review-header">
+                    <span class="review-author">{{ comentario.usuario.username }}</span>
+                    <span class="review-date">{{ comentario.fecha|date:"d M, Y" }}</span>
+                </div>
+                <div class="stars-container" style="font-size: 1rem; margin-bottom: 5px;">
+                    {{ comentario.calificacion }} ★
+                </div>
+				<p class="review-text">{{ comentario.texto }}</p>
 			</div>
+            {% empty %}
+			<div class="review-item">
+				<p class="review-text text-center">No hay opiniones por el momento. ¡Sé el primero en comentar!</p>
+			</div>
+            {% endfor %}
 			{% endblock %}
 		</div>
 	</div>
 	{% endblock %}
 
 </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>twemoji.parse(document.body);</script>
 </body>
 </html>

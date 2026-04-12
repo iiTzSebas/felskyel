@@ -3,11 +3,59 @@
 
 {% block title %}Perfil{% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'appfel/css/perfil_usuario.css' %}" />
+    <!-- Aseguramos Bootstrap por si no viene en la base -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos integrados para el Header para mantener consistencia */
+        .header {
+            background-color: #f8f9fa;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start !important;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .header-arrow-left {
+            position: static !important;
+            transform: none !important;
+            margin-right: 15px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .header-arrow-left svg {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
-<!-- Cargamos el CSS aquí directamente por si el block extra_styles no existe en base.html -->
-<link rel="stylesheet" href="{% static 'appfel/css/perfil_usuario.css' %}" />
-<!-- Aseguramos Bootstrap por si no viene en la base -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<header class="header">
+    <div class="header-nav">
+        <div style="display: flex; align-items: center;">
+            <a href="javascript:history.back()" class="header-arrow-left" aria-label="Volver a la página anterior">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
+                </svg>
+            </a>
+            <a href="{% url 'inicio' %}" class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0; text-decoration: none;">Felskyel</a>
+        </div>
+    </div>
+</header>
 
 <main class="profile-main">
     <div class="profile-card">
@@ -18,7 +66,7 @@
             </div>
             <h2 class="profile-name">{{ user.username }}</h2>
             <span class="profile-badge">
-                {% if user.user_type == 'P' %}Proveedor{% else %}Cliente{% endif %}
+                {% if user.user_type == 'proveedor' %}Proveedor{% else %}Cliente{% endif %}
             </span>
         </div>
 
@@ -54,6 +102,67 @@
             {% endif %}
         </div>
 
+        <!-- Sección de Mis Solicitudes (Citas) -->
+        <div class="appointments-section px-4 mt-4">
+            <h4 class="fw-bold mb-3" style="font-size: 1.1rem; color: #333;">Mis Solicitudes</h4>
+            {% if citas %}
+                <div class="list-group">
+                    {% for cita in citas %}
+                        <div class="list-group-item border-0 shadow-sm rounded-3 mb-3 p-3 bg-white">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h6 class="fw-bold mb-0">{{ cita.proveedor.nombre_negocio }}</h6>
+                                <span class="badge {% if cita.estado == 'pendiente' %}bg-warning text-dark{% elif cita.estado == 'aceptada' %}bg-success{% else %}bg-danger{% endif %} text-uppercase" style="font-size: 0.7rem;">
+                                    {{ cita.estado }}
+                                </span>
+                            </div>
+                            <p class="text-muted small mb-3">
+                                <i class="bi bi-calendar-event"></i> 
+                                {% if cita.fecha %}{{ cita.fecha|date:"d M Y" }} a las {{ cita.hora }}{% else %}Consulta de Asesoría{% endif %}
+                            </p>
+                            
+                            <div class="status-message p-2 rounded-2" style="font-size: 0.85rem; border: 1px solid transparent; 
+                                {% if cita.estado == 'pendiente' %} background-color: #f8f9fa; color: #6c757d; border-color: #dee2e6;
+                                {% elif cita.estado == 'aceptada' %} background-color: #d1e7dd; color: #0f5132; border-color: #badbcc;
+                                {% else %} background-color: #f8d7da; color: #842029; border-color: #f5c2c7; {% endif %}">
+                                
+                                {% if cita.estado == 'pendiente' %}
+                                    Tu solicitud está siendo revisada por el proveedor. ¡Pronto tendrás noticias! ⏳
+                                {% elif cita.estado == 'aceptada' %}
+                                    <strong>¡Qué alegría! 🌟</strong> Tu cita ha sido confirmada. El proveedor está listo para brindarte el mejor asesoramiento.
+                                {% else %}
+                                    <strong>Nota cortés:</strong> Lamentablemente, el proveedor no puede atenderte en esta ocasión por cruces de agenda o motivos de fuerza mayor. ¡Te invitamos a intentarlo en otra fecha! 🙏
+                                {% endif %}
+                            </div>
+
+                            <div class="mt-3 d-flex justify-content-end">
+                                <a href="{% url 'eliminar_cita_cliente' cita.id %}" 
+                                   class="btn btn-sm {% if cita.estado == 'pendiente' %}btn-outline-danger{% else %}btn-outline-secondary{% endif %}" 
+                                   onclick="return confirm('¿Estás seguro de que deseas eliminar esta solicitud?');"
+                                   style="font-size: 0.75rem; border-radius: 8px; padding: 4px 12px;">
+                                    <i class="bi bi-trash"></i> {% if cita.estado == 'pendiente' %}Cancelar Solicitud{% else %}Borrar del historial{% endif %}
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center py-4 text-muted bg-light rounded-3 mb-4">
+                    <p class="small mb-0">Aún no has realizado solicitudes de asesoría.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <style>
+            .list-group-item {
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                border: 1px solid #eee !important;
+            }
+            .list-group-item:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1) !important;
+            }
+        </style>
+
         <div class="profile-actions d-grid gap-2 px-4 pb-5">
             <a href="{% url 'productos:lista_productos' %}" class="btn btn-dark btn-lg fw-bold shadow-sm py-3" style="border-radius: 12px;">
                 Ir a la Tienda
@@ -64,6 +173,9 @@
         </div>
     </div>
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>twemoji.parse(document.body);</script>
 {% endblock %}
 
 {% block footer %}

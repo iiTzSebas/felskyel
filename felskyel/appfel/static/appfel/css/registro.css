@@ -265,6 +265,15 @@ body {
     background-color: #f0f0f0;
 }
 
+/* Estilos para resaltar enlaces como el de Términos y Condiciones */
+.terms-and-conditions .btn-ver {
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+    font-weight: 700 !important;
+    display: inline !important;
+    cursor: pointer !important;
+    opacity: 1 !important;
+}
 
 /* Botón de envío */
 .form-actions {

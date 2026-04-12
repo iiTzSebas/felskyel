@@ -268,6 +268,19 @@
             box-shadow: none;
         }
 
+        .search-container-custom button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Ajuste para Twemoji */
+        .search-container-custom button img.emoji {
+            width: 20px !important;
+            height: 20px !important;
+            margin: 0 !important;
+        }
+
         .btn-light-custom {
             background-color: #f1f3f5;
             color: #212529;
@@ -398,6 +411,47 @@
     <header class="header">
         <div class="header-nav">
             <a href="{% url 'inicio' %}"><p class="header-text-felskyel body-text3">Felskyel</p></a>
+
+            <!-- Usuario / Invitado -->
+            <ul class="navbar-nav mb-0 ms-auto me-3 d-flex flex-row align-items-center">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center text-white" href="#" id="userDropdown"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="avatar-sm rounded-circle overflow-hidden me-2"
+                            style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#FFFFFF{% else %}#eee400{% endif %};">
+                            {% if user.is_authenticated and user.profile.avatar %}
+                                <img src="{% static 'img/avatares/'|add:user.profile.avatar|add:'.webp' %}" 
+                                    alt="Avatar" class="rounded-circle"
+                                    style="width:100%; height:100%; object-fit:cover;">
+                            {% else %}
+                                <img src="{% static 'appfel/img/pefil_f.png' %}" 
+                                    alt="Invitado" class="rounded-circle"
+                                    style="width:100%; height:100%; object-fit:cover;">
+                            {% endif %}
+                        </div>
+                        <span class="header-text-perfil">
+                            Hola,
+                            {% if user.is_authenticated %}
+                                <span class="fw-bold">{{ user.username }}</span>
+                            {% else %}
+                                <span class="header-text-perfil">Invitado</span>
+                            {% endif %}
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{% url 'p' %}">Mi perfil</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+                            <li><a class="dropdown-item" href="{% url 'reggistro' %}">Registrarse</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+            
+
             <a href="{% url 'carrito:ver_carrito' %}">
                 <img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" />
             </a>
@@ -467,18 +521,25 @@
             <div class="col">
                 <div class="product-card">
                     <!-- Imagen: Usamos lógica para mostrar imagen o default -->
-                    {% if producto.imagen %}
-                        <img src="{{ producto.imagen.url }}" class="product-img" alt="{{ producto.nombre }}">
-                    {% else %}
-                        <img src="{% static 'appfel/img/shop/default_product.png' %}" class="product-img" alt="{{ producto.nombre }} (Sin imagen)">
-                    {% endif %}
+                    <img src="{{ producto.imagen_url }}" alt="{{ producto.nombre }}" class="product-img">
                     <div class="product-body">
                         <h3 class="product-title">{{ producto.nombre }}</h3>
                         <p class="product-desc">{{ producto.descripcion|default:"Producto de excelente calidad para tu cuidado personal." }}</p>
-                        <p class="product-price">${{ producto.precio }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="product-price">${{ producto.precio }}</p>
+                            {% if not producto.disponible %}
+                                <span class="badge bg-danger rounded-pill">Agotado</span>
+                            {% endif %}
+                        </div>
                         
                         <div class="d-flex gap-3 mt-auto">
-                            <a href="{% url 'carrito:agregar_al_carrito' producto.id %}?next={% url 'productos:detalle' producto.id %}" class="btn-black flex-grow-1 text-center text-decoration-none">Agregar</a>
+                            {% if producto.disponible %}
+                                <a href="{% url 'carrito:agregar_al_carrito' producto.id %}?next={% url 'productos:detalle' producto.id %}" class="btn-black flex-grow-1 text-center text-decoration-none">Agregar</a>
+                            {% else %}
+                                <button class="btn btn-secondary flex-grow-1" disabled style="cursor: not-allowed; opacity: 0.7;">
+                                    No disponible
+                                </button>
+                            {% endif %}
                             <a href="{% url 'productos:detalle' producto.id %}" class="btn-light-custom flex-grow-1">Ver más</a>
                         </div>
                     </div>
@@ -567,9 +628,6 @@
                         <h3 class="comment-user">{{ comentario.usuario.username }}</h3>
                         <p class="comment-text">{{ comentario.texto }}</p>
                         <small class="text-muted">
-                            {% if comentario.producto %}
-                                Sobre: <strong>{{ comentario.producto.nombre }}</strong> · 
-                            {% endif %}
                             {{ comentario.fecha|date:"d M Y" }}
                         </small>
                     </div>
@@ -579,11 +637,30 @@
                     <p class="text-muted">Aún no hay comentarios recientes para mostrar.</p>
                 </div>
                 {% endfor %}
+
+                {% if comentarios_generales|length > 0 %}
+                <div class="col-12 text-center mt-4">
+                    <a href="{% url 'productos:todos_los_comentarios_generales' %}" class="fw-bold text-dark text-decoration-none border-bottom">Ver todos los comentarios</a>
+                </div>
+                {% endif %}
             </div>
         </div>
 
     </div>
 
+     <footer class="footer py-5 mt-auto" style="background-color: #000; color: #fff;">
+        <div class="container text-center">
+            <p class="mb-3" style="font-weight: 500;">&copy; 2026 Felskyel - Tienda de Aseo Personal</p>
+            <div class="d-flex align-items-center justify-content-center flex-wrap gap-3">
+                <span style="font-size: 0.95rem; opacity: 0.9;">Pagos seguros procesados por</span>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" 
+                     alt="Stripe" style="height: 26px; filter: brightness(0) invert(1);">
+            </div>
+        </div>
+    </footer>
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+	<script>twemoji.parse(document.body);</script>
 </body>
 </html>

@@ -61,7 +61,6 @@ ROOT_URLCONF = 'felskyel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],    
         'DIRS': [
             BASE_DIR / 'appfel' / 'templates',
         ],
@@ -149,6 +148,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Los correos se verán en la consola
 DEFAULT_FROM_EMAIL = 'no-reply@felskyel.com'
 ADMIN_EMAIL = 'admin@felskyel.com'
+
+# Configuración de Google reCAPTCHA
+RECAPTCHA_SECRET_KEY = '6LcxtrIsAAAAAJONTsdEQx8zlPI3HrnbEj4ve5AF'
 
 # Cuando estés listo para producción con Gmail, usarías algo así:
 # EMAIL_HOST = 'smtp.gmail.com'
