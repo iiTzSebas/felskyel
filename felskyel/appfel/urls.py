@@ -30,6 +30,7 @@ urlpatterns = [
     path('crema-manos/', views.crema_manos, name='crema_manos'),
     path('crud/', views.crud, name='crud'),
     path('manual/', views.manual_usuario, name='manual'),
+
     
         # 1. Formulario para ingresar el email
     path('password_reset/', auth_views.PasswordResetView.as_view(

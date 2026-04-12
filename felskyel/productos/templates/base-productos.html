@@ -59,6 +59,16 @@
 			color: #2a9d8f; /* Un color verde para el precio */
 			margin-bottom: 1.5rem;
 		}
+        
+        .stock-info {
+            margin-top: -1rem; /* Lo acerca al precio */
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        .stock-warning {
+            color: #dc3545;
+            font-weight: 700;
+        }
 
 		.product-description {
 			line-height: 1.7;
@@ -507,6 +517,13 @@
 				<span class="price-amount">$0.00 COP</span>
 				{% endblock %}
 			</div>
+			
+            <div class="stock-info">
+                <span class="text-muted">Disponibilidad:</span>
+                <span class="{% if producto.stock <= 5 %}stock-warning{% endif %}">
+                    {{ producto.stock }} unidades
+                </span>
+            </div>
 
 			<div class="product-description">
 				{% block contenido %}

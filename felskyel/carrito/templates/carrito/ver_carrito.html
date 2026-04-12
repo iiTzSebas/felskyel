@@ -3,7 +3,59 @@
 
 {% block title %}Carrito de compras{% endblock %}
 
+{% block styles %}
+<style>
+    /* Estilos integrados para mantener consistencia con el Header */
+    .header {
+        background-color: #f8f9fa;
+        padding: 15px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start !important;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .header-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .header-arrow-left {
+        color: #000;
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        transition: opacity 0.2s;
+    }
+    .header-arrow-left:hover {
+        opacity: 0.7;
+    }
+    .header-arrow-left svg {
+        width: 24px;
+        height: 24px;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
+<header class="header">
+    <div class="header-nav">
+        <div style="display: flex; align-items: center;">
+            <a href="javascript:history.back()" class="header-arrow-left" aria-label="Volver a la página anterior">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
+                </svg>
+            </a>
+            <a href="{% url 'inicio' %}" class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0; text-decoration: none;">Felskyel</a>
+        </div>
+    </div>
+</header>
+
 <div class="container mt-5">
     <h2 class="mb-4">🛒 Tu Carrito de Compras</h2>
 

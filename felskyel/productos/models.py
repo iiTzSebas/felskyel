@@ -8,6 +8,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=100)
     precio = models.DecimalField(max_digits=10, decimal_places=0)
     descripcion = models.TextField()
+    stock = models.PositiveIntegerField(default=0)
     imagen = models.ImageField(upload_to='proveedores/imagenes/', null=True, blank=True)
     disponible = models.BooleanField(default=True)
     proveedor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='mis_productos')
