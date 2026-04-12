@@ -249,12 +249,16 @@
                         <a href="{% url 'carrito:vaciar_carrito' %}" class="text-danger text-decoration-none fw-bold">Vaciar carrito</a>
                     </div>
                     <div class="total-section">
-                        <div class="mb-2">
-                            <span class="total-label">Total a pagar:</span>
-                            <span class="total-amount">${{ total }}</span>
-                        </div>
-                        <a href="#" class="btn-checkout">Pagar ahora</a>
-                    </div>
+    <div class="mb-2">
+        <span class="total-label">Total a pagar:</span>
+        <span class="total-amount">${{ total }}</span>
+    </div>
+
+    <!-- BOTÓN PAGAR -->
+<a href="{% url 'factura:checkout' %}" class="btn-checkout">
+    PAGAR AHORA
+</a>
+</div>
                 </div>
             {% else %}
                 <div class="empty-state">
