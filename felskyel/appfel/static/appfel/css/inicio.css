@@ -106,11 +106,16 @@ img {
     height: 100%; /* Asegurar que el botón ocupe toda la altura del contenedor */
 }
 
-/* Ajuste para Twemoji (evita que el icono crezca si se convierte en imagen) */
+/* Ajuste global para Twemoji en el texto */
+img.emoji {
+    height: 1.1em;
+    width: 1.1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.15em;
+}
+
 .search-container-custom button img.emoji {
-    width: 20px !important; /* Aumentar ligeramente el tamaño del emoji para mejor visibilidad */
-    height: 20px !important;
-    margin: 0 !important;
+    vertical-align: middle;
 }
 
 .search-container-custom button:hover {

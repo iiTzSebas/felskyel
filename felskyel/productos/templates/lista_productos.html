@@ -274,11 +274,16 @@
             justify-content: center;
         }
 
-        /* Ajuste para Twemoji */
+        /* Ajuste global para Twemoji en el texto */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+        }
+
         .search-container-custom button img.emoji {
-            width: 20px !important;
-            height: 20px !important;
-            margin: 0 !important;
+            vertical-align: middle;
         }
 
         .btn-light-custom {
