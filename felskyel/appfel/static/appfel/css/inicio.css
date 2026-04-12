@@ -406,9 +406,12 @@ img.emoji {
     body {
         background-color: rgba(20, 99, 130, 0.8);
         color: #000;
+        background-color: rgba(81, 194, 236, 0.8);
+        color: gray;
     }
     div {
         color: rgb(0, 0, 0);
+        color: gray;
     }
     .header {
         background-color: #161b22;
@@ -418,6 +421,8 @@ img.emoji {
         color: #fff;
     }
     .footer, .footer-subtitle, .footer-row-bottom {
+    .footer, .footer-subtitle, .footer-row-bottom, .footer-line {
+        background-color: #161b22;
         color: #fff !important;
     }
     .text {
