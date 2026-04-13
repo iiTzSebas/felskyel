@@ -1,7 +1,8 @@
 from productos.models import Producto, Comentario
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from django.db.models import Avg
+from django.db.models import Avg, F
+from django.db import transaction
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -189,23 +190,58 @@ def editar_producto(request, producto_id):
 @login_required
 def actualizar_stock(request, producto_id):
     """Permite sumar unidades al stock actual rápidamente."""
-    if request.user.user_type not in ['proveedor', 'P']:
+    if request.user.user_type not in ['proveedor', 'P', 'PROVEEDOR']:
         return redirect('inicio')
     
-    producto = get_object_or_404(Producto, id=producto_id, proveedor=request.user)
-    
-    if request.method == 'POST':
-        cantidad_sumar = request.POST.get('cantidad_sumar')
-        try:
-            cantidad = int(cantidad_sumar) if cantidad_sumar else 0
-            if cantidad > 0:
-                producto.stock += cantidad
-                # Si el producto tiene stock, aseguramos que aparezca disponible
-                if producto.stock > 0:
-                    producto.disponible = True
-                producto.save()
-                messages.success(request, f"Se añadieron {cantidad} unidades a {producto.nombre}.")
-        except ValueError:
-            messages.error(request, "Cantidad inválida.")
-            
+    with transaction.atomic():
+        # Bloqueamos el producto para evitar conflictos si hay varios administradores
+        producto = get_object_or_404(Producto.objects.select_for_update(), id=producto_id, proveedor=request.user)
+        
+        if request.method == 'POST':
+            cantidad_sumar = request.POST.get('cantidad_sumar')
+            try:
+                cantidad = int(cantidad_sumar) if cantidad_sumar else 0
+                if cantidad > 0:
+                    producto.stock += cantidad
+                    # Si el producto recupera stock, aseguramos que aparezca disponible
+                    if producto.stock > 0:
+                        producto.disponible = True
+                    producto.save()
+                    messages.success(request, f"Se añadieron {cantidad} unidades a {producto.nombre}.")
+                else:
+                    messages.warning(request, "La cantidad a sumar debe ser positiva.")
+            except ValueError:
+                messages.error(request, "Cantidad inválida.")
+                
     return redirect('productos:admin_productos')
+
+@transaction.atomic
+def realizar_compra(request, producto_id):
+    """
+    Procesa la compra de un producto y disminuye el stock de forma segura.
+    Esta vista debería ser llamada al confirmar el pago/pedido.
+    """
+    # select_for_update() previene que dos transacciones modifiquen el stock simultáneamente
+    producto = get_object_or_404(Producto.objects.select_for_update(), id=producto_id)
+
+    if request.method == 'POST':
+        try:
+            cantidad = int(request.POST.get('cantidad', 1))
+            if cantidad <= 0:
+                messages.error(request, "Cantidad no válida.")
+                return redirect('productos:detalle', producto_id=producto.id)
+
+            if producto.stock >= cantidad:
+                producto.stock -= cantidad
+                # Si el stock se agota, actualizamos el estado de disponibilidad
+                if producto.stock == 0:
+                    producto.disponible = False
+                
+                producto.save()
+                messages.success(request, f"¡Compra exitosa! Has adquirido {cantidad} unidad(es).")
+            else:
+                messages.error(request, f"Lo sentimos, solo quedan {producto.stock} unidades disponibles.")
+        except ValueError:
+            messages.error(request, "Error en el formato de cantidad.")
+
+    return redirect('productos:detalle', producto_id=producto.id)
