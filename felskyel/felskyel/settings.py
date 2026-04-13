@@ -165,6 +165,6 @@ RECAPTCHA_SECRET_KEY = '6LcxtrIsAAAAAJONTsdEQx8zlPI3HrnbEj4ve5AF'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # --- CONFIGURACIÓN PARA EL GRUPO ---
 # Muchachos, peguen su llave de Stripe aquí abajo entre las comillas:
-STRIPE_PUBLIC_KEY = "PONER_LINKS_LLAVES_VA"
-STRIPE_SECRET_KEY = "PONER_LINKS_LLAVES_VA"
+STRIPE_PUBLIC_KEY = "PONER_LINK_VA_OK"
+STRIPE_SECRET_KEY = "PONER_LINK_VA_OK"
 # --------------------------------------------
