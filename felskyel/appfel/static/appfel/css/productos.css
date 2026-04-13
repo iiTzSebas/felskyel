@@ -382,47 +382,42 @@ img.emoji {
 	}
 }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #061a12; /* Verde muy oscuro */
-        color: #e6edf3;
-    }
+/* Unificamos el modo oscuro con la clase .dark-mode de base.html para evitar conflictos */
+body.dark-mode .header {
+    background-color: #0d1117 !important;
+    border-bottom: 1px solid #30363d !important;
+}
 
-    .header {
-        background-color: #0d1117;
-        border-bottom: 1px solid #30363d;
-    }
+body.dark-mode .header-text, 
+body.dark-mode .header-text-felskyel {
+    color: #fff !important;
+}
 
-    .header-text, .header-text-felskyel {
-        color: #fff !important;
-    }
+body.dark-mode .header-arrow-left {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+}
 
-    .header-arrow-left {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: #fff !important;
-    }
+body.dark-mode .input-group-input, 
+body.dark-mode .input-group-input2 {
+    background-color: #161b22 !important;
+    color: #fff !important;
+    border: 1px solid #30363d !important;
+}
 
-    .input-group-input, .input-group-input2 {
-        background-color: #161b22;
-        color: #fff;
-        border: 1px solid #30363d;
-    }
+body.dark-mode .btn-dia-y-hora {
+    background-color: #161b22 !important;
+    border: 1px solid #30363d !important;
+}
 
-    .btn-dia-y-hora {
-        background-color: #161b22;
-        border: 1px solid #30363d;
-    }
+body.dark-mode .text-b, 
+body.dark-mode .copy-text2, 
+body.dark-mode .subtitle-heading, 
+body.dark-mode .appointment-group label {
+    color: #e6edf3 !important;
+}
 
-    .text-b, .copy-text2, .subtitle-heading, .appointment-group label {
-        color: #e6edf3;
-    }
-
-    .form-btn, .btn-generar {
-        background-color: #6affc3;
-        color: #000;
-    }
-
-    .form-btn:hover, .btn-generar:hover {
-        background-color: #52e0a8;
-    }
+body.dark-mode .form-btn:hover, 
+body.dark-mode .btn-generar:hover {
+    background-color: #52e0a8 !important;
 }

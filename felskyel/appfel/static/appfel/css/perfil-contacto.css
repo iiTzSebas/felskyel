@@ -10,55 +10,6 @@
     --input-padding: 12px;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary-color: #6affc3; /* Verde para acentos en modo oscuro */
-        --background-color: #0d1117; /* Fondo oscuro profundo */
-        --white: #161b22; /* Fondo de tarjetas */
-        --text-color: #e6edf3;
-        --border-color: #30363d;
-    }
-
-    .editor-subtitle, .preview-title, label {
-        color: #8b949e !important;
-    }
-
-    .form-section legend {
-        color: var(--primary-color) !important;
-    }
-
-    .form-section {
-        background-color: #0d1117 !important;
-        border-color: #30363d !important;
-    }
-
-    .profile-form {
-        background-color: #161b22;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-    }
-    
-    .btn-cancel {
-        background-color: #21262d;
-        color: #c9d1d9;
-        border: 1px solid var(--border-color);
-    }
-
-    .btn-cancel:hover {
-        background-color: #30363d;
-        color: #f0f6fc;
-    }
-
-    .form-control, .form-control-color {
-        background-color: #0d1117;
-        color: #fff;
-        border-color: #30363d;
-    }
-
-    .preview-img {
-        border-color: #30363d;
-    }
-}
-
 body {
     background-color: var(--background-color);
     font-family: 'Inter', sans-serif;
