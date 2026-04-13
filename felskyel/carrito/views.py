@@ -28,7 +28,6 @@ def ver_carrito(request):
     items = carrito.items.select_related('producto')
     total = carrito.total_price()
     return render(request, 'carrito/ver.html', {'carrito': carrito, 'items': items, 'total': total})
-    return render(request, 'carrito/ver_carrito.html', {'carrito': carrito, 'items': items, 'total': total})
 
 @login_required
 def eliminar_del_carrito(request, item_id):
