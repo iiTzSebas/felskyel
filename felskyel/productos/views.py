@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def admin_productos(request):
-    # Corregimos la validación según el modelo Usuario (donde PROVEEDOR = 'proveedor')
-    if request.user.user_type != 'proveedor':
+    # Ajustamos a 'P' que es lo que usa tu base de datos según p.html
+    if request.user.user_type not in ['proveedor', 'P']:
         messages.error(request, "Acceso denegado. Solo proveedores pueden administrar productos.")
         return redirect('inicio')
 
@@ -15,29 +15,37 @@ def admin_productos(request):
         nombre = request.POST.get('nombre')
         precio = request.POST.get('precio')
         descripcion = request.POST.get('descripcion')
+        stock_raw = request.POST.get('stock')
         imagen = request.FILES.get('imagen')
         # El stock se puede manejar como un booleano de disponibilidad
         disponible = request.POST.get('disponible') == 'on'
 
         if nombre and precio:
+            try:
+                nuevo_stock = int(stock_raw) if stock_raw else 0
+            except ValueError:
+                nuevo_stock = 0
+                
             Producto.objects.create(
                 nombre=nombre,
                 precio=precio,
                 descripcion=descripcion,
                 imagen=imagen,
-                # Asegúrate de que el modelo Producto tenga el campo 'user' o 'proveedor'
-                # proveedor=request.user 
+                stock=nuevo_stock,
+                disponible=disponible,
+                proveedor=request.user 
             )
             messages.success(request, f"Producto '{nombre}' añadido correctamente.")
             return redirect('productos:admin_productos')
 
-    productos_proveedor = Producto.objects.all() # Aquí podrías filtrar por proveedor en el futuro
+    # Filtramos para que Sofia solo vea lo de Sofia y Alex solo lo de Alex
+    productos_proveedor = Producto.objects.filter(proveedor=request.user)
     return render(request, 'panel_control/admin_productos.html', {'productos': productos_proveedor})
 
 def lista_productos(request):
     productos = Producto.objects.all()
-    # Obtenemos los últimos 4 comentarios de cualquier producto para la sección general
-    comentarios_generales = Comentario.objects.select_related('usuario', 'producto').all().order_by('-fecha')[:4]
+    # Filtramos para obtener solo comentarios que NO pertenecen a un producto (comentarios del sitio)
+    comentarios_generales = Comentario.objects.filter(producto__isnull=True).select_related('usuario').order_by('-fecha')[:6]
 
     if request.method == 'POST':
         if not request.user.is_authenticated:
@@ -63,6 +71,34 @@ def lista_productos(request):
         'comentarios_generales': comentarios_generales
     }
     return render(request, 'lista_productos.html', contexto_catalogo)
+
+def todos_los_comentarios_generales(request):
+    # Obtenemos TODOS los comentarios generales
+    comentarios_generales = Comentario.objects.filter(producto__isnull=True).select_related('usuario').order_by('-fecha')
+
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            messages.error(request, "Debes iniciar sesión para dejar un comentario.")
+            return redirect('login')
+        
+        texto = request.POST.get('texto', '').strip()
+        
+        if texto:
+            Comentario.objects.create(
+                usuario=request.user,
+                texto=texto,
+            )
+            messages.success(request, "¡Gracias! Tu opinión ha sido enviada.")
+            return redirect('productos:todos_los_comentarios_generales')
+        else:
+            messages.warning(request, "El comentario no puede estar vacío.")
+
+    contexto = {
+        'comentarios_generales': comentarios_generales,
+        'total_comentarios': comentarios_generales.count()
+    }
+    return render(request, 'todos_los_comentarios_generales.html', contexto)
+
 
 def detalle_producto(request, producto_id):
     producto = get_object_or_404(Producto, id=producto_id)
@@ -100,13 +136,76 @@ def detalle_producto(request, producto_id):
         'total_comentarios': comentarios.count(),
         'related_products': related_products
     }
+
+    if not producto.disponible or producto.stock <= 0:
+        return render(request, 'Contactos-proveedor/base-productos-agotado.html', contexto)
+        
     return render(request, 'detalle_producto.html', contexto)
 
 @login_required
 def eliminar_producto(request, producto_id):
     if request.user.user_type == 'proveedor':
-        producto = get_object_or_404(Producto, id=producto_id)
+        # Al agregar proveedor=request.user, Django devolverá 404 si el producto 
+        # existe pero pertenece a otra persona. Seguridad ante todo.
+        producto = get_object_or_404(Producto, id=producto_id, proveedor=request.user)
         nombre = producto.nombre
         producto.delete()
         messages.success(request, f"Producto '{nombre}' eliminado.")
+    return redirect('productos:admin_productos')
+
+@login_required
+def editar_producto(request, producto_id):
+    if request.user.user_type not in ['proveedor', 'P']:
+        messages.error(request, "Acceso denegado.")
+        return redirect('inicio')
+    
+    # Obtenemos el producto asegurándonos de que pertenezca al proveedor actual
+    producto = get_object_or_404(Producto, id=producto_id, proveedor=request.user)
+
+    if request.method == 'POST':
+        producto.nombre = request.POST.get('nombre')
+        producto.precio = request.POST.get('precio')
+        producto.descripcion = request.POST.get('descripcion')
+        stock_raw = request.POST.get('stock')
+        
+        try:
+            producto.stock = int(stock_raw) if stock_raw else 0
+        except ValueError:
+            pass # Mantiene el valor anterior si hay error
+        
+        # El checkbox solo se envía si está marcado
+        producto.disponible = request.POST.get('disponible') == 'on'
+        
+        nueva_imagen = request.FILES.get('imagen')
+        if nueva_imagen:
+            producto.imagen = nueva_imagen
+            
+        producto.save()
+        messages.success(request, f"Producto '{producto.nombre}' actualizado correctamente.")
+        return redirect('productos:admin_productos')
+
+    return render(request, 'panel_control/editar_producto.html', {'producto': producto})
+
+@login_required
+def actualizar_stock(request, producto_id):
+    """Permite sumar unidades al stock actual rápidamente."""
+    if request.user.user_type not in ['proveedor', 'P']:
+        return redirect('inicio')
+    
+    producto = get_object_or_404(Producto, id=producto_id, proveedor=request.user)
+    
+    if request.method == 'POST':
+        cantidad_sumar = request.POST.get('cantidad_sumar')
+        try:
+            cantidad = int(cantidad_sumar) if cantidad_sumar else 0
+            if cantidad > 0:
+                producto.stock += cantidad
+                # Si el producto tiene stock, aseguramos que aparezca disponible
+                if producto.stock > 0:
+                    producto.disponible = True
+                producto.save()
+                messages.success(request, f"Se añadieron {cantidad} unidades a {producto.nombre}.")
+        except ValueError:
+            messages.error(request, "Cantidad inválida.")
+            
     return redirect('productos:admin_productos')

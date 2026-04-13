@@ -32,10 +32,11 @@
 			max-width: 700px;
 		}
 		.column-right .img1, .column-right .hola2 {
-			width: 140%;
-			height: 250px;
-			object-fit: cover;
-			margin-left: -100px;
+			width: 100%;
+			aspect-ratio: 1 / 1;
+			height: auto;
+			object-fit: contain;
+			margin-left: 0;
 			border-radius: 36px;
 			box-shadow: 0 8px 25px rgba(0,0,0,0.1);
 		}
@@ -58,6 +59,16 @@
 			color: #2a9d8f; /* Un color verde para el precio */
 			margin-bottom: 1.5rem;
 		}
+        
+        .stock-info {
+            margin-top: -1rem; /* Lo acerca al precio */
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        .stock-warning {
+            color: #dc3545;
+            font-weight: 700;
+        }
 
 		.product-description {
 			line-height: 1.7;
@@ -182,15 +193,26 @@
 		.header {
 			background-color: #42ffc0;
 			padding: 15px 40px;
+			padding: 10px 40px;
 			display: flex;
 			align-items: center;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 		}
 		.header-nav {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			width: 100%;
+			max-width: 1300px;
+			margin: 0 auto;
 		}
+
+		.header-actions {
+			display: flex;
+			align-items: center;
+			gap: 25px; /* Espacio entre el perfil de usuario y el carrito */
+		}
+
 		/* Ajuste para que la flecha se integre en el flujo normal, no absoluta */
 		.header-arrow-left {
 			position: static !important;
@@ -268,7 +290,7 @@
 		.related-card-img {
 			width: 100%;
 			height: 250px;
-			object-fit: cover;
+			object-fit: contain;
 			border-radius: 12px 12px 0 0;
 			background-color: #f9f9f9;
 		}
@@ -328,6 +350,78 @@
 			transform: translateY(2px);
 		}
 
+		/* Estilos para el Buscador (Adaptados de lista_productos) */
+		.header-row {
+			display: flex;
+			justify-content: center;
+			flex: 1; /* Permite que el buscador ocupe el espacio central */
+			max-width: 550px;
+			margin: 0 20px;
+			margin: 0 40px;
+		}
+
+		.search-container-custom {
+			display: flex;
+			align-items: center;
+			background-color: rgba(255, 255, 255, 0.95);
+			border-radius: 30px;
+			padding: 6px 25px;
+			background-color: #fff;
+			border-radius: 50px;
+			padding: 12px 25px;
+			padding: 10px 25px;
+			width: 100%;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+			box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+			border: 2px solid transparent;
+			transition: all 0.3s ease;
+		}
+
+		.search-container-custom:focus-within,
+		.search-container-custom:hover {
+			background-color: #fff;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+			border-color: #000;
+			transform: translateY(-2px);
+			box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+			border-color: #6affc3;
+		}
+
+		.search-input-custom {
+			border: none;
+			outline: none;
+			background: transparent;
+			margin-left: 10px;
+			font-size: 0.95rem;
+			margin-left: 15px;
+			font-size: 1rem;
+			color: #333;
+			width: 100%;
+		}
+
+		.search-container-custom button {
+			background: none;
+			border: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			align-items: center;
+			font-size: 1.0rem; /* Aumentado ligeramente para mejor visibilidad */
+			cursor: pointer;
+		}
+
+		/* Ajuste por si twemoji convierte la lupa en imagen */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+        }
+
+        .search-container-custom button img.emoji {
+            vertical-align: middle;
+        }
+
 	</style>
 	{% endblock %}
 
@@ -344,10 +438,58 @@
 						<path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
 					</svg>
 				</a>
-				<p class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0;">Felskyel</p>
+				<a href="{% url 'inicio' %}" class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0; text-decoration: none;">Felskyel</a>
 			</div>
-				
-				<a href="{% url 'carrito:ver_carrito' %}">
+
+			<!-- Buscador Adaptado -->
+			<form class="header-row" role="search" action="/buscar/" method="get">
+				<div class="search-container-custom">
+					<input class="search-input-custom" type="search" name="q" placeholder="Buscar..." aria-label="Buscar">
+					<button type="submit">🔍</button>
+				</div>
+			</form>
+
+			<div class="header-actions">
+				<!-- Usuario / Invitado -->
+				<ul class="navbar-nav mb-0 d-flex flex-row align-items-center">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle d-flex align-items-center text-dark" href="#" id="userDropdown"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<div class="avatar-sm rounded-circle overflow-hidden me-2"
+								style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#FFFFFF{% else %}#eee400{% endif %}; border: 1px solid rgba(0,0,0,0.1);">
+								{% if user.is_authenticated and user.profile.avatar %}
+									<img src="{% static 'img/avatares/'|add:user.profile.avatar|add:'.webp' %}" 
+										alt="Avatar" class="rounded-circle"
+										style="width:100%; height:100%; object-fit:cover;">
+								{% else %}
+									<img src="{% static 'appfel/img/pefil_f.png' %}" 
+										alt="Invitado" class="rounded-circle"
+										style="width:100%; height:100%; object-fit:cover;">
+								{% endif %}
+							</div>
+							<span class="header-text-perfil">
+								Hola,
+								{% if user.is_authenticated %}
+									<span class="fw-bold">{{ user.username }}</span>
+								{% else %}
+									<span>Invitado</span>
+								{% endif %}
+							</span>
+						</a>
+						<ul class="dropdown-menu dropdown-menu-end shadow border-0">
+							{% if user.is_authenticated %}
+								<li><a class="dropdown-item" href="{% url 'p' %}">Mi perfil</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+							{% else %}
+								<li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+								<li><a class="dropdown-item" href="{% url 'reggistro' %}">Registrarse</a></li>
+							{% endif %}
+						</ul>
+					</li>
+				</ul>
+
+				<a href="{% url 'carrito:ver_carrito' %}" class="d-flex align-items-center">
 					<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" style="width: 32px; height: 32px; cursor: pointer; position: static;" />
 				</a>
 			</div>
@@ -379,6 +521,13 @@
 				<span class="price-amount">$0.00 COP</span>
 				{% endblock %}
 			</div>
+			
+            <div class="stock-info">
+                <span class="text-muted">Disponibilidad:</span>
+                <span class="{% if producto.stock <= 5 %}stock-warning{% endif %}">
+                    {{ producto.stock }} unidades
+                </span>
+            </div>
 
 			<div class="product-description">
 				{% block contenido %}
@@ -389,7 +538,9 @@
 			{% block product_actions %}
 			<div class="product-actions">
 				<a href="{% url 'carrito:agregar_al_carrito' producto.id %}?next={{ request.path }}" class="btn-add-to-cart hover-bright text-decoration-none">Agregar al carrito</a>
-				<a href="{% url 'contacto' %}" class="btn-add-to-cart hover-bright">Contactar Proveedor</a>
+				{% if producto.proveedor.perfil_proveedor %}
+					<a href="{% url 'detalle_proveedor' producto.proveedor.perfil_proveedor.pk %}" class="btn-add-to-cart hover-bright">Contactar Proveedor</a>
+				{% endif %}
 			</div>
 			{% endblock %}
 		</div>
@@ -413,7 +564,11 @@
     <div class="related-grid">
         {% for related in related_products %}
         <div class="related-card">
-            <img src="{% static 'appfel/img/shop/portadasp/' %}{{ related.imagen }}" alt="{{ related.nombre }}" class="related-card-img" />
+            {% if related.imagen %}
+                <img src="{{ related.imagen.url }}" alt="{{ related.nombre }}" class="related-card-img" />
+            {% else %}
+                <img src="{% static 'appfel/img/default.png' %}" alt="{{ related.nombre }} (Sin imagen)" class="related-card-img" />
+            {% endif %}
             <div class="related-card-body">
                 <h3 class="related-card-title">{{ related.nombre }}</h3>
                 <p class="related-card-desc">{{ related.descripcion|default:"Calidad garantizada para tu cuidado." }}</p>
@@ -508,9 +663,15 @@
 			{% endblock %}
 		</div>
 	</div>
+
+	
 	{% endblock %}
 
+
+	
+
 </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
 <script>twemoji.parse(document.body);</script>
 </body>

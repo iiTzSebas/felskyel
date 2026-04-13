@@ -1,123 +1,283 @@
 {% extends "base.html" %}
-
 {% load static %}
 
-{% block title %} Manual de Usuario {% endblock %}
-
+{% block title %} Manual de Usuario & Proveedor | Felskyel {% endblock %}
 
 {% block styles %}
 <style>
-    /* Desplazamiento suave */
-    html {
-        scroll-behavior: smooth;
+    :root {
+        --primary-green: #198754;
+        --soft-green: #f0fdf4;
+        --bg-body: #fbfcfd;
+        --bg-section: #ffffff;
+        --text-main: #333333;
+        --text-muted: #6c757d;
+        --border-color: rgba(0,0,0,0.08);
+        --header-bg: rgba(255, 255, 255, 0.95);
     }
-    /* Evita que el título quede oculto bajo el header fijo al navegar */
-    section {
-        scroll-margin-top: 150px; 
+
+    /* Soporte para Modo Oscuro */
+    body.dark-mode, body.dark-theme, [data-theme="dark"] body {
+        --bg-body: #121212;
+        --bg-section: #1e1e1e;
+        --text-main: #e0e0e0;
+        --text-muted: #b0b0b0;
+        --border-color: rgba(255,255,255,0.1);
+        --header-bg: rgba(30, 30, 30, 0.95);
+        --soft-green: #1a2e21;
     }
-    /* Estilo activo coherente con el diseño (negro) */
+
+    html { scroll-behavior: smooth; }
+    body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Inter', sans-serif; transition: all 0.3s ease; }
+    
+    .progress-container { position: fixed; top: 0; z-index: 2000; width: 100%; height: 4px; background: transparent; }
+    .progress-bar { height: 4px; background: var(--primary-green); width: 0%; transition: width 0.1s; }
+
+    .header {
+        background-color: var(--header-bg);
+        backdrop-filter: blur(12px);
+        padding: 0.8rem 1rem;
+        position: sticky; top: 0; z-index: 1050;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .header-arrow-left {
+        color: var(--text-main);
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        margin-right: 15px;
+    }
+    .header-arrow-left svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    section { 
+        scroll-margin-top: 110px; 
+        background: var(--bg-section);
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 2.5rem;
+    }
+
+    .manual-sidebar { position: sticky; top: 120px; }
+    .list-group-item {
+        border: none !important;
+        background: transparent !important;
+        color: var(--text-main) !important;
+        padding: 12px 20px;
+        font-weight: 500;
+        border-radius: 12px !important;
+        margin-bottom: 5px;
+        font-size: 0.95rem;
+    }
     .list-group-item.active {
-        background-color: #000 !important;
-        border-color: #000 !important;
+        background-color: var(--primary-green) !important;
+        color: #fff !important;
     }
+
+    .step-card {
+        border-left: 3px solid var(--primary-green);
+        background: var(--soft-green);
+        padding: 15px 20px;
+        border-radius: 0 12px 12px 0;
+        margin-bottom: 15px;
+    }
+
+    /* FAQ e Items de Acordeón */
+    .accordion-item {
+        border: 1px solid var(--border-color) !important;
+        background-color: var(--bg-section) !important;
+        border-radius: 12px !important;
+        overflow: hidden;
+        margin-bottom: 15px !important;
+    }
+    .accordion-button {
+        font-weight: 600 !important;
+        background-color: var(--bg-section) !important;
+        color: var(--text-main) !important;
+    }
+    .accordion-button:not(.collapsed) {
+        background-color: var(--soft-green) !important;
+        color: var(--primary-green) !important;
+        box-shadow: none !important;
+    }
+
+    .badge-provider { background-color: #6610f2; color: white; padding: 5px 10px; border-radius: 8px; font-size: 0.7rem; text-transform: uppercase; }
+    
+    /* Ajuste estándar para Twemoji en el proyecto */
     img.emoji {
-        height: 1.2em;
-        width: 1.2em;
-        margin: 0 0.1em;
-        vertical-align: middle;
+        height: 1em;
+        width: 1em;
+        margin: 0 .05em 0 .1em;
+        vertical-align: -0.1em;
+        display: inline-block;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="container py-4">
+<div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
+
+<header class="header mb-5">
+    <div class="container d-flex align-items-center">
+        <a href="javascript:history.back()" class="header-arrow-left" aria-label="Volver a la página anterior">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
+            </svg>
+        </a>
+        <span class="fs-4 fw-bold">Felskyel <span class="text-success">🌿</span></span>
+        <button class="btn btn-outline-dark btn-sm ms-auto d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">Índice</button>
+    </div>
+</header>
+
+<div class="container">
     <div class="row">
-        <!-- Menú lateral de navegación del manual -->
-        <div class="col-lg-3 mb-4">
-            <div id="manual-menu" class="list-group sticky-top" style="top: 180px;">
-                <a href="#introduccion" class="list-group-item list-group-item-action active" aria-current="true">
-                    Introducción Al manual de usuario.
-                </a>
-                <a href="#navegacion" class="list-group-item list-group-item-action">Navegación</a>
-                <a href="#productos" class="list-group-item list-group-item-action">Catálogo y Productos</a>
-                <a href="#contacto" class="list-group-item list-group-item-action">Soporte y Ayuda</a>
+        <div class="col-lg-3 d-none d-lg-block">
+            <div class="manual-sidebar">
+                <div id="manual-menu" class="list-group">
+                    <small class="text-muted fw-bold ps-3 mb-2 d-block">CLIENTES</small>
+                    <a href="#introduccion" class="list-group-item list-group-item-action active">Bienvenida</a>
+                    <a href="#cuenta" class="list-group-item list-group-item-action">Tu Cuenta</a>
+                    <a href="#faq" class="list-group-item list-group-item-action mb-4">Preguntas Frecuentes</a>
+                    
+                    <small class="text-muted fw-bold ps-3 mb-2 d-block">PROVEEDORES <span class="badge badge-provider">Panel</span></small>
+                    <a href="#prod-proveedor" class="list-group-item list-group-item-action">Subir Productos</a>
+                    <a href="#perfil-proveedor" class="list-group-item list-group-item-action">Perfil Público</a>
+                    <a href="#citas-proveedor" class="list-group-item list-group-item-action">Gestión de Citas</a>
+                </div>
             </div>
         </div>
 
-        <!-- Contenido principal del manual -->
         <div class="col-lg-9">
-            
-            <!-- Sección: Introducción -->
-            <section id="introduccion" class="mb-5">
-                <h1 class="display-5 mb-3">Manual de Usuario</h1>
-                <p class="lead text-muted">Bienvenido a la documentación oficial de Felskyel.</p>
-                <p>Esta guía está diseñada para ayudarte a navegar por nuestra tienda virtual, conocer nuestros productos orgánicos (jabones, shampoos, cremas) y gestionar tus pedidos fácilmente.</p>
-                <hr>
+            <section id="introduccion">
+                <h1 class="display-5 fw-bold mb-3">Centro de Ayuda Felskyel 📖</h1>
+                <p class="lead text-muted">Todo lo que necesitas saber para comprar o vender productos naturales en nuestra comunidad.</p>
             </section>
 
-            <!-- Sección: Navegación -->
-            <section id="navegacion" class="mb-5">
-                <h3><span class="text-primary">#</span> Navegación General</h3>
-                <p>El sistema cuenta con una barra de menú superior disponible en todas las pantallas:</p>
-                <ul class="list-group list-group-flush mb-3">
-                    <li class="list-group-item"><i class="bi bi-house-door"></i> <strong>Inicio:</strong> Pantalla de bienvenida e información general.</li>
-                    <li class="list-group-item"><i class="bi bi-shop"></i> <strong>Tienda:</strong> Catálogo completo de nuestros productos naturales.</li>
-                    <li class="list-group-item"><i class="bi bi-person-circle"></i> <strong>Perfil:</strong> Gestión de tu cuenta y datos personales.</li>
-                    <li class="list-group-item"><i class="bi bi-envelope"></i> <strong>Contáctenos:</strong> Canales de atención y formularios PQR.</li>
-                </ul>
+            <section id="cuenta">
+                <h3 class="fw-bold mb-4">Gestión de Cuenta y Contacto 👤</h3>
+                <div class="step-card">
+                    <h6 class="fw-bold mb-1">Registro e Inicio</h6>
+                    <p class="small mb-0">Crea tu cuenta para habilitar el carrito de compras y tu panel personal.</p>
+                </div>
+                <div class="step-card" style="border-left-color: #0dcaf0;">
+                    <h6 class="fw-bold mb-1">Contactar Proveedores 💬</h6>
+                    <p class="small mb-0">En la ficha de cada producto o en la sección "Proveedores", puedes enviar mensajes directos para resolver dudas antes de comprar.</p>
+                </div>
             </section>
 
-            <!-- Sección: Productos -->
-            <section id="productos" class="mb-5">
-                <h3><span class="text-primary">#</span> Catálogo y Productos</h3>
-                <p>Explora nuestra variedad de productos diseñados para tu bienestar.</p>
+            <section id="prod-proveedor" style="border-top: 4px solid #6610f2;">
+                <h3 class="fw-bold mb-4">Gestión de Productos <span class="badge badge-provider">Proveedor</span></h3>
+                <p class="text-muted">Como proveedor, tienes control total sobre tu catálogo en la tienda.</p>
                 
-                <div class="card mb-4 border-primary">
-                    <div class="card-header bg-primary text-white">¿Cómo realizar una compra?</div>
-                    <div class="card-body">
-                        <ol>
-                            <li>Dirígete a la sección <strong>Tienda</strong> o selecciona una categoría (Jabones, Cremas, etc.).</li>
-                            <li>Haz clic en el producto que te interesa para ver detalles e ingredientes.</li>
-                            <li>Presiona el botón <strong>Añadir al carrito</strong>.</li>
-                            <li>Ve al carrito de compras y selecciona <strong>Finalizar Pedido</strong>.</li>
-                            <li>Completa tus datos de envío y pago.</li>
-                        </ol>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded-4 h-100">
+                            <h6 class="fw-bold"><i class="bi bi-plus-circle-fill text-primary"></i> Subir Productos</h6>
+                            <p class="small text-muted">Accede a "Mi Panel" > "Mis Productos". Sube fotos claras, descripción detallada y el precio. Recuerda categorizarlos correctamente para que los clientes te encuentren.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 border rounded-4 h-100">
+                            <h6 class="fw-bold"><i class="bi bi-pencil-square text-primary"></i> Editar y Stock</h6>
+                            <p class="small text-muted">Puedes actualizar precios o pausar productos si te quedas sin inventario. Los cambios se reflejan en tiempo real en la tienda.</p>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="alert alert-warning" role="alert">
-                    <strong>Nota:</strong> Si deseas ver el historial de tus compras, asegúrate de haber <a href="{% url 'login' %}">creado una cuenta</a> antes de comprar.
+            <section id="perfil-proveedor">
+                <h3 class="fw-bold mb-4">Perfil Público y Marca 🎨</h3>
+                <div class="step-card" style="border-left-color: #6610f2; background-color: rgba(102, 16, 242, 0.05);">
+                    <h6 class="fw-bold mb-1">Tu Identidad en Felskyel</h6>
+                    <p class="small mb-0">En "Editar Perfil", puedes subir tu logo, una descripción de tu marca y enlaces a tus redes sociales. Un perfil completo genera <strong>70% más confianza</strong> en los compradores.</p>
                 </div>
             </section>
-            
-            <!-- Sección: Contacto -->
-            <section id="contacto" class="mb-5">
-                <h3><span class="text-primary">#</span> Soporte y Ayuda</h3>
-                <p>Si experimentas problemas técnicos o tienes dudas adicionales:</p>
-                <p>Visita la sección de <a href="{% url 'contacto' %}">Contacto</a> para acceder al chat en vivo, líneas de atención 24/7 y ubicación de sedes físicas.</p>
+
+            <section id="citas-proveedor">
+                <h3 class="fw-bold mb-4">Calendario y Citas 📅</h3>
+                <p class="text-muted">Si ofreces servicios o asesorías personalizadas, así gestionas tu agenda:</p>
+                
+                <div class="accordion accordion-flush" id="accProveedor">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cp1">
+                                ¿Cómo aceptar o cancelar una cita?
+                            </button>
+                        </h2>
+                        <div id="cp1" class="accordion-collapse collapse" data-bs-parent="#accProveedor">
+                            <div class="accordion-body">
+                                En tu panel verás la pestaña <strong>"Citas Solicitadas"</strong>. Tendrás dos botones: 
+                                <br>• <span class="text-success fw-bold">Aceptar:</span> Notifica al cliente y reserva el espacio.
+                                <br>• <span class="text-danger fw-bold">Cancelar:</span> Libera el horario. Te recomendamos añadir un mensaje breve explicando el motivo al cliente.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
+            <section id="faq">
+                <h3 class="fw-bold mb-4 text-center">Dudas Frecuentes Clientes</h3>
+                <div class="accordion accordion-flush" id="accordionFAQ">
+                    <div class="accordion-item border-success-custom">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q1">¿Métodos de pago?</button></h2>
+                        <div id="q1" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ"><div class="accordion-body">Tarjetas, transferencias y efectivo contra entrega.</div></div>
+                    </div>
+                    <div class="accordion-item border-danger-custom">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#q2">¿Producto dañado?</button></h2>
+                        <div id="q2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ"><div class="accordion-body">Foto antes de 24h y gestionamos la reposición sin costo.</div></div>
+                    </div>
+                    <div class="accordion-item border-warning-custom">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q3">¿Producto equivocado?</button></h2>
+                        <div id="q3" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ"><div class="accordion-body">No lo abras. Contáctanos y el repartidor hará el cambio.</div></div>
+                    </div>
+                    <div class="accordion-item border-info-custom">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q4">¿Cancelar pedido?</button></h2>
+                        <div id="q4" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ"><div class="accordion-body">Solo si está en estado "Pendiente".</div></div>
+                    </div>
+                    <div class="accordion-item border-success-custom">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#q5">¿Envases retornables?</button></h2>
+                        <div id="q5" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ"><div class="accordion-body">Entregas el vidrio limpio y recibes cupones de descuento.</div></div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="text-center py-4 opacity-50 small">
+                © 2026 Felskyel — Cuidado Natural & Conexión Local.
+            </footer>
         </div>
     </div>
 </div>
 
-<!-- Script simple para manejar la clase 'active' en el menú lateral -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
+  <div class="offcanvas-header border-bottom">
+    <h5 class="offcanvas-title fw-bold">Manual de Usuario</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="list-group list-group-flush text-center">
+        <a href="#introduccion" class="list-group-item py-3" data-bs-dismiss="offcanvas">Bienvenida</a>
+        <a href="#cuenta" class="list-group-item py-3" data-bs-dismiss="offcanvas">Clientes</a>
+        <a href="#prod-proveedor" class="list-group-item py-3" data-bs-dismiss="offcanvas">Proveedores</a>
+        <a href="#faq" class="list-group-item py-3" data-bs-dismiss="offcanvas">FAQ</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function(){
-        // Inicializar ScrollSpy de Bootstrap en el cuerpo del documento
-        var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-            target: '#manual-menu',
-            offset: 160
-        });
-    });
-</script>
-<script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
+        new bootstrap.ScrollSpy(document.body, { target: '#manual-menu', offset: 130 });
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            const bar = document.getElementById("myBar");
+            if(bar) bar.style.width = scrolled + "%";
+        };
         twemoji.parse(document.body);
     });
 </script>
-<div class="text-center mt-5 text-muted">
-    Manual de Usuario - Versión 2024
-</div>
 {% endblock %}

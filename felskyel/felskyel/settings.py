@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'usuarios',
     'productos',
     'buscar',
+    'factura',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,6 @@ ROOT_URLCONF = 'felskyel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],    
         'DIRS': [
             BASE_DIR / 'appfel' / 'templates',
         ],
@@ -149,6 +149,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Los correos s
 DEFAULT_FROM_EMAIL = 'no-reply@felskyel.com'
 ADMIN_EMAIL = 'admin@felskyel.com'
 
+# Configuración de Google reCAPTCHA
+RECAPTCHA_SECRET_KEY = '6LcxtrIsAAAAAJONTsdEQx8zlPI3HrnbEj4ve5AF'
+
 # Cuando estés listo para producción con Gmail, usarías algo así:
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_PORT = 587
@@ -158,3 +161,10 @@ ADMIN_EMAIL = 'admin@felskyel.com'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/6.0/ref/settings/#default-auto-field
+# Stripe configuración
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# --- CONFIGURACIÓN PARA EL GRUPO ---
+# Muchachos, peguen su llave de Stripe aquí abajo entre las comillas:
+STRIPE_PUBLIC_KEY = "key_de_prueba_de_stripe"  # Reemplaza con tu propia clave de prueba de Stripe
+STRIPE_SECRET_KEY = "key_de_prueba_de_stripe"  # Reemplaza con tu propia clave de prueba de Stripe
+# --------------------------------------------

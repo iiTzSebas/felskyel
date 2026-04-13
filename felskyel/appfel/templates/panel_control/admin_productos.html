@@ -7,11 +7,57 @@
 {% block styles %}
     <!-- Vinculamos el nuevo CSS específico para el panel -->
     <link rel="stylesheet" href="{% static 'appfel/css/admin_productos.css' %}">
+    <style>
+        /* Estilos integrados para el Header para mantener consistencia */
+        .header {
+            background-color: #f8f9fa;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start !important;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .header-arrow-left {
+            position: static !important;
+            transform: none !important;
+            margin-right: 15px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .header-arrow-left svg {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
 {% endblock %}
 
 {% block nombre %} {% endblock %}
 
 {% block content %}
+<header class="header">
+    <div class="header-nav">
+        <div style="display: flex; align-items: center;">
+            <a href="javascript:history.back()" class="header-arrow-left" aria-label="Volver a la página anterior">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
+                </svg>
+            </a>
+            <a href="{% url 'inicio' %}" class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0; text-decoration: none;">Felskyel</a>
+        </div>
+    </div>
+</header>
 <div class="container admin-container">
     <div class="row">
         <!-- Columna de Formulario para añadir -->
@@ -28,6 +74,10 @@
                         <div class="mb-3">
                             <label class="form-label">Precio (COP)</label>
                             <input type="number" name="precio" class="form-control" placeholder="0.00" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Cantidad en Stock</label>
+                            <input type="number" name="stock" class="form-control" value="1" min="0" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Descripción</label>
@@ -57,7 +107,7 @@
                             <tr>
                                 <th>Imagen</th>
                                 <th>Producto</th>
-                                <th>Precio</th>
+                                <th>Precio / Stock</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
@@ -66,24 +116,33 @@
                             {% for producto in productos %}
                             <tr>
                                 <td>
-                                    {% if producto.imagen %}
-                                        <img src="{{ producto.imagen.url }}" class="product-list-img">
-                                    {% else %}
-                                        <div class="product-list-img bg-secondary d-flex align-items-center justify-content-center text-white">?</div>
-                                    {% endif %}
+                                    <img src="{{ producto.imagen_url }}" class="product-list-img" alt="{{ producto.nombre }}">
                                 </td>
                                 <td>
                                     <div class="fw-bold text-dark">{{ producto.nombre }}</div>
                                     <small class="text-muted">{{ producto.descripcion|truncatechars:40 }}</small>
                                 </td>
-                                <td><span class="fw-bold">${{ producto.precio }}</span></td>
+                                <td>
+                                    <div class="mb-1"><span class="fw-bold text-success">${{ producto.precio }}</span></div>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-light text-dark border me-2" title="Stock actual">{{ producto.stock }} unid.</span>
+                                        <!-- Formulario rápido para añadir stock -->
+                                        <form action="{% url 'productos:actualizar_stock' producto.id %}" method="POST" class="d-flex align-items-center">
+                                            {% csrf_token %}
+                                        </form>
+                                    </div>
+                                </td>
                                 <td>
                                     <!-- Aquí se muestra si tiene stock o no -->
-                                    <span class="status-badge status-available">En Stock</span>
+                                    <span class="status-badge {% if producto.disponible and producto.stock > 0 %}status-available{% else %}status-unavailable{% endif %}">
+                                        {% if producto.disponible and producto.stock > 0 %}En stock{% else %}Agotado{% endif %}
+                                    </span>
                                 </td>
                                 <td>
                                     <div class="btn-group">
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                        <a href="{% url 'productos:editar_producto' producto.id %}" class="btn btn-sm btn-outline-primary">
+                                            Editar
+                                        </a>
                                         <a href="{% url 'productos:eliminar_producto' producto.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Estás seguro?')">
                                             Eliminar
                                         </a>

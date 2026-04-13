@@ -71,13 +71,16 @@ img {
     height: 42px; /* Altura fija para mayor elegancia */
     width: 100%;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: 2px solid transparent; /* Borde base para evitar saltos visuales */
     transition: all 0.3s ease;
 }
 
+.search-container-custom:hover,
 .search-container-custom:focus-within {
     background-color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    border-color: #6affc3; /* Color verde al pasar el mouse o hacer clic */
 }
 
 .search-input-custom {
@@ -103,11 +106,17 @@ img {
     height: 100%; /* Asegurar que el botón ocupe toda la altura del contenedor */
 }
 
-/* Ajuste para Twemoji (evita que el icono crezca si se convierte en imagen) */
+/* Ajuste global para Twemoji en el texto */
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+    display: inline-block;
+}
+
 .search-container-custom button img.emoji {
-    width: 20px !important; /* Aumentar ligeramente el tamaño del emoji para mejor visibilidad */
-    height: 20px !important;
-    margin: 0 !important;
+    vertical-align: middle;
 }
 
 .search-container-custom button:hover {
@@ -391,28 +400,4 @@ img {
         text-align: center;
         gap: 20px;
     }
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #0d1117;
-        color: #e6edf3;
-    }
-    .header {
-        background-color: #161b22;
-    }
-    .header-text-left, .header-text-perfil {
-        color: #fff !important;
-    }
-    .text {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-    .text-subtitle2 {
-        color: #c9d1d9;
-    }
-}
-
-/* Compatibilidad con el modo oscuro definido en base.html */
-body.dark-mode .header {
-    background-color: #1e1e1e !important;
 }

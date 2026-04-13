@@ -12,6 +12,15 @@ body {
 	font-family: 'Inter', sans-serif;
 }
 
+/* Ajuste para Twemoji en el texto del panel */
+img.emoji {
+	height: 1em;
+	width: 1em;
+	margin: 0 .05em 0 .1em;
+	vertical-align: -0.1em;
+	display: inline-block;
+}
+
 .text-b {
 	font-size: 16px;
 	font-style: normal;
@@ -378,12 +387,42 @@ body {
         background-color: #061a12; /* Verde muy oscuro */
         color: #e6edf3;
     }
+
+    .header {
+        background-color: #0d1117;
+        border-bottom: 1px solid #30363d;
+    }
+
+    .header-text, .header-text-felskyel {
+        color: #fff !important;
+    }
+
+    .header-arrow-left {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff !important;
+    }
+
     .input-group-input, .input-group-input2 {
         background-color: #161b22;
         color: #fff;
         border: 1px solid #30363d;
     }
-    .text-b, .copy-text2 {
+
+    .btn-dia-y-hora {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+    }
+
+    .text-b, .copy-text2, .subtitle-heading, .appointment-group label {
         color: #e6edf3;
+    }
+
+    .form-btn, .btn-generar {
+        background-color: #6affc3;
+        color: #000;
+    }
+
+    .form-btn:hover, .btn-generar:hover {
+        background-color: #52e0a8;
     }
 }

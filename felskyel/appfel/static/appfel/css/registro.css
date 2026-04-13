@@ -11,26 +11,6 @@
     --input-padding: 12px;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary-color: #6affc3;
-        --background-color: #0d1117;
-        --white: #161b22;
-        --text-color: #e6edf3;
-        --border-color: #30363d;
-    }
-    .form-section {
-        background-color: #0d1117;
-    }
-    .role-card {
-        background-color: #161b22;
-        border-color: #30363d;
-    }
-    .role-text, .intro-text {
-        color: #c9d1d9;
-    }
-}
-
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--background-color);
@@ -40,6 +20,15 @@ body {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+}
+
+/* Ajuste para Twemoji en el texto del panel */
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+    display: inline-block;
 }
 
 /* Estilos del Header y Footer (asumiendo que son los mismos de contacto.css) */
@@ -265,6 +254,15 @@ body {
     background-color: #f0f0f0;
 }
 
+/* Estilos para resaltar enlaces como el de Términos y Condiciones */
+.terms-and-conditions .btn-ver {
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+    font-weight: 700 !important;
+    display: inline !important;
+    cursor: pointer !important;
+    opacity: 1 !important;
+}
 
 /* Botón de envío */
 .form-actions {

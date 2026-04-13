@@ -6,11 +6,66 @@
 {% block styles %}
     <!-- Vinculamos el nuevo CSS específico para el panel -->
     <link rel="stylesheet" href="{% static 'appfel/css/panel-control.css' %}">
+    <style>
+        /* Estilos integrados para el Header para mantener consistencia */
+        .header {
+            background-color: #f8f9fa;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start !important;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .header-arrow-left {
+            position: static !important;
+            transform: none !important;
+            margin-right: 15px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .header-arrow-left svg {
+            width: 24px;
+            height: 24px;
+        }
+        /* Ajuste para Twemoji en el texto del panel */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+            display: inline-block;
+        }
+    </style>
 {% endblock %}
 
 {% block nombre %} {% endblock %}
 
 {% block content %}
+<header class="header">
+    <div class="header-nav">
+        <div style="display: flex; align-items: center;">
+            <a href="javascript:history.back()" class="header-arrow-left" aria-label="Volver a la página anterior">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
+                </svg>
+            </a>
+            <a href="{% url 'inicio' %}" class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0; text-decoration: none;">Felskyel</a>
+        </div>
+    </div>
+</header>
+
 <div class="container py-5">
     
     <!-- Cabecera del panel -->
@@ -62,8 +117,31 @@
             </div>
         </div>
 
+        <!-- Tarjeta 3: citas-->
+        <div class="col-md-6 col-lg-5">
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <!-- Icono SVG: Calendario -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                        <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                        <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                    </svg>
+                </div>
+                <h3 class="card-title">Gestión de Citas y Consultas</h3>
+                <p class="card-text">
+                    En esta sección podrás consultar la información relevante sobre las inquietudes y consultas de los clientes respecto a tu producto, así como gestionar de manera eficiente la aprobación o rechazo de solicitudes de cita para brindar asesoría o realizar visitas. 📅🤝
+                </p>
+                <a href="{% url 'cita' %}" class="btn btn-panel">
+                    Ver Solicitudes
+                </a>
+            </div>
+        </div>
+
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>twemoji.parse(document.body);</script>
 
 {% endblock %}
 

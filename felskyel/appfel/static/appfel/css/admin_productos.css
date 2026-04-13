@@ -72,4 +72,5 @@ body {
 
 
 .status-available { background: #e6fffa; color: #2c7a7b; }
+.status-unavailable { background: #fff5f5; color: #c53030; }
 .status-out { background: #fff5f5; color: #c53030; }

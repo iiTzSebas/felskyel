@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Citas{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'appfel/css/admin_productos.css' %}">
+    <style>
+        /* Estilos integrados para el Header para mantener consistencia */
+        .header {
+            background-color: #f8f9fa;
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start !important;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .header-arrow-left {
+            position: static !important;
+            transform: none !important;
+            margin-right: 15px;
+            color: #000;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .header-arrow-left svg {
+            width: 24px;
+            height: 24px;
+        }
+        /* Ajuste para Twemoji en el texto del panel */
+        img.emoji {
+            height: 1em;
+            width: 1em;
+            margin: 0 .05em 0 .1em;
+            vertical-align: -0.1em;
+            display: inline-block;
+        }
+    </style>
+{% endblock %}
+
+{% block nombre %}{% endblock %}
+
+{% block content %}
+<header class="header">
+    <div class="header-nav">
+        <div style="display: flex; align-items: center;">
+            <a href="javascript:history.back()" class="header-arrow-left" aria-label="Volver a la página anterior">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
+                </svg>
+            </a>
+            <a href="{% url 'inicio' %}" class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0; text-decoration: none;">Felskyel</a>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="fw-bold">Gestión de Citas y Consultas</h1>
+    </div>
+
+    {% if citas %}
+    <div class="row row-cols-1 g-4">
+        {% for cita in citas %}
+        <div class="col">
+            <div class="card shadow-sm border-0 {% if cita.estado == 'aceptada' %}border-start border-success border-4{% elif cita.estado == 'rechazada' %}border-start border-danger border-4{% endif %}">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <h5 class="fw-bold mb-1">{{ cita.nombre }} {{ cita.apellido }}</h5>
+                            <p class="text-muted mb-2 small"><i class="bi bi-geo-alt-fill"></i> {{ cita.direccion }}</p>
+                            <div class="d-flex gap-2">
+                                <span class="badge {% if cita.estado == 'pendiente' %}bg-warning text-dark{% elif cita.estado == 'aceptada' %}bg-success{% else %}bg-danger{% endif %} text-uppercase">
+                                    {{ cita.estado }}
+                                </span>
+                                {% if cita.fecha %}
+                                <span class="badge bg-info text-dark">{{ cita.fecha }} | {{ cita.hora }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-5 mt-3 mt-md-0">
+                            <p class="mb-1 text-dark"><strong>Mensaje:</strong> {{ cita.mensaje }}</p>
+                            <p class="mb-0 text-muted small"><strong>Contacto:</strong> {{ cita.email }} | {{ cita.telefono }}</p>
+                        </div>
+                        <div class="col-md-3 text-md-end mt-3 mt-md-0">
+                            {% if cita.estado == 'pendiente' %}
+                            <div class="btn-group w-100">
+                                <a href="{% url 'gestionar_cita' cita.id 'aceptar' %}" class="btn btn-success">Aceptar</a>
+                                <a href="{% url 'gestionar_cita' cita.id 'rechazar' %}" class="btn btn-danger">Rechazar</a>
+                            </div>
+                            {% else %}
+                            <p class="small text-muted mb-2">Solicitud procesada el {{ cita.creada_en|date:"d/m/Y" }}</p>
+                            <a href="{% url 'eliminar_cita' cita.id %}" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar este registro de tu historial?')">
+                                <i class="bi bi-trash"></i> Eliminar
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center py-5 bg-white rounded shadow-sm">
+        <i class="bi bi-calendar-x display-1 text-muted"></i>
+        <p class="lead mt-3 text-muted">Aún no has recibido solicitudes de contacto o citas.</p>
+    </div>
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>twemoji.parse(document.body);</script>
+{% endblock %}
+
+{% block footer %}{% endblock %}

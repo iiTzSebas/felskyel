@@ -15,6 +15,15 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
+/* Ajuste para Twemoji en el texto del panel */
+img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+    display: inline-block;
+}
+
 /* Contenedor principal y título */
 .editor-container {
     padding-top: 2rem;
@@ -151,7 +160,7 @@ textarea.form-control {
 /* --- VISTA PREVIA --- */
 .preview-wrapper {
     position: sticky;
-    top: 2rem; /* Fija la vista previa al hacer scroll */
+    top: 6rem; /* Ajustado para que no se oculte tras el header sticky */
 }
 
 .preview-title {

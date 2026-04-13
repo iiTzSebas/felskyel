@@ -12,6 +12,15 @@ body {
 	font-family: 'Inter', sans-serif;
 }
 
+/* Ajuste para Twemoji en el texto del panel */
+img.emoji {
+	height: 1em;
+	width: 1em;
+	margin: 0 .05em 0 .1em;
+	vertical-align: -0.1em;
+	display: inline-block;
+}
+
 .text-b {
 	font-size: 16px;
 	font-style: normal;
@@ -68,10 +77,16 @@ body {
 .column-right {
 	flex: 1;
 	min-width: 300px;
-	max-width: 400px;
+	max-width: 440px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.profile-card-container {
+    position: sticky;
+    top: 100px;
+    width: 100%;
 }
 
 .column-left {
@@ -81,13 +96,14 @@ body {
 }
 
 .img1 {
-	width: 100%;
-	max-width: 350px;
-	height: auto;
-	border-radius: 12px;
-	margin-bottom: 30px;
-	object-fit: cover;
-	position: static;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 24px;
+    object-fit: cover;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+    background-color: #fff;
 }
 
 .hola2{
@@ -157,8 +173,9 @@ body {
 
 .footer-row-bottom {
 	display: flex;
-	align-items: flex-start;
-	flex-direction: column; /* Título arriba, iconos abajo */
+	align-items: center;
+	justify-content: center;
+	flex-direction: row; 
 	gap: 20px;
 	align-self: start;
 }

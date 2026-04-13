@@ -28,9 +28,96 @@
     <p class="copy-text2 body-text1">
         {{ proveedor.descripcion|linebreaksbr }}
     </p>
+    
     <div class="status-badge {% if proveedor.estado == 'activa' %}status-activa{% else %}status-espera{% endif %}">
-        {{ proveedor.estado|capfirst }}
+        {% if proveedor.estado == 'activa' %}
+            Disponible
+        {% else %}
+            {% if proveedor.estado == 'en espera' or proveedor.estado == 'espera' %}
+                No disponible
+            {% else %}
+                {{ proveedor.estado|capfirst }}
+            {% endif %}
+        {% endif %}
     </div>
+
+    <!-- Formulario de Contacto y Cita -->
+    <div class="mt-5 p-4 rounded shadow-sm" style="background-color: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);">
+        <h3 class="mb-4 fw-bold tint-text">Solicitar Asesoría o Cita</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label tint-text">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label tint-text">Apellido</label>
+                    <input type="text" name="apellido" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label tint-text">Correo Electrónico</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label tint-text">Teléfono de Contacto</label>
+                    <input type="tel" name="telefono" class="form-control" required>
+                </div>
+                <div class="col-12">
+                    <label class="form-label tint-text">Tu Dirección (para visitas)</label>
+                    <input type="text" name="direccion" class="form-control" placeholder="Ej: Calle 10 #12-34, Barrio..." required>
+                </div>
+                <div class="col-12">
+                    <label class="form-label tint-text">Mensaje / Motivo de consulta</label>
+                    <textarea name="mensaje" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label tint-text">Fecha sugerida (Opcional)</label>
+                    <input type="date" name="fecha" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label tint-text">Hora sugerida (Opcional)</label>
+                    <input type="time" name="hora" class="form-control">
+                </div>
+                <div class="col-12 mt-4">
+                    <button type="submit" class="btn btn-dark w-100 py-2 fw-bold">Enviar Solicitud</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 1. Obtenemos el color que viene de la base de datos
+        const bgColor = "{{ proveedor.color_fondo|default:'#6affc3' }}";
+
+        /**
+         * Determina si el color de texto debe ser negro o blanco basado en el color de fondo.
+         */
+        function getContrastColor(hexColor) {
+            if (!hexColor) return '#000000';
+            const hex = hexColor.replace('#', '');
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+            const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+            return (yiq >= 128) ? '#000000' : '#ffffff';
+        }
+
+        // 2. Calculamos el color ideal para el texto
+        const textColor = getContrastColor(bgColor);
+
+        // 3. Aplicamos el color al cuerpo y a elementos específicos
+        document.body.style.color = textColor;
+        
+        // Aplicar a títulos y textos de presentación para asegurar legibilidad
+        const elementsToTint = document.querySelectorAll('.copy-text2, .product-title, .header-text, .status-badge, .tint-text');
+        elementsToTint.forEach(el => {
+            el.style.color = textColor;
+        });
+    });
+    </script>
+
 {% endblock %}
 
 {% block imagen %}
@@ -42,3 +129,8 @@
 {% endblock %}
 
 {% block pie %}Redes de {{ proveedor.nombre_publico|default:proveedor.nombre_negocio }}{% endblock %}
+
+{# Si el archivo base-contacto.html tiene bloques específicos para formularios antiguos, #}
+{# los sobrescribimos aquí como vacíos para que no aparezcan. #}
+{% block formulario_contacto %}{% endblock %}
+{% block formulario_cita %}{% endblock %}

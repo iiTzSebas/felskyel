@@ -1,8 +1,9 @@
+import requests
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegistroForm, LoginForm
-from .models import Usuario, ProviderApplication, ProviderProfile
+from .models import Usuario, ProviderApplication, ProviderProfile, Cita
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
@@ -12,6 +13,29 @@ from django.conf import settings
 def reggistro_view(request):
     if request.method == 'POST':
         form = RegistroForm(request.POST)
+        
+        # Verificación de reCAPTCHA
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+        data = {
+            'secret': settings.RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+        }
+        try:
+            r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data, timeout=5)
+            result = r.json()
+        except (requests.exceptions.RequestException, ValueError):
+            messages.error(request, "Error de conexión al verificar el captcha. Por favor intente de nuevo.")
+            return render(request, 'usuarios/reggistro.html', {'form': form})
+
+        if not result.get('success'):
+            messages.error(request, "Por favor, confirma que no eres un robot.")
+            return render(request, 'usuarios/reggistro.html', {'form': form})
+
+        # Validación de seguridad: Verificar si se aceptaron los términos
+        if not request.POST.get('aceptar_terminos'):
+            messages.error(request, "Debes aceptar los términos y condiciones para registrarte.")
+            return render(request, 'usuarios/reggistro.html', {'form': form})
+            
         if form.is_valid():
             if form.cleaned_data.get('user_type') == Usuario.PROVEEDOR:
                 return redirect('solicitud_proveedor')
@@ -25,6 +49,28 @@ def reggistro_view(request):
 
 def solicitud_proveedor_view(request):
     if request.method == 'POST':
+        # Verificación de reCAPTCHA para proveedores
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+        data = {
+            'secret': settings.RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+        }
+        try:
+            r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data, timeout=5)
+            result = r.json()
+        except requests.exceptions.RequestException:
+            messages.error(request, "Error de comunicación con Google. Inténtalo de nuevo.")
+            return render(request, 'solicitud-para-registro.html')
+
+        if not result.get('success'):
+            messages.error(request, "CAPTCHA inválido. Intenta de nuevo.")
+            return render(request, 'solicitud-para-registro.html')
+
+        # Validación de seguridad para la solicitud de proveedor
+        if not request.POST.get('aceptar_terminos'):
+            messages.error(request, "Debes aceptar los términos y condiciones para enviar la solicitud.")
+            return render(request, 'solicitud-para-registro.html')
+            
         try:
             app = ProviderApplication.objects.create(
                 nombre_completo=request.POST.get('nombre_completo'),
@@ -67,7 +113,17 @@ def mi_perfil_view(request):
             messages.warning(request, "Tu perfil de proveedor aún no está configurado.")
             return redirect('inicio')
     else:
-        return render(request, 'usuarios/p.html')
+        # Obtenemos las citas solicitadas por este cliente, ordenadas por la más reciente
+        citas = Cita.objects.filter(cliente=request.user).order_by('-creada_en')
+        return render(request, 'usuarios/p.html', {'citas': citas})
+
+@login_required
+def eliminar_cita_cliente_view(request, cita_id):
+    # Buscamos la cita asegurándonos de que pertenezca al usuario actual
+    cita_obj = get_object_or_404(Cita, id=cita_id, cliente=request.user)
+    cita_obj.delete()
+    messages.success(request, "La solicitud ha sido eliminada correctamente.")
+    return redirect('mi_perfil')
 
 def login_view(request):
     if request.method == 'POST':

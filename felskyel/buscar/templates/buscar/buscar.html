@@ -77,10 +77,149 @@
     .btn-black:hover {
         background-color: #444;
     }
+
+    /* Estilos del Header Adaptados */
+    .header {
+        background-color: #42ffc0;
+        padding: 15px 40px;
+        display: flex;
+        align-items: center;
+    }
+    .header-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .header-arrow-left {
+        position: static !important;
+        transform: none !important;
+        margin-right: 15px;
+        color: #000;
+        display: flex;
+        align-items: center;
+        width: 30px;
+    }
+    .header-row {
+        display: flex;
+        justify-content: center;
+        flex: 1;
+        max-width: 550px;
+        margin: 0 20px;
+    }
+    .search-container-custom {
+        display: flex;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 50px;
+        padding: 12px 25px;
+        width: 100%;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        border: 2px solid transparent;
+        transition: all 0.3s ease;
+    }
+    .search-container-custom:focus-within,
+    .search-container-custom:hover {
+        background-color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        border-color: #6affc3;
+    }
+    .search-input-custom {
+        border: none;
+        outline: none;
+        background: transparent;
+        margin-left: 15px;
+        font-size: 1rem;
+        color: #333;
+        width: 100%;
+    }
+    .search-container-custom button {
+        background: none;
+        border: none;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    /* Ajuste para Twemoji */
+    .search-container-custom button img.emoji {
+        width: 20px !important;
+        height: 20px !important;
+        margin: 0 !important;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
+
+<header class="header">
+		<div class="header-nav">
+			<div style="display: flex; align-items: center;">
+				<a href="{% url 'productos:lista_productos' %}" class="header-arrow-left" aria-label="Volver a la Tienda">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path>
+					</svg>
+				</a>
+				<a href="{% url 'inicio' %}" class="header-text-felskyel body-text3" style="font-size: 1.5rem; font-weight: 700; color: #000; margin: 0; text-decoration: none;">Felskyel</a>
+			</div>
+
+			<!-- Buscador Adaptado -->
+			<form class="header-row" role="search" action="/buscar/" method="get">
+				<div class="search-container-custom">
+					<input class="search-input-custom" type="search" name="q" value="{{ query }}" placeholder="Buscar..." aria-label="Buscar">
+					<button type="submit">🔍</button>
+				</div>
+			</form>
+
+			
+				
+			<!-- Usuario / Invitado -->
+			<ul class="navbar-nav mb-0 ms-auto me-3 d-flex flex-row align-items-center">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle d-flex align-items-center text-dark" href="#" id="userDropdown"
+					role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<div class="avatar-sm rounded-circle overflow-hidden me-2"
+							style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#FFFFFF{% else %}#eee400{% endif %}; border: 1px solid rgba(0,0,0,0.1);">
+							{% if user.is_authenticated and user.profile.avatar %}
+								<img src="{% static 'img/avatares/'|add:user.profile.avatar|add:'.webp' %}" 
+									alt="Avatar" class="rounded-circle"
+									style="width:100%; height:100%; object-fit:cover;">
+							{% else %}
+								<img src="{% static 'appfel/img/pefil_f.png' %}" 
+									alt="Invitado" class="rounded-circle"
+									style="width:100%; height:100%; object-fit:cover;">
+							{% endif %}
+						</div>
+						<span class="header-text-perfil">
+							Hola,
+							{% if user.is_authenticated %}
+								<span class="fw-bold">{{ user.username }}</span>
+							{% else %}
+								<span>Invitado</span>
+							{% endif %}
+						</span>
+					</a>
+					<ul class="dropdown-menu dropdown-menu-end shadow border-0">
+						{% if user.is_authenticated %}
+							<li><a class="dropdown-item" href="{% url 'p' %}">Mi perfil</a></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+						{% else %}
+							<li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+							<li><a class="dropdown-item" href="{% url 'reggistro' %}">Registrarse</a></li>
+						{% endif %}
+					</ul>
+				</li>
+			</ul>
+
+			<a href="{% url 'carrito:ver_carrito' %}">
+				<img src="{% static 'appfel/img/shop/header-shopping.png' %}" class="header-shopping-cart-b header-shopping" style="width: 32px; height: 32px; cursor: pointer; position: static;" />
+			</a>
+		</div>
+	</header>
+    
 <div class="search-header">
     <div class="container">
         <h1 class="search-title">Resultados de búsqueda</h1>
@@ -101,11 +240,9 @@
                         <div class="product-card">
                             
                             {% if producto.imagen %}
-                                <img src="{% static 'appfel/img/shop/portadasp/' %}{{ producto.imagen }}" 
-                                    class="product-img" 
-                                    alt="{{ producto.nombre }}">
+                                <img src="{{ producto.imagen.url }}" class="product-img" alt="{{ producto.nombre }}">
                             {% else %}
-                                <img src="{% static 'appfel/img/default_product.png' %}" 
+                                <img src="{% static 'appfel/img/shop/default_product.png' %}" 
                                     class="product-img" 
                                     alt="Sin imagen">
                             {% endif %}
@@ -169,4 +306,7 @@
 
     </section>
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>twemoji.parse(document.body);</script>
 {% endblock %}
