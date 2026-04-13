@@ -46,6 +46,23 @@
             margin: 0 auto 10px auto; /* Centra el nav y ajusta el margen inferior */
         }
 
+        /* Contenedor para agrupar logo y texto */
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            position: static;
+            margin: 0;
+        }
+
+        .header-logo-img {
+            height: 95px; /* Tamaño ajustado para estar a la derecha */
+            width: auto;
+            filter: brightness(0) invert(1); /* Mantiene el logo blanco */
+            display: block;
+        }
+
         .header-text-felskyel {
             font-size: 1.8rem;
             font-weight: 800;
@@ -57,8 +74,10 @@
         }
 
         .header-shopping {
-            width: 30px;
-            height: 30px;
+            height: 40px; /* Tamaño proporcional al texto de 1.8rem */
+            width: auto;
+            border-radius: 6px;
+            display: block;
             filter: brightness(0) invert(1); /* Vuelve el icono blanco */
             cursor: pointer;
             position: static !important; /* Override shop.css absolute positioning */
@@ -409,13 +428,17 @@
             }
         }
     </style>
+    <link rel="icon" type="image/jpeg" href="{% static 'appfel/img/favireal.png' %}" />
 </head>
 
 <body>
     <!-- Header Original -->
     <header class="header">
         <div class="header-nav">
-            <a href="{% url 'inicio' %}"><p class="header-text-felskyel body-text3">Felskyel</p></a>
+            <a href="{% url 'inicio' %}" class="header-brand">
+                <span class="header-text-felskyel body-text3">Felskyel</span>
+                <img src="{% static 'appfel/img/felwhitee.png' %}" class="header-logo-img" alt="Logo Felskyel"/>
+            </a>
 
             <!-- Usuario / Invitado -->
             <ul class="navbar-nav mb-0 ms-auto me-3 d-flex flex-row align-items-center">

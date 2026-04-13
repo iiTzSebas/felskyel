@@ -9,6 +9,9 @@
 	<link rel="stylesheet" href="{% static 'appfel/css/global.css' %}" />
 	<link rel="stylesheet" href="{% static 'appfel/css/inicio.css' %}" />
 
+	<link rel="icon" type="image/jpeg" href="{% static 'appfel/img/favireal.png' %}" />
+
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +31,10 @@
 		<div class="header-group1">
 			<object data="assets/header-search.svg" class="header-search" type="image/svg+xml"></object>
 		</div>
-		<a href="." class="header-text-left body-text">Felskyel</a>
+		<div class="header-brand">
+			<img src="{% static 'appfel/img/FelskyelLogo.jpeg' %}" class="header-logo-img" alt="Logo Felskyel"/>
+			<a href="{% url 'inicio' %}" class="header-text-left body-text">Felskyel</a>
+		</div>
 
 		
 		<form class="header-row" role="search" action="/buscar/" method="get">
