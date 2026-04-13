@@ -14,6 +14,13 @@ class RegistroForm(UserCreationForm):
             raise ValidationError("Debes ser mayor de 18 años para registrarte.")
         return es_mayor
 
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        # Validación para evitar que el nombre sea puramente numérico
+        if username and username.isdigit():
+            raise ValidationError("El nombre de usuario no puede estar compuesto solo por números. Por favor, incluye letras.")
+        return username
+
 class LoginForm(AuthenticationForm):
     # NO HACE FALTA META
     pass

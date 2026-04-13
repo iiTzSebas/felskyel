@@ -232,3 +232,24 @@ def test_solicitud_proveedor_fallo_captcha(mock_post, client):
     assert not ProviderApplication.objects.filter(nombre_completo='Fallo Prov').exists()
     messages = [m.message for m in get_messages(response.wsgi_request)]
     assert "CAPTCHA inválido. Intenta de nuevo." in messages
+
+@pytest.mark.django_db
+@patch('requests.post')
+def test_registro_usuario_solo_numeros_falla(mock_post, client):
+    """Verifica que el registro falle si el nombre de usuario es puramente numérico."""
+    mock_post.return_value.json.return_value = {'success': True}
+    
+    url = reverse('reggistro')
+    data = {
+        'username': '12345678',
+        'email': 'test_numeros@example.com',
+        'password1': 'Password123!',
+        'password2': 'Password123!',
+        'user_type': 'cliente',
+        'es_mayor_edad': True,
+        'aceptar_terminos': 'on',
+        'g-recaptcha-response': 'token-ficticio'
+    }
+    response = client.post(url, data)
+    # Ahora el error se renderiza directamente en el HTML del formulario
+    assert "El nombre de usuario no puede estar compuesto solo por números. Por favor, incluye letras." in response.content.decode()
