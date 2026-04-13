@@ -10,7 +10,7 @@ from productos.models import Producto
 
 # --- CONFIGURACIÓN DE STRIPE ---
 # ⚠️ CADA INTEGRANTE DEBE PEGAR SU PROPIA LLAVE AQUÍ PARA QUE FUNCIONE
-stripe.api_key = "sk_test_51TLFjUHr3uj7vgffeiRiV8Lu7X1eY4DipNBKJAUKkthfQ361KRJ9zIX0qB3QbNMVVfZBlOdCutr3AxbclYn85T3G00GtQiByFl" 
+stripe.api_key = "key_de_prueba_de_stripe"  # Reemplaza con tu propia clave de prueba de Stripe
 # -------------------------------
 @login_required
 def crear_checkout(request):
