@@ -105,6 +105,8 @@
         <header class="header section">
         <a href="{% url 'inicio' %}">
         <img src="{% static 'appfel/img/header-arrow-left.png' %}" alt="Volver a la página de inicio" class="header-arrow-left"/>
+        <a href="javascript:history.back()" class="header-arrow-left" aria-label="Volver a la página anterior">
+            <img src="{% static 'appfel/img/header-arrow-left.png' %}" alt="Volver" />
         </a>
         
 
